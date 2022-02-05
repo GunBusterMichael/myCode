@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自适应布局</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var redirect=()=> {
+        // 获取设备信息
+        let userAgent = navigator.userAgent.toLocaleLowerCase();
+        // 正则表达式，判断设备类型
+        let device =/ipad|iphone|mipd|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/;
+        if (device.test(userAgent)) {
+            // 跳转移动端页面
+            window.location.href="move.html";
+        } else {
+            // 跳转pc端页面
+            window.location.href="pc.html"
+        }
+    }
+    redirect();
+</script>
+</html>

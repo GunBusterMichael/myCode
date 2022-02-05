@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透视perspective</title>
+    <style>
+        body {
+            /* 
+                pesrpective: 视距，眼睛到屏幕的距离；
+                给父盒子添加perspective；
+                视距越小，效果越明显。（近大远小）
+            */
+            perspective: 500px;
+        }
+        img {
+            display: block;
+            transition: all 5s;
+            transform-origin: left;     /* 设置变形中心点 */
+        }
+        img:nth-child(2) {
+            margin: 100px auto;
+        }
+        img:hover {
+            transform: rotateY(90deg);     /* #写单位deg */
+        }
+    </style>
+</head>
+<body>
+    <img src="img/serpic.jpg" alt="">
+    <img src="img/serpic.jpg" alt="">
+    <img src="img/serpic.jpg" alt="">
+</body>
+</html>

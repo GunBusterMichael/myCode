@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+        /* css初始化 */
+        * {     /* 去除初始margin和padding */
+            margin: 0;
+            padding: 0;
+        }
+        ul {     /* 去除默认li小点 */
+            list-style: none;
+        }
+        .clearfix::before, .clearfix::after {     /* 去除浮动影响 */
+            display: table;
+            content: "";
+        }
+        .clearfix::after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        a {
+            color: #050505;
+            text-decoration: none;
+        }
+        body {
+            background-color: #f3f5f7;     /* 页面背景色 */
+        }
+        input {
+            border: 0;     /* 所有表单的边框为零 */
+            box-sizing: border-box;     /* css3的盒子模型：border和padding都会被包含到width里面 */
+        }
+        /* 页面头部分 */
+        header {
+            height: 100px;
+            overflow: hidden;     /* 防止外边距合并 */
+        }
+        nav {
+            width: 1366px;
+            height: 42px;
+            margin: 29px auto;     /* 盒子水平垂直居中对齐 */
+        }
+        .logo {
+            float: left;
+        }
+        .navbar {
+            float: left;
+            height: 42px;
+            line-height: 42px;     /* 让 首页 课程 职业规划 垂直居中。行高给父级盒子，行高会继承 */
+            margin-left: 50px;
+        }
+        .navbar li {
+            float: left;     /* 让 首页 课程 职业规划 同行显示 */
+        }
+        .navbar a {
+            padding: 0 10px;     /* padding上下为0，左右为8px */
+            display: block;     /* a是行内元素，需要转换成块级元素设置高度，让下边框下移 */
+            /* height: 42px; */
+        }
+        .navbar a:hover {     /* 鼠标经过显示底边框 */
+            border-bottom: 2px solid #00a4ff;
+        }
+        /* 搜索框部分 */
+        .search {
+            width: 410px;
+            height: 38px;
+            border: 1px solid #00a4ff;
+            float: left;
+        }
+        .search input[type=text] {     /* 属性选择器：选择type为text的文本框 */
+            width: 360px;
+            height: 38px;
+            padding-left: 20px;
+            float: left;     /* <input>为行内块元素，元素之间有空隙，在固定宽度的div里会放不下 */
+        }
+        .search input[type=submit] {     /* 属性选择器：选择type为submit的文本框 */
+            width: 50px;
+            height: 38px;
+            background: #00a4ff url(images/btn.png) center no-repeat;
+            float: left;
+        }
+        /* 个人中心部分 */
+        .personal {
+            float: left;
+            height: 38px;
+            line-height: 38px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部分 -->
+    <header>
+        <nav>
+            <!-- logo部分 -->
+            <div class="logo">
+                <img src="imag" alt="logo">
+            </div>
+            <!-- 导航栏部分，用li做 -->
+            <div class="navbar">
+                <div class="navbar">
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">课程</a></li>
+                        <li><a href="#">职业规划</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 搜索框部分 -->
+            <div class="search">
+                <form action="#">
+                    <input type="text" name="search" placeholder="输入关键词" autocomplete="on">
+                    <input type="submit" value="">
+                </form>
+            </div>
+            <div class="personal">
+                <a href="#">个人中心</a>
+                <a href="#"></a>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

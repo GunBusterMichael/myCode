@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>连接数组</title>
+    <script>
+        // 被连接的数组1.concat(被连接的数组2 或 被连接的值, 被连接的数组3 或 被连接的值......) 方法用于合并两个或多个数组。
+        // 此方法 不会更改现有数组 ，而是 返回一个新数组 。
+        // 1、连接数组
+        var arr1 = ['a', 'b', 'c'];
+        var arr2 = ['d', 'e', 'f'];
+        var arr3 = ['g', 'h', 'i']
+        var arr4 = arr1.concat(arr2, arr3);
+        console.log(arr4);    // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+        console.log(arr1);    // ['a', 'b', 'c']
+        console.log(arr1.concat());    // 不写参数，返回 . 前面的数组
+
+        // 2、连接值到数组
+        var alpha = ['a', 'b', 'c'];
+        var alphaNumeric = alpha.concat(1, [2, 3]);
+        console.log(alphaNumeric);    // ['a', 'b', 'c', 1, 2, 3]
+
+        // 3、链接嵌套数组
+        var num1 = [[1]];
+        var num2 = [2, [3]];
+        var num3 = [5,[6]];
+
+        var nums = num1.concat(num2);
+
+        console.log(nums);
+        // results is [[1], 2, [3]]
+
+        var nums2=num1.concat(4,num3);
+
+        console.log(nums2)
+        // results is [[1], 4, 5,[6]]
+
+        // modify（修改） the first element of num1
+        num1[0].push(4);
+
+        console.log(nums);
+        // results is [[1, 4], 2, [3]]
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

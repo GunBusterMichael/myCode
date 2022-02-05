@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用className更改元素属性</title>
+    <style>
+        .first {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+        .change {
+            background-color: purple;
+            color: #fff;
+            font-size: 25px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">文本</div>
+    <script>
+        // 1、使用 element.style 获得修改元素样式
+        var test = document.querySelector('div');
+        test.onclick = function () {
+            // this.style.backgroundColor = 'purple';
+            // this.style.color = '#fff';
+            // this.sytle.fontSize = '25px';
+            // this.style.marginTop = '100px';
+
+            /* 等价于 */
+
+            // 将当前元素的类名改为 change 并覆盖原先的类名 first；
+            // 适合于样式较多或功能复杂的情况；
+            this.className = 'change';
+            // 要保留原先的类名时，使用多类名选择器：
+            this.className = 'first change';
+        }
+    </script>
+</body>
+</html>

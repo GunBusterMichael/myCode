@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D变形-缩放</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            /* margin: 100px auto; */
+            transition: all .5s;
+        }
+        /*
+            缩放时会盖住其他元素;
+        */
+        .div1:hover {
+            transform: scale(1.2, 2);     /* 水平放大1.2倍，垂直放大2倍 */
+        }
+        .div2 {
+            background-color: #bd7d74;
+        }
+        .div2:hover {
+            transform: scale(2);     /* 宽高同时放大2倍 */
+        }
+        section {
+            width: 319px;
+            height: 213px;
+            margin: 0 auto;
+            border: 2px solid red;
+            overflow: hidden;
+        }
+        section img {
+            transition: transform .5s;     /* 图片缩放，所以给img添加transition */
+        }
+        section:hover img {
+            transform: scale(1.2);     /* 鼠标经过section时 */
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <section>
+        <img src="img/serpic.jpg" alt="">
+    </section>
+</body>
+</html>

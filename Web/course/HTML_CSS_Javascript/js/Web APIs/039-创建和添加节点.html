@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>039-创建和添加节点</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+    </ul>
+    <script>
+        /*
+            1. 创建元素节点:
+                var 变量名 = document.createElement('元素节点名')
+        */
+        var li = document.createElement('li');
+
+        /*
+            2.1 在已有元素后添加元素节点，或给没有子元素的元素添加元素节点：
+                node.appendChild(child);
+                node：父级；
+                child：子级。
+
+                追加子级，类似于数组中的 push
+        */
+        var ul = document.querySelector('ul');
+        ul.appendChild(li);
+
+        /*
+            2.2 在指定元素前添加元素节点：
+                node.insertBefore(child, 指定元素)
+        */
+        var li1 = document.createElement('li');
+        ul.insertBefore(li1, ul.children[0]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版心（可视区）一列固定宽度且居中</title>
+    <!--
+        布局流程：
+            1、确定页面的版心（可视区）px；
+            2、分析页面中的行模块，以及每个行模块中的列模块；
+            3、制作HTML结构；
+            4、CSS初始化，然后运用盒子模型，通过div+css布局控制网页的各个模块。
+    -->
+</head>
+    <style>
+        * {     /* css第一句：清楚内外边距 */
+            margin: 0;
+            padding: 0;
+        }
+        /* 用“并集选择器”定义相同的样式 */
+        .top,
+        .banner,
+        .main,
+        .footer {
+            width: 960px;
+            text-align: center;     /* 文字居中对齐 */
+            margin: 0 auto;     /* 盒子居中对齐 */
+            margin-bottom: 5px;
+        }
+        .top {
+            height: 80px;
+            background-color: #b8a6d9;
+        }
+        .banner {
+            height: 120px;
+            background-color: #bd7d74;
+        }
+        .main {
+            height: 500px;
+            background-color: #9ac8e2;
+        }
+        .footer {
+            height: 150px;
+            background-color: #e779b0;
+        }
+    </style>
+<body>
+    <div class="top">top</div>
+    <div class="banner">banner</div>
+    <div class="main">main</div>
+    <div class="footer">footer</div>
+</body>
+</html>

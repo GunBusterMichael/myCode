@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>携程网</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        body {
+            min-width: 320px;       /* 最小宽度 */
+            max-width: 540px;       /* 最大宽度 */
+            margin: 0 auto;
+        }
+        header img {
+            width: 100%;
+        }
+        .nav {
+            padding: 5px;
+        }
+        .main-row {
+            width: 100%;
+            height: 90px;
+            background-color: #b8a6d9;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;      /* 给父级添加伸缩布局 */
+        }
+        .main-row:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        .main-row:nth-child(3) {
+            background-color: #fc966e;
+        }
+        .main-row:last-child {
+            background-color: #576690;
+        }
+        .column {
+            flex: 1;        /* 每个子级占一份 */
+            border-left: 1px solid #fff;
+        }
+        .column:first-child {
+            bottom: 0;
+        }
+        .column a {
+            text-shadow: 0 2px 1px rgba(0, 0, 0, .3);
+        }
+        .sub-row {
+            display: flex;
+            flex-direction: column;     /* 垂直排列 */
+        }
+        .sub-row a {
+            flex: 1;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            line-height: 45px;
+        }
+        .sub-row a:first-child {
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="img/headad.jpg" alt="">
+    </header>
+    <nav>
+        <div class="main-row">
+            <div class="column"></div>
+            <div class="column sub-row">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="column sub-row">
+                <a href="#">团 购</a>
+                <a href="#">民俗·客栈</a>
+            </div>
+        </div>
+        <div class="main-row">
+            <div class="column"></div>
+            <div class="column sub-row">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="column sub-row">
+                <a href="#">团 购</a>
+                <a href="#">民俗·客栈</a>
+            </div>
+        </div>
+        <div class="main-row">
+            <div class="column"></div>
+            <div class="column sub-row">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="column sub-row">
+                <a href="#">团 购</a>
+                <a href="#">民俗·客栈</a>
+            </div>
+        </div>
+        <div class="main-row">
+            <div class="column sub-row">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="column sub-row">
+                <a href="#">海外酒店</a>
+                <a href="#">特价酒店</a>
+            </div>
+            <div class="column sub-row">
+                <a href="#">团 购</a>
+                <a href="#">民俗·客栈</a>
+        </div>
+    </nav>
+</body>
+</html>

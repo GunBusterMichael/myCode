@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串对象作业</title>
+    <script>
+        // 给定字符串 'adhubaisdiasbuidisbdaisbdjba3343434343'
+        var str = 'adhubaisdiasbuidisbdaisbdjba3343434343';
+
+        // 1、返回字符串的长度
+        console.log(str.length);    // 38
+
+        // 2、取出指定位置的字符
+        function getSpecificChars() {
+            var specificChars = [];
+            for (var i = 0; i < arguments.length; i++) {
+                specificChars[specificChars.length] = str.charAt(arguments[i])
+            }
+            return specificChars.join();
+        };
+        var specificChars = getSpecificChars(0, 3, 5, 9);
+        console.log(specificChars);    // a,u,a,i
+
+        // 3、查找指定字符是在以上字符串中存在
+        function isCharsExist() {
+            var result = '';
+            for (var i = 0; i < arguments.length; i++) {
+                result = str.indexOf(arguments[i]) !== -1 ? result + arguments[i] + '在该字符串内存在\n' : result + arguments[i] + '在该字符串内不存在\n';
+            };
+            return result;
+        };
+        var charsExistence = isCharsExist('i', 'c', 'b');
+        console.log(charsExistence);
+
+        // 4、替换指定的字符
+        function replaceChars(originalChar, changedChars) {
+            var changedStr = str;
+            while (changedStr.indexOf(originalChar) !== -1) {
+                changedStr = changedStr.replace(originalChar, changedChars);
+            };
+            return changedStr;
+        };
+        var changedStr = replaceChars('a', 22);
+        console.log(changedStr);
+
+        // 5、截取从指定开始位置到指定结束位置的字符串
+        function cutChars(start, end) {
+            var subChars = str.substr(start, end);
+            return subChars;
+        };
+        var subChars = cutChars(1, 5);
+        console.log(subChars);
+
+        // 6、找出该字符串中出现次数最多的字符和它出现的次数
+        function getOccurNum() {
+            var o = {};
+            for (var i = 0; i < str.length; i++) {
+                var chars = str.charAt(i);
+                if (o[chars]) {
+                    o[chars]++;
+                } else {
+                    o[chars] = 1;
+                };
+            };
+            return o;
+        };
+        function getMostFrequently() {
+            var o = getOccurNum();
+            var max = 0;
+            for (var k in o) {
+                if (max < o[k]) {
+                    max = o[k];
+                    charsOfMostFrequently = k;
+                };
+            };
+            return '出现次数最多的字符是' + charsOfMostFrequently + '，其出现的次数是' + max;
+        };
+        var re = getMostFrequently();
+        console.log(re);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

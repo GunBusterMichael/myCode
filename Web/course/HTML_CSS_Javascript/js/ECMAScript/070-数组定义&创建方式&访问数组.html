@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组Array</title>
+    <script>
+        /* 
+        1、定义：
+            数组Array指 *一组数据的集合* ，其中每个数据被称作 *元素* ，在数组中可以 *存放任意类型的元素* 。我们可以利用数组将 *一组数据存储在单个变量名下*
+        */
+       
+        /* 2、利用 new 创建数组 */
+        var arr = new Array();  // 创建了一个 空 的数组
+        var arr1 = new Array(2);    // 创建一个长度为 2 ，有 两个空数组元素 的数组
+        var arr2 = new Array(1, 2);    // 创建一个为 [1, 2] 的数组
+       
+        /* 3、利用数组字面量[]创建数组（用的多） */
+        var arr3 = [];   // 创建了一个空的数组
+        var arr4 = [1, 2, 'carol', true];
+       
+        // 4、数组里的数据一定要用逗号分隔开
+       
+        /* 
+        5、访问（获取、得到）数组方式
+            数组元素的索引号从 0 开始
+            格式：
+                数组名[索引号]
+        */
+        console.log(arr4);
+        console.log(arr4[0]);   // 数据：1
+        console.log(arr4[1]);   // 数据：2
+        console.log(arr4[2]);   // 数据：carol
+        console.log(arr4[3]);   // 数据：true
+        console.log(arr4[4]);   // 数据：undefined 因为没有这个数组元素
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

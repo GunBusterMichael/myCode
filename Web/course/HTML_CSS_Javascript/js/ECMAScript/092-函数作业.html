@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业</title>
+    <script>
+        // 1、写一个函数，能返回传入的任意两个数字的最大值
+        function get2Max(num1, num2) {
+            if (num1 > num2) {
+                return '最大值是' + num1;
+            } else if (num1 < num2) {
+                return '最大值是' + num2;
+            } else {
+                return '俩数一样大';
+            }
+        };
+        var re = get2Max(12, 21);
+        console.log(re);
+
+        // 2、写一个函数，能返回传入的任意三个数字的最大值。
+        function get3Max(num1, num2, num3) {
+            var max = num1;
+            if (max < num2) {
+                max = num2
+            };
+            if (max < num3) {
+                max = num3
+            };
+            return max;
+        }
+        var re = get3Max(3, 2, 1);
+        console.log(re);
+
+        // 3、写一个函数，能判断传入的一个数值是否是质数，如果是质数返回true，如果不是质数返回false，(质数：从2开始只能被1和自身整数的数)
+        function judgePrimeNumber(num) {
+            if ((typeof num === 'number' && num % 1 === 0) === true) {
+                for (var i = 2; i < num; i++) {
+                    if (num % i == 0) {    // 被一个数整除，就不是质数，返回false，结束函数
+                        return false;
+                    };
+                    return true;           // 没被任何一个数整除，是质数，不符合if条件，执行return true;
+                }
+            } else {
+                return '输入的不是整数';
+            };
+        };
+        var re = judgePrimeNumber(17);
+        console.log(re);
+
+        // 4、写一个函数，能翻转传入的数组`['red', 'green', 'blue', 'pink', 'purple']`，并把翻转结果通过返回值返回。
+        function reverse(arr) {
+            var reverseArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                reverseArr[reverseArr.length] = arr[i];
+            };
+            return reverseArr;
+        };
+        var re = reverse(['red', 'green', 'blue', 'pink', 'purple']);
+        console.log(re);
+
+        // 5、写一个函数，能对传入的数组`[10,32,41,8,9,18]`按照从小到大进行排序，并把排序结果通过返回值返回
+        function sortSmall2Large(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    };
+                };
+            };
+            return arr;
+        };
+        var re = sortSmall2Large([10, 32, 41, 8, 9, 18]);
+        console.log(re);
+
+        /* 
+        6、简易计算器
+            题目描述：
+                用户在弹出的输入框中选择要做的运算
+                用户选择后弹出两个输入框，让用户输入数字
+                根据用户选择的操作和输入的数据，计算出最后结果并弹出提示框显示结果
+        */
+        
+        function calculator(option) {
+            do {
+                var num1 = parseFloat(prompt('请输入第一个数：'));
+                var num2 = parseFloat(prompt('请输入第二个数：'));
+                var result;
+                switch (option) {
+                    case 1:
+                        result = num1 + num2;
+                        break;
+                    case 2:
+                        result = num1 - num2;
+                        break;
+                    case 3:
+                        result = num1 * num2;
+                        break;
+                    case 4:
+                        result = num1 / num2;
+                        break;
+                };
+                alert(result);
+                option = parseInt(prompt('1.加法运算\n2.减法运算\n3.乘法运算\n4.除法运算\n5.退出'));
+            } while (option != 5);
+        };
+        var option = parseInt(prompt('1.加法运算\n2.减法运算\n3.乘法运算\n4.除法运算\n5.退出'));
+        calculator(option);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

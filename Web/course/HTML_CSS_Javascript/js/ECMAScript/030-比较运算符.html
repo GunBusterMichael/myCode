@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比较运算符</title>
+    <script>
+        /* 
+            比较运算符：
+                1、定义
+                    将两个数据进行比较时所用的运算符
+                2、返回：
+                    布尔值 true false
+         */
+
+        // 3、>大于 <小于
+        console.log(2 > 1);     // true
+        console.log(2 < 1);     // false
+
+        // 4、>=大于等于 <=小于等于
+        console.log(3 >= 3);    // true
+        console.log(4 <= 3);    // false
+
+        // 5、==等于： !=不等于，只对比值，默认转换数据类型，会把字符串型转换为数字型
+        console.log(4 == 3);    // false
+        console.log('Carol' == 'Carol');    // true
+        console.log(4 == '4');  // true
+        console.log(3 != '3');  //false
+
+        // 6、===全等于：比较值和数据类型，都一致true
+        console.log(3 === '3'); // false
+        console.log(3 === 3);   // true
+
+        // 7、!== 比较值和数据类型，有一项不一致true
+        console.log(3 !== '3'); // true
+        console.log(3 !== 3)    // false
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

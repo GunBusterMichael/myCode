@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业</title>
+    <script>
+        // 电脑对象
+        var computer = {
+            color: 'black',
+            weight: '500g',
+            brand: 'Huawei',
+            type: 'MateBook X Pro',
+            watchMovie: function () {
+                console.log('看电影');
+            },
+            listenMusic: function () {
+                console.log('听音乐');
+            },
+            playGame: function () {
+                console.log('打游戏');
+            },
+            code: function () {
+                console.log(敲代码);
+            }
+        }
+        // 按钮对象
+        var bottom = new Object();
+        bottom.width = 200;
+        bottom.height = 300;
+        bottom.backgroundColor = '#B8A6D9';
+        bottom.click = function () {
+            console.log('hello');
+        };
+        // 车对象
+        function car(height, color, brand) {
+            this.height = '1t';
+            this.color = 'black';
+            this.brand = 'Buick';
+            this.carryPeople = function (people) {
+                console.log('载人，载了' + people);
+            }
+            this.carryCargo = function (cargo) {
+                console.log('拉货，拉了' + cargo);
+            }
+            this.cultivate = function (crop) {
+                console.log('耕田，耕了' + crop + '田');
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

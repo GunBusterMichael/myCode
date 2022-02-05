@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>065-（案例）京东快递查询单号放大字体</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .search {
+            position: relative;
+            width: 178px;
+            margin: 100px auto;
+        }
+        .con {
+            display: none;
+            position: absolute;
+            top: -40px;
+            left: 0;
+            border: 1px solid rgba(0, 0, 0, .2);
+            width: 173px;
+            font-size: 18px;
+            /* box-shadow: 左右px 上下px 模糊px rgba(0, 0, 0, .2); */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, .2);
+            overflow: hidden;
+        }
+        .con::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 23px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid #fff;
+            border-right: 8px solid transparent;
+            /* border-bottom: 5px solid #0f0; */
+            border-left: 8px solid transparent;
+        }
+        jd {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        案例分析：
+            1. 实现效果：
+                在快递单号搜索框中输入内容时，上面的大字号盒子显示输入的内容，字体更大；
+                搜索框中没有文字时，大字号盒子隐藏；
+                搜索框中有文字，且失去焦点时，大字号盒子隐藏；
+                搜索框中有文字，获得焦点时，大字号盒子显示。
+            2. 实现原理：
+                给表单添加键盘事件 keyup ，检测用户输入情况；
+               ！不能使用 keydown 和 keypres。因为：
+                    keypress 不识别功能键，删除文本框的内容后，大字号盒子的相应内容不会被删除；
+                    在文本框中，键盘按键按下时，keydown 和 keypress 先触发事件，再将文字赋值给文本框的 value ；
+                                           而 keyup 是先将文字赋值给文本框的 value ，再触发事件（按键弹起时触发事件）。
+                把搜索框中的 value 赋值给大字号盒子的 innerHTML；
+                如果搜索框中的内容为空，则隐藏大字号盒子。
+    -->
+    <div class="search">
+        <div class="con">123</div>
+        <input type="text" placeholder="请输入您的快递单号" class="jd">
+    </div>
+    <script>
+        // 获取元素
+        var con = document.querySelector('.con');
+        var jd = document.querySelector('.jd');
+
+        /*
+            在快递单号搜索框中输入内容时，上面的大字号盒子显示输入的内容，字体更大；
+            搜索框中没有文字时，大字号盒子隐藏； 
+        */
+        jd.addEventListener('keyup', function () {
+            if (jd.value === '') {
+                con.style.display = 'none';
+            } else {
+                con.style.display = 'block';
+                con.innerHTML = jd.value;
+            };
+        });
+
+        /*
+            搜索框中有文字，且失去焦点时，大字号盒子隐藏；
+            搜索框中有文字，且获得焦点时，大字号盒子显示。
+        */
+        jd.addEventListener('blur', function () {
+            con.style.display = 'none';
+        });
+        jd.addEventListener('focus', function () {
+            if (this.value !== '') {
+                con.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

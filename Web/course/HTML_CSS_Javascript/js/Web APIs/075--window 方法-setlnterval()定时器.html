@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setlnterval()定时器</title>
+</head>
+<body>
+    <script>
+        /*
+            window.setlnterval(回调函数[, 间隔的毫秒数]);
+            setlnterval();方法可以每隔一段时间重复调用一个函数。
+                注意：
+                    1. window. 可以被省略；
+                    2. 可以直接在方法内定义函数、写函数名或采取'函数名()'形式
+                    3. 间隔的毫秒数默认为零，可以省略；
+                    4. 可以添加标识符。
+        */
+        var num = 1;
+        setInterval(function () {
+            console.log(num++);
+        }, 1000);
+    </script>
+</body>
+</html>

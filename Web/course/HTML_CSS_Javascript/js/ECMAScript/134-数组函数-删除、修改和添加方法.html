@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组函数-删除和修改方法</title>
+    <script>
+        // array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        // 通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。
+        // 此方法会 改变 原数组 。
+
+        // start​ 指定修改的开始位置（从0计数） 从start开始修改，其后元素顺延
+        // deleteCount 可选 整数，表示要移除的数组元素的个数。
+        // item1, item2, ... 可选 要添加进数组的元素,从start 位置开始。
+
+        var arr1 = ['Ava', 'Carol', 'Eileen'];
+        
+
+        // 添加元素:
+        // deleteCount 为 0 或 负数
+
+        // 在数组结尾添加元素:
+        // start > array.length
+        arr1.splice(3, 0, 'Acao', 'Nanami');
+        console.log(arr1);    // ['Ava', 'Carol', 'Eileen', 'Acao', 'Nanami']
+
+        // 在数组开头添加元素:
+        // start < 0 && start绝对值 >= array.length
+        arr1.splice(-6, 0, 'Miku');
+        console.log(arr1);
+
+        // 在数组之间添加元素:
+        arr1.splice(3, 0, 'Diana');    // 代替索引号为start(3)的元素，原索引号start(3)元素延后
+        console.log(arr1);    // ['Miku', 'Ava', 'Carol', 'Diana', 'Eileen', 'Acao', 'Nanami']
+
+
+        // 删除元素:
+        // deleteCount 被省略 或 > 0
+        // 删除 start后 所有元素:
+        // deleteCount >= start和start后所有元素数量的总和
+        arr1.splice(4, 3)
+        console.log(arr1);    // ['Miku', 'Ava', 'Carol', 'Diana']
+        // deleteCount 被省略
+        arr1.splice(2);
+        console.log(arr1);    // ['Miku', 'Ava']
+
+        // 删除start后 部分元素
+        arr1.splice(1, 0, 'Carol', 'Diana', 'Eileen', 'Acao', 'Nanami');
+        console.log(arr1);    // ['Miku', 'Carol', 'Diana', 'Eileen', 'Acao', 'Nanami', 'Ava']
+        arr1.splice(2, 2);    // 从索引号2开始，删除2个元素（包括索引号2）
+        console.log(arr1);    // ['Miku', 'Carol', 'Acao', 'Nanami', 'Ava']
+
+
+        // 删除并添加元素（修改元素）
+        arr1.splice(2, 1, 'Yangtuo');    // 删除索引号2元素，在索引号2添加'Yangtuo'元素
+        console.log(arr1);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

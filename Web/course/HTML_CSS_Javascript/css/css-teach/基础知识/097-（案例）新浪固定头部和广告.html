@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（案例）新浪固定头部和广告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .top {
+            height: 49px;
+            width: 100%;     /* ##没有被内容撑开的固定定位盒子一定要写宽和高 */
+            background: url(img/sinabar.png) top center no-repeat;     /* top center 垂直靠上，水平居中 */
+            background-size: contain;
+            position: fixed;     /* 固定定位 */
+            top: 0;
+            left: 0;
+        }
+        .box {
+            width: 1002px;     /* 想要margin: auto，必须设置width */
+            margin: 49px auto;
+        }
+        .ad-l,
+        .ad-r {
+            position: fixed;
+            top: 100px;
+        }
+        .ad-l {
+            left: 0;
+        }
+        .ad-r {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="top"></div>
+    <div class="ad-l"><img src="img/sinaad-l.png" alt=""></div>
+    <div class="ad-r"><img src="img/sinaad-r.png" alt=""></div>
+    <div class="box">
+        <img src="img/sinabox.png" alt="">
+    </div>
+</body>
+</html>

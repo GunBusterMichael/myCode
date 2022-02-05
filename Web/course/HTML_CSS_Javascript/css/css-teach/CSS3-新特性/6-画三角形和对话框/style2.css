@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.dialog {
+    background-color: #6a6;
+    margin: 50px auto;
+    width: 200px;
+    line-height: 25px;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fff;
+    position: relative;
+}
+.dialog::before {
+    content: "";
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid rgb(140, 180, 140);
+    position: absolute;
+    left: -10px;        /* 初始left: -10px */
+    top: 12px;
+}

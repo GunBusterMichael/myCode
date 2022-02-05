@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>伪元素选择器before after</title>
+		<style type="text/css">
+			/* before和after是在盒子div内部的前、后插入内容 */
+			div::before {
+				content: "我";
+			}
+			div::after {
+				content: "18岁";
+			}
+		</style>
+	</head>
+	<body>
+		<div><a href="#">今年</a></div>
+	</body>
+</html>

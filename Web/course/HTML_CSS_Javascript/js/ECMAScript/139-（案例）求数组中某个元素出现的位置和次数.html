@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>次数</title>
+    <script>
+        // ['red', 'blue', 'red', 'green', 'pink','red'], 求 red 出现的位置和次数
+        var arr =  ['red', 'blue', 'red', 'green', 'pink', 'red'];
+        var index = arr.indexOf('red');
+        var num = 0;
+        while (index !== -1) {
+            num++;
+            console.log(index);
+            index = arr.indexOf('red', index + 1);
+        };
+        console.log('red出现的次数是：' + num);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

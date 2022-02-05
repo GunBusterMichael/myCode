@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div0 {
+            display: flex;
+            width: 400px;
+            height: 500px;
+            background-color: #b8a6d9;
+        }
+        #div0 div {
+            width: 100px;
+            height: 200px;
+            background-color: #bd7d74;
+            flex: 30%;
+            /* 
+                等价于
+                flex: 0 0 auto;     
+                flex-basis: auto;时，width生效。
+            */
+        }
+    </style>
+</head>
+<body>
+    <div id="div0">
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开门</title>
+    <style>
+        section {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            background: url(img/jeffsquare.jpg) 0 0/contain no-repeat ;
+            /* background-size: contain; */
+            margin: 200px auto;
+            position: relative;
+            perspective: 600px;     /* 给父盒子添加perspective */
+            box-sizing: border-box;
+        }
+        .door-l,
+        .door-r {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: red;
+            border: 1px solid #000;
+            transition: all .8s;     /* 两个门的过渡效果 */
+            box-sizing: border-box;
+        }
+        .door-l {
+            left: 0;
+            transform-origin: left;
+        }
+        .door-r {
+            right: 0;
+            transform-origin: right;
+        }
+        .door-l::before,
+        .door-r::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background-color: #000;
+            top: 50%;
+            transform: translateY(-50%);     /* 移动自己高度的一半 */
+        }
+        .door-l::before {
+            right: 10px;
+        }
+        .door-r::before {
+            left: 10px;
+        }
+        /* 鼠标经过section，门沿y轴翻转 */
+        section:hover .door-l {
+            transform: rotateY(-130deg);     /* 向左边反转，用负deg */
+        }
+        section:hover .door-r {
+            transform: rotateY(130deg);     /* 向右边反转，用正deg */
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="door-l"></div>
+        <div class="door-r"></div>
+    </section>
+</body>
+</html>

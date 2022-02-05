@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构伪类选择器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 
+            clear: 
+                定义了一个元素是否可以放置在它之前的浮动元素旁边，或者必须向下移动在新行中放置。
+                当一个元素定义了clear值不为none时，可以被用来清除其之前的浮动元素对自身的影响（不同的取值，对应不同方向的浮动）。 
+        */
+        .clearfix {     /* 给浮动元素的父盒子添加 */
+            clear: both;
+            overflow: auto;     /* 让子元素能撑开父盒子 */
+        }
+        .demo {
+            border: 1px solid #ccc;
+            width: 300px;
+            margin: 50px auto;
+            padding: 10px;
+        }
+        .demo li {
+            float: left;        /* 给谁添加浮动，谁本身浮动，子元素不浮动 */
+            list-style: none;
+            padding: 2px;
+            border: 1px solid #ccc;
+            margin-right: 4px;
+            width: 20px;
+            height: 20px;
+        }
+        .demo a {
+            display: block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #f36;
+            text-decoration: none;
+        }
+        /* 选择范围：所有类型子元素 */
+        .demo li:nth-child(n+5) {       /* n从0开始 */
+            background-color: #b8a6d9;
+        }
+        /* 选择范围：特定类型子元素 */
+        .demo li:nth-of-type(2) {
+            background-color: #bd7d74;
+        }
+        /* 选择元素：父元素的唯一子元素 */
+        .demo li:only-child {
+            background-color: #0f0;
+        }
+        .demo li:empty {
+            background-color: #bd7d74;
+        }    
+    </style>
+</head>
+<body>
+    <div class="demo clearfix">
+        <ul class="clearfix">
+            <p>0</p>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">9</a></li>
+            <li><a href="#">10</a></li>
+        </ul>
+    </div>
+    <div class="demo clearfix">
+        <ul class="clearfix">
+            <li><a href="#">1</a></li>
+        </ul>
+    </div>
+    <div class="demo clearfix">
+        <ul class="clearfix">
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

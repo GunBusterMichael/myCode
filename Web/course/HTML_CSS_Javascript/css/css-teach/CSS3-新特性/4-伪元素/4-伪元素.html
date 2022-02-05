@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪元素</title>
+    <style>
+        .demo {
+            border: 1px solid #ccc;
+            width: 300px;
+            margin: 50px auto;
+            padding: 10px;
+        }
+        .demo::first-letter {
+            font-size: 40px;
+            font-weight: 700;
+            float: left;        /* 文字下沉 */
+        }
+        .demo::first-line {
+            color: #f66;
+        }
+        .demo2 {
+            width: 300px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            padding: 10px;
+            text-align: center;
+        }
+        .demo2::before {
+            content:"";     /* 这行必须写 */
+            display: block;
+            width: 300px;
+            height: 50px;
+            background: url(img_html/PatternTop.jpg) center -9px/cover no-repeat;
+        }
+        .demo2::after {
+            content:"";     /* 这行必须写 */
+            display: block;
+            width: 300px;
+            height: 300px;
+            background: url(img_html/PatternFlower.jpg) center/contain no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum maiores et labore tenetur eius rem necessitatibus molestiae quia voluptatibus consectetur.
+    </div>
+    <div class="demo2">
+        玩转CSS3新特性
+    </div>
+</body>
+</html>

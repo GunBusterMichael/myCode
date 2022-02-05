@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行内元素没有“上下外边距”&内边距</title>
+    <style>
+        span {
+            background-color: #b8a6d9;
+            margin: 30px 50px;     /* margin上下30px不起作用，左右50px起作用 */
+            padding: 30px;     /* padding上下30px不起作用，左右30px起作用 */
+            /* 不给行内元素指定上下的内外边距 */
+        }
+    </style>
+</head>
+<body>
+    <Span>行内元素</Span>
+</body>
+</html>

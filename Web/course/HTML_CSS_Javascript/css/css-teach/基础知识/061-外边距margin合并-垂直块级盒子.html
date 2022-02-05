@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外边距margin合并-垂直块级盒子</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+        }
+        div:first-child {
+            background-color: #b8a6d9;
+            margin-bottom: 100px;
+        }
+        div:last-child {
+            background-color: #bd7d74;
+            margin-top: 50px;
+        }
+        /* 垂直的块级盒子，外边距合并时，以最大的外边距为准 */
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+</html>

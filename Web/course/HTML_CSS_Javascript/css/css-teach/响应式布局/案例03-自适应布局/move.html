@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>move</title>
+    <style>
+        #div0 {
+            display: flex;
+        }
+        #div0 div:first-child {
+            background-color: #ff0;
+            flex: 0 0 50px;
+        }
+        #div0 div:nth-child(2) {
+            background-color: #f00;
+            flex: 1 1 auto;
+        }
+        #div0 div:nth-child(3) {
+            background-color: #ff0;
+            flex: 0 0 50px;
+        }
+        @media screen and (min-device-width: 400px) and (max-device-width: 500px) {
+            #div0 div:nth-child(2) {
+                background-color: #00f;
+                flex: 1 1 auto;
+            }
+        }
+        @media screen and (min-device-width: 501px) and (max-device-width: 600px) {
+            #div0 div:nth-child(2) {
+                background-color: #0f0;
+                flex: 1 1 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="div0">
+        <!-- 添加内容或设置高度后，div才会显示 -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+</html>

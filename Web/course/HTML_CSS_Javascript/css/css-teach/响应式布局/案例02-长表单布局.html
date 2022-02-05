@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长表单布局</title>
+    <style>
+        /* 
+            用包含label和input的父盒子div的高度
+            产生外边距
+        */
+        form {
+            margin: 100px;
+        }
+        #info0 div {
+            display: flex;
+            height: 30px;       /* 用高度产生外边距 */
+            align-items: flex-start;        /* 弹性盒子子元素默认大小会随父盒子改变（stretch） */
+        }
+        #info0 div label {
+            flex: 0 0 100px;
+            text-align: right;
+            background-color: #ccc;
+        }
+
+        /* 
+            将包含所有子元素的div浮动
+            让包含label和input的div成为项目（浮动子项）
+            设置flex-basis产生外边距
+        */
+        #info1 div {
+            display: flex;
+            align-items: flex-start;
+            flex: 0 0 30px;
+        }
+        #info1 div label {
+            flex: 0 0 100px;
+            text-align: right;
+            background-color: #ccc;
+        }
+        #info1 {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <div id="info0">
+            <div>
+                <label for="">姓名：</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="">请输入密码：</label>
+                <input type="text">
+            </div>
+        </div>
+    </form>
+    <form action="#">
+        <div id="info1">
+            <div>
+                <label for="">姓名：</label>
+                <input type="text">
+            </div>
+            <div>
+                <label for="">请输入密码：</label>
+                <input type="text">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

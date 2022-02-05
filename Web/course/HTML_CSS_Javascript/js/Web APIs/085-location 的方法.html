@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>085-location 的方法</title>
+</head>
+<body>
+    <button>location.assign('URL');</button>
+    <button>location.assign('URL');</button>
+    <button>location.reload();</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+
+        /* 
+            1. location.assign('URL');
+                1.1 功能
+                    与 location.href 相同，可以跳转（重定向）页面；
+                    可以记录历史，支持后退至前一个页面。
+        */  
+        btn[0].addEventListener('click', function () {
+            location.assign('https://www.baidu.com');
+        });
+
+        /*
+            2. location.replace('URL');
+                2.1 功能
+                    可以跳转（重定向）页面；
+                    不可以记录历史，不支持后退至前一个页面。
+        */ 
+        btn[1].addEventListener('click', function () {
+            location.replace('https://www.baidu.com');
+        });
+
+        /*
+            3. location.reload(forceGet);
+                3.1 功能
+                    刷新页面。
+                3.2 参数
+                    forceGet：布尔型，可选：
+                        true：强制刷新：
+                            无论文档的最后修改日期是什么，浏览器都会绕过缓存，从服务器上重新下载该文档。
+                            等效于 Shift + F5；
+                        false：非强制刷新：
+                            如果可行，浏览器会从缓存中读取该文档进行刷新。
+                            等效于 F5 和浏览器刷新按钮。
+        */ 
+        btn[2].addEventListener('click', function () {
+            location.reload();
+        });
+    </script>
+</body>
+</html>

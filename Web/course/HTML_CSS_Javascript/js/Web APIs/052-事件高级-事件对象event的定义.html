@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>052-事件对象的定义</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>onclick</div>
+    <div>addEventListener</div>
+    <div>兼容性写法</div>
+    <script>
+        // 事件对象
+        var divs = document.querySelectorAll('div');
+        /* 
+            1、event 是一个事件对象，被写到监听函数的小括号里，可被当作形参来看待；
+            2、在有了事件之后，事件对象才会存在；
+            3、事件对象是系统自动创建的，不需要程序员传递参数；
+            4、事件对象包含关于事件的诸多属性和方法：
+                鼠标点击事件的事件对象，包含鼠标的相关信息：鼠标坐标、事件源、事件类型……
+                键盘事件的事件对象，包含键盘的相关信息：按下了哪个按键、事件源、事件类型……
+            5、事件对象可被命名为：
+                event, evt, e
+            6、兼容性问题：
+                不兼容 IE678，需要通过 window.event 获取事件对象。
+        */
+        divs[0].onclick = function (event) {
+            console.log(event);
+        };
+        divs[1].addEventListener('click', function (event) {
+            console.log(event);
+        });
+        // 兼容性写法：
+        divs[2].onclick = function (e) {
+            e = e || window.event;
+            console.log(e);
+        }
+    </script>
+</body>
+
+</html>

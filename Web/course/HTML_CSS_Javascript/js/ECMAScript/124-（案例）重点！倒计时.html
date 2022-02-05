@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <script>
+        function countDown(time) {
+            var nowTime = +new Date();    // 返回当前时间的毫秒数
+            var inputTime = +new Date(time);    // 返回的是用户输入进来的时间的毫秒数
+            var remainingTime = (inputTime - nowTime) / 1000;    // 返回剩余时间的秒数（毫秒/1000）
+            var d = parseInt(remainingTime / 60 / 60 / 24);    // 天
+            d = d < 10 ? '0' + d : d;
+            var h = parseInt(remainingTime / 60 / 60 % 24);    // 时
+            h = h < 10 ? '0' + h : h;
+            var m = parseInt(remainingTime / 60 % 60);    // 分
+            m = m < 10 ? '0' + m : m;
+            var s = parseInt(remainingTime % 60);    // 秒
+            s = s < 10 ? '0' + s : s;
+            return d + '天' + h + '时' + m + '分' + s + '秒';
+        };
+        console.log(countDown('2022-12-11 20:00:00'));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 60px;
+}
+.slip {
+    display: inline-block;
+    width: 5px;
+    height: 40%;
+    width: 6px;
+    background-color: #0f0;
+    animation: loading 1.2s infinite;
+    animation-delay: calc(.05s * var(--i));
+}
+@keyframes loading {
+    0%,
+    40%,
+    100% {
+        transform: scaleY(1);
+    }
+    20% {
+        transform: scaleY(2.5);
+    }
+}

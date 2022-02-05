@@ -1,0 +1,39 @@
+/* 
+    opacity: value | inherit;
+    透明：透明值 | 是否继承父元素透明属性；
+*/
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+}
+#background {
+    margin: 100px auto;
+    width: 1200px;
+    height: 562px;
+    background: url(../img_html/bgflowersea.jpg) 0 0 no-repeat;
+    position: relative;
+}
+#content {
+    position: absolute;
+    width: 600px;
+    height: 500px;
+    background-color: #fff;
+    opacity: 0.8;
+    /* 
+        xy轴平移不可分写
+        后一条的transform: translateX();会覆盖掉前一条的transform: translateX();
+    */
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 10px 10px 30px #888;
+}

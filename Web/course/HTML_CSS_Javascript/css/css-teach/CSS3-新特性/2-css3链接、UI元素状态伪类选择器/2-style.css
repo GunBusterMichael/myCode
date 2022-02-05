@@ -1,0 +1,19 @@
+/* ctrl+shift+p, 选择aotuprefixer */
+div {
+    width: 100px;
+    margin: 200px auto;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+img {
+    border-radius: 50%;
+}
+div:hover {
+    -webkit-transform: scale(1.1);
+       -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+         -o-transform: scale(1.1);
+            transform: scale(1.1);
+}

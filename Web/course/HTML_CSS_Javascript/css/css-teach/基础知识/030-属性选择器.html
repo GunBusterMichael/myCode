@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性选择器</title>
+		<style>
+			/* 属性选择器：选取带有某些特殊属性的标签 */
+			a[title] {     /* 标签[属性] */
+				color: red;
+			}
+			input[type=text] {     /* 标签[属性=类型] */
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="#" title="baidu">百度</a>
+		<a href="#" title="xinlang">新浪</a>
+		<a href="#">搜狐</a>
+		
+		<input type="text" value="文本框">
+		<input type="text" value="文本框">
+		<input type="text" value="文本框">
+		<input type="submit">
+		<input type="submit">
+		<input type="submit">
+		<input type="reset">
+		<input type="reset">
+		<input type="reset">
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用函数构造对象</title>
+    <script>
+        /* 
+            把不同对象里相同的属性和方法抽取出来封装到函数中
+            这个函数叫“构造函数”，封装的是对象
+            用于创造大量函数
+        */
+        // 语法格式：
+        /* 
+            function 构造函数名首字母大写(形参) {    // 创建对象
+                this.属性 = 值;
+                this.方法 = function() {};
+            }
+            new 构造函数名(实参);    // 调用对象
+        */
+        
+        function Star(uname, age, gender) {
+            this.uname = uname;
+            this.age = age;
+            this.gender = gender;
+            this.sing = function (song) {
+                console.log(song);
+            };
+        };
+        var ldh = new Star('刘德华', 18, '男');
+        console.log(typeof ldh);    // object 调用函数返回的是一个对象
+        console.log(ldh['uname']);
+        console.log(ldh.age);
+        ldh.sing('冰雨');
+
+        var zxy = new Star('张学友', 19, '男');    // 创造了一个叫zxy的对象
+        console.log(zxy.uname);
+        console.log(zxy.age);
+        zxy.sing('李香兰');
+
+        // 注意：
+        // 1、构造函数名首字母大写；
+        // 2、构造函数不需要return就可以返回结果；
+        // 3、必须使用 new 调用构造函数；
+        // 4、只要用var 对象名 = new Star() 调用函数，就会创建一个对象
+        // 5、属性和方法前要添加this.
+
+        function game(hname, type, blood) {
+            this.hname = hname;
+            this.type = type;
+            this.blood = blood;
+            this.attack = function (skill) {
+                console.log('攻击：' + skill);
+            };
+        };
+        var lianPo = new game('廉颇', '力量型', '500血量')
+        console.log(lianPo.hname);
+        console.log(lianPo.type);
+        console.log(lianPo.blood);
+        lianPo.attack('近战')
+
+        var houYi = new game('后羿', '射手型', '100血量');
+        console.log(houYi.hname);
+        console.log(houYi.type);
+        console.log(houYi.blood);
+        houYi.attack('远程');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

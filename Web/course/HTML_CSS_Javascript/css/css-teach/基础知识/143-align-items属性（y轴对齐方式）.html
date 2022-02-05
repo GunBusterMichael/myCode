@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align-items属性（y轴对齐方式）</title>
+    <style>
+        section {
+            width: 640px;
+            height: 600px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            display: flex;
+        }
+        .sec1 {
+            /* 
+                align-items适用于一行的垂直对其设置
+            */
+            align-items: flex-start;        /* （默认）沿父盒子顶端对齐 */
+        }
+        .sec2 {
+            align-items: flex-end;      /* 沿底部对齐 */
+        }
+        .sec3 {
+            align-items: center;        /* 垂直居中对齐 */
+        }
+        div {
+            width: 128px;
+            height: 200px;
+        }
+        div:first-child {
+            background-color: #b8a6d9;
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        div:last-child {
+            background-color: #576690;
+        }
+    </style>
+</head>
+<body>
+    <section class="sec1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+    <section class="sec2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+    <section class="sec3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+</body>
+</html>

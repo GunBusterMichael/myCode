@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>取消轮廓线</title>
+    <style>
+        #in1 {
+            /* 轮廓线outline在边框border外边 */
+            outline: 1px solid red;
+            border: 1px solid green;
+        }
+        #nooutline {
+            /* outline一般被用于取消轮廓线 */
+            outline: 0;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="in1">
+    <input type="text" name="" id="nooutline">
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学对象Math</title>
+    <script>
+        // 1、Math 不是构造函数，不需要 new 来调用，直接使用里面的属性和方法即可
+        // 1、1 Math M大写
+
+        // 2、圆周率属性 Math.PI
+        console.log(Math.PI);    // Pi是圆周率属性
+
+        // 3、求最大值方法 Math.max()
+        console.log(Math.max(-1, 99, 3));    // max是求最大值方法，结果是99
+        console.log(Math.max('aaa', 1));    // Math.max中出现非数字数据，会返回NaN
+        console.log(Math.max());    // 不写数字，返回 -Infinity
+
+        // 4、求最小值方法 Math.min()
+        console.log(Math.min(1, 2, 3));    // 1
+        console.log(Math.min('aaa', 1));    // Math.min中出现非数字数据，会返回NaN
+        console.log(Math.min());    // 不写数字，返回Infinity
+
+        // 5、求绝对值方法 Math.abs()
+        console.log(Math.abs(1));    // 1
+        console.log(Math.abs(-1));    // -1
+        console.log(Math.abs('-1'));    // 1 隐式转换，会把字符串型的数据转换为数字型
+        console.log(Math.abs('apple'));    // NaN
+
+        // 6、三种取整办法：
+        // 6、1 向下取整 Math.floor()  floor：地板
+        console.log(Math.floor(1.1));    // 1
+        console.log(Math.floor(1.9));    // 1
+        // 6、2 向上取整 Math.ceil()   ceil：天花板
+        console.log(Math.ceil(1.1));    // 2
+        console.log(Math.ceil(1.9));    // 2
+        // 6、3 加 0.5 向下取整数 Math.round()
+        console.log(Math.round(1.1));    // 1.1 + 0.5 = 1.6 ~ 1
+        console.log(Math.round(1.5));    // 1.5 + 0.5 = 2 ~ 2
+        console.log(Math.round(-1.5));    // -1.5 + 0.5 = -1 ~ -1
+
+        // 7、取随机数方法 Math.random()  返回一个随机浮点数  random∈[0, 1)
+        console.log(Math.random());    // 括号内不加参数
+        // 7、1 取两个数之间（包含这两个数）的随机整数
+        function getRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        console.log(getRandom(1.9, 10.7));
+        // 7、2 Demo 随机点名
+        var students = ['Ava', 'Bella', 'Carol', 'Diana', 'Eillen'];
+        console.log(students[getRandom(0, students.length - 1)]);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动改变盒子显示模式</title>
+    <style>
+        div {
+            height: 200px;
+            background-color: #b8a6d9;
+            float: left;     /* 块级元素添加浮动之后，会具有行内块的特性 */
+        }
+        span {
+            height: 100px;
+            background-color: #bd7d74;
+            float: left;     /* 行内元素添加浮动之后，具有行内块的特性 */
+        }
+        /* 
+            行内块特性：可以一行放多个，有宽度和高度，盒子的大小由其内容决定
+        */
+    </style>
+</head>
+<body>
+    <div>Lorem ipsum dolor sit amet.</div>
+    <div>Lorem ipsum dolor sit amet.</div>
+    <span>Lorem, ipsum dolor.</span>
+    <span>Lorem, ipsum dolor.</span>
+</body>
+</html>

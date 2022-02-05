@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三元表达式</title>
+    <script>
+        /* 
+        三元表达式：
+            1、定义：
+                由三元运算符组成的式子，是三元表达式（++num一元 1+2二元 ?:三元）
+            2、语法结构：
+                条件表达式 ? 表达式1 : 表达式2
+            3、执行过程：
+                如果 条件表达式 结果为 true ，则返回 表达式1 的值；如果条件表达式结果为 false ，则返回 表达式2 的值
+        */
+        // 4、代码示例：
+        var num = prompt('请输入数字');
+        var result = num > 5 ? '您输入的数字大于5' : '您输入的数字小于等于5';   // 给result赋值'您输入的数字大于5'
+        alert(result);
+        num > 5 ? alert('您输入的数字大于5') : alert('您输入的数字小于等于5');
+
+        /* 
+        等价于：
+                var num = prompt('请输入数字');
+            if (num > 5) {
+                result = '您输入的数字大于5';
+            } else {
+                result = '您输入的数字小于等于5';
+            }
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+</head>
+<body>
+    <!--
+        思路：
+            1、在登陆页面创建表单 form ，将用户名参数传递给欢迎页面；
+            2、在欢迎页面中处理用户名参数：
+                2、1 用substr();去除问号：
+                    substr('截取的起始位置（索引号，被截取后字符串的第一个字符）', '截取几个字符（省略则截取到最后一个字符）');
+                2、2 用split();以 = 分割字符串为数组：
+                    split('分隔符');
+            3、从数组中获取用户名，将用户名写入欢迎信息中。
+    -->
+    <form action="index.html">
+        <span>用户名：</span>
+        <input type="text" name="username" id="username">
+        <input type="submit" value="登录">
+    </form>
+</body>
+</html>

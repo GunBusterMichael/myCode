@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遍历对象</title>
+    <script>
+        var obj = {
+            name: 'carol',
+            age: 19,
+            gender: '女',
+            fn: function () {
+                console.log('你好');
+            }
+        }
+        // 利用for in遍历对象
+        /* 
+            for (变量 in 对象) {
+
+            }
+        */
+        for (var k in obj) {
+            console.log(k);    // k是变量，输出结果是属性名
+            console.log(obj[k]);    // 输出obj[k]得到属性值。k是变量不加引号
+        }
+        // 变量一般声明为 k 或 key
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

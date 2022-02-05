@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（H5新增）querySelectorAll('选择器')返回指定选择器的所有元素集合</title>
+</head>
+<body>
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+        </ul>
+    </div>
+    <script>
+        // 1、querySelectorAll('选择器'); 返回指定选择器的所有元素对象集合
+        var allBox = document.querySelectorAll('.box');    // 等价于 getElementsByClassName();
+        console.log(allBox);
+        var lis = document.querySelectorAll('li');
+        console.log(lis);                                  // 等价于 getElementsByTagName();
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叠放次序z-index</title>
+    <style>
+        /* 
+            叠放次序（z-index）
+                1、z-index默认属性值为0，取值越大，定位元素在层叠元素中越在上层；
+                2、如果取值相同，则依据书写顺序，后写的在上层；
+                3、数字不加单位；
+                4、只有“相对定位”“绝对定位”“固定定位”有此属性，其余标准流、浮动和静态定位都无此属性，亦不可指定此属性。（叠放次序为定位而生）
+        */
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #b8a6d9;
+
+        }
+        div:first-child {
+            z-index: 1;     /* font-weight: 700 都不写单位 */
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+            z-index: 2;
+        }
+        div:last-child {
+            background-color: #576690;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

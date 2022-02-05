@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>035-节点操作-父节点</title>
+</head>
+<body>
+    <div>我是div</div>
+    <span>我是span</span>
+    <div class="demo">
+        <div class="box">
+            <span class="QRCode">×</span>
+        </div>
+    </div>
+    <script>
+        // 1、父节点 parentNode
+        var QRCode = document.querySelector('.QRCode');
+        // var box = document.querySelector('.box');
+        // element.parentNode 得到的是距离 element 最近的父级节点
+        var box = QRCode.parentNode;
+        console.log(box);    // 如果没有父节点，则返回 null
+    </script>
+</body>
+</html>

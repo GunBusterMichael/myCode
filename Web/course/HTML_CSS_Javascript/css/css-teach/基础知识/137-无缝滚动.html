@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无缝滚动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        nav {
+            width: 700px;       /* 和一趟的滚动图片总和宽度一致 */
+            height: 100px;      /* 子盒子浮动，撑不起来父盒子，要设置height */
+            border: 1px solid black;
+            margin: 100px auto;
+            overflow: hidden;       /* 盒子内元素溢出隐藏 */
+        }
+        nav li {
+            float: left;
+        }
+        nav ul {
+            width: 200%;        /* 包含li的ul设置为两趟滚动图片宽度总和 */
+            animation: roll 5s linear infinite;
+        }
+        nav:hover ul {     /* 鼠标经过nav，里面的ul就停止动画 */
+            animation-play-state: paused;       /* 设置动画运行或暂停 */
+        }
+        @keyframes roll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-700px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img src="img/diana1.jpg" width="100"/></li>
+            <li><img src="img/diana2.jpg" width="100"/></li>
+            <li><img src="img/diana3.jpg" width="100"/></li>
+            <li><img src="img/diana4.jpg" width="100"/></li>
+            <li><img src="img/diana5.jpg" width="100"/></li>
+            <li><img src="img/diana6.jpg" width="100"/></li>
+            <li><img src="img/diana7.jpg" width="100"/></li>
+            <li><img src="img/diana1.jpg" width="100"/></li>
+            <li><img src="img/diana2.jpg" width="100"/></li>
+            <li><img src="img/diana3.jpg" width="100"/></li>
+            <li><img src="img/diana4.jpg" width="100"/></li>
+            <li><img src="img/diana5.jpg" width="100"/></li>
+            <li><img src="img/diana6.jpg" width="100"/></li>
+            <li><img src="img/diana7.jpg" width="100"/></li>
+        </ul>
+    </nav>
+</body>
+</html>

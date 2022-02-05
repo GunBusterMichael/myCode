@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>justify-content属性（x轴对齐方式）</title>
+    <style>
+        section {
+            width: 640px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            display: flex;
+        }
+        .sec1 {
+            /* 应用于弹性盒子中 */
+            justify-content: flex-start;        /* (默认)让子元素在父盒子内左对齐 */
+        }
+        .sec2 {
+            justify-content: flex-end;        /* 让子元素在父盒子内左对齐 */
+        }
+        .sec3 {
+            justify-content: center;        /* 让子元素在父盒子内居中对齐 */
+        }
+        .sec4 {
+            justify-content: space-between;     /* 左右的盒子紧贴父盒子左右边框，每个盒子被平均空白格开 */
+        }
+        .sec5 {
+            justify-content: space-around;      /* 每个盒子上下左右都添加平均外边距 */
+        }
+        div {
+            width: 128px;
+            height: 100%;
+        }
+        div:first-child {
+            background-color: #b8a6d9;
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        div:last-child {
+            background-color: #576690;
+        }
+    </style>
+</head>
+<body>
+    <section class="sec1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+    <section class="sec2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+    <section class="sec3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+    <section class="sec4">
+        <div>1</div>
+        <div>2</div>
+        <div style="background-color: blue;">3</div>
+        <div>4</div>
+    </section>
+    <section class="sec5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </section>
+</body>
+</html>

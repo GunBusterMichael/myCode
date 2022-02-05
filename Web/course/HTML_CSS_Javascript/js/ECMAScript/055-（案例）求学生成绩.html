@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>score</title>
+    <script>
+        var numStudent = prompt('我是计算本班学生平均成绩机器人。\n请输入本班学生人数：');
+        var singleScore;
+        var sumScore = 0;
+        var averageScore;
+        for (var i = 1; i <= numStudent; i++) {
+            singleScore = parseFloat(prompt('请输入第'+i+'个学生的成绩：'));    // 用户输入的成绩为字符串，后续代码也无法进行隐形转换，所以要主动转换为数字型
+            sumScore += singleScore;
+        };
+        averageScore = sumScore / numStudent;
+        alert('本班学生总成绩为：'+ sumScore);
+        alert('本班学生平均成绩为：' + averageScore);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>February</title>
+    <script>
+        // 用户输入年份，输出当年二月份的天数：
+        function backDay() {
+            var year = prompt('请您输入年份：');
+            if (isLeapYear(year)) {
+                alert('当前年份是闰年，二月有29天。');
+            } else {
+                alert('当前年份是平年，二月有28天。');
+            };
+        };
+        function isLeapYear(year) {
+            // 如果是闰年，返回true；否则返回false
+            var flag = false;
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                flag = true;
+            };
+            return flag;
+        };
+        backDay();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

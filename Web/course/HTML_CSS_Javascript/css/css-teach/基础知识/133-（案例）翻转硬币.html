@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻转硬币</title>
+    <style>
+        @font-face {     /* 添加字体 */
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?7kkyc2');
+            src: url('fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?7kkyc2') format('truetype'),
+                url('fonts/icomoon.woff?7kkyc2') format('woff'),
+                url('fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        div {
+            font-family: icomoon;
+            font-size: 100px;
+            color: #fc966e;
+            position: relative;
+        }
+        div[class] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            transition: all 1s;
+        }
+        .front {
+            z-index: 1;
+            backface-visibility: hidden;     /* 正面不面向屏幕时，隐藏 */
+        }
+        div:hover div[class] {     /* 必须设置鼠标经过父级盒子时，变化 */
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- 盒子层叠关系为：后来者居上 -->
+        <div class="front"></div>
+        <div class="back"></div>
+    </div>
+</body>
+</html>

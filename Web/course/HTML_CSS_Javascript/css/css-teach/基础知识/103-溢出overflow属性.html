@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>溢出overflo属性</title>
+    <style>
+        /* 
+            检索或设置 当对象的内容超过其指定高度及宽度时 如何管理内容
+            盒子内元素溢出隐藏
+        */
+        div {
+            width: 100px;
+            height: 200px;
+            border: 1px solid red;
+            display: inline-block;
+        }
+        #div1 {
+            overflow: visible;     /* 默认模式，超出的内容直接显示 */
+        }
+        #div2 {
+            overflow: auto;     /* 自动，超出就显示滚动条，不超出不显示滚动条 */
+        }
+        #div3 {
+            overflow: scroll;     /* 不显示滚动条 */
+        }
+        #div4 {
+            overflow: hidden;     /* 超出的部分内容不显示（溢出隐藏） */
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem id sint cupiditate mollitia dignissimos accusantium magni accusamus explicabo, quod iste modi illo minus! Laudantium nam sint magnam magni voluptatum.
+    </div>
+    <div id="div2">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem id sint cupiditate mollitia dignissimos accusantium magni accusamus explicabo, quod iste modi illo minus! Laudantium nam sint magnam magni voluptatum.
+    </div>
+    <div id="div3">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem id sint cupiditate mollitia dignissimos accusantium magni accusamus explicabo, quod iste modi illo minus! Laudantium nam sint magnam magni voluptatum.
+    </div>
+    <div id="div4">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi quidem id sint cupiditate mollitia dignissimos accusantium magni accusamus explicabo, quod iste modi illo minus! Laudantium nam sint magnam magni voluptatum.
+    </div>
+</body>
+</html>

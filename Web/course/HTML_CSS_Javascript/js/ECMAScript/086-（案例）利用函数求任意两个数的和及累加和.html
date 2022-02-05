@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（案例）利用函数求任意两个数的和及累加和</title>
+    <script>
+        // 1、利用函数求任意两个数的和
+        function getPlus(numPlus1, numPlus2) {
+            console.log(numPlus1 + numPlus2);
+        };
+        getPlus(1, 2);
+        // 2、利用函数求任意两个数之间数的和
+        function getSum(numStart, numEnd) {
+            var sum = 0;
+            for (var i = numStart; i <= numEnd; i++) {
+                sum += i;
+            };
+            console.log(sum);
+        };
+        getSum(1, 100);
+        // 3、提示：
+        // 3、1 多个参数之间用逗号隔开；
+        // 3、2 形参可以看作是不用声明的变量。
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

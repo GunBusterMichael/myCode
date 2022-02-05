@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>盒子模型-边框border</title>
+		<style type="text/css">
+			div:first-child {
+				width: 200px;
+				height: 200px;
+				border-width: 1px;     /* 边框粗细 */
+				border-color: #00AAFF;     /* 边框颜色 */
+				border-style: solid;     /* 边框样式=实线（使用频率最多） */
+			}
+			div:nth-child(2) {
+				width: 200px;
+				height: 200px;
+				border-width: 1px;     /* 边框粗细 */
+				border-color: #00AAFF;     /* 边框颜色 */
+				border-style: dashed;     /* 边框样式=短横杠虚线 */
+			}
+			div:nth-child(3) {
+				width: 200px;
+				height: 200px;
+				border-width: 1px;     /* 边框粗细 */
+				border-color: #00AAFF;     /* 边框颜色 */
+				border-style: dotted;     /* 边框样式=点虚线 */
+			}
+			div:last-of-type {
+				width: 200px;
+				height: 200px;
+				border-width: 10px;     /* 边框粗细 */
+				border-color: #00AAFF;     /* 边框颜色 */
+				border-style: double;     /* 边框样式=双实线 */
+			}
+			
+			input {
+				border: 0;     /* 没有边框 */
+			}
+			.user {
+				border-width: 1px;
+				border-color: blue;
+				border-style: solid;
+			}
+			.nc {
+				/* 上边框 */
+				border-top-width: 1px;
+				border-top-style: solid;
+				border-top-color: #008000;
+				/* 下边框 */
+				border-top-width: 1px;
+				border-top-style: solid;
+				border-top-color: #008000;
+			}
+			.email {
+				border-top: 1px solid red;     /* 上边框的宽度、样式和颜色合写 */
+				border-bottom: 1px solid green;     /* 下边框的宽度、样式和颜色合写 */
+			}
+			.tel {
+				/* border-width: 1px;
+				border-color: orange;
+				border-style: solid; */
+				border: 1px solid orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div>I'm a box.</div>
+		<div>I'm a box.</div>
+		<div>I'm a box.</div>
+		<div>I'm a box.</div>
+		
+		用户名：<input type="text" class="user"/><br><br>
+		昵  称：<input type="text" class="nc" /><br><br>
+		用户名：<input type="email" class="email" /><br><br>
+		手机号：<input type="tel" class="tel" />
+	</body>
+</html>

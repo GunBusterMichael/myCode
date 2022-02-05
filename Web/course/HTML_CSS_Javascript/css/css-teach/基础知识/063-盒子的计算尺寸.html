@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子的计算尺寸</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            border: 5px solid red;     /* 5+5=10 */
+            padding: 10px;     /* 10+10=20 */
+            margin: 20px;     /* 20+20=40 */
+            /* 空间尺寸 = width + border + padding + margin = 170 */
+            /* 内核（实际）尺寸 = width + border + padding = 130 */
+
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

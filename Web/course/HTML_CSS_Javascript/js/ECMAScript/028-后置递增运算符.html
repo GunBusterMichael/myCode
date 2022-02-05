@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 变量名++：后置递增运算符
+
+        // 1、如果单独使用前置递增运算符和后置递增运算符，效果是一样的
+        var num = 10;
+        num++;      // num = num + 1
+
+        // 2、后置递增运算符口诀：先返回原值，再自加1
+        var age = 10;
+        console.log(age++ + 10);    // 20：age先返回10，10+10=20
+        console.log(age);           // 11：age返回原值后，自加1
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

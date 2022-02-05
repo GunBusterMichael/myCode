@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-（作业）世纪佳缘用户名显示隐藏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .username {
+            outline: none;
+            margin: 100px auto;
+            text-align: left;
+            padding: 0 2px 0 2px;
+            color: #999;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="username" value="用户名" class="username">
+    <script>
+        var usernameTextBox = document.querySelector('.username');
+        usernameTextBox.onfocus = function () {
+            if (usernameTextBox.value === '用户名') {
+                usernameTextBox.value = '';
+            };
+            usernameTextBox.style.color = '#333';
+            usernameTextBox.style.border = '1px solid #e799b0';
+        };
+        usernameTextBox.onblur = function () {
+            if (usernameTextBox.value === '') {
+                usernameTextBox.value = '用户名';
+            };
+            usernameTextBox.style.color = '#999';
+            usernameTextBox.style.border = '1px solid #333';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.layer {
+    width: 260px;
+    height: 200px;
+    border: 1px solid #000;
+    /* 
+        线性渐变：
+            linear-gradient:();
+            默认to-bottom
+            50%：从div的50%开始渐变
+            100：渐变到div的100%
+            90deg：to right
+            180deg：to bottom
+            270deg：to left
+            浏览器支持率未达95%，要加前缀
+    */
+    /* background-image: linear-gradient(to left, orange 30%, green 60%, red 100%); */
+    /* background-image: linear-gradient(to left, orange 100px, green 160px, red 260px); */
+    background-image: -webkit-linear-gradient(right, orange 100px, green 160px, red 260px);
+    background-image: -moz-linear-gradient(right, orange 100px, green 160px, red 260px);
+    background-image: -o-linear-gradient(right, orange 100px, green 160px, red 260px);
+    background-image: linear-gradient(45deg, orange 100px, green 160px, red 260px);
+}

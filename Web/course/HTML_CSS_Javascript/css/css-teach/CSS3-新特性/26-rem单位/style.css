@@ -1,0 +1,14 @@
+html {
+    /* 
+        设置根root字体大小，
+        网页默认大小16px，
+        62.5%=10/16x100%
+    */
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.4rem;
+}
+h1 {
+    font-size: 2.4rem;
+}

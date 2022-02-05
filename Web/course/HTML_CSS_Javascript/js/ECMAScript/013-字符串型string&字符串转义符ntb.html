@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string</title>
+    <script>
+        // 引号“”‘’中的任意文本都可以是字符串型；
+        // 'pink' 'pink老师' '123' 'true' 都是字符串型；
+        // 必须加引号才会被识别为字符串，否则会被识别为js代码。
+
+        // 引号嵌套时，外单内双 或 外双内单
+        var str = '我"大哥"绝绝子'
+        console.log();(str);
+
+        /* 
+        字符串转义符：
+            以 \ 开头，写到引号里
+            \n  换行符 newline
+            \\  斜杠 \
+            \'  单引号 '
+            \"  双引号
+            \t  缩进 tab
+            \b  空格 blank
+        */
+        var str = '我"大哥"\n绝绝子'  // 引号外单内双 或 外双内单
+        console.log();(str);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

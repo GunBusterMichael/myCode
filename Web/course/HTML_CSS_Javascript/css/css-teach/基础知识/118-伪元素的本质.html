@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪元素的本质</title>
+    <style>
+        /* 
+            之所以被称为伪元素。是因为他们不是真正的页面元素，HTML中没有对应的图标，
+            但其用法和表现行为与真正的页面元素一样，可对其使用css。
+
+            .one 类选择器   :hover 伪类选择器   ::after 伪元素选择器
+        */
+        div::before {
+            content: "I ";     /* 要在文字外添加"" */
+            background-color: #b8a6d9;
+            border: 1px solid red;
+            display: block;
+            width: 100px;
+            height: 100px;
+            /* 
+                类选择器、伪类选择器：选取对象
+                伪元素选择器：插入一个inline行内元素（标签/盒子）
+            */
+        }
+        div::after {
+            content: "spata";
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: #bd7d74;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div>am</div>
+</body>
+</html>

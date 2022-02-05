@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调整窗口大小事件</title>
+    <style>
+        div {
+            width: 700px;
+            height: 200px;
+            background-color: #b8a6d9;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        window.addEventListener('resize', function () {
+            console.log('窗口大小变化了！！！');
+            console.log(window.innerWidth);
+
+            // 响应式布局
+            if (window.innerWidth <= 700) {
+                div.style.display = 'none';
+            } else {
+                div.style.display = 'block';
+            };
+        });
+        /* 
+            1. 只要窗口大小发生像素级变化，就会触发 resize 事件；
+            2. 可以利用该事件构建*响应式布局*。
+            3. 页面可用宽度（浏览器窗口宽度）：window.innerWidth
+        */
+    </script>
+</body>
+</html>

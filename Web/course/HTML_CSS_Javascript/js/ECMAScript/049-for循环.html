@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环</title>
+    <script>
+        // 1、for循环用于重复执行某些代码，通常与计数有关
+        // 2、for 语法结构：
+        /* 
+            for (初始化变量; 条件表达式; 操作表达式) {
+                循环体（被循环的代码）
+            };
+        */
+        // 3、初始化变量：用var声明一个变量，通常被作为计数器
+        // 4、条件表达式：循环的条件
+        // 5、操作表达式：每次循环后执行的代码，用于更新计数器变量的值
+        // 6、Demo：重复打印100句子 你好
+        for (var i = 1; i <= 100; i++) {
+            console.log('你好');
+        };
+        /* 
+        7、运行过程： 
+            第一步：var i = 1;
+            第二部：i <= 100;
+            第三步：console.log('你好');
+            第四步：i++;
+
+            第五步：i <= 100;
+            第六步：console.log('你好');
+            第七步：i++;
+            ...
+
+            第三百零二步：i <= 100  // false, i == 101
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

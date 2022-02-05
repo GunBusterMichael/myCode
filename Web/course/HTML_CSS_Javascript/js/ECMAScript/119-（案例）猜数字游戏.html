@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字</title>
+    <script>
+        // 无限次猜1-10之间的整数
+        function getRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        var random = getRandom(1, 10);
+        while (true) {    // 死循环
+            var num = prompt('猜数\n请输入大于等于1，小于等于10之间的数');
+            if (num < random) {
+                alert('猜小了');
+            } else if (num > random) {
+                alert('猜大了');
+            } else {
+                alert('猜对了');
+                break;    // 退出整个循环
+            };
+        };
+
+        // 10次内猜1-50之间的整数
+        function getRandom(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        var random = getRandom(1, 50);
+        for (var i = 1; i <= 10; i++) {
+            var num = prompt('猜数\n您总共可猜10次，现在是第' + i + '次猜数\n请输入大于等于1，小于等于50之间的数');
+            if (num < random) {
+                alert('猜小了');
+            } else if (num > random) {
+                alert('猜大了');
+            } else {
+                alert('猜对了');
+                break;    // 退出整个循环
+            };
+            switch (i) {
+                case 10:
+                    alert('次数用完了，答案是' + random);
+                    break;
+            };
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

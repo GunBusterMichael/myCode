@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动子级元素不会超出父级元素内边距&外边距</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 300px;
+            background-color: #b8a6d9;
+            border: 10px solid black;
+            padding: 20px;
+        }
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

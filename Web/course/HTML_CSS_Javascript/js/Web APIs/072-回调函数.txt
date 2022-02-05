@@ -1,0 +1,15 @@
+1. 普通函数：
+    1.1 定义
+        按照代码顺序直接调用。
+    1.2 举例
+        function plus (num1, num2) {
+            return num1 + num2;
+        };
+        plus(2, 4);
+2. 回调函数 callback：
+    2.1 定义
+        在满足触发条件后，才会被调用。
+    2.2 举例
+        window.setTimeout(回调函数[, 延迟时间]);
+        element.onclick = 回调函数;
+        element.addEventListener('click', 回调函数);

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>038-（不常用）兄弟节点</title>
+</head>
+<body>
+    <div>我是div</div>       <!-- 块级元素 -->
+    <span>我是span</span>    <!-- 行内元素 -->
+    <script>
+        var div = document.querySelector('div');
+
+        // nextSibling 和 previousSibling（获取兄弟节点，包括元素节点、文本节点等）
+        console.log(div.nextSibling);    // 用 nextSibling 获取下一个兄弟节点，包括元素节点、文本节点等
+        console.log(div.previousSibling);// 用 previousSibling 获取上一个兄弟节点，包括元素节点、文本节点等
+
+        // nextElementSibling 和 previousElementSibling（IE9 以上版本支持）
+        console.log(div.nextElementSibling);    // 用 nextElementSibling 获取下一个兄弟元素节点
+        console.log(div.previousElementSibling);// 用 previousElementSibling 获取上一个兄弟元素节点
+        // 没有兄弟节点则返回 null
+
+        // 自行封装函数
+        function getNextElementSibling(element) {
+            while(element = element.nextSibling) {
+                if (element.nodeType === 1) {
+                    return element;
+                };
+            };
+            return null;
+        };
+        console.log(getNextElementSibling(div));
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（H5新增）querySelector('选择器') 返回指定选择器的第一个元素对象</title>
+</head>
+<body>
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+        </ul>
+    </div>
+    <script>
+        // 1、querySelector('选择器') 返回指定选择器的第一个元素对象
+        // 2、形参需要加引号''和符号 . #
+        var firstBox = document.querySelector('.box');    // 根据类名返回
+        console.log(firstBox);
+        var nav = document.querySelector('#nav');         // 根据id返回
+        console.log(nav);
+        var li = document.querySelector('li');
+        console.log(li);
+    </script>
+</body>
+</html>

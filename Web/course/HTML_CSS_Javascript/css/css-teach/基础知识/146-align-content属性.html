@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align-content属性</title>
+    <style>
+        section {
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            margin: 100px auto;
+            /* 
+                前置代码
+            */
+            display: flex;
+                /* 
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                */
+            flex-flow: row wrap;
+            /* 
+                align-content用于设置多行的垂直对齐设置
+            */
+            align-content: flex-start;
+            /* 
+                stretch：（默认）各行将会伸展以占用剩余的空间。如果剩余的空间是负数，该值等效于'flex-start'
+                center：居中对齐
+                flex-start：顶端对齐
+                flex-end：底端对齐
+                space-between：项目各行之间有行间距
+                space-around：项目之间、最顶上（之前）、最下面（之后）有间距
+            */
+        }
+        div {
+            width: 150px;
+            height: 200px;
+        }
+        div:nth-child(1) {
+            background-color: #9ac8e2;
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        div:nth-child(3) {
+            background-color: #b8a6d9;
+        }
+        div:nth-child(4) {
+            background-color: #e799b0;
+        }
+        div:nth-child(5) {
+            background-color: #576690;
+        }
+        div:nth-child(6) {
+            background-color: #fc966e;
+        }
+        div:nth-child(7) {
+            background-color: #a9e9a1;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串长度&拼接</title>
+    <script>
+        // 1、检测字符串长度 ↓
+        var str = 'My name is Carol'
+        console.log(str.length);     //字符串长度为16
+
+        // 2、字符串拼接+ ↓
+        console.log('关注' + '嘉然');   // 结果：关注嘉然
+        console.log('嘉然' + 180);     // 结果：嘉然180
+        console.log('嘉晚饭' + true);   //结果：嘉晚饭true
+        console.log(12 + 12);   // 结果：24
+        var variable = undefined;
+        console.log(variable + 'hello');    // 结果：undefinedhello
+        // ↑ 只要有 字符串 和其它类型的数据相拼接，最终的结果就是字符串类型
+        console.log('12' + 12);     // 结果：1212（字符串）
+        console.log(false + false);   // 结果：0
+        console.log(true + true);     // 结果：2
+        console.log(false + false);    // 结果：1
+        console.log(true + 100);       // 结果：101
+        console.log(variable + 1);     // 结果：NaN
+        var space = null;
+        console.log(space + 'carol');   // 结果：nullcarol
+        console.log(null + 1);          // 结果：1
+        // 口诀：数值相加，字符相连
+        var age = 19;
+        console.log('大哥今年' + age + '岁');   // 结果：大哥今年19岁
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

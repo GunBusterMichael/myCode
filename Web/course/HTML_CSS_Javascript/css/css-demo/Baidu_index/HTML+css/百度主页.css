@@ -1,0 +1,38 @@
+.center {
+	text-align: center;
+}
+
+.fontsize14 {
+	font-size: 14px;
+}
+
+.fontsize12 {
+	font-size: 12px;
+}
+			
+a {
+	text-decoration: none;
+	color: #4e4eff;
+}
+
+a:hover {
+	color: #00aaff;
+}
+			
+strong {
+	color: #3C3C3C;
+}
+
+#declare {
+	color: #3C3C3C;
+}
+	
+#search {
+	width: 420px;
+	height: 24px;
+}
+
+#submit {
+	width:100px;
+	height:24px;
+}

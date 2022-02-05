@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环作业</title>
+    <script>
+        // 1、求100以内所有数的总和与平均值
+        var sum = 0;
+        var average;
+        for (var i = 1; i <= 100 ; i++) {
+            sum += i;
+        };
+        average = sum / 100;
+        console.log('100以内所有数的总和为' + sum + '，平均值为' + average);
+        // 2、100以内所有偶数的和
+        var sumEven = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 2 == 0) {
+                sumEven += i;
+            } else {
+                continue;
+            };
+        };
+        console.log('100以内所有偶数的和为：' + sumEven);
+        // 3、求100以内7的倍数的和
+        var sumMultipleOf7 = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 7 == 0) {
+                sumMultipleOf7 += i;
+            } else {
+                continue;
+            };
+        };
+        console.log('100以内7的倍数的和为：' + sumMultipleOf7);
+        // 4、使用for打印矩形，每次只输出一个❤
+        var love = '';
+        for (var i = 1; i <= 4; i++) {
+            for (var j = 1; j <= 5; j++) {
+                love += '❤';
+            };
+            love += '\n';
+        };
+        console.log(love);
+        // 5、使用for循环打印三角形
+        var love = '';
+        for (var i = 1; i <= 5; i++) {
+            for (var j = 1; j <= i; j++) {
+                love += '❤';
+            };
+            love += '\n';
+        };
+        console.log(love);
+        // 6、使用for循环打印99乘法表
+        var formula = '';
+        for (var i = 1; i <= 9; i++) {
+            for (var j = 1; j <= i; j++) {
+                formula += j + '×' + i + '=' + j * i + '\t';
+            };
+            formula += '\n';
+        };
+        console.log(formula);
+        // 7、用户登录
+        /* do {
+            var id = prompt('请输入id：cueb');
+            var password = prompt('请输入密码：123');
+        } while (id != 'cueb' || password != '123');
+        alert('登录成功！'); */
+        // 8、求整数1~100的累加值，单挑过所有个位数为3的数
+        var sumExpect3 = 0;
+        for (var i = 1; i <= 100; i++) {
+            if ((i - 3) % 10 == 0) {
+                continue;
+            };
+            sumExpect3 += i;
+        };
+        console.log(sumExpect3);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（案例）搜索趣图</title>
+    <style>
+        /* 清空默认的内外边距（写css时必须要写） */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 取消列表自带的小点（默认的样式） */
+        li {
+            list-style: none;
+        }
+        /* 设置大盒子 */
+        .searchpic {
+            width: 238px;
+            height: 294px;
+            border: 1px solid #d9e0ee;
+            border-top: 3px solid #ff8400;     /* border-要放到border的下面 */
+        }
+        .searchpic h3 {
+            height: 35px;
+            line-height: 35px;     /* 让行高等于height，可以让文字垂直居中 */
+            border-bottom: 1px solid #d9e0ee;
+            font-size: 16px;
+            font-weight: normal;     /* 让粗体不变粗 */
+            padding-left: 12px;     /* 不会撑大盒子。因为没有给h3设置宽度，其宽度继承于.searchpic */
+        }
+        .searchpic img {
+            margin: 7px 0 0 8px;     /* 上、右（不用管）、下（不用管）、左 */
+        }
+        .searchpic a {
+            font-size: 12px;
+            color: #666666;
+            text-decoration: none;     /* 取消下划线 */
+        }
+        .searchpic ul {
+            margin-left: 8px;
+        }
+        .searchpic li {
+            padding-left: 10px;
+            height: 26px;
+            line-height: 26px;
+            background: #fff url(img/square.png) no-repeat left center;
+        }
+        .searchpic a:hover {
+            color: #ff8400;
+            text-decoration: underline;     /* 添加下划线 */
+        }
+    </style>
+</head>
+<body>
+    <div class="searchpic">
+        <h3>搜索趣图</h3>
+        <img src="img/serpic.jpg" height="160" width="222" alt="picture no found">
+        <ul>
+            <li><a href="#">多地暂停“有序用电” 供应链回归正轨</a></li>
+            <li><a href="#">多地暂停“有序用电” 供应链回归正轨</a></li>
+            <li><a href="#">多地暂停“有序用电” 供应链回归正轨</a></li>
+        </ul>
+    </div>
+</body>
+</html>

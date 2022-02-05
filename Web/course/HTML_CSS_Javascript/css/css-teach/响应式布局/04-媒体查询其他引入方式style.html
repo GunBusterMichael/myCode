@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询其他引入方式style</title>
+    <style>     /* 公共style */
+        #div0 {
+            width: 100%;
+            height: 500px;
+        }
+        #div0 div {
+            float: left;
+            height: 100px;
+        }
+        #div0 div {
+                width: 33.3%;
+            }
+        #div0 div:nth-child(1) {
+            background-color: #f00;
+        }
+        #div0 div:nth-child(2) {
+            background-color: #0f0;
+        }
+        #div0 div:nth-child(3) {
+            background-color: #0ff;
+        }
+    </style>
+    <style media="(min-device-width:300px) and (max-device-width:399px)">
+        #div0 div {
+                width: 50%;
+        }
+    </style>
+    <style media="(min-device-width:400px) and (max-device-width:499px)">
+        #div0 div {
+                width: 33.3%;
+        }
+    </style>
+</head>
+<body>
+    <div id="div0">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

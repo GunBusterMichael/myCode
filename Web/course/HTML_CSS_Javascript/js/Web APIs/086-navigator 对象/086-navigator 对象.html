@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>086-navigator 对象</title>
+</head>
+<body>
+    <script>
+        /*
+            navigator 对象包含有关浏览器的信息。
+            navigator 对象有很多属性。其中，useAgent属性可以返回由客户端发送至服务器的 user-agent 头部的值。
+            我们可以利用 navigator.userAgent 、 if 和正则表达式判断客户端的型号（PC || 移动端），并跳转至对应的网页。
+        */
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            window.location.href = "move.html";    // 手机
+        } else {
+            window.location.href = "PC.html";    // 电脑
+        };
+    </script>
+</body>
+</html>

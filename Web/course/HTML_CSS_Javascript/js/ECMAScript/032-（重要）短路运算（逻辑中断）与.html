@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短路运算</title>
+    <script>
+        // 左边表达式的值可以确定短路运算结果时，就不再运算右边表达式的值
+
+        /* 
+        1、与&&：
+            表达式1为true，则返回表达式2的值；
+            表达式1为false，则返回表达式1的值，表达式2不执行。
+        */
+        console.log(123 && 456);     // 456
+        console.log(NaN && 456);     // NaN
+
+        /* 
+        2、或||：
+            如果表达式1为真，则返回表达式1，表达式2不执行
+            如果表达式1为假，则返回表达式2.
+        */
+        console.log(123 || 456);    // 123
+        console.log(0 || 456 || 789 + 1);   // 456
+
+        var num = 0;
+        console.log(123 || num++);  // 123为true，返回123，num++不执行
+        console.log(num);   // 0
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

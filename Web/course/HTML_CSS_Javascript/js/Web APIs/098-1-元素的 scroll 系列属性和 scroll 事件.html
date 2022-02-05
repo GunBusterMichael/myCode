@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>098-元素的 scroll 系列属性和 scroll 事件</title>
+</head>
+<body>
+    <div>
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+        I'm a div.
+    </div>
+
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            padding: 10px;
+            border: 11px solid #576690;
+            background-color: #b8a6d9;
+            overflow: auto;    /* 内容溢出时，自动显示滚动条 */
+        }
+    </style>
+
+    <script>
+        var div = document.querySelector('div')
+
+        /*
+            1. scrollWidth 和 scrollHeight: 
+                获取元素自身的宽高（取内容宽高与元素盒子宽高的最大者），
+                不含边框，
+                包含padding，
+                返回数值，不带单位。
+        */
+        console.log('scrollWidth: '+div.scrollWidth);      // 返回 220 = div 盒子宽度 width（包含内容宽度） + padding * 2
+        console.log('scrollHeight: '+div.scrollHeight);    // 返回 535 = 内容高度（包含 div 盒子高度 height） + padding * 2
+        console.log('clientWidth: '+ div.clientWidth);     // 返回 220 = div 盒子宽度 width + padding * 2
+        console.log('clientHeight: '+ div.clientHeight);   // 返回 120 = div 盒子高度 height + padding * 2
+
+        /*
+            2. scroll 事件
+                滚动条发生变化时触发
+        */
+        div.addEventListener('scroll', function () {
+            /* 
+                3. scrollTop 和 scrollLeft：
+                    获取元素自身的垂直（元素内容距离上边框下沿的距离）、水平滚动条位置（元素内容距离左边框右沿的距离）。
+            */
+            console.log(this.scrollTop);
+        })
+    </script>
+</body>
+</html>

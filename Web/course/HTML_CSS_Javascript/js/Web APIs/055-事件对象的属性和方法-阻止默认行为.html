@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>055-事件对象的属性和方法-阻止默认行为</title>
+</head>
+
+<body>
+    <a href="www.baidu.com">百度</a>
+    <form action="www.baidu.com">
+        <input type="submit" value="提交" name="sub">
+    </form>
+    <script>
+        // 1. 阻止默认行为：
+
+        /*
+            1.1 事件监听阻止默认行为：
+                e.preventDefault();    DOM 的标准写法，是个方法
+        */
+        var a = document.querySelector('a');
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+        })
+
+        /*
+            1.2 传统注册方式阻止默认行为：
+                1.2.1 不支持 IE 6 7 8：
+                    e.preventDefault();    方法
+                1.2.2 IE 6 7 8：
+                    window.event.returnValue = false;    属性
+                1.2.3 没有兼容性问题：
+                    return false;
+                    特点：
+                        return false;后面的代码不执行；
+                        只限于传统的注册方式。
+        */
+        a.onclick = function (e) {
+            e.preventDefault();
+            window.event.returnValue = false;
+            return false;
+            alert(1);    /* 不执行 */
+        }
+    </script>
+</body>
+
+</html>

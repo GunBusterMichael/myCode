@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字型</title>
+    <script>
+        var num = 10;   // num 数字型
+        var PI = 3.14;  // PI 数字型
+
+        /* 
+        1、八进制：
+            0 ~ 7
+            在数字前面加0，表示八进制
+        */
+        var num1 = 010;
+        console.log(num1);      // 010转换为十进制为8
+
+        /* 
+        2、十六进制：
+            0 ~ 9  a ~ f
+            在数字前面加0x，表示十六进制
+        */
+        var num2 = 0xa;
+        console.log(num2);      // 0xa转换为十进制为10
+        
+        // 3、数字型的最大值：
+        console.log(Number.MAX_VALUE);   // 1.7976931348623157e+308
+ 
+        // 4、数字型的最小值：
+        console.log(Number.MIN_VALUE);   // 5e-324
+ 
+        // 5、无穷大
+        console.log(Numner.MAX_VALUE * 2);  // Infinity 无穷大
+ 
+        // 6、无穷小
+        console.log(-Numner.MAX_VALUE * 2);  // -Infinity 无穷小
+
+        // 6、非数字
+        console.log('pink' - 100);  // NaN 非数字
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

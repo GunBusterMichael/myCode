@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D旋转-rotateXYZ</title>
+    <style>
+        img {
+            margin: 100px;
+            transition: all .5s;
+            transform-origin: left;
+        }
+        .img1:hover {
+            transform: rotateX(90deg);
+        }
+        .img2:hover {
+            transform: rotateY(360deg);
+        }
+        .img3:hover {
+            transform: rotateZ(90deg);
+        }
+    </style>
+</head>
+<body>
+    <img src="img/serpic.jpg" class="img1">
+    <img src="img/serpic.jpg" class="img2">
+    <img src="img/serpic.jpg" class="img3">
+</body>
+</html>

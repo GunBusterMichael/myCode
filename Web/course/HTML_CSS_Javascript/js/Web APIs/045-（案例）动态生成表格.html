@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>045-（案例）动态生成表格</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            /* border-collapse 属性设置表格的边框是否被合并为一个单一的边框 */
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        /*
+            1. 准备学生数据：
+                在数组中存放学生数据对象
+        */
+        var dates = [
+            {
+                name: '张三',
+                subject: 'JavaScript',
+                score: 100
+            },
+            {
+                name: '李四',
+                subject: 'Python',
+                score: 90
+            },
+            {
+                name: '王五',
+                subject: 'C#',
+                score: 80
+            },
+            {
+                name: '钱六',
+                subject: 'Java',
+                score: 70
+            },
+            {
+                name: '脑弹儿',
+                subject: '🐎',
+                score: 0
+            }
+        ];
+        /*
+            2. 在 <tbody></tbody> 中创建行 <tr></tr>：
+                有几人就创建几行；
+        */
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < dates.length; i++) {
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            /*
+                3. 在行内创建与数据有关的单元格 <td></td>:
+                    单元格的数量取决于单个对象内的属性个数；
+            */
+            for (var k in dates[i]) {    // 用  var k in 对象名  的方法遍历对象的属性
+                var dataTD = document.createElement('td');
+                tr.appendChild(dataTD);
+                /*
+                    4. 将数据单元格<td></td>的内容设置成对象中的属性值：
+                        属性名[k]是属性值；
+                        k 是属性名；
+                */
+                dataTD.innerHTML = dates[i][k];
+            }
+            /*
+                5. 创建“删除”单元格：
+            */
+            var delTd = document.createElement('td');
+            tr.appendChild(delTd)
+            delTd.innerHTML = '<a href="javascript:;">删除该行</a>';
+        };
+        var delAs = document.querySelectorAll('a');
+        for (var i = 0; i < delAs.length; i++) {
+            delAs[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+            };
+        };
+    </script>
+
+</body>
+
+</html>

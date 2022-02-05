@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css优先级</title>
+		<style type="text/css">
+			/* 特殊性公式：0, 0, 0, 0 */
+			div {     /* 标签选择器：0,0,0,1 */
+				color: pink;
+			}
+			:first-child { /* 伪类选择器：0,0,1,0 */
+				color: green;
+			}
+			.king {     /* 类选择器：0,0,1,0 */
+				color: blue;
+			}
+			#wang {     /* id选择器：0,1,0,0 */
+				color: red;
+			}
+			
+			div {
+				color: orange!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="king" id="wang" style="color: skyblue;">王者荣耀</div>     <!-- 行内样式：1,0,0,0 -->
+	</body>
+</html>

@@ -1,0 +1,21 @@
+.linear {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+/* 
+    线性重复性渐变：
+    repeating-linear-gradient(color ?px, color ?px, ......);
+
+    径向重复性渐变：
+    repeating-radial-gradient(color ?px, color ?px, ......);
+
+    必须写色标值?px
+*/
+.square {
+    background-image: repeating-linear-gradient(red 0px, green 30px, orange 40px);
+}
+.circle {
+    border-radius: 50%;
+    background-image: repeating-radial-gradient(red 0px, green 30px, orange 40px);
+}

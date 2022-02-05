@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>058-（案例）打印n行m列星星</title>
+    <script>
+        var rows = prompt('请输入要打印的行数：');
+        var cols = prompt('请输入要打印的列数：');
+        var str = '';
+        for (var i = 1; i <= rows; i++) {      // 外层循环负责打印rows行
+            for (var j = 1; j <= cols; j++) {  // 内层循环负责打印一行内的cols颗⭐
+                str += '⭐';
+            };
+            str += '\n';                    // 一行打印完毕，要另起一行\n
+        };
+        console.log(str);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

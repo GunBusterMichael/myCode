@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性选择器class</title>
+		<style type="text/css">
+			div[class^=font] {     /* 选择以font开头的class */
+				color: green
+			}
+			div[class$=footer] {     /* 选择以footer结尾的class */
+				color: #0000FF;
+			}
+			div[class*=tb] {     /* 选择包含tb的class */
+				color: #87CEEB;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="font12">属性选择器</div>
+		<div class="font12">属性选择器</div>
+		<div class="font24">属性选择器</div>
+		<div class="font24">属性选择器</div>
+		<div class="font24">属性选择器</div>
+		<div class="24font">属性选择器</div>
+		<div class="sub-footer">属性选择器</div>
+		<div class="jd-footer">属性选择器</div>
+		<div class="news-tb-nav">属性选择器</div>
+		<div class="tb-header">属性选择器</div>
+	</body>
+</html>

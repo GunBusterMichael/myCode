@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询</title>
+    <style>
+        #div0 {
+            width: 100px;
+            height: 200px;
+        }
+        /* 
+            设备宽度在100-199px中间时，
+            div0为绿色
+        */
+        @media screen and (min-device-width:100px) and (max-device-width:200px) {
+            #div0 {
+                background-color: #0f0;
+            }
+        }
+        /* 
+            设备宽度在201-300px中间时，
+            div0为绿色
+        */
+        @media screen and (min-device-width:201px) and (max-device-width:300px) {
+            #div0 {
+                background-color: #f00;
+            }
+        }
+        /* 
+            设备宽度在301-500px中间时，
+            div0为绿色
+        */
+        @media screen and (min-device-width:301px) and (max-device-width:500px) {
+            #div0 {
+                background-color: #00f;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="div0"></div>
+</body>
+</html>

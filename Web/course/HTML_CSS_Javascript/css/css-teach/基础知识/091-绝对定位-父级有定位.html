@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绝对定位-父级没有定位</title>
+    <style>
+    /* 
+        使用绝对定位时，
+        若父级元素有定位
+        （设置position/transform/perspective属性）
+        子元素以最近的已定位父元素border与padding交界处进行定位。
+    */
+        .father {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+            margin: 100px;
+            position: relative;     /* 父级有定位，relative和absolute都可以*/
+            /* perspective: 1px; */
+            /* transform: rotate(0deg); */
+            /* position: fixed; */
+            /* position: absolute; */
+            /* position: relative; */
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: #bd7d74;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

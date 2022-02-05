@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转换为数字型number</title>
+    <script>
+        var age = prompt('Your age: ');
+
+        // 1、重要：parseInt(变量名) 把 字符串型数字 转换为 数字型整数（只取整数部分）
+        console.log(parseInt(age));
+        console.log(parseInt('3.99'));  // 结果：3
+        console.log('120px');           // 结果：120
+        console.log('rem120px');        // 结果：NaN
+
+        // 2、重要：parseFloat(变量名) 把 字符串型数字 转换为 数字型浮点数
+        console.log(parseFloat('3.99'));    // 结果：3.99
+        console.log(parseFloat('120px'));   // 结果：120
+        console.log(parseFloat('rem120px'));// 结果：NaN
+
+        // 3、Number(变量名)
+        var str = '123';
+        console.log(typeof Number(str));
+
+        // 4、利用算术运算 - * /（隐式转换）
+        console.log('12' - 0);      // number 12
+        console.log('12' - '11');   // number 1
+        console.log('12' * 1);      // number 12
+        console.log('12' / 1);      // number 12
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

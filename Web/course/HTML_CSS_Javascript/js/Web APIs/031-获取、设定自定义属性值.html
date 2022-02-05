@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>031-获取、赋值自定义属性值</title>
+</head>
+<body>
+    <div id="demo" index="1"></div>
+    <script>
+        var div  =document.querySelector('div');
+
+        // 1、获取属性值
+            // 1、1 element.属性：只能获取*内置*属性
+        console.log(div.id);    /* 返回 demo */
+            // 1、2 element.getAttribute('属性')：能获取*内置*属性和*自定义*属性
+        console.log(div.getAttribute('id'));    /* 返回 demo */
+            // index 是程序员自定的属性，为自定义属性
+        console.log(div.getAttribute('index')); /* 返回 1 */
+
+        // 2、设置属性值
+            // 2、1 element.属性 = '值'; 主要适用于*内置*属性
+        div.id = 'ads';
+        console.log(div.id);
+        div.className = 'navs';
+            // 2、2 element.setAttribute('属性', '值'); 主要用于设置*自定义*属性
+        div.setAttribute('index', 2);
+        console.log(div.index);
+        div.setAttribute('class', 'mavs');
+
+        // 3、移除属性 element.removeAttribute('属性');
+        div.removeAttribute('index');
+    </script>
+</body>
+</html>

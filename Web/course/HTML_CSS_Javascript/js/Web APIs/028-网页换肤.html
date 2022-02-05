@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页换肤</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url(img/skin1.jpg) no-repeat top;
+        }
+
+        .imgsBox {
+            list-style: none;
+            margin: 100px auto;
+            width: 610px;
+        }
+
+        li {
+            float: left;
+        }
+
+        img {
+            width: 150px;
+            padding: 1px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="imgsBox">
+        <li><img src="img/skin1.jpg" alt=""></li>
+        <li><img src="img/skin2.jpg" alt=""></li>
+        <li><img src="img/skin3.jpg" alt=""></li>
+        <li><img src="img/skin4.jpg" alt=""></li>
+    </ul>
+    <script>
+        // 1、获取元素
+        var imgs = document.querySelector('.imgsBox').getElementsByTagName('img');
+        // 2、循环注册事件
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {
+                // console.log(this.src);
+                // this.src 是所点击图片的地址: img/skin1.jpg
+                // 将该地址设置为<body>的背景：
+                document.body.style.backgroundImage = 'url(' + this.src + ')';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS精灵技术使用</title>
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            background: url(img/sprites.png) -182px 0 no-repeat;     /* 图片向左移动，用负值 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        图片使用方法：
+            1、插入图片：移动 margin padding float position 大小 width；
+            2、背景图片：大小 background-size 位置 background-position。
+        CSS精灵sprite：
+            原理：将许多小背景图片整合成一张大背景图片，使用时只显示需要的小背景图片部分；
+            优点：只需加载一次背景图，减少请求服务器次数；
+            使用场景：背景图很多的网页。
+    -->
+    <div></div>
+</body>
+</html>

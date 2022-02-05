@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>041-删除节点</title>
+</head>
+<body>
+    <button>删除</button>
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <ol>
+        <li>可被删除按钮删除0</li>
+        <li>可被删除按钮删除1</li>
+        <li>可被删除按钮删除2</li>
+    </ol>
+    <script>
+        // 1. 获取元素
+        var ul = document.querySelector('ul');
+        var btn = document.querySelector('button');
+        var ol = document.querySelector('ol');
+
+        // 2. 删除父节点中的子节点 node.removeChild(child); 返回删除的节点：
+        console.log(ul.removeChild(ul.children[0]));    // 删除节点，并返回：<li>0</li>
+
+        // 3. 点击按钮依次删除父元素的子节点
+        btn.onclick = function () {
+            if (ol.children.length === 1) {
+                ol.removeChild(ol.children[0]);
+                this.disabled = true;
+            } else {
+                ol.removeChild(ol.children[0]);
+            }
+        }
+    </script>
+</body>
+</html>

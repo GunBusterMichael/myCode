@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="div0">
+        <div id="top">
+            <img id="logo" src="img/logo.png" alt="logo">
+        </div>
+        <div id="main">
+            <ul>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+                <li>
+                    <div>
+                        <img src="img/course.png" alt="course" id="course_img">
+                    </div>
+                    <div>基于Vue3最新标准，实现后台前端综合解决方案</div>
+                    <div id="shopping_car" class="icon"></div>
+                </li>
+            </ul>
+        </div>
+        <div id="bottom">
+            <div id="bottom_home" class="icon"></div>
+            <div id="bottom_shoppingcar" class="icon"></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 改变根字体
+    var c=()=> {
+        let w=document.documentElement.clientWidth;  /* 获取设备的宽度 */
+        // 20: 自己设置的基准字体大小，可改变
+        // 320：自己设置的设备宽度，可改变
+        let n=(20*(w/320)>40?40+"px":(20*(w/320)+"px"));    /* 计算出来的字体大小大于40px，则把字体设置为40px */
+        document.documentElement.style.fontSize=n;  /* 将n的值赋给字体大小 */
+    }
+    window.addEventListener("loar",c)
+    window.addEventListener("resize",c)
+</script>
+</html>

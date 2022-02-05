@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（案例）淘宝轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .slider {
+            width: 520px;
+            height: 280px;
+            background-color: #b8a6d9;
+            margin: 50px auto;
+            position: relative;
+        }
+        .slider a {
+            text-decoration: none;
+        }
+        .left,
+        .right {
+            width: 40px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, .2);
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            color: #fff;
+            font-size: 32px;
+            font-family: arial;
+            line-height: 60px;
+            text-align: center;
+        }
+        .right {
+            right: 0px;
+        }
+        .circle {
+            position: absolute;
+            width: 65px;
+            height: 13px;
+            background-color: rgba(255, 255, 255, .3);
+            bottom: 15px;
+            left: 50%;
+            margin-left: -32px;
+        }
+        .circle li {     /* 0011 */
+            width: 9px;
+            height: 9px;
+            background-color: #b7b7b7;
+            float: left;     /* 批量定位用浮动float */
+            margin: 2px;
+            border-radius: 50%;     /* 边框变圆 */
+        }
+        .circle .current {     /* 0020 权重大于“.circle li”背景色设置才不会被覆盖 */
+            background-color: #f40;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <img src="img/tb.jpg" alt="">
+        <a href="#" class="left">&lt;</a>
+        <a href="#" class="right">&gt;</a>
+        <ul class="circle">
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

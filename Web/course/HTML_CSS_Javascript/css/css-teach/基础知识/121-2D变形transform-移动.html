@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D变形transform-移动</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            transition: transform .5s;
+        }
+        .div1:active {     /* 鼠标点击没有松开时触发的状态 */
+            /* transform: translate(x, y); */
+            transform: translate(50px, 70px);     /* 会盖住相邻盒子 */
+            /* transform: translateX(50px);     只移动x轴 */
+            /* transform: translateY(70px);     只移动y轴 */
+        }
+        .div2 {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+</body>
+</html>

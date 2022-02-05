@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this 指向</title>
+</head>
+<body>
+    <button>点击</button>
+    <script>
+        // this 一般指向调用它（函数）的对象。
+
+        // 1. 在全局作用域和普通函数中，this 指向全局对象 window
+        console.log(this);    // 指向 window 对象
+
+        // 2. 在普通函数（window 的方法）中，this 指向全局对象 window
+        function fn() {
+            console.log(this);    // 指向 window 对象
+        };
+        fn();    // 全写：window.fn();。window 调用了 fn()
+
+        // 3. 在定时器（window 的方法）的回调函数中，this 指向全局对象 window
+        /* setInterval(function () {    // 全写：window.setInterval();。window 调用了 setInterval（）
+            console.log(this);    // 指向 window 对象
+        }, 1000); */
+
+        // 4. 在被调用的方法的对象中，this 指向被调用的方法所属的对象
+        // 4.1 方法
+        var o = {
+            sayHi: function () {
+                console.log(this);    // 指向对象 o
+            }
+        };
+        o.sayHi();
+        // 4.2 获取过来的元素（标签）也是方法
+        var btn = document.querySelector('button');
+        btn.onclick = function () {
+            console.log(this);    // 指向 <button>点击</button>
+        };
+        btn.addEventListener('click', function () {
+            console.log(this);    // 指向 <button>点击</button>
+        });
+
+        // 5. 构造函数中，this 指向构造函数的实例
+        function Fun() {
+            console.log(this);    // 指向 fun()
+        };
+        var fun = new Fun();
+        /*
+        为什么会指向构造函数的实例？
+            new关键字会在内存中开辟一片空间，创建一个新对象；
+            this 指向该对象；
+            该对象被实例化，被赋值到变量 fun（实例（对象）） 中；
+            所以 this 指向 fun（实例（对象））。
+        */
+    </script>
+</body>
+</html>

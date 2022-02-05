@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超出的部分用省略号显示</title>
+    <style>
+        .div1 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid red;
+            white-space: nowrap;     /* 首先需要强制一行显示 */
+        }
+        .div2 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid red;
+            white-space: nowrap;     /* 首先需要强制一行显示 */
+            overflow: hidden;     /* 其次需要超出内容隐藏 */
+            text-overflow: ellipsis;     /* 超出内容用省略号代替 */
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        一二三四五六七八九十十一
+    </div>
+    <div class="div2">
+        一二三四五六七八九十十一
+    </div>
+</body>
+</html>

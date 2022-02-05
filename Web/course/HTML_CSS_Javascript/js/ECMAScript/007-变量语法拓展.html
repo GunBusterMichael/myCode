@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量语法拓展</title>
+    <script>
+        /* 
+            1、更新变量：
+                一个变量被重新赋值后，它原有的值就会被覆盖，变量值将以最后一次赋的值为准。
+        */
+        var age = 20;
+        age = 21;    // age为21，之前的20被覆盖掉了
+        console.log(age);
+
+
+        /* 
+            2、声明多个变量：
+            var age = 18;
+            var adress = 'China';
+            var salary = 2000;
+        */
+        var age = 18,
+            adress = 'China',
+            salary = 2000;
+
+
+        // 3、声明变量的特殊情况
+            // 3、1 只声明不赋值，结果是？
+            var gender;
+            console.log(gender);    // 结果是undefined（计算机也不知道是什么，所以显示未定义）
+
+            // 3、2 给未被声明的变量直接赋值使用
+            tax = 9000;
+            console.log(tax);
+            // 正常赋值使用，不建议
+
+            // 3、3 未声明变量，直接使用
+            console.log(tel);   // 未定义tel
+            /* 
+                会报错：
+                Uncaught ReferenceError: tel is not defined
+                    at 07-变量语法拓展.html:32
+            */
+            
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

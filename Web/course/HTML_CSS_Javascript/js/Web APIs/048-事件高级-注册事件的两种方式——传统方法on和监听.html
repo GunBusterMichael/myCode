@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>048-事件高级-注册事件的两种方式on和监听</title>
+</head>
+
+<body>
+    <button>传统方法on注册事件</button>
+    <button>监听方法注册事件eventTarget.addEventListener('type', listener[, useCapture]);</button>
+    <button>监听方法注册事件 &lt;= IE8 eventTarget.attachEvent(eventNameWithOn, callback);</button>
+
+    <script>
+        var btns = document.querySelectorAll('button');
+
+        /*
+            1. 传统注册方式：
+                1.1 方式
+                    事件源.onXXX事件类型 = function () {};
+                1.2 特点
+                    唯一性：
+                        只能给同一个元素的同一个事件设置*一个*处理函数，
+                        最后注册的处理函数会覆盖之前注册的处理函数。
+        */
+        btns[0].onclick = function () {
+            alert('Hello World!');
+        };
+        btns[0].onclick = function () {
+            alert('Bye World!');
+        };
+
+        /*
+            2. 方法监听注册方式：
+                是 W3C 的标准。推荐使用。
+                2.1 方式
+                    2.1.1 eventTarget.addEventListener('type', listener[, useCapture]); 👈方法，IE9 及以后版本支持：
+                        该方法将指定的监听器（处理函数）注册到eventTarget（目标对象 || 事件源）上。当该对象触发指定的事件时，就会执行事件处理函数。
+                        该方法接收三个参数：
+                            type：事件类型（字符串形式，需要加单引号），比如 click, mouseover（不加 on）；
+                            listener：事件处理函数。当事件发生时，就会调用该监听函数；
+                            useCapture：可选参数，是一个布尔值，默认为 false。
+                    2.2.2 eventTarget.attachEvent('eventNameWithOn', callback); 👈方法，IE8 及以前版本支持。不建议使用（仅作了解）：
+                        该方法将指定的监听器（处理函数）注册到eventTarget（目标对象 || 事件源）上。当该对象触发指定的事件时，就会执行事件处理函数。
+                        该方法接收两个参数：
+                            eventNameWithOn：事件类型（字符串形式，需要加单引号），比如 onclick, onmouseover（加 on）；
+                            callback：事件处理函数。当目标触发事件时，事件处理函数（回调函数)会被调用。
+                2.2 特点
+                    可以给同一个元素的同一个事件注册多个处理函数（监听器），
+                    处理函数会按照注册顺序依次执行。
+        */
+        btns[1].addEventListener('click', function () {
+            alert(2);
+        });
+        btns[1].addEventListener('click', function () {
+            alert(3);
+        });
+
+        btns[2].attachEvent('onclick', function () {
+            alert(4);
+        });
+    </script>
+</body>
+
+</html>

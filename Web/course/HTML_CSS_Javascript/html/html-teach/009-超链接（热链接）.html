@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>超链接（热链接）</title>
+	</head>
+	<body>
+		<!--
+			超链接的特点：
+				1、有下划线;
+				2、鼠标停留在超链接上面时，显示小手形状;
+				3、点击超链接后，可以跳转页面。
+		-->
+		<a href="https://www.baidu.com">百度</a>
+		
+		<br><br>
+		
+		<!--
+			href：hot references 热引用
+			href属性后面一定是一个资源的地址。
+			
+			href后面的路径可以是绝对路径也可以是相对路径，可以是网络中某个资源的路径，也可以是本地资源的路径。
+		-->
+		<a href="007-背景颜色和背景图片.html">007-背景颜色和背景图片</a>
+		
+		<!--图片超链接-->
+		<a href="https://asoulfan.com/">
+			<img src="img/A-SOUL.png" width="120px"/>
+		</a>
+		
+		<!--
+			超链接有一个target属性：
+				可取值：
+					_blank： 新窗口打开
+					_self：  当前窗口打开
+					_top：   顶级窗口
+					_parent：父窗口
+		-->
+		<a href="https://asoulfan.com/" target="_blank">
+			<img src="img/A-SOUL.png" width="120px"/>
+		</a>
+	</body>
+</html>

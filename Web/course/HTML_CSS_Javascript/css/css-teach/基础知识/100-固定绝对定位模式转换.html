@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定绝对定位模式转换</title>
+    <style>
+        div:first-child {
+            height: 100px;
+            background-color: #b8a6d9;
+            float: left;     /* 盒子浮动后，显示模式转换为行内块 */
+        }
+        div:nth-child(2) {
+            height: 100px;
+            background-color: #bd7d74;
+            position: absolute;     /* 盒子绝对定位后，显示模式转换为行内块 */
+            top: 100px;
+        }
+        div:nth-child(3) {
+            height: 100px;
+            background-color: #576690;
+            position: fixed;     /* 盒子固定定位后，显示模式转换为行内块 */
+            top: 200px;
+        }
+        div:nth-child(4) {
+            height: 100px;
+            background-color: #9ac8e2;
+            position: relative;     /* 盒子相对定位，不脱标，显示模式不转换 */
+            top: 300px;
+        }
+        /* 
+            需要给行内元素设置宽高时，如果需要为其设置定位或浮动，可不设置显示模式转换  display: block
+        */
+    </style>
+</head>
+<body>
+    <div>
+        Lorem ipsum dolor sit amet.
+    </div>
+    <div>
+        Lorem ipsum dolor sit amet.
+    </div>
+    <div>
+        Lorem ipsum dolor sit amet.
+    </div>
+    <div>
+        Lorem ipsum dolor sit amet.
+    </div>
+</body>
+</html>

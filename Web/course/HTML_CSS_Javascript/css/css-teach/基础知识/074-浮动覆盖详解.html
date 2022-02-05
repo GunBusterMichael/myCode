@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动详解</title>
+    <style>
+        div:first-child {
+            width: 200px;
+            height: 200px;
+            background-color: #b8a6d9;
+            float: left;     /* left是默认值 */
+            /* 浮动表示浮动流漂浮在标准流上方，盖住标准流 */
+        }
+        div:last-child {
+            height: 300px;
+            width: 140px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <!-- 如果两个盒子都不加浮动，那就是标准流：块级元素自上而下显示 -->
+</body>
+</html>

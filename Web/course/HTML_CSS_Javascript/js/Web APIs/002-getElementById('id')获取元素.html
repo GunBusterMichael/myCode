@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementById('id')获取元素</title>
+</head>
+<body>
+    <div id="time">2021-12-16</div>
+    <script>
+        // 1、因为文档从上往下加载，所以先写标签，后写script；
+        // 2、参数id是大小写敏感的字符串；
+        // 3、返回的是一个元素对象；找不到相应id，会返回null
+        var timer = document.getElementById('time');    // 必须以document开头
+        console.log(timer);
+        console.log(typeof timer);    // object
+        // 4、console.dir 打印返回的元素对象，以查看里面的属性和方法
+        console.dir(timer);
+    </script>
+</body>
+</html>

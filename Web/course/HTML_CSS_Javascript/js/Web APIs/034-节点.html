@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>034-节点</title>
+</head>
+<body>
+    <!--
+        获取元素的两种方式：
+            1. 利用 DOM 提供的方式获取元素：
+                方法：
+                    document.getElementById();
+                    document.getElementByTagName();
+                    document.querySelector();
+                    ......
+                特点：
+                    逻辑性不强，操作繁琐；兼容性稍强。
+            2. 利用节点层级关系获取元素：
+                方法：
+                    利用父子兄节点关系获取元素。
+                特点：
+                    逻辑性强，操作简单；兼容性稍差。
+    -->
+    <!--
+        节点：
+            1. 定义
+                网页中的所有内容都是节点（标签、属性、文本、注释……），在 DOM 中使用 node 表示；
+                节点被获取过来后，其数据类型是对象 Object。
+            2. 访问、创建与删除
+                DOM 树中的所有节点均可通过 Javascript 访问，所有 HTML 元素（节点）均可被修改，也可被创建或删除。
+            3. 基本属性
+                nodeType（节点类型）、nodeName（节点名称）和nodeValue（节点值）。
+                3.1 nodeType（节点类型)
+                    元素节点的 nodeType === 1；
+                    属性节点的 nodeType === 2；
+                    文本节点的 nodeType === 3：
+                        文本节点包括“文字”“空格”“换行”等。
+                    实际开发中，主要操作*元素节点*。
+    -->
+    <img src="md_pic/DOM树.jpg" alt="">
+</body>
+</html>

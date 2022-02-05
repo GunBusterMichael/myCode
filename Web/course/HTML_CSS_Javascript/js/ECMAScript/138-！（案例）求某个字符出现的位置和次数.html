@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>求某个字符出现的位置和次数</title>
+    <script>
+        //  判断一个字符串 'abcoefoxyozzopp' 中o出现的位置，并统计其次数。
+        var str = 'abcoefoxyozzopp';
+        var index = str.indexOf('o');    // 查找 o 第一次出现的时间
+        var num = 0;
+        while (index !== -1) {    // indexOf === -1 时，说明已经查找到字符串最后一个元素，即查找完毕
+            console.log(index);    // 返回 o 第一次出现的位置
+            index = str.indexOf('o', index + 1);    // 从 o 第一次出现的位置后开始查找 o
+            num++;
+        };
+        console.log('o出现的次数是：' + num);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

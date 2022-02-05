@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动特性-盒子同行显示</title>
+    <style>
+        section {
+            width: 800px;
+            height: 500px;
+            background-color: #b8a6d9;
+        }
+        section div:first-child {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            float: left;
+        }
+        section div:last-child {
+            width: 249px;
+            height: 300px;
+            background-color: #676690;
+            float: left;
+            /*
+                两个div都浮动，则盒子会顶对齐
+                one不浮动，two浮动，two会跑到下一行
+            */
+            /* 对于一个父盒子里的子盒子，如果其中一个子集浮动，那么其他子集都需要浮动。这样才能在同一行对其显示 */
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>one</div>
+        <div>two</div>
+    </section>
+</body>
+</html>

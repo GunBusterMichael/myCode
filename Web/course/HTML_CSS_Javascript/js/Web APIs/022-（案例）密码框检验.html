@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-（案例）密码框检验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .register {
+            width: 400px;
+            /* border: 1px solid #f00; */
+            margin: 100px auto;
+        }
+        #password {
+            outline: none;
+        }
+        .passwordInfo {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            background: url(img/mess.png) no-repeat left center;
+            padding-left: 20px;
+        }
+        .wrong {
+            color: #f00;
+            background-image: url(img/wrong.png);
+        }
+        .right {
+            color: #0f0;
+            background-image: url(img/right.png);
+        }
+    </style>
+</head>
+<body>
+    <div class="register">
+        <input type="password" name="password" id="password">
+        <p class="passwordInfo">请输入6~16位密码</p>
+    </div>
+    <script>
+        // 首先判断的事件是表单失去焦点: onblur;
+        // 如果输入正确，则提示正确的信息，颜色为绿色，小图标变化；
+        // 如果输入不是6到16位，则提示错误信息，颜色为红色，小图标变化；
+        // 因为里面变化样式较多，所以采取className修改样式。
+
+        // 1、获取元素
+        var pwd = document.querySelector('#password');
+        var info = document.querySelector('.passwordInfo');
+        // 2、注册事件：失去焦点
+        pwd.onblur = function () {
+            if (pwd.value.length < 6 || pwd.value.length > 16) {
+                // console.log('wrong');
+                info.className = 'passwordInfo wrong';
+                info.innerHTML = '您输入的密码不是6~16位';
+            } else {
+                // console.log('right');
+                info.className = 'passwordInfo right';
+                info.innerHTML = '密码符合要求'
+            };
+        };
+    </script>
+</body>
+</html>

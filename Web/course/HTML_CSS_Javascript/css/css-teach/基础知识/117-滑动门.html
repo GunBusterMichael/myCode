@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滑动门</title>
+    <style>
+        /* 
+            作用：
+                使各种特殊形状的背景能够自适应元素中文本内容的多少
+        */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            display: inline-block;
+            height: 33px;     
+            /* 
+                不给宽度
+                给了宽度就无法推拉
+            */
+            background: url(img/tu.png) no-repeat;
+            padding-left: 16px;     /* padding会撑开盒子，显示背景图 */
+            color: #fff;
+            line-height: 33px;
+            text-align: center;
+            text-decoration: none;
+        }
+        a span {
+            display: inline-block;
+            height: 33px;
+            /* 
+                不给宽度
+                给了宽度就无法推拉
+            */
+            background: url(img/tu.png) right no-repeat;
+            padding-right: 16px;
+        }
+        a:hover {
+            background-image: url(img/ao.png);
+        }
+        a span:hover {
+            background-image: url(img/ao.png);
+        }
+        /* 
+            总结：
+                1、<a>设置背景左侧，padding撑开合适宽度；
+                2、<span>设置右侧背景，padding撑开合适宽度，剩下由文字继续撑开宽度；
+                3、之所以<a>包含<span>，是因为要整个导航栏都可以点击
+        */
+    </style>
+</head>
+<body>
+    <a href="">
+        <span>首页</span>
+    </a>
+    <a href="">
+        <span>导航栏</span>
+    </a>
+    <a href="">
+        <span>动态网页</span>
+    </a>
+</body>
+</html>

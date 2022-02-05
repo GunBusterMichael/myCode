@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>049-事件高级-删除事件（解绑事件）</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <script>
+        /*
+            删除事件的方法：
+                1. 传统方式删除事件：
+                    事件源.onXXX = null;
+        */
+        var divs = document.getElementsByTagName('div');
+        divs[0].onclick = function () {
+            alert(1);
+            divs[0].onclick = null;
+        }
+
+        /*
+            删除事件的方法：
+                2. IE9及以后版本方法监听删除事件：
+                    事件源.removeEventListener('type', listener[, useCapture]);
+        */
+        divs[1].addEventListener('click', alert2);
+        function alert2() {
+            alert(2);
+            divs[1].removeEventListener('click', alert2);
+        };
+        /*
+            删除事件的方法：
+                3. IE8及以前版本方法监听删除事件（仅作了解）：
+                    事件源.detachEvent('eventNameWithOn', callback);
+        */
+        divs[2].attachEvent('onclick', alert3);
+        function alert3() {
+            alert(3);
+            divs[2].detachEvent('onclick', alert3);
+        };
+        /*
+            删除事件的方法：
+                4. 自建兼容性函数删除事件（仅作了解）：
+        */
+        function removeEventlistener(element, type, fn) {
+            // 判断当前浏览器是否支持 removeEventListener
+            if (element.removeEventListener) {
+                element.removeEventListener(type, fn);
+            } else if (element.detachEvent) {
+                element.detachEvent('on' + type, fn);
+            } else {
+                element['on' + type] = null;
+            };
+        };
+        function alert4() {
+            alert(4);
+            removeEventlistener(divs[3], 'click', alert4);
+        }
+        divs[3].onclick = alert4;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>062-键盘事件-按键弹起和按键按下</title>
+</head>
+
+<body>
+    <script>
+        // 1. 按键弹起时触发 keyup：
+        document.onkeyup = function () {
+            console.log('传统注册：我弹起了keyup');
+        };
+        document.addEventListener('keyup', function () {
+            console.log('监听注册：我弹起了keyup');
+        });
+
+        // 2. 按键按下时触发 keydown：
+        //      长按时会一直被触发；
+        //      能识别功能键。
+        document.onkeydown = function () {
+            console.log('传统方式：我按下了keydown');
+        };
+        document.addEventListener('keydown', function () {
+            console.log('监听方式：我按下了keydown');
+        });
+
+        // 3. 按键按下时触发 keypress：
+        //      长按时会一直被触发；
+        //      不识别功能键：ctrl、shift、上下左右键……
+        document.onkeypress = function () {
+            console.log('传统方式：我按下了keypress');
+        };
+        document.addEventListener('keypress', function () {
+            console.log('监听方式：我按下了keypress');
+        })
+
+        /* 
+            4. 三个事件的执行顺序：
+                先执行 keydown ，再执行 keypress ，最后执行 keyup。
+        */
+    </script>
+</body>
+
+</html>

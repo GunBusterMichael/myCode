@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数返回值注意事项</title>
+    <script>
+        // 1、return终止函数（退出循环、返回值、退出函数）
+        function getSum(num1, num2) {
+            return num1 + num2;
+            alert('我不会被执行');
+        };
+        console.log(getSum(1, 2));
+
+        // 2、return只能返回一个值
+        function fn(num1, num2) {
+            return num1, num2;    // 返回最后一个值
+        };
+        console.log(fn(1, 2));
+
+        // 3、利用数组让return返回多个值：求任意两个数的加减乘除结果
+        function getResult(num1, num2) {
+            return [num1 + num2, num1 - num2, num1 * num2, num1 / num2];
+        };
+        var re = getResult(1, 2);
+        console.log(re);    // 返回的是数组
+        // 4、如果函数没有return，则返回undefined
+        function fun1() {
+
+        };
+        console.log(fun1());    // undefined
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+#layout {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+#layout #top {
+    width: 100%;   /* 父级盒子宽度的100% */
+    /* height: 50px;   一般会有图片撑开#top，那就不用设置height */
+    flex: 0 0 50px;     /* 主轴为column，50px为height */
+    margin: 0 auto;
+    background-color: #ff0;
+}
+#layout #main {
+    flex: 0 0 100%;     /* 100%设置height，父元素无高度，100%不生效。height是子元素撑开的 */
+    list-style: none;
+    display: flex;      /* #main内的flex默认主轴为row */
+}
+#main #side_bar {
+    flex: 0 0 10%;      /* 10%为宽度，等于#mian宽度的10% */
+    background-color: #f5f5f5;
+    display: flex;      /* 让side_bar内的li开始flex */
+    flex-wrap: wrap;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+#main #side_bar li {
+    /* width: 100%  等价于⬇ */
+    flex: 0 0 100%;     /* li的宽度占满父级#side_bar的一整行 */
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+#main #pic_area {
+    /* 
+        layout 100% = main 100%
+        pic_area 90% = main 100% - side_bar 10%
+    */
+    flex: 0 0 90%;      /* 90%为宽度，等于#main的宽度的90% */
+    background-color: #f5f5f5;
+    display: flex;      /* 让pic_area内的li开始flex */
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#main #pic_area li {
+    flex: 0 0 30%;
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    background-color: #ff0;
+    margin-top: 10px;
+}

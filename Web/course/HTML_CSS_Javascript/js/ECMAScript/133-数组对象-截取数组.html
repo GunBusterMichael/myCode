@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组对象-截取数组</title>
+    <script>
+        // slice(begin, end) 方法截取原数组，返回一个 新 的数组对象
+        // 截取索引号begin到end的元素，[begin, end)
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+        // 关于begin
+        var arr1 = arr.slice()  // 不写参数，从索引号 0 开始截取
+        console.log(arr1);    // [1, 2, 3, 4, 5, 6, 7, 8]
+
+        var arr2 = arr.slice(3)    // 只写一个参数，从该索引号开始截取（包括该索引号）
+        console.log(arr2);    // [4, 5, 6, 7, 8]
+
+        var arr3 = arr.slice(-3);    // begin为负数，从倒数该索引号开始截取到最后一个（包括最后一个）
+        // 从倒数第三个截取到倒数第一个
+        console.log(arr3);    // [6, 7, 8]
+
+        var arr4 = arr.slice(8);    // begin超过原数组的索引号，返回空数组[]
+        console.log(arr4);    // []
+
+        // 关于end
+        arr5 = arr.slice(1, 4);    // end为正数，截取[索引号, 索引号)
+        console.log(arr5);
+
+        arr6 = arr.slice(3, -1);    // end为负数，截取到倒数第几个元素
+        console.log(arr6);    // [4, 5, 6, 7]
+
+        arr7 = arr.slice(3, 10);    // end 大于原数组长度，会取到最后一个元素
+        console.log(arr7);    // [4, 5, 6, 7, 8]
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

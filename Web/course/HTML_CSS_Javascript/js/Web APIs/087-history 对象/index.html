@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <a href="list.html">点击我前往列表页</a>
+    <button>前进history.forward();</button>
+    <button>前进history.go(1);</button>
+    <script>
+        var btn = document.querySelectorAll('button');
+        btn[0].addEventListener('click', function () {
+            history.forward();
+        });
+        btn[1].addEventListener('click', function () {
+            history.go(1);
+        });
+    </script>
+</body>
+</html>

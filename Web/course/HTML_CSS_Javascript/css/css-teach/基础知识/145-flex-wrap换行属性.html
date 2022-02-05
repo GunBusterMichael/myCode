@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><flex-wrap></flex-wrap></title>
+    <style>
+        section {
+            width: 600px;
+            height: 600px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            display: flex;
+        }
+        .sec1 {
+            /* 
+                一行显示不下时，会压缩子元素宽高，
+                达到强制不换行，一行显示所有元素的效果。 
+            */
+            flex-wrap: nowrap;
+        }
+        .sec2 {
+            /* 
+                一行显示不下时，会换行显示。
+            */
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .sec3 {
+            /* 
+                以行为单位，从父盒子下边框位置向上显示（不用换行时也这样）；
+                换行
+            */
+            flex-wrap: wrap-reverse;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+        }
+        div:first-child {
+            background-color: #b8a6d9;
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        div:nth-child(3) {
+            background-color: #9ac8e2;
+        }
+        div:last-child {
+            background-color: #576690;
+        }
+    </style>
+</head>
+<body>
+    <section class="sec1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+    <section class="sec2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+    <section class="sec3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+</body>
+</html>

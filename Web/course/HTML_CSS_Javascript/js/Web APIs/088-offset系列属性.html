@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>088-offset系列属性</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 150px;
+        }
+    
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            margin-left: 45px;
+        }
+    
+        .w {
+            width: 200px;
+            height: 200px;
+            background-color: #b8a6d9;
+            margin: 0 auto 200px;
+            padding: 10px;
+            border: 15px solid #576690;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="w"></div>
+    <script>
+        /* 
+            offset 概述
+                offset 的中文翻译是偏移量。我们使用 offset 系列相关属性可以动态的得到该元素的位置（偏移）、大小等信息。
+                    •获得元素距离带有定位父元素的位置；
+                    •获得元素自身的大小（宽度高度 padding + border + content）；
+                    •注意：返回的数值都不带单位。
+        */
+        var father = document.querySelector('.father');
+		var son = document.querySelector('.son');
+        var w = document.querySelector('.w');
+		/*
+            1. 动态获取元素相对于有定位父元素上边框和左边框的偏移量（不带单位）。
+                如果父元素没有定位或没有父元素，则以body为准。
+                element.offsetTop;
+                element.offsetLeft;
+        */
+        console.log(father.offsetTop);    // 150
+        console.log(father.offsetLeft);   // 150
+		console.log(son.offsetTop);       // 0
+		console.log(son.offsetLeft);      // 45
+        /* 
+            2. 动态获取元素自身的包括 padding, border 和 content 的宽度和高度（不带单位）。
+                element.offsetWidth;
+                element.offsetHeight;
+        */
+        console.log(w.offsetWidth);    // 250
+        console.log(w.offsetHeight);   // 250
+        /* 
+            3. 返回带有定位的父元素。如果父元素没有定位或没有父元素，则返回body。
+        */
+        console.log(son.offsetParent);    // <div class="father"><div class="son"></div></div>
+        // element.parentNode 返回最近的父元素，没有定位限制。
+        console.log(son.parentNode);      // <div class="father"><div class="son"></div></div>
+        console.log(father.offsetParent); // body标签及其内部所有内容
+    </script>
+</body>
+</html>

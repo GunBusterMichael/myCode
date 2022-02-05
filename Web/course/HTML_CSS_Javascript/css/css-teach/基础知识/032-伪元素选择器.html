@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>伪元素选择器</title>
+		<style type="text/css">
+			/* 
+				.demo 类选择器
+				:first-child 伪类选择器
+				::first-letter 伪元素选择器 
+			*/
+			p::first-letter {     /* 选择第一个字 */
+				color: #0000FF;
+				font-size: 30px;
+			}
+			p::first-line {     /* 选择第一行 */
+				color: #B8A6D9;
+			}
+			p::selection {     /* 改变鼠标所选中文字的颜色 */
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>第二课堂</h1>
+		<p>今天晚上，我参加了学校组织的职点课堂。我感觉我收获很大。在课堂上，老师讲解了金融专业学生四年的规划，让我受益匪浅。其中，老师讲到了关于考取证书的内容。老师提到了CFA和frm这两门考试，并告诉我们和这两个证书的相关信息。这两门考试的考试费用都不算少，对于我们来说，考试难度也很高。所以如何选择证书，如何备考是我们应该思考的大问题。如果我们通过了这两门考试的其中一门，那我们就会得到很多的福利。考证很重要。</p>
+	</body>
+</html>

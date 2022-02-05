@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				font-size: 10rem;
+				letter-spacing: 0.3125rem;
+				color: transparent;
+				margin: 100px auto;
+				animation: hue 3s linear infinite;
+				text-shadow: 0 0 20px #0000FF;
+			}
+			@keyframes hue {
+				0% {
+					filter: hue-rotate(0deg);
+				}
+				30%,
+				70% {
+					filter: hue-rotate(360deg);
+					text-shadow: none;
+				}
+				100% {
+					filter: hue-rotate(0deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="">
+			12345
+		</div>
+	</body>
+</html>

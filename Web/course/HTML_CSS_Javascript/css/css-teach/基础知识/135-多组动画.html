@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多组动画</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            animation: go 5s infinite;
+        }
+        @keyframes go {
+            0% {        /* 起始位置，等价于from */
+                transform: translate3d(0, 0, 0);
+            }
+            5% {        /* 运动时间占比：5-0=5 */
+                transform: translate3d(600px, 0, 0);
+            }
+            50% {       /* 运动时间占比：50-5=45 */
+                transform: translate3d(600px, 400px, 0);
+            }
+            75% {       /* 运动时间占比：75-50=25 */
+                transform: translate3d(0, 400px, 0);
+            }
+            100% {      /* 运动时间占比：100-75=25 */
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

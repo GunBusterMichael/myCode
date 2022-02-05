@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版心-两列左窄右宽型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .top,
+        .banner,
+        .main,
+        .footer {
+            width: 960px;
+            margin: 0 auto;
+            border: 1px dashed #ccc;
+            text-align: center;
+            background-color: #eee;
+            margin-bottom: 8px;
+        }
+        .top {
+            height: 80px;
+        }
+        .banner {
+            height: 150px;
+        }
+        .main {
+            height: 500px;
+        }
+        .left {
+            width: 360px;
+            height: 500px;
+            background-color: #b8a6d9;
+            float: left;
+        }
+        .right {
+            width: 592px;
+            height: 500px;
+            background-color: #bd7d74;
+            float: right;
+        }
+        .footer {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">top</div>
+    <div class="banner">banner</div>
+    <div class="main">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+</html>

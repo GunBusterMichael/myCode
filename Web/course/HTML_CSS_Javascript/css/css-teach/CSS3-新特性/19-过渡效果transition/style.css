@@ -1,0 +1,16 @@
+.layer {
+    width: 100px;
+    height: 100px;
+    background-color: #b8a6d9;
+    cursor: pointer;
+    -webkit-transition: all 2s ease .2s;
+    -o-transition: all 2s ease .2s;
+    -moz-transition: all 2s ease .2s;
+    transition: all 2s ease .2s;
+}
+.layer:hover {
+    width: 300px;
+    height: 200px;
+    background-color: #bd7d74;
+    border-radius: 50px;
+}

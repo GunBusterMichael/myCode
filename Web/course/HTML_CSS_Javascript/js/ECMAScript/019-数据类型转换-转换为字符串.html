@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转换为字符串</title>
+    <script>
+        // 1、变量名.toString()
+        var num = 10;
+        var str = num.toString();   // 转换为string
+        console.log(typeof str);
+
+        // 2、String(变量名)
+        var str1 = String(num);     // 转换为string
+        console.log(typeof str1);
+        console.log(typeof String(num))     // 转换为string
+
+        // 3、重要：利用 + 拼接空字符串实现转换（隐式转换）
+        var str2 = num + '';    // 转换为字符串
+        console.log(typeof str2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

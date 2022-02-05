@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>去除图片底侧缝隙</title>
+    <style>
+        /* 
+            图片或表单等行内块元素
+            它们的底线会和父级盒子的基线对齐
+        */
+
+        /* 
+            解决方法1：
+                将img转换为block。
+        */
+        .block {
+            width: 625px;
+            height: 625px;
+            background-color: #b8a6d9;
+        }
+        .imgblock {
+            display: block;
+        }
+        
+        /* 
+            解决方法2：
+                给img添加vertic-align: top; 顶部居中对齐
+        */
+        .vat {
+            width: 100px;
+            height: 100px;
+            background-color: #bd7d74;
+        }
+        .imgvat {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <img src="img/水晶图片.jfif" class="imgblock">
+    </div>
+    <div class="vat">
+        <img src="img/bigben.png" class="imgvat">
+    </div>
+</body>
+</html>

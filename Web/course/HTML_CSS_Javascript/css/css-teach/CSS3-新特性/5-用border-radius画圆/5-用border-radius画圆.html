@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用border-radius画圆</title>
+    <style>
+        /* 
+        border-radius的优点：
+            1、减少网站的维护工作量；
+            2、提高网站性能；
+            3、增加视觉美观性。
+        */
+        .demo {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+            background-color: #b8a6d9;
+            margin: 100px auto;
+            /* 复杂写法 */
+            /* border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%; */
+
+            /* 简写 */
+            /* border-radius: 100px 70px 50px 60px;        从左上角顺时针设置 */
+
+            /* 最简写 */
+            /* border-radius: 50%; */
+
+            /* 第一个值：x轴；第二个值：y轴 */
+            border-top-left-radius: 100px 50px;
+        }
+        .demo2 {
+            width: 100px;
+            height: 200px;
+            border: 1px solid #ccc;
+            background-color: #b8a6d9;
+            margin: 100px auto;
+            border-radius: 100px 0 0 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+    <div class="demo2"></div>
+</body>
+</html>

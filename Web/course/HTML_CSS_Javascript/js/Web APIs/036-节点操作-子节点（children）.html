@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>036-节点操作-子节点</title>
+</head>
+
+<body>
+    <ol>
+        <li>我是li1</li>
+        <li>我是li2</li>
+        <li>我是li3</li>
+        <li>我是li4</li>
+        <li>我是li5</li>
+    </ol>
+    <script>
+        // 1. 用 DOM 提供的方法（API）获取：
+        var ol = document.querySelector('ol');
+        var lis = ol.getElementsByTagName('li');
+        console.log(lis);
+
+        // 2. 用子节点 childNodes 获取：
+        var lis = ol.childNodes;
+        console.log(lis);    // 获取所有子节点：元素节点、文本节点等
+        console.log(ol.childNodes[0].nodeType);    // 文本节点的 nodeType（节点类型）为 3
+        console.log(ol.childNodes[1].nodeType);    // 元素节点的 nodeType（节点类型）为 1
+
+        // 2.1 只获取元素节点：
+        // 2.1.1 （不常用）for 循环 childNodes，利用 nodeType（节点类型）筛选元素节点
+        for (var i = 0; i < ol.childNodes.length; i++) {
+            if (ol.childNodes[i].nodeType === 1) {
+                console.log(ol.childNodes[i]);
+            };
+        };
+        // 2.1.2 （常用）用 children 获取
+        console.log(ol.children);
+
+        // 2.2 获取第一个和最后一个子元素
+        // 2.2.1 firstChild 和 lastChild
+        // 2.2.1.1 用 firstChild 获取第一个子节点，不管是文本节点还是元素节点都会获取
+        console.log(ol.firstChild);
+        // 2.2.1.1 用 lastChild 获取最后一个子节点，不管是文本节点还是元素节点都会获取
+        console.log(ol.lastChild);
+
+        // 2.2.2 firstElementChild 和 lastElementCHild （IE9 以上才支持）
+        // 2.2.2.1 用 firstElementChild 获取第一个子元素节点
+        console.log(ol.firstElementChild);
+        // 2.2.2.2 用 lastELementChild 获取最后一个子元素节点
+        console.log(ol.lastElementChild);
+
+        // 2.2.3 children[索引号]
+        // 2.2.2.1 用 children[0] 获取第一个子元素节点
+        console.log(ol.children[0]);
+        // 2.2.2.1 用 children[父元素.children.length - 1] 获取第一个子元素节点
+        console.log(ol.children[ol.children.length - 1]);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体图标</title>
+    <style>
+        @font-face {     /* 添加字体 */
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?7kkyc2');
+            src: url('fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?7kkyc2') format('truetype'),
+                url('fonts/icomoon.woff?7kkyc2') format('woff'),
+                url('fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        span {
+            font-family: icomoon;     /* 保证和font-face中声明的font-family字体名相同 */
+            font-size: 100px;
+            color: #b8a6d9;
+        }
+        div::before {     /* 伪元素选择器 */
+            font-family: icomoon;     /* 保证和font-face中声明的font-family字体名相同 */
+            font-size: 100px;
+            color: #bd7d74;
+            content: "\e900";     /* Unicode字体 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        推荐下载网站：
+            icomoon字库  http://icomoon.io    推荐指数  **★★★★★**
+            IcoMoon 成立于 2011 年，推出了第一个自定义图标字体生成器，它允许用户选择所需要的图标，使它们成一字型。该字库内容种类繁多，非常全面，唯一的遗憾是国外服务器，打开网速较慢。
+
+        阿里iconfont字库 http://www.iconfont.cn/   推荐指数   **★★★★★** 
+        这个是阿里妈妈 M2UX 的一个 iconfont 字体图标字库，包含了淘宝图标库和阿里妈妈图标库。可以使用 AI制作图标上传生成。 重点是，免费！
+    -->
+    <span></span>     <!-- 直接粘贴字体图标 -->
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align-content属性</title>
+    <style>
+        section {
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            margin: 100px auto;
+            display: flex;
+            flex-flow: row wrap;
+            align-content: space-around;
+        }
+        div {
+            width: 150px;
+            height: 200px;
+        }
+        div:nth-child(1) {
+            background-color: #9ac8e2;
+            /* 默认order: 0 */
+        }
+        div:nth-child(2) {
+            background-color: #bd7d74;
+            order: -1;      /* 数字越小，位置越靠前 */
+        }
+        div:nth-child(3) {
+            background-color: #b8a6d9;
+        }
+        div:nth-child(4) {
+            background-color: #e799b0;
+            order: 1;       /* 数字越大，位置越靠后 */
+        }
+        div:nth-child(5) {
+            background-color: #576690;
+        }
+        div:nth-child(6) {
+            background-color: #fc966e;
+            order: -2;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </section>
+</body>
+</html>

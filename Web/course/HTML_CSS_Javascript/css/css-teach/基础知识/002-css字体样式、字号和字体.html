@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css字体样式、字号和字体</title>
+		<style>
+		<!--
+			1、网页普遍使用14px+；
+			2、尽量使用偶数的数字字号，奇数字号会在老式浏览器中产生bug；
+			3、各种字体之间必须使用英文逗号隔开；
+			4、中文字体名要加英文引号，英文字体名一般不加引号，如果字体名称包含空格 # ￥等符号，必须加英文引号；
+			5、英文字体名必须位于中文字体名之前
+			6、尽量使用系统默认字体(微软雅黑、宋体)，保证在任何用户的浏览器中都能正常显示；
+			7、尽量用unicod写字体名
+		-->
+			h2 {
+				font-size: 30px;
+				font-family: "times new roman",tahoma,"microsoft yahei","宋体";
+				color: #fc966e;
+			}
+			
+			h4 {
+				color: #b8a6d9;
+				
+				/* font-size: 14px;     这是14号字体
+				font-style: italic; */
+				
+				/* 
+					font综合写法 —— font: 斜体font-style 加粗font-weight 字号font-size 字体font-family 
+					顺序不可更改
+					“斜体”“加粗”可省略，“字号”“字体”不可省略
+				*/
+				font: italic bold 14px "microsoft yahei";
+				
+			}
+			
+			p {
+				font-size: 14px;
+				font-family: "\5B8B\4F53";     /* 这是Unicode宋体字体 */
+			}
+			
+			span {
+				font-weight: 700;     /* 字体加粗效果，normal=400，bold=700，一般写数字 */
+			}
+			
+			strong {
+				font-weight: normal;    /* 让粗体不粗 */
+			}
+			
+			em {
+				font-style: normal;     /* 让斜体不斜 */
+				color: #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 这是HTML注释  ctrl+/ -->
+		<h2>企业简介</h2>
+
+		<h4>公司由来</h4>
+
+		<p><span>华为技术<em>em</em>有限公司</span>，成立于<strong>1987</strong>年，总部位于<em>em</em>广东省深圳市龙岗区。 华为是全球领先的信息与通信技术（ICT）解决方案供应商。</p>
+
+		<h4>公司发展</h4>
+
+		<p>专注于ICT领域，坚持稳健经营、持续创新、开放合作，在电信<em>em</em>运营商、企业、终端和云计算等领域构筑了端到端的解决方案优势，为运营商客户、企业客户和消费者提供有竞争力的ICT解决方案、产品和服务，并致力于实现未来信息社会、构建更美好的全联接世界。</p>
+
+		<h4>公司地位</h4>
+
+		<p>2013年，华为首超全球第一大电信设备商爱<em>em</em>立信，排名《财富》世界500强第315位。华为的产品和解决方案已经应用于全球170多个国家，服务全球运营商50强中的45家及全球1/3的人口。</p>
+
+		<p>2020年8月10日，《财富》公布世界<em>em</em>500强榜（企业名单），华为排在第49位。2020中国民营企业500强第一名。</p>
+
+	</body>
+</html>

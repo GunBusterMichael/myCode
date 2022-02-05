@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计出现次数最多的字符和次数</title>
+    <script>
+        // 1、判断对象中有无该属性
+        var o = {
+            age: 18
+        };
+        console.log(o['age']);
+        if (o['age']) {
+            console.log('里面有该属性');
+        } else {
+            console.log('没有该属性');
+        };
+
+        // 2、判断一个字符串 'abcoefoxyozzopp' 中出现次数最多的字符，并统计其次数。
+        /* 
+        核心算法：利用 charAt(） 遍历这个字符串；
+                 把每个字符都存储给对象， 如果对象没有该属性，就为1，如果存在了就 +1；
+                 遍历对象，得到最大值和该字符。
+        */
+        // 2、1 遍历字符串，统计每个字符的出现次数
+        var str = 'abcoefoxyozzopp'
+        var o = {};
+        for (var i = 0; i <str.length; i++) {
+            var chars = str.charAt(i);    // 将str中索引号为 i 的字符赋值给 chars
+            // 动态地添加对象属性时，用 对象名[动态属性名]
+            if (o[chars]) {    // 判断 o 中是否有属性 chars
+                o[chars]++;    // o 中有属性 chars ，则属性 chars 的 属性值 + 1
+            } else {
+                o[chars]= 1;  // o 中没有属性 chars ，则属性 chars 的 属性值被赋值为 1
+            };
+        };
+        console.log(o);
+
+        // 2、遍历对象
+        var max = 0;
+        var charOfMax = '';
+        for (var k in o) {
+            if (o[k] > max) {
+                max = o[k];
+                charOfMax = k;
+            };
+        };
+        console.log(max);
+        console.log('出现次数最多的字符是：' + charOfMax + '\t总共出现了' + max + '次');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

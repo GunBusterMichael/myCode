@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作元素-修改表单属性</title>
+</head>
+<body>
+    <button>按钮</button>
+    <input type="text" value="请输入内容">
+
+    <script>
+        var btn = document.querySelector('button');
+        var input = document.querySelector('input');
+        // 2、注册事件，添加事件处理程序
+        btn.onclick = function () {
+            // input.innerHTML = '点击了';    innerHTML不是input的属性
+            // 表单里的value需要通过.value来修改
+            input.value = '已点击';
+            // 用 disabled 禁用按钮
+            // btn.disabled = true; 或↓
+            this.disabled = true;    // this 指的是时间函数的调用者（btn）
+        }
+    </script>
+</body>
+</html>

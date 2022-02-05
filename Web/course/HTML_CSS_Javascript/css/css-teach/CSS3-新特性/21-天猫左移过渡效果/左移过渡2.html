@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .focus {
+            width: 600px;
+            margin: 100px auto;
+        }
+        .onephone {
+            width: 236px;
+            height: 330px;
+            padding: 10px 18px 0 18px;
+            border: 1px solid #ccc;
+            list-style: none;
+            float: left;
+        }
+        .onephone img {
+            width: 200px;
+            transition: all .3s;
+        }
+        .onephone img:hover {
+            transform: translate(-5px);
+        }
+        .phone_info a {
+            text-decoration: none;
+            color: #000;
+        }
+        .phone_info .phone_title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .phone_info .phone_title:hover {
+            text-decoration: underline;
+        }
+        .phone_intro {
+            color: #999;
+            font-size: 14px;
+        }
+        .sale_info {
+            margin-top: 12px;
+            border-top: 1px dashed #e5e5e5;
+            padding-top: 12px;
+            position: relative;
+        }
+        .nprice {
+            font-size: 20px;
+        }
+        .oprice {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .sales {
+            position: absolute;
+            font-size: 14px;
+            top: 18px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="focus">
+        <ul class="phone">
+            <li class="onephone">
+                <a href="#">
+                    <img src="../img_html/honor_v30.png" alt="">
+                </a>
+                <div class="phone_info">
+                    <a href="#">
+                        <h3 class="phone_title">荣耀V30</h3>
+                    </a>
+                    <span class="phone_intro">麒麟990芯片 40W超级快充</span>
+                </div>
+                <div class="sale_info">
+                    <span class="nprice">¥2999起</span>
+                    <span class="oprice">¥3099</span>
+                    <span class="sales">已售:1581</span>
+                </div>
+            </li>
+            <li class="onephone">
+                <a href="#">
+                    <img src="../img_html/honor_v30.png" alt="">
+                </a>
+                <div class="phone_info">
+                    <a href="#">
+                        <h3 class="phone_title">荣耀V30</h3>
+                    </a>
+                    <span class="phone_intro">麒麟990芯片 40W超级快充</span>
+                </div>
+                <div class="sale_info">
+                    <span class="nprice">¥2999起</span>
+                    <span class="oprice">¥3099</span>
+                    <span class="sales">已售:1581</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

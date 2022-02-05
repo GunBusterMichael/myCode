@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        div {
+            margin: 100px;
+        }
+    
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        // 1. 获取元素
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var inputTime = +new Date('2022-1-30 23:59:59');    // 获取用户输入进来的时间的毫秒数。全局变量，倒计时函数可直接使用该变量。
+
+        // 2. 先调用一次倒计时函数，防止刷新页面时，倒计时黑盒子内容有空白
+        countDown();
+
+        // 3. 开启定时器
+        setInterval(countDown, 1000);    // 每过一秒，调用倒计时函数计算一次剩余时间并返回
+        function countDown() {
+            var nowTime = +new Date();    // 返回当前时间的毫秒数
+            var remainingTime = (inputTime - nowTime) / 1000;    // 返回剩余时间的秒数（毫秒/1000）
+            var h = parseInt(remainingTime / 60 / 60 % 24);    // 时
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h;    // 将剩余的小时数赋值给小时黑盒子
+            var m = parseInt(remainingTime / 60 % 60);    // 分
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;    // 将剩余的分钟数赋值给分钟黑盒子
+            var s = parseInt(remainingTime % 60);    // 秒
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;    // 将剩余的秒数数赋值给秒数黑盒子
+        };
+    </script>
+</body>
+</html>

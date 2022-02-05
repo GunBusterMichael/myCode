@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch</title>
+    <script>
+        // 1. switch 语句也是多分支语句，也可以实现多选一，针对特定值
+        // 2. 语法结构：
+        /* 
+            switch(表达式) {
+                case value1:
+                    执行语句1;
+                    break;
+                case value2:
+                    执行语句2;
+                    break;
+                ...
+                default:
+                    执行最后的语句;
+            }
+        */
+        // 3. 执行思路：将表达式的值和case后的值相匹配，如果匹配上，就执行该case内的语句；如果都没匹配上，就执行default内的语句
+        // 4. demo
+        var num = 1.1;
+        switch (num) {
+            case 1:
+                console.log('Im 1');
+                break;
+            case 1.1:                 // num 与 case后的value相匹配
+                console.log('Im 1.1');
+                break;
+            case 3:
+                console.log('Im 3');
+                break
+            default:
+                console.log('Not matched'); // 最后的case或default不用写break;
+        };
+        // 5. 表达式经常被写成变量；
+        // 6、表达式和value要全等===才能匹配（值和数据类型都相等）；
+        // 7、除最后一个case或default，如果当前case里没有break;，则不会退出switch，继续执行下一个case中的语句；
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

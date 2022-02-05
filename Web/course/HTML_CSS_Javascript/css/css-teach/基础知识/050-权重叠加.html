@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>权重叠加</title>
+		<style type="text/css">
+			li {     /* li0,0,0,1 */
+				color: red;
+			}
+			ul li {     /* ul0,0,0,1 + li0,0,0,1 = 0,0,0,2 */
+				color: green;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li>李白</li>
+				<li>杜甫</li>
+				<li>白居易</li>
+			</ul>
+		</div>
+	</body>
+</html>

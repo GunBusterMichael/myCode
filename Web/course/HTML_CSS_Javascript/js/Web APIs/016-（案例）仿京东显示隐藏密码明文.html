@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东密码</title>
+    <style>
+        .box {
+            position: relative;
+            width: 400px;
+            border-bottom: 1px solid #ccc;
+            margin: 100px auto;
+        }
+        .box input {
+            width: 370px;
+            height: 30px;
+            border: 0;
+            outline: none;
+        }
+        .box label img {
+            position: absolute;
+            width: 24px;
+            top: 2px;
+            right: 2px;
+        }
+        .box label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <label for="">
+            <img src="img/close.png" alt="不显示密码" title="切换密码隐藏状态" id="eye">
+        </label>
+        <input type="password" name="password" id="pwd">
+    </div>
+
+    <script>
+        // 1、获取元素
+        var eye = document.getElementById('eye');
+        var pwd = document.getElementById('pwd');
+        // 2、注册事件，处理程序
+        // flag == 0; input 为密码框状态（隐藏密码内容）；
+        // flag == 1; input 为文本框状态（显示密码内容）；
+        var flag = 0;
+        eye.onclick = function () {
+            if (flag == 0) {
+                pwd.type = 'text';
+                eye.src = 'img/open.png'
+                flag = 1;
+            } else {
+                pwd.type = 'password'
+                eye.src = 'img/close.png'
+                flag = 0;
+            };
+        };
+    </script>
+</body>
+</html>

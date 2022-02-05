@@ -1,0 +1,36 @@
+.demo1 {
+    margin: 30px auto;
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;       /* 前置语句 */
+    white-space: nowrap;        /* 前置语句 */
+    /* clip溢出内容切除 */
+    -o-text-overflow: clip;
+       text-overflow: clip;
+}
+.demo2 {
+    margin: 30px auto;
+    width: 100px;
+    /* height: 50px; */
+    padding: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;       /* 前置语句 */
+    white-space: nowrap;        /* 前置语句 */
+    /* ellipsis溢出内容... */
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+}
+.demo3 {
+    margin: 30px auto;
+    width: 100px;
+    /* height: 50px; */
+    padding: 10px;
+    border: 1px solid #ccc;
+    overflow: hidden;       /* 前置语句 */
+    white-space: nowrap;        /* 前置语句 */
+    /* ""溢出内容为“”内部文字（浏览器支持不好） */
+    -o-text-overflow: "-";
+       text-overflow: "-";
+}

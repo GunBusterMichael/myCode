@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除浮动影响-双伪元素（用的多）</title>
+    <style>
+        /* 
+            因为子级盒子高度会变化 ，
+            所以一般不为父级盒子设置高度。
+        */
+        /* 
+            子级盒子浮动，浮在父级盒子上层，不占位置，不会撑开父级盒子。
+        */
+        .box1 {
+            width: 600px;
+            background-color: #b8a6d9;
+        }
+        .box2 {
+            height: 200px;
+            width: 600px;
+            background-color: #bd7d74;
+        }
+        .son1 {
+            height: 100px;
+            width: 150px;
+            background-color: #cf966e;
+            float: left;
+        }
+        .son2 {
+            height: 100px;
+            width: 300px;
+            background-color: #576690;
+            float: left;
+        }
+        /* 双伪元素清除浮动 */
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;     /* 触发BFC */
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1 clearfix">
+        <div class="son1"></div>
+        <div class="son2"></div>
+    </div>
+    <div class="box2"></div>
+</body>
+</html>

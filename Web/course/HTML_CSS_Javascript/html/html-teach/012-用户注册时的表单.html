@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户注册时的表单</title>
+	</head>
+	<body>
+		<!--
+			用户注册：
+				用户名
+				密码
+				确认密码
+				性别
+				兴趣爱好
+				学历
+				简介
+		-->
+		<form action="http://localhost:8080/oa/register" method="post">
+			用户名
+			<input type="text" name="username" />
+			<br>
+			密码
+			<input type="password" name="userpwd"/>
+			<br>
+			确认密码
+			<input type="password" />
+			<br>
+			性别
+			<input type="radio" name="gender" value="1" />男                 <!--单选按钮的value必须由程序员手动指定-->
+			<input type="radio" name="gender" value="0" checked/>女          <!--单选按钮加checked后默认选中-->
+			<br>
+			兴趣爱好
+			<input type="checkbox" name="hobby" value="study" checked/>学习  <!--多选按钮加checked后默认选中-->
+			<input type="checkbox" name="hobby" value="sing"/>唱歌
+			<input type="checkbox" name="hobby" value="dance"/>跳舞
+			<br>
+			学历
+			<select name="grade">
+				<option value="gz">高中</option>
+				<option value="dz">大专</option>
+				<option value="bk" selected>本科</option>                    <!--下拉选项加selected后默认选中-->
+				<option value="ss">硕士</option>
+			</select>
+			<br>
+			简介<!--文本域。文本域没有value属性，用户填写的内容就是value。-->
+			<textarea rows="10" cols="60" name="introduction"></textarea>
+			<br>
+			<input type="submit" value="注册" />                             <!--因为不需要提交到服务器，所以不需要value-->
+			<input type="reset" value="清空"/>                               <!--因为不需要提交到服务器，所以不需要value-->
+		</form>
+	</body>
+</html>
+
+<!--
+	http://localhost:8080/oa/register?username=Phoebe&userpwd=123&gender=1&hobby=study&hobby=sing&grade=bk&introduction=hellohellohello
+-->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>071-window 方法-定时器setTimeout.html</title>
+</head>
+<body>
+    <script>
+        /* 
+            1. window.setTimeout(调用函数, 延迟毫秒数);
+                调用时可省略 window.
+                延迟毫秒数可省略，默认为 0
+                只在延迟时间到后执行一次
+                可以给定时器添加标识符
+        */
+        // 写法一：函数定义在方法内
+        var timer1 = setTimeout(function () {
+            console.log('2000毫秒，函数写在方法内');
+        }, 2000);
+
+        function callback() {
+            console.log('5000毫秒，方法内只写函数名');
+        }
+        // 方法二：方法内只写函数名
+        var timer2 = setTimeout(callback, 5000);
+        // 方法三：方法内写'函数名()'
+        var timer3 = setTimeout('callback()', 5000);
+    </script>
+</body>
+</html>

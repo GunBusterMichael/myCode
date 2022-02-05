@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量、属性、函数、方法的区别</title>
+    <script>
+        // 1、变量和属性
+        /* 
+        1、1 相同点：
+            都可被用来存储对象都可用来存储数据 
+        */
+        /* 
+        1、2 不同点：
+            变量：单独声明并赋值，使用的时候直接写变量名，单独存在
+            属性：在对象里面，不需要声明（var），使用的时候必须要写 对象.属性
+        */
+        var num = 10;
+        var obj = {
+            age: 18,
+            }
+        console.log(num);
+        console.log(obj.age);
+        
+
+        // 2、函数和方法
+        /* 
+        2、1 相同点：
+            都可用来实现某种功能，做某件事
+        */
+        /* 
+        2、2 不同点：
+            函数是单独声明，并被调用的。函数名 () 单独存在
+            对象在方法里面，调用的时候要 对象.方法
+        */
+        function fn1() {
+            console.log('fn1');
+        }
+        var obj2 = {
+            fn2: function () {
+                console.log('fn2');
+            }
+        };
+        fn1();
+        obj2.fn2();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

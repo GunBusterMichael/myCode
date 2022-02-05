@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>092-client 系列属性</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            padding: 5px;
+            border: 11px solid #576690;
+            background-color: #b8a6d9;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        /*
+            client 中文：客户端。
+                通过 client 相关属性可以动态地得到该元素可视区的相关信息，如边框大小、元素大小（padding + content）等。
+        */
+        var div = document.querySelector('div');
+        // 1. 获取宽度、高度
+        console.log(div.clientWidth);    // 210
+        console.log(div.clientHeight);   // 210
+        // 2. 获取边框大小
+        console.log(div.clientTop);      // 上边框 11px
+        console.log(div.clientLeft);      // 左边框 11px
+    </script>
+</body>
+</html>

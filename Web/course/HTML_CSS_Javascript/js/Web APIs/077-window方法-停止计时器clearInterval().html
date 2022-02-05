@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>077-window方法-停止计时器clearInterval()</title>
+</head>
+<body>
+    <button class="begin">开启定时器</button>
+    <button class="stop">停止定时器</button>
+    <script>
+        /* 
+            window.clearInterval(intervalID);
+            1. 功能
+                clearInterval() 方法可以取消先前通过调用 setInterval() 建立的定时器。
+            2. 注意：
+                2.1 window 可以取消；
+                2.2 参数为需要取消的定时器的标识符。
+        */
+        var beginButton = document.querySelector('.begin');
+        var stopButton = document.querySelector('.stop');
+        var num = null;    // 如果某个变量，未来要存储对象，可将其赋值为 null（空对象）
+        // 将定时器的识别符设定为全局变量，好让停止定时器处理函数访问该变量。
+        var result;
+        beginButton.addEventListener('click', function () {
+            result = setInterval(function () {
+                console.log(num);
+                num++;
+            }, 1000);
+        });
+        stopButton.addEventListener('click', function () {
+            clearTimeout(result);
+        });
+    </script>
+</body>
+</html>

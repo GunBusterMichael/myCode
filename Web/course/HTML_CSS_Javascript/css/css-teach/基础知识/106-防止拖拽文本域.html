@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防止拖拽文本域</title>
+    <style>
+        textarea {
+            /* 
+                防止文本域被拖拽
+                resize：重新设置尺寸
+            */
+            resize: none;
+            outline: none;
+            /* 
+                这两行代码是文本域的基本设置
+            */
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <p>下面是文字</p>
+</body>
+</html>

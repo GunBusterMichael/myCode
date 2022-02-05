@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem</title>
+    <script>
+        // 改变根字体
+        var c=()=> {
+            let w=document.documentElement.clientWidth;  /* 获取设备的宽度 */
+            // 20: 自己设置的基准字体大小，可改变
+            // 320：自己设置的设备宽度，可改变
+            let n=(20*(w/320)>40?40+"px":(20*(w/320)+"px"));    /* 计算出来的字体大小大于40px，则把字体设置为40px */
+            document.documentElement.style.fontSize=n;  /* 将n的值赋给字体大小 */
+        }
+        window.addEventListener("loar",c)
+        window.addEventListener("resize",c)
+    </script>
+    <style>
+        div {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div>123</div>
+</body>
+</html>

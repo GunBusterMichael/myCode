@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex响应式布局三等分</title>
+    <style>
+        /* 
+            flex优势：
+                子盒子宽高可设置为父盒子的几分之几，
+                         随父盒子变化。
+        */
+        section {
+            width: 80%;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            /* 父级盒子添加flex */
+            display: flex;      /* 伸缩布局模式 */
+            min-width: 600px;       /* 最小宽度。宽度不可小于600px */
+            max-width: 800px;      /* 最大宽度。宽度不可大于100px */
+        }
+        section div {
+            height: 100%;
+            /* flex: 1; 每个盒子占一份 */
+        }
+        section div:first-child {
+            background-color: #b8a6d9;
+            flex: 1;        /* 给盒子添加所占份数，更改盒子宽高。该盒子占一份 */
+        }
+        section div:nth-child(2) {
+            background-color: #bd7d74;
+            margin: 0 5px;
+            width: 100px;       /* 可指定子盒子宽度，指定后宽度不变 */
+        }
+        section div:last-child {
+            background-color: #576690;
+            flex: 3;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+</html>

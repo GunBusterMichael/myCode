@@ -1,0 +1,39 @@
+body {
+    background-color: #ddd;
+}
+#main {
+    margin: 100px auto;
+    width: 800px;
+    clear: both;
+}
+#main li {
+    background-color: #fff;
+    list-style: none;
+    width: 240px;
+    /* padding: 1px; */
+    border: 1px solid rgba(255, 0, 0, 0);
+    margin-right: 10px;
+    cursor: pointer;
+    float: left;
+}
+#main li:hover {
+    border: 1px solid rgba(255, 0, 0, 1);
+}
+#main li:hover .img img {
+    opacity: .7;
+}
+.img img {
+    width: 240px;
+    transition: all .5s;
+}
+.goods_title {
+    margin: 10px;
+    color: #666;
+    height: 36px;
+    overflow: hidden;
+    line-height: 18px;
+}
+.price {
+    margin: 10px;
+    color: #f00;
+}

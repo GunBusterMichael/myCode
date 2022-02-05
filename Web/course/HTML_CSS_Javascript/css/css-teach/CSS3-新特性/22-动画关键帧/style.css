@@ -1,0 +1,110 @@
+.rect {
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    position: fixed;        /* 相对于浏览器定位 */
+    -webkit-animation: mymove 2s infinite;
+       -moz-animation: mymove 2s infinite;
+         -o-animation: mymove 2s infinite;
+            animation: mymove 2s infinite;
+}
+@-webkit-keyframes mymove {
+    0% {
+        top: 0;
+        left: 20%;
+    }
+    25% {
+        top: 0;
+        left: 80%;
+        background-color: blue;
+    }
+    50% {
+        top: 80%;
+        left: 80%;
+        background-color: green;
+    }
+    75% {
+        top: 80%;
+        left: 20%;
+        background-color: blue;
+    }
+    100% {
+        top: 0;
+        left: 20%;
+    }
+}
+@-moz-keyframes mymove {
+    0% {
+        top: 0;
+        left: 20%;
+    }
+    25% {
+        top: 0;
+        left: 80%;
+        background-color: blue;
+    }
+    50% {
+        top: 80%;
+        left: 80%;
+        background-color: green;
+    }
+    75% {
+        top: 80%;
+        left: 20%;
+        background-color: blue;
+    }
+    100% {
+        top: 0;
+        left: 20%;
+    }
+}
+@-o-keyframes mymove {
+    0% {
+        top: 0;
+        left: 20%;
+    }
+    25% {
+        top: 0;
+        left: 80%;
+        background-color: blue;
+    }
+    50% {
+        top: 80%;
+        left: 80%;
+        background-color: green;
+    }
+    75% {
+        top: 80%;
+        left: 20%;
+        background-color: blue;
+    }
+    100% {
+        top: 0;
+        left: 20%;
+    }
+}
+@keyframes mymove {
+    0% {
+        top: 0;
+        left: 20%;
+    }
+    25% {
+        top: 0;
+        left: 80%;
+        background-color: blue;
+    }
+    50% {
+        top: 80%;
+        left: 80%;
+        background-color: green;
+    }
+    75% {
+        top: 80%;
+        left: 20%;
+        background-color: blue;
+    }
+    100% {
+        top: 0;
+        left: 20%;
+    }
+}

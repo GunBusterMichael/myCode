@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串不可变</title>
+    <script>
+        var str = 'andy';
+        console.log(str);    // andy
+        var str = 'red';
+        console.log(str);    // red
+        // 给字符串重新赋值后，原数据所在内存不变，新开辟一块内存存储新值，原变量名指向新值
+        // 所以不要大量拼接字符串
+        var str = '';
+        for (var i = 1; i <= 10000000; i++) {    // 产生大量内存，程序会很卡
+            str += i;
+        };
+        console.log(str);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

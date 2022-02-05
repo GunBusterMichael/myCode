@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置变形中心点</title>
+    <style>
+        img {
+            margin: 200px;
+            transition: all .6s;
+        }
+        img:first-child {
+            transform-origin: left top;     /* 使用方位名词 */
+        }
+        img:last-child {
+            transform-origin: -20px -30px;     /* 使用像素 */
+        }
+        img:first-child:hover {
+            transform: rotate(180deg);
+        }
+        img:last-child:hover {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <img src="img/serpic.jpg" alt="">
+    <img src="img/serpic.jpg" alt="">
+</body>
+</html>

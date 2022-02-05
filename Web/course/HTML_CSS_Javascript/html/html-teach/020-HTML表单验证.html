@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>HTML表单验证</title>
+	</head>
+	<body>
+		<!--
+			form添加novalidate属性后，该表单不会被验证
+			form添加autocomplete="on"属性后，该表单所填内容会被记录，在下次填写时会提示以前所输入的内容
+			form添加autocomplete="off"属性后，该表单所填内容不会被记录，在下次填写时会提示不会以前所输入的内容
+		-->
+		<form action="" method="post" enctype="multipart/form-data" autocomplete="on">
+			
+			<input type="file" />
+			
+			<!--
+				input标签中添加required="required"时，该输入框为必填
+				input标签中添加autofocus="autofocus"时，当该输入框未被正确填写，光标会自动在该框里
+			-->
+			<label>用户名</label>
+			<input type="text" name="username" placeholder="请输入用户名" required="required" autofocus="autofocus"/>
+			
+			<!--在input标签中加入pattern=""标签时，能限定该框可被填写的文本内容-->
+			<label>工号</label>
+			<input type="text" name="gonghao" placeholder="请输入工号" pattern="^\d{5}[imooc]$"/>
+			
+			<input type="submit" value="提交"/>
+			
+			<!--input添加formnovalidate后，点击该submit按钮，表单将不被验证-->
+			<input type="submit" value="不验证提交"/ formnovalidate="formnovalidate">
+			
+			<!--该input代码可为文本框提供候选项-->
+			<input type="text" list="tips"/>
+			<datalist id="tips">
+				<option value="1"></option>
+				<option value="12"></option>
+				<option value="123"></option>
+			</datalist>
+			
+			<!--
+				在单选和复选框（radio和checkbox）中，<label for="">和<input id="">相同时，点击label中的文本即可选中该选项。
+			-->
+			<label for="man">男</label>
+			<input type="radio" name="gender" id="man"/>
+			<label for="music">音乐</label>
+			<input type="checkbox" name="hobby" id="music"/>
+			
+			<input type="reset" value="清空"/>
+		</form>
+	</body>
+</html>

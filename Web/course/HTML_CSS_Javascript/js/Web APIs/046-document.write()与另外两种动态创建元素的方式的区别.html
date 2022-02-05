@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>046-document.write()与另外两种动态创建元素的方式的区别.html</title>
+</head>
+
+<body>
+    <button>CLICK ME!</button>
+    <p>qwert</p>
+    <div class="inner"></div>
+    <div class="create"></div>
+    <script>
+        // 三种动态创建元素的方式：
+
+        /*
+            1、document.write('');
+                1.1 如果在页面文档流全部加载完毕后调用该命令，则会导致页面全部重绘
+        */
+        var button = document.querySelector('button');
+        button.onclick = function () {
+            document.write('<div>new</div>');
+        }
+
+        /*
+            2、element.innerHTML
+        */
+        var inner = document.querySelector('.inner');
+        inner.innerHTML = '<a href="www.baidu.com">百度</a>';
+        // 2.1 innerHTML用拼接字符串形式创建多个元素：速度最慢（1000个1179ms左右）：
+        var startTime = +new Date();
+        for (var i = 0; i < 1000; i++) {
+            inner.innerHTML += '<a href="www.baidu.com">百度</a>';
+        };
+        var endTime = +new Date();
+        console.log('innerHTML用拼接字符串形式创建1000个链接耗时：' + (endTime - startTime) + 'ms');
+        // 2.2 innerHTML用数组方式创建多个元素：速度最快（1000个2ms左右）；结构稍复杂：
+        var startTime = +new Date();
+        var arr = [];
+        for (var i = 0; i < 1000; i++) {
+            arr.push('<a href="www.baidu.com">百度</a>');
+        };
+        inner.innerHTML = arr.join('');
+        var endTime = +new Date();
+        console.log('innerHTML用数组形式创建1000个链接耗时：' + (endTime - startTime) + 'ms');
+
+        /*
+            3、document.createElement();
+                配合 parentNode.appendChild(child); 和 parentNode.insertBefore(child, 指定元素); 进行添加。
+        */
+        var create = document.querySelector('.create');
+        var a = document.createElement('a');
+        create.appendChild(a);
+        // 3.1 循环document.createElement()创建多个元素：速度（1000个4ms左右）略慢于数组innerHTML；结构更清晰：
+        var startTime = +new Date();
+        for (var i = 0; i < 1000; i++) {
+            var a = document.createElement('a');
+            a.href = 'www.baidu.com';
+            a.innerHTML = '百度';
+            create.appendChild(a);
+        };
+        var endTime = +new Date();
+        console.log('循环document.createElement()创建1000个链接耗时：' + (endTime - startTime) + 'ms');
+    </script>
+
+    <!-- ! innerHTML用数组方式创建多个元素时，效率比 document.createElement('') 高 -->
+</body>
+
+</html>

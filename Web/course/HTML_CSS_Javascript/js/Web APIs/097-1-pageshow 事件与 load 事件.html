@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>097-pageshow 事件</title>
+</head>
+<body>
+    <a href="https://www.baidu.com">百度 Baidu 123</a>
+    <script>
+        window.addEventListener('load', function () {
+            alert('load')
+        })
+        window.addEventListener('pageshow', function (e) {
+            alert('pageshow')
+            console.log(e.persisted);    // edge 浏览器返回 false
+        })
+    </script>
+</body>
+</html>

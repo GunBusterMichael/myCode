@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画animatio</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            /* 
+            引用动画：
+            animation: 动画名称 动画时间 运动曲线 何时开始 播放次数 是否反方向；
+            一般只用前两个属性
+            */
+            animation: go 2s ease 0s infinite alternate;
+        }
+        /* 
+        定义动画：
+        @keyframes 动画名称 {}
+        */
+        @keyframes go {
+            from {      /* 动画起点 */
+                transform: translateX(0);
+            }
+            to {        /* 动画终点 */
+                transform: translateX(600px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

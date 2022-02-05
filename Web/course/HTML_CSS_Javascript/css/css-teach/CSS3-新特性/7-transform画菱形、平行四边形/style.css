@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.diamond {
+    width: 100px;
+    height: 100px;
+    background-color: #b8a6d9;
+    margin: 100px auto;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+.parallel {
+    width: 100px;
+    height: 100px;
+    background-color: #b8a6d9;
+    margin: 0 auto;
+    -webkit-transform: skewX(20deg);
+       -moz-transform: skewX(20deg);
+        -ms-transform: skewX(20deg);
+         -o-transform: skewX(20deg);
+            transform: skewX(20deg);
+}

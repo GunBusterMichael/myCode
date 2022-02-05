@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>块级标签、行内标签显示模式转换</title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: #9AC8E2;
+				display: inline;     /* 块级标签转换为行内标签显示模式 */
+			}
+			
+			span {
+				width: 100px;
+				height: 100px;
+				background-color: #ffff00;
+				display: block;     /* 行内标签转换为块级标签显示模式 */
+			}
+			
+			a {
+				width: 50px;
+				height: 20px;
+				background-color: #ff00ff;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div>123</div>
+		<div>456</div>
+		<div>789</div>
+		
+		<span>qwe</span>
+		<span>asd</span>
+		<span>zxc</span>
+		
+		<a href="">fgh</a>
+		<a href="">vbn</a>
+	</body>
+</html>

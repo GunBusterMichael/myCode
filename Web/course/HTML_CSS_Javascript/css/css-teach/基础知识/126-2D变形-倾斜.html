@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D变形-倾斜</title>
+    <style>
+        div {
+            font-size: 50px;
+            font-weight: 700;
+            margin: 100px;
+            transition: all 0.7s;
+        }
+        div:hover {
+            transform: skew(10deg, 0);     /* 上端沿x轴向左倾斜10，y轴不倾斜 */
+        }
+        div:active {
+            transform: skew(0, 10deg);     /* x轴不倾斜，左端沿y轴向上倾斜10 */
+        }
+    </style>
+</head>
+<body>
+    <div>Lorem ipsum dolor sit amet.</div>
+</body>
+</html>

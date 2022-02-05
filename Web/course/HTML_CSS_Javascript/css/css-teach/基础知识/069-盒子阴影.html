@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子阴影</title>
+    <style>
+        h1 {
+            font-size: 100px;
+            /* text-shadow: 水平距离 垂直距离 模糊程度 阴影颜色; */
+            text-shadow: 10px 3px 3px rgba(0, 0, 0, .5);
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            border: 10px solid red;
+            /* box-shadow: 水平位置（必须写） 垂直位置（必须写） 模糊距离 阴影尺寸（影子大小） 阴影颜色 内or外阴影 */
+            box-shadow: 5px 5px 3px 4px rgba(0, 0, 0, .5) inset, 5px 5px 3px 4px rgba(0, 0, 0, .5);
+
+        }
+    </style>
+</head>
+<body>
+    <h1>盒子阴影</h1>
+    <div></div>
+</body>
+</html>

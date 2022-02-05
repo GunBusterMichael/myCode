@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行内块和文字对齐</title>
+    <style>
+        /* 
+            vertical-align可对行内元素和行内块元素起作用
+                        对块级元素无效
+        */
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: #b8a6d9;
+            margin: 0 auto;
+            text-align: center;
+        }
+        img {
+            /* vertical-align: baseline;     默认基线对齐 */
+            vertical-align: middle;     /* 手动改为中线对齐 */
+        }
+        textarea {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div>文字居中</div>
+    <hr>
+    <img src="img/serpic.jpg" alt=""> 图片和文字默认基线对齐
+    <hr>
+    用户留言：<textarea name="" id="" cols="30" rows="10"></textarea>
+</body>
+</html>

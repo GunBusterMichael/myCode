@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素的显示和隐藏display&visibility</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+        div:first-child {
+            /* 
+            display: none;（隐藏后不保留位置）：
+                隐藏元素，不显示，
+               #不保留位置，但不是删除，元素仍被保存在页面中；
+                用的多。
+            display: block; 显示元素
+            */
+            display: none;
+        }
+        div:nth-child(2) {
+            /* 
+            visibility: hidden;（隐藏后保留位置）：
+                隐藏元素，不显示，
+               #保留位置，但不是删除，元素仍被保存在页面中；
+            visibility: visible;
+            */
+            background-color: #576690;
+            visibility: hidden;
+        }
+        div:last-child {
+            background-color: #bd7d74;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

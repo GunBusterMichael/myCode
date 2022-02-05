@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            /* 给父级添加display: flex */
+            display: flex;
+            width: 80%;
+            height: 300px;
+            background-color: #b8a6d9;
+            justify-content: space-between;
+        }
+        div span {
+            width: 50px;       /* 即使设定固定宽度，宽度仍会被压缩 */
+            height: 50px;
+            background-color: #bd7d74;
+            /* margin-right: 5px; */
+            /* flex: 1; */
+        }
+        div span:nth-child(2) {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</body>
+</html>

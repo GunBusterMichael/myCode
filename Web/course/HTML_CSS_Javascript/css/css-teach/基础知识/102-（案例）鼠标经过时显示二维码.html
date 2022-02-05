@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标经过时显示二维码</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            line-height: 100px;
+            text-align: center;
+            margin: 100px auto;
+            position: relative;     /* 子绝父相 */
+        }
+        div img {
+            position: absolute;
+            left: 100px;
+            top: 0px;
+            display: none;     /* 隐藏二维码 */
+        }
+        div:hover img {     /* 鼠标经过，显示二维码 */
+            display: block;     /* 显示二维码 */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        扫描二维码
+        <img src="img/bigben.png" alt="">
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件三要素</title>
+</head>
+<body>
+    <button id='btn'>然然</button>
+    <script>
+        // 点击一个按钮，弹出对话框：
+        // 1、事件由三部分（事件三要素）组成：事件源、事件类型、事件处理程序
+        // 1、1 事件源：触发事件的元素；例：button
+        var btn = document.getElementById('btn');
+        // 1、2 事件类型：触发事件的方法
+        // 比如：鼠标点击（onclick）、鼠标经过、键盘按下、滚轮滚动……
+        // 1、3 事件处理程序：通过函数赋值的方式完成
+        // 事件源.事件类型 = 事件处理程序;
+        btn.onclick = function () {
+            alert('我真的好喜欢你啊');
+        };
+    </script>
+</body>
+</html>

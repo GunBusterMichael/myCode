@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪类选择器</title>
+    <style>
+        /* 链接伪类选择器 */
+        a:link {
+            color: #666;
+        }
+        a:visited {
+            color: #f00;
+        }
+        a:hover {
+            color: #000
+        }
+        a:active {
+            color: #0f0
+        }
+        /* UI元素状态伪类选择器 */
+        input:enabled {
+            background-color: #0f0;
+        }
+        input:disabled {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">链接</a>
+    <br>
+    <hr>
+    <input type="text"><br>
+    <input type="text" disabled>        <!-- 加入disabled后不可打字 -->
+</body>
+</html>

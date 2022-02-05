@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂类型传参</title>
+    <script>
+        function Person(name) {
+            this.name = name;
+        };
+        function f1(x) {    // x = p
+            console.log(x.name);      // Bella
+            x.name = 'Carol';
+            console.log(x.name);      // Carol
+        }
+        var p = new Person('Bella');
+        console.log(p.name);          // Bella
+        f1(p);
+        console.log(p.name);          // Carol
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

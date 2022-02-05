@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>伪类选择器</title>
+		<style>
+		/* 未访问的链接 */
+			a:link {
+				font-size: 16px;
+				color: gray;
+				font-weight: 700;
+			}
+			
+		/* 已访问的链接 */
+			a:visited {
+				font-size: 16px;
+				color: orange;
+				font-weight: 700;
+			}
+			
+		/* 鼠标移动到链接上 */
+			a:hover {
+				font-size: 16px;
+				color: red;
+				font-weight: 700;
+			}
+			
+		/* 鼠标按住链接时 */
+			a:active {
+				font-size: 16px;
+				color: green;
+				font-weight: 700;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 伪类选择器中的“链接伪类选择器”，主要针对于<a></a> -->
+		<div>
+			<a href="https://www.baidu.com/" target="_blank">Baidu</a>
+			<a href="https://www.baidu.com/" target="_blank">百度</a>
+		</div>
+	</body>
+</html>

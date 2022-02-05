@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>025-（作业）新浪下拉菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-style: normal;
+        }
+        .banner {
+            height: 45px;
+            border-top: 3px solid #ff8500;
+            border-bottom: 1px solid #edeef0;
+            background-color: #fcfcfc;
+            font-size: 12px;
+        }
+        .weibo {
+            position: relative;
+        }
+        .weibo a {
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+        }
+        .weibo a .weiboBottom {
+            display: block;
+            padding: 14px 15px 14px 18px;
+        }
+        .weibo .weiboList {
+            display: none;
+            position: absolute;
+            border-top: 1px solid #fcfcfc;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        .weibo .weiboList li {
+            width: 50px;
+            line-height: 31px;
+            border-bottom: 1px solid #FECC5B;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="weibo">
+            <a href="#">
+                <i class="weiboBottom">微博</i>
+            </a>
+            <ul class="weiboList">
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var weibo = document.querySelector('.weibo');
+        var weiboList = document.querySelector('.weiboList');
+        weibo.onmouseenter = function () {
+            weiboList.style.display = 'block';
+        };
+        weibo.onmouseleave = function () {
+            weiboList.style.display = 'none';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>033-H5自定义属性</title>
+</head>
+<body>
+    <!--?
+        自定义属性的作用：
+            保存并使用数据；
+            部分数据不用保存到数据库中，而是保存在页面中。
+    -->
+    <!--?
+        H5 自定义属性命名：
+            以 data- 开头。
+    -->
+    <!--?
+        设置 H5 自定义属性：
+            1. 在元素标签内设置 data-;
+            2. element.setAttribute('自定义属性名', 自定义属性值)；
+    -->
+    <!--?
+        获取 H5 自定义属性：
+            1.1 兼容性较好的方法（所有自定义属性都可获取）：element.getAttribute('自定义属性名');
+            1.2 H5 新增方法（从 IE11 开始支持，只能获取data-开头的自定义属性）：
+                2.1 element.dataset.不包括data-的属性名;
+                2.2 element.dataset['不包括data-的属性名'];
+            3. dataset 是一个集合，类似一个对象，里面存放了里面存放了以 data- 开头的自定义属性
+    -->
+    <div data-index="1" data-list-name="Carol" getTime="21"></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.getAttribute('data-index'));
+        div.setAttribute('data-time', 20);
+        console.log(div.getAttribute('data-time'));
+        // 用一个-连接的属性名：
+        console.log(div.dataset.index);
+        console.log(div.dataset['index']);
+        // 多个用-连接的属性名：用驼峰命名法
+        console.log(div.dataset.listName);
+        console.log(div.dataset['listName']);
+        // 不以data-开头的自定义属性
+        console.log(div.getAttribute('getTime'));
+        console.log(div.dataset.getTime);         // undefined
+    </script>
+</body>
+</html>

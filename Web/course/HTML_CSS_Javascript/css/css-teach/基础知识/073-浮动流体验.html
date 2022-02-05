@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动流体验</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #b8a6d9;
+            /* 
+                display: inline-block;
+                转换为行内块元素，可将块级元素放在一行上，有宽度高度，但是元素之间有空隙，不方便处理。
+            */
+            float: left;     /* 左侧浮动 */
+
+        }
+        div:nth-child(2) {
+            background-color: red;
+        }
+        div:last-child {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

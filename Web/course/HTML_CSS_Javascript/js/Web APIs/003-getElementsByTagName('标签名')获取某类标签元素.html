@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsByTagName('标签名')获取某类标签元素</title>
+</head>
+<body>
+    <ul>
+        <li>你好1</li>
+        <li>你好2</li>
+        <li>你好3</li>
+        <li>你好4</li>
+        <li>你好5</li>
+    </ul>
+    <ol id="ol">
+        <li>拜拜</li>
+        <li>拜拜</li>
+        <li>拜拜</li>
+        <li>拜拜</li>
+    </ol>
+    <script>
+        // 1、返回的是获取过来的元素对象的集合，以伪数组的形式存储；页面中没有这个元素，返回空伪数组；
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);
+        console.log(lis[0]);
+        // 2、采用遍历的方式，依次打印伪数组里的元素
+        for (var i = 0; i < lis.length; i++) {
+            console.log(lis[i]);
+        };
+        // 3、获取某个父元素（单个对象）内部所有指定标签名的子元素
+        // 
+
+        // 3、1 使用 伪数组[索引号]作为父元素（单个对象），返回其内部指定标签名的子元素
+        var ol = document.getElementsByTagName('ol'); // [ol] 是伪数组，不是单个对象
+        console.log(ol[0].getElementsByTagName('li'));   // 返回ol内的li伪数组
+        // 3、2 给父元素标签添加id，通过id获取父元素（单个对象）
+        var ol1 = document.getElementById('ol');
+        console.log(ol1.getElementsByTagName('li'));
+    </script>
+</body>
+</html>

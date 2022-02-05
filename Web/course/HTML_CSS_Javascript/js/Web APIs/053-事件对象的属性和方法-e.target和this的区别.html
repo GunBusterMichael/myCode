@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>053-事件对象的属性和方法-e.target和this的区别</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+    </style>
+</head>
+
+<body>
+    <div>123</div>
+    <ul>
+        <li>abc</li>
+        <li>abc</li>
+        <li>abc</li>
+    </ul>
+    <script>
+        /*
+            1、e.target 与 this 的区别;
+                1、1 e.target 返回的是*触发*事件的对象（元素）；
+                        点击哪个元素，就返回哪个元素;
+                    不兼容ie678，需要换成 e.srcElement。
+                1、2 this 返回的是*绑定*事件的对象（元素）；
+                        绑定了哪个元素，就返回哪个元素;
+                    可替换为 e.currentTarget（IE678 不支持）。
+        */
+        var div = document.querySelector('div');
+        div.addEventListener('click', function (e) {
+            console.log(e.target);
+            console.log(this);
+            console.log(e.currentTarget);
+        });
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function (e) {
+            // 点击 <li>abc</li>
+            console.log(e.target);           // 返回 <li></li>
+            console.log(this);               // 返回 <ul></ul>
+            console.log(e.currentTarget);    // 返回 <ul></ul>
+        });
+        // 兼容性写法
+        div.onclick = function (e) {
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            console.log(target);
+        }
+    </script>
+</body>
+
+</html>

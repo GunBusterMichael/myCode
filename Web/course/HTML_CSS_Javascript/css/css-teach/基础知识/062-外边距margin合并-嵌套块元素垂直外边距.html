@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外边距margin合并-嵌套块元素垂直外边距</title>
+    <style>
+        /* 嵌套块元素垂直外边距的外边距合并，以最大外边距为准 */
+        .father0 {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+            margin-top: 100px;
+        }
+        .son0 {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            margin-top: 30px;
+        }
+
+        /* 
+            解决方法：
+                1、给外层块元素设置外边框border
+        */
+        .father1 {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+            margin-top: 100px;
+            border: 1px solid black;
+        }
+        .son1 {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            margin-top: 30px;
+        }
+
+        /* 
+            解决方法：
+                2、给外层块元素设置内边距padding
+        */
+        .father2 {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+            margin-top: 100px;
+            padding: 1px;    
+        }
+        .son2 {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            margin-top: 30px;
+        }
+
+        /* 
+            解决方法：
+                3、给外层块元素设置overflow: hidden
+        */
+        .father3 {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+            margin-top: 100px;
+            overflow: hidden;  
+        }
+        .son3 {
+            width: 200px;
+            height: 200px;
+            background-color: #bd7d74;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father0">
+        <div class="son0"></div>
+    </div>
+    <div class="father1">
+        <div class="son1"></div>
+    </div>
+    <div class="father2">
+        <div class="son2"></div>
+    </div>
+    <div class="father3">
+        <div class="son3"></div>
+    </div>
+</body>
+</html>

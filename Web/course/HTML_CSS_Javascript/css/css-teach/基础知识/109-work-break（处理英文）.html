@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work-break</title>
+    <style>
+        .div1 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid #f00;
+            word-break: break-all;     /* 允许单词中的字母拆开显示 */
+        }
+        .div2 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid #f00;
+            margin-top: 20px;
+            word-break: keep-all;     /* （默认）不允许单词中的字母拆开显示，连字符除外 */
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">Lorem ipsum dolor sit amet.</div>
+    <div class="div2">Lorem ipsum d-olor sit amet.</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+1. 包含内容不同：
+    1.1 element.offsetWidth && element.offsetHeight = 元素自身宽高 + padding + border
+    1.2 element.scrollWidth && element.scrollHeight = 元素自身宽高 + 内容超出元素的长度 + padding
+    1.3 element.clientWidth && element.clientHeight = 元素自身的宽高 + padding
+
+2. 用处不同：
+    2.1 offset：获取元素位置
+            element.offsetLeft
+            element.offsetTop
+    2.2 client：获取元素大小
+            element.clientWidth
+            element.clientHeight
+    2.3 scroll：获取滚动条位置
+            element.scrollTop
+            element.scrollLeft
+
+3. 页面滚动条位置
+    3.1 页面垂直滚动条位置
+            window.pageYOffset
+    3.2 页面水平滚动条位置
+            window.pageXOffset

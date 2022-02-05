@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>盒子模型-外边距和盒子居中对齐</title>
+		<style type="text/css">
+			div:first-child {
+				width: 200px;
+				height: 200px;
+				background-color: #00B1E7;
+				margin: 30px;     /* 上下左右外边距30px */
+			}
+			div:nth-child(2) {
+				width: 200px;
+				height: 200px;
+				background-color: #00B1E7;
+				margin-top: 100px;
+				margin-left: 50px;
+			}
+			div:last-child {
+				width: 200px;
+				height: 200px;
+				background-color: #00B1E7;
+				/* 使有宽度width的“块级元素”水平对齐网页 */
+				margin: 30px auto;     /* 上下外边距30px，左右自动居中对齐auto*/
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <div id="welcomeMassage"></div>
+    <script>
+        console.log(location.search);    // 返回 ?username=red 字符串
+        /* 
+            1. 去除问号 ?
+                1.1 方法
+                    substr('截取的起始位置（索引号，被截取后字符串的第一个字符）', '截取几个字符（省略则截取到最后一个字符）');
+                    E:\myCode\Web\resources\java-script-master\JavaScript基础\第六天\code\25-字符串操作方法.html
+        */
+        var params = location.search.substr(1);
+        console.log(params);
+        /*
+            2. 利用 = 将字符串分割为数组
+                2.1 方法
+                    split('分隔符');
+        */
+        var arr = params.split('=');
+        console.log(arr);    // 返回 ['username', 'red'] 数组
+
+        // 3. 将用户名写入欢迎信息div中
+        var welcomeMassage = document.querySelector('#welcomeMassage');
+        welcomeMassage.innerHTML = '欢迎：' + arr[1];
+    </script>
+</body>
+</html>

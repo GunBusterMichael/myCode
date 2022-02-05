@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>white-space</title>
+    <style>
+        .div1 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid red;
+            /* （默认）超出边框时换行 */
+            white-space: normal;     
+        }
+        .div2 {
+            width: 120px;
+            height: 20px;
+            border: 1px solid red;
+            margin-top: 20px;
+            /* 
+                超出边框时不换行，
+                强制在同一行内显示所有文本，
+                直到文本结束或遭遇<br>时才换行。
+            */
+            white-space: nowrap;     
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        一二三四五六七，八九十十一
+    </div>
+    <div class="div2">
+        一二三四五六七，八九十十一
+    </div>
+</body>
+</html>

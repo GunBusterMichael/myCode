@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>padding不影响盒子大小的情况</title>
+    <style>
+        div {
+            height: 30px;     /* 没有宽度，为贯穿页面宽度的div（设置width: 100%时失效） */
+            border: 1px solid black;
+            padding-left: 20px;     /* 因为该盒子没有设置宽度，所以padding不影响盒子宽度 */
+            padding-top: 10px;
+        }
+
+        nav {
+            width: 300px;
+            height: 40px;
+            border: 10x solid green;
+        }
+        p {
+            /* 因为没有给p指定宽度，所以会默认和父亲一样宽 */
+            height: 20px;
+            background-color: #b8a6d9;
+            padding-left: 30px;     /* 因为该盒子没有设置宽度，所以padding不影响盒子宽度 */  
+        }
+    </style>
+</head>
+<body>
+    <div>Lorem ipsum dolor sit amet.</div>
+    <nav>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </nav>
+</body>
+</html>

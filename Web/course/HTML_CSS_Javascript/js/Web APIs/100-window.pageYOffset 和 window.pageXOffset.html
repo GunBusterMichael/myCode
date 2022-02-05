@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window.pageYOffset window.pageXOffset</title>
+    <style>
+        div {
+            width: 10000px;
+            height: 10000px;
+            background-color: #576690;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /* 
+            window.pageYOffset
+                返回页面垂直滚动条的位置，返回数值，不带单位
+                只读
+                IE 9 及以上版本支持
+            window.pageXOffset
+                返回页面水平滚动条的位置，返回数值，不带单位
+                只读
+                IE 9 及以上版本支持
+        */
+        document.addEventListener('scroll', function () {
+            console.log('window.pageYOffset: ' + window.pageYOffset);
+            console.log('window.pageXOffset: ' + window.pageXOffset);
+        })
+        /* 
+            兼容性问题：
+                1. 声明了 DTD（<!DOCTYPE html>），可使用 document.documentElement.scrollTop;
+                2. 未声明 DTD（<!DOCTYPE html>），可使用 document.body.scrollTop;
+                3. IE 9 及以上版本支持：window.pageYOffset。
+        */
+        // 封装页面垂直滚动条兼容函数：
+        function getScroll() {
+            return {
+                left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+                top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+            }
+        }
+        // 调用页面垂直滚动条兼容函数：
+        getScroll().left
+        getScroll().top
+    </script>
+</body>
+
+</html>

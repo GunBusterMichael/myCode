@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+    <style>
+        /* 
+            grid网格布局：
+                display: grid;
+                grid-template-rows: ?px ?px auto ?px;   设置每行高度；
+                grid-template-columns: ?px ?px auto ?px;    设置每列宽度；
+                row-gap: ?px;   设置行间距；
+                column-gap: ?px;    设置列间距；
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .mian {
+            width: 100%;
+            padding: 54px;
+        }
+        .item {
+            width: 100%;
+            height: 190px;
+            /* background-color: wheat; */
+            border-bottom: 2px solid #ccc;
+            display: grid;
+            grid-template-columns: 31px auto 65px;
+            align-items: center;
+        }
+        .left img {
+            width: 100%;
+        }
+        .right {
+            font-size: 27px;
+            font-family: "SF Pro Text";
+            font-weight: 400;
+            color: rgba(123, 122, 124, 1);
+        }
+        .middle {
+            padding-left: 60px;
+            display: grid;
+            grid-template-rows: 38px 36px;
+            row-gap: 5px;
+        }
+        .middle_top {
+            font-size: 29px;
+            font-weight: 600;
+            color: rgba(55, 53, 57, 1);
+        }
+        .middle_bottom {
+            font-size: 27px;
+            font-weight: 400;
+            color: rgba(123, 122, 124, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="item">
+            <div class="left">
+                <img src="../css-teach/基础知识/img/icon.png" alt="">
+            </div>
+            <div class="middle">
+                <div class="middle_top">Lorem ipsum dolor sit amet.</div>
+                <div class="middle_bottom">Lorem, ipsum.</div>
+            </div>
+            <div class="right">21:00</div>
+        </div>
+        <div class="item">
+            <div class="left">
+                <img src="../css-teach/基础知识/img/icon.png" alt="">
+            </div>
+            <div class="middle">
+                <div class="middle_top">Lorem ipsum dolor sit amet.</div>
+                <div class="middle_bottom">Lorem, ipsum.</div>
+            </div>
+            <div class="right">21:00</div>
+        </div>
+        <div class="item">
+            <div class="left">
+                <img src="../css-teach/基础知识/img/icon.png" alt="">
+            </div>
+            <div class="middle">
+                <div class="middle_top">Lorem ipsum dolor sit amet.</div>
+                <div class="middle_bottom">Lorem, ipsum.</div>
+            </div>
+            <div class="right">21:00</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传统布局三等分</title>
+    <style>
+        section {
+            width: 80%;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+        }
+        section div {
+            width: 33.33%;
+            height: 100%;
+            float: left;
+        }
+        section div:first-child {
+            background-color: #b8a6d9;
+        }
+        section div:nth-child(2) {
+            background-color: #bd7d74;
+        }
+        section div:last-child {
+            background-color: #576690;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+</body>
+</html>

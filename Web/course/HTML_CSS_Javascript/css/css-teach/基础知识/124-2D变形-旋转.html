@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D变形-旋转</title>
+    <style>
+        .img1 {
+            margin: 100px;
+            transition: all .5s;
+        }
+        .img1:hover {
+            transform: rotate(90deg);     /* 正数顺时针旋转 */
+        }
+        .img1:active {
+            transform: rotate(-90deg);     /* 负数逆时针旋转 */
+        }
+    </style>
+</head>
+<body>
+    <img src="img/serpic.jpg" class="img1" alt="">
+</body>
+</html>
