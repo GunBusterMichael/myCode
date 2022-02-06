@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>107-缓动动画代码</title>
+    <style>
+        div {
+            position: absolute;
+            /* left: 0; */
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+    
+        span {
+            position: absolute;
+            top: 200px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: #576690;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn200">点击启动2的动画至200px</button>
+    <button id="btn300">点击启动2的动画至300px</button>
+    <div></div>
+    <span>2</span>
+    
+    <script>
+        /*
+            定义：
+                缓动动画时元素的运动速度有所变化的运动。
+            减速动画思路：
+                1. 让元素移动的距离逐次变小，速度也就逐渐减慢至零。
+                2. 核心算法
+                    每次移动的距离（步长）:
+                        (动画结束（目标）位置 - 元素当前位置) / 10
+                3. 停止的条件
+                    元素当前位置等于动画结束位置。
+        */
+        function animate(obj, target) {
+            clearInterval(obj.animationTimer)
+            obj.animationTimer = setInterval(function () {
+                // 计算步长 step
+                var step = (target - obj.offsetLeft) / 10
+                if (obj.offsetLeft == target) {
+                    clearInterval(animationTimer)
+                } else {
+                    // 赋值元素当前位置
+                    obj.style.left = obj.offsetLeft + step + "px"
+                }
+            }, 15);
+        }
+
+        var div = document.querySelector('div')
+        var span = document.querySelector('span')
+        var btn200 = document.querySelector('#btn200')
+        var btn300 = document.querySelector('#btn300')
+
+        animate(div, 300)
+
+        btn200.addEventListener('click', function () {
+            animate(span, 200)
+        })
+        btn300.addEventListener('click', function () {
+            animate(span, 300)
+        })
+    </script>
+</body>
+</html>

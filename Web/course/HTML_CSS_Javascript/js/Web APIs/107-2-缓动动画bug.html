@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>108-缓动动画bug</title>
+</head>
+
+<body>
+    <script>
+
+        function animationBug(start, target) {
+            var now = start
+            var step = 0
+            var remainingDistance = target - start
+            var numberOfSteps = 0;
+            while (now <= target) {
+                step = (target - now) / 10;
+                now += step;
+                remainingDistance = target - now;
+                numberOfSteps++;
+                console.log('第' + numberOfSteps + '步的步长是' + step + '，已完成的距离是' + now + '，剩余距离是' + remainingDistance);
+            }
+        };
+
+        function animationRound(start, target) {
+            var now = start
+            var step = 0
+            var remainingDistance = target - start
+            var numberOfSteps = 0;
+            while (now < target) {
+                step = Math.ceil((target - now) / 10)
+                now += step;
+                remainingDistance = target - now;
+                numberOfSteps++;
+                console.log('第' + numberOfSteps + '步的步长是' + step + '，已完成的距离是' + now + '，剩余距离是' + remainingDistance);
+            }
+        };
+        // 如果不对 step 取整，最后总会差一点点距离到达 target，程序会一直运行。
+        // animationBug(0, 100)
+
+        // 对 step 取整
+        // animationRound(0, 100)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>105-动画函数-给不同元素添加不同定时器</title>
+    <style>
+        div {
+            position: absolute;
+            /* left: 0; */
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+
+        span {
+            position: absolute;
+            top: 200px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: #576690;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击启动2的动画</button>
+    <div></div>
+    <span>2</span>
+
+    <script>
+        /*
+            1. 封装简单动画函数：
+                1.1 动画对象：obj
+                1.2 动画停止位置：target
+        */
+        /*
+            2. 给不同元素添加不同定时器:
+                2.1 原理
+                    给 obj 添加属性。
+                2.2 优点
+                    不用新建 animationTimer 变量，节省内存空间。
+                2.3 写法
+                    obj.animationTimer = setInterval()
+        */
+        function animate(obj, target) {
+            // 3.2.3 取消已存在的定时器
+            clearInterval(obj.animationTimer)
+            obj.animationTimer = setInterval(function () {
+                if (obj.offsetLeft == target) {
+                    clearInterval(animationTimer)
+                } else {
+                    obj.style.left = obj.offsetLeft + 1 + "px"
+                }
+            }, 30);
+        }
+
+        var div = document.querySelector('div')
+        var span = document.querySelector('span')
+        var btn = document.querySelector('button')
+
+        animate(div, 300)
+
+        /* 
+            3. 多次点击启动动画按钮，动画会越来越快
+                3.1 原因
+                    每点击一次按钮，就会启动一个新的定时器；
+                    点击许多次按钮，就会启动许多定时器，导致动画速度变快。
+                3.2 解决办法
+                    3.2.1 步骤
+                        点击启动动画按钮后，先执行取消定时器操作，以取消该动画已存在的定时器。
+                    3.2.2 代码
+                        clearInterval(obj.animationTimer)
+        */
+        btn.addEventListener('click', function () {
+            animate(span, 200)
+        })
+    </script>
+</body>
+
+</html>

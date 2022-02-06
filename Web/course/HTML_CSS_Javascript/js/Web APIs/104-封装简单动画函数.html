@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装简单动画函数</title>
+    <style>
+        div {
+            /* 1. 给盒子添加定位 */
+            position: absolute;
+            /* left: 0; */
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+        span {
+            position: absolute;
+            top: 200px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: #576690;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+
+    <script>
+        /* 
+            封装简单动画函数：
+                动画对象：obj
+                动画停止位置：target
+        */
+        function animate(obj, target) {
+            var animationTimer = setInterval(function () {
+                if (obj.offsetLeft == target) {
+                    clearInterval(animationTimer)
+                } else {
+                    obj.style.left = obj.offsetLeft + 1 + "px"
+                }
+            }, 30);
+        }
+
+        var div = document.querySelector('div')
+        var span = document.querySelector('span')
+        animate(div, 300)
+        animate(span, 200)
+    </script>
+</body>
+
+</html>
