@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画原理</title>
+    <style>
+        div {
+            /* 1. 给盒子添加定位 */
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        实现步骤：
+            1. 给盒子添加定位；
+            2. 利用 element.offsetLeft 获取盒子的当前位置；
+            3. 利用 element.style.left 让盒子在当前位置增加 1 个移动距离；
+            4. 利用定时器 setInterval() 不断重复 2 和 3；
+            5. 利用 if 和 clearInterval 添加结束定时器的条件并结束定时器；
+    -->
+
+    <div></div>
+
+    <script>
+        var div = document.querySelector('div')
+        /*
+            4. 利用定时器 setInterval() 不断重复 2 和 3；
+        */
+        var animationTimer = setInterval(function () {
+            /*
+                5. 添加结束定时器的条件并结束定时器；
+            */
+            if (div.offsetLeft >= 400) {
+                clearInterval(animationTimer)
+            } else {
+                /* 
+                    2. 利用 element.offsetLeft 获取盒子的当前位置；
+                    3. 利用 element.style.left 让盒子在当前位置增加 1 个移动距离；
+                */
+                div.style.left = div.offsetLeft + 1 + "px"
+            }
+        }, 30);
+    </script>
+</body>
+</html>
