@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>110-手动调用点击事件</title>
+</head>
+<body>
+    <button>log输出1</button>
+    <script>
+        var btn = document.querySelector('button')
+        btn.addEventListener('click', function () {
+            console.log(1);
+        })
+
+        // 手动调用 btn 的点击事件
+        btn.click()    // 打开页面时自动在控制台输出 1
+    </script>
+</body>
+</html>
