@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伸出滑块</title>
+    <style>
+        .sliderbar {
+            position: fixed;
+            right: 0;
+            bottom: 100px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .con {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 40px;
+            background-color: purple;
+            z-index: -1;
+        }
+    </style>
+    <!-- 引入 animate.js -->
+    <script src="animate.js"></script>
+</head>
+
+<body>
+    <div class="sliderbar">
+        <span>👈</span>
+        <div class="con">问题反馈</div>
+    </div>
+
+    <script>
+        // 1. 获取元素
+        var sliderbar = document.querySelector('.sliderbar')
+        var con = document.querySelector('.con')
+        /* 
+            2. 添加事件
+                鼠标经过 sliderbar 时， con 盒子滑动到左侧；
+                鼠标离开 sliderbar 时， con 盒子滑动到右侧。
+        */
+        sliderbar.addEventListener('mouseenter', function () {
+            // animate(obj, target, callback);
+            animate(con, -(con.clientWidth - sliderbar.clientWidth), function () {
+                // 滑块伸出完毕后，将←改为→
+                sliderbar.children[0].innerHTML = '👉'
+            })
+        })
+        sliderbar.addEventListener('mouseleave', function () {
+            // animate(obj, target, callback);
+            animate(con, 0, function () {
+                // 滑块缩回完毕后，将→改为←
+                sliderbar.children[0].innerHTML = '👈'
+            })
+        })
+    </script>
+</body>
+
+</html>

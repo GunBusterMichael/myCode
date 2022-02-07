@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>107-缓动动画代码</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
         div {
             position: absolute;
             /* left: 0; */
@@ -29,29 +33,44 @@
 
     <button id="btn200">点击启动2的动画至200px</button>
     <button id="btn300">点击启动2的动画至300px</button>
+    <button id="btn0">点击启动2的动画至0px</button>
     <div></div>
     <span>2</span>
     
     <script>
         /*
-            定义：
+            1. 缓动动画定义
                 缓动动画时元素的运动速度有所变化的运动。
-            减速动画思路：
-                1. 让元素移动的距离逐次变小，速度也就逐渐减慢至零。
-                2. 核心算法
-                    每次移动的距离（步长）:
-                        (动画结束（目标）位置 - 元素当前位置) / 10
-                3. 停止的条件
-                    元素当前位置等于动画结束位置。
+            2. 常见的缓动动画
+                常见的缓动动画是“减速动画”。
+            3. 减速动画思路
+                让元素移动的距离逐次变小，速度也就逐渐减慢至零。
+            4. 核心算法
+                4.1 每次移动的距离（步长）
+                    (动画结束（目标）位置 - 元素当前位置) / 10
+                4.2 步长取整：
+                    4.2.1 目的
+                        目前的算法会导致步长总比剩余距离少一点，为步长取整可以解决该 bug。
+                    4.2.2 方法
+                        如果步长是正值，则向大取整；
+                        如果步长是负值，则向小取整。
+            5. 停止的条件
+                元素当前位置等于动画结束位置。
+            6. 回调函数
+                可给动画函数添加回调函数，
+                回调函数在动画执行完毕后被调用。
         */
-        function animate(obj, target) {
+        function animate(obj, target, callback) {
             clearInterval(obj.animationTimer)
             obj.animationTimer = setInterval(function () {
                 // 计算步长 step
                 var step = (target - obj.offsetLeft) / 10
                 step = step > 0 ? Math.ceil(step) : Math.floor(step)
                 if (obj.offsetLeft == target) {
-                    clearInterval(animationTimer)
+                    clearInterval(obj.animationTimer)
+                    if (callback) {    // callback 存在，则返回 true
+                        callback()
+                    }
                 } else {
                     // 赋值元素当前位置
                     obj.style.left = obj.offsetLeft + step + "px"
@@ -63,6 +82,7 @@
         var span = document.querySelector('span')
         var btn200 = document.querySelector('#btn200')
         var btn300 = document.querySelector('#btn300')
+        var btn0 = document.querySelector('#btn0')
 
         animate(div, 300)
 
@@ -70,7 +90,13 @@
             animate(span, 200)
         })
         btn300.addEventListener('click', function () {
-            animate(span, 300)
+            animate(span, 300, function () {
+
+                span.innerHTML = '2\n已运动到目标位置：' + span.offsetLeft + 'px'
+            })
+        })
+        btn0.addEventListener('click', function () {
+            animate(span, 0)
         })
     </script>
 </body>
