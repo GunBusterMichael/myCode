@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>淘宝侧边栏——点击返回按钮可返回页面顶部</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: #b8a6d9;
+        }
+        
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+        
+        .header {
+            height: 150px;
+            background-color: #576690;
+        }
+        
+        .banner {
+            height: 250px;
+            background-color: #9AC8E2;
+        }
+        
+        .main {
+            height: 1000px;
+            background-color: #DB7D74;
+        }
+        
+        .goBack {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        案例分析：
+            1. 实现效果：
+                1.1 侧边栏先是绝对定位 absolute（相对于 HTML 文档，位置不变）；
+                1.2 当页面滚动到一定位置后，侧边栏改为固定定位 fixed（相对于屏幕，位置不变）；
+                1.3 页面继续滚动到一定位置后，显示“返回顶部”。
+            2. 所用技术：
+                1. 需要使用页面滚动事件；
+                2. 因为是靠*页面*滚动实现侧边栏效果，所以事件源是 document；
+                3. 通过页面滚动条位置（页面被卷去的头部高度）反应页面被滚动到的位置，
+                    通过 window.pageYOffset 获取垂直页面滚动条位置；
+                    通过 window.pageXOffset 获取水平页面滚动条位置；
+    -->
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    
+    <script>
+        // 1. 获取元素
+        var sideBar = document.querySelector('.slider-bar')
+        var banner = document.querySelector('.banner')
+        var main = document.querySelector('.main')
+        var goBack = document.querySelector('.goBack')
+
+        // 2. 获取页面被卷至 banner 时，页面垂直滚动条的位置 bannerTop
+        var bannerTop = banner.offsetTop
+
+        // 3. 获取页面被卷至 main 时，页面垂直滚动条的位置 mainTop
+        var mainTop = main.offsetTop
+
+        // 4. 计算侧边栏改为固定定位后，侧边栏的 top 值
+        var sideBarFixedTop = sideBar.offsetTop - bannerTop
+
+        // 5 . 设置页面滚动事件 scroll
+        document.addEventListener('scroll', function () {
+            
+            /*
+                6. 页面被卷至 banner 时，页面垂直滚动条的位置是 banner 距离文档上沿的距离 bannerTop(banner.offsetTop)；
+                    当页面垂直滚动条的位置 window.pageYOffset 大于等于 bannerTop(banner.offsetTop) 时，侧边栏改为固定定位。
+            */
+            if (window.pageYOffset >= bannerTop) {
+                sideBar.style.position = 'fixed'
+                sideBar.style.top = sideBarFixedTop + 'px'
+            } else {
+                sideBar.style.position = 'absolute'
+                sideBar.style.top = '300px'
+            }
+
+            /*
+                7. 页面被卷至 main 时，页面垂直滚动条的位置是 main 距离文档上沿的距离 mainTop(main.offsetTop)；
+                    当页面垂直滚动条的位置大于等于 mainTop(main.offsetTop) 时，侧边栏中显示“返回顶部”按钮。
+            */
+            goBack.style.display = window.pageYOffset >= mainTop ? 'block' : 'none'
+        })
+
+        // 8. 点击“返回顶部”按钮，让窗口滚动到页面最上方
+        goBack.addEventListener('click', function () {
+            animate(window, 0)
+        })
+
+        // 8.1 动画函数
+        function animate(obj, target, callback) {
+            clearInterval(obj.animationTimer)
+            obj.animationTimer = setInterval(function () {
+                // 计算步长 step
+                var step = (target - window.pageYOffset) / 10
+                step = step > 0 ? Math.ceil(step) : Math.floor(step)
+                if (window.pageYOffset == target) {
+                    clearInterval(obj.animationTimer)
+                    callback && callback()
+                } else {
+                    // 赋值元素当前位置
+                    window.scroll(0, window.pageYOffset + step)
+                }
+            }, 15);
+        }
+    </script>
+</body>
+
+</html>

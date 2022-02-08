@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        body {
+            background-color: black;
+        }
+        
+        .c-nav {
+            width: 900px;
+            height: 42px;
+            background: #fff url(images/rss.png) no-repeat right center;
+            margin: 100px auto;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .c-nav ul {
+            position: absolute;
+        }
+        
+        .c-nav li {
+            float: left;
+            width: 83px;
+            text-align: center;
+            line-height: 42px;
+        }
+        
+        .c-nav li a {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            height: 42px;
+        }
+        
+        .c-nav li a:hover {
+            color: white;
+        }
+        
+        .cloud {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 42px;
+            background: url(images/cloud.gif) no-repeat;
+        }
+    </style>
+    <script src="animate.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            // 1. 获取元素
+            var cloud = document.querySelector('.cloud')
+            var c_nav = document.querySelector('#c_nav')
+            var lis = c_nav.querySelectorAll('li')
+
+            // 2. 给所有的 li 绑定事件
+            // 2.3.1 currentPosition 为当前被点击的 li 的位置，也是鼠标离开后 li 应该返回的位置
+            var currentPosition = 0
+            for (var i = 0; i < lis.length; i++) {
+                // 2.1 鼠标经过 li，云移至当前 li 的位置
+                lis[i].addEventListener('mouseenter', function () {
+                    animate(cloud, this.offsetLeft)
+                })
+                // 2.2 鼠标离开 li，云返回 currentPosition
+                lis[i].addEventListener('mouseleave', function () {
+                    animate(cloud, currentPosition)
+                })
+                // 2.3 鼠标点击 li，云移动并停留在当前 li
+                lis[i].addEventListener('click', function () {
+                    currentPosition = this.offsetLeft
+                    animate(cloud, currentPosition)
+                })
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div id="c_nav" class="c-nav">
+        <span class="cloud"></span>
+        <ul>
+            <li><a href="#">首页新闻</a></li>
+            <li><a href="#">师资力量</a></li>
+            <li><a href="#">活动策划</a></li>
+            <li><a href="#">企业文化</a></li>
+            <li><a href="#">招聘信息</a></li>
+            <li><a href="#">公司简介</a></li>
+            <li><a href="#">关注嘉然</a></li>
+            <li><a href="#">顿顿解馋</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>113-touch 事件对象</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: #b8a6d9;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        // 1. 获取元素
+        var div = document.querySelector('div')
+
+        // 2. 注册手指触摸事件
+
+        /* 
+            2.1 touchstart 
+                触摸开始，多点触控，后面的手指同样会触发
+        */
+        div.addEventListener('touchstart', function (e) {
+            console.log('Div is being touched.');
+            /* 
+                👇3.4 得到正在触摸当前元素的第一个手指的的信息，包含：
+                    3.4.1 clientX：   触摸目标在视口中的x坐标。
+                    3.4.2 clientY：   触摸目标在视口中的y坐标。
+                    3.4.3 identifier：标识触摸的唯一ID。
+                    3.4.4 pageX：     触摸目标在页面中的x坐标。
+                    3.4.5 pageY：     触摸目标在页面中的y坐标。
+                    3.4.6 screenX：   触摸目标在屏幕中的x坐标。
+                    3.4.7 screenY：   触摸目标在屏幕中的y坐标。
+                    3.4.8 target：    触摸的DOM节点目标。
+            */
+            console.log(e.targetTouches[0]);
+        })
+
+        /* 
+            2.2 touchmove
+                接触点改变，滑动时
+        */
+        div.addEventListener('touchmove', function (e) {
+            console.log('Div touchmove.');
+            // console.log(e);
+        })
+
+        /* 
+            2.2 touchend
+                触摸结束，手指离开屏幕时
+        */
+        div.addEventListener('touchend', function (e) {
+            console.log('Div touchend.');
+            // console.log(e);
+        })
+
+        /* 
+            3. touch 事件对象
+                3.1 touches
+                    包含 正在触摸屏幕的所有手指 的列表
+                3.2 targetTouches
+                    包含 正在触摸当前元素的所有手指的列表
+                3.3 changedTouches
+                    包含 和这个触摸事件对应的所有手指的列表。
+                        对于 touchstart 事件, 列出在此次事件中 新增加 的触点。
+                        对于 touchmove 事件，列出和上一次事件相比较，发生了 变化 的触点。
+                        对于 touchend 事件，列出从触摸面的 离开 的触点的集合。
+        */
+    </script>
+</body>
+</html>

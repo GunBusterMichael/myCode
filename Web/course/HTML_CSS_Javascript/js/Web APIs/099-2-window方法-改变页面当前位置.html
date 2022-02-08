@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>099-2-window方法-改变页面当前位置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 5000px;
+            height: 5000px;
+        }
+        button {
+            position: fixed;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <button>返回左上角</button>
+
+    <script>
+        var btn = document.querySelector('button')
+        btn.onclick = function () {
+            window.scroll(0, 0)
+        }
+
+        /* 
+            window.scroll(x, y)
+                1. 作用
+                    让页面回到 (x, y) 坐标的位置
+                2. 参数
+                    x && y 不带单位
+        */
+    </script>
+</body>
+</html>
