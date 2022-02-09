@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>115-classList 属性</title>
+    <style>
+        .bg {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        classList 属性是 HTML5 新增的属性，
+            返回元素的类名，
+            IE10 及以上版本支持。
+    -->
+<div class="one two"></div>
+<button>开关灯</button>
+
+<script>
+    var div = document.querySelector('.one')
+    var btn = document.querySelector('button')
+
+    console.log(div.classList);
+
+    // 1. 按照索引号返回类名
+    console.log(div.classList[0]);    // 返回 one
+
+    // 2. 返回当前元素的类个数
+    console.log(div.classList.length);// 返回 2
+
+    /* 
+        3. 添加类：
+            3.1 ele.classList.add('类名')
+                追加类名，不覆盖已有类名
+            3.2 ele.className = '类名'
+                覆盖类名
+    */
+    div.classList.add('three')
+
+    // 4. 删除类
+    div.classList.remove('one')
+
+    /* 
+        5. 切换类
+            ele.classList.toggle('类名')
+            如果当先元素有这个类名，则删除该类名；
+            如果当先元素没有这个类名，则添加该类名；
+    */
+    btn.addEventListener('click', function () {
+        document.body.classList.toggle('bg')
+    })
+</script>
+</body>
+</html>
