@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul,
+ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+body {
+    min-width: 320px;       /* 最小宽度 */
+    max-width: 540px;       /* 最大宽度 */
+    margin: 0 auto;
+}
+
+.focus {
+    position: relative;
+    overflow: hidden;
+}
+.focus img {
+    width: 100%;
+}
+.focus ul {
+    width: 500%;
+    overflow: hidden;
+    margin-left: -100%;
+}
+.focus ul li {
+    width: 20%;
+    float: left;
+}
+.focus ol {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.focus ol li {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 2px;
+    background-color: #fff;
+    transition: all .3s;
+}
+.focus ol li.current {
+    width: 15px;
+}
+
+.nav {
+    padding: 5px;
+}
+.main-row {
+    width: 100%;
+    height: 90px;
+    background-color: #b8a6d9;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;      /* 给父级添加伸缩布局 */
+}
+.main-row:nth-child(2) {
+    background-color: #bd7d74;
+}
+.main-row:nth-child(3) {
+    background-color: #fc966e;
+}
+.main-row:last-child {
+    background-color: #576690;
+}
+.column {
+    flex: 1;        /* 每个子级占一份 */
+    border-left: 1px solid #fff;
+}
+.column:first-child {
+    bottom: 0;
+}
+.column a {
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .3);
+}
+.sub-row {
+    display: flex;
+    flex-direction: column;     /* 垂直排列 */
+}
+.sub-row a {
+    flex: 1;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 45px;
+}
+.sub-row a:first-child {
+    border-bottom: 1px solid #fff;
+}
+
+/* 返回顶部按钮 */
+.goBack {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    background: url(../img/back.png) no-repeat;
+    background-size: 38px 38px;
+}

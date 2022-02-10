@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>127-（案例）记住用户名</title>
+</head>
+<body>
+
+    <!--
+        案例分析：
+            1. 因为要存储数据，所以要用到 本地存储；
+            2. 因为在重新打开页面后，仍可显示用户名，所以使用 localStorage；
+            3. 勾选复选框后，存储用户名；
+            4. 打开页面后，先判断是否已存储的用户名。如果有，在 input 中显示它，并勾选复选框。
+    -->
+
+    <input type="text" id="username"> <input type="checkbox" name="" id="remember"> 记住用户名
+
+    <script>
+
+        // 获取元素
+        var username = document.querySelector('#username');
+        var remember = document.querySelector('#remember');
+
+        // 如果有已被存储的用户名，则将其在文本框中显示，并选中复选框
+        if (localStorage.getItem('username')) {
+            username.value = localStorage.getItem('username');
+            remember.checked = true;
+        }
+
+        /* 
+            用 change 事件监听复选框的选中状态是否改变：
+                如果改变为选中，则存储用户名；
+                如果改编为未选中，则清除用户名。
+        */
+        remember.addEventListener('change', function () {
+            if (this.checked) {
+                localStorage.setItem('username', username.value)
+            } else {
+                localStorage.removeItem('username');
+            }
+        })
+    </script>
+</body>
+</html>

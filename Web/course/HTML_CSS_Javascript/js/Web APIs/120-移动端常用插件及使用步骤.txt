@@ -1,0 +1,10 @@
+1. 移动端常用插件
+    swiper：https://www.swiper.com.cn/
+    superslide： http://www.superslide2.com/
+    iscroll： https://github.com/cubiq/iscroll
+2. 插件使用步骤
+    2.1 确认插件实现的功能；
+    2.2 去官网查看使用说明；
+    2.3 下载插件；
+    2.4 打开 demo 实例文件，查看需要引入的相关文件，并且引入；
+    2.5 复制 demo 实例文件中的结构 html ，样式 css 以及 js 代码。
