@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建类和对象</title>
+</head>
+
+<body>
+    <script>
+
+        /* 
+            创建类 class：
+                1. 类中的所有函数不用写 function；
+                2. 类中不可添加逗号来分割不同函数
+        */
+        class Star {
+
+            /*
+                构造函数 constructor()：用于接收参数，返回实例对象。
+                    如果不写构造函数，类也会自动生成构造函数。
+            */
+            constructor(uname, age) {
+                // this 指向被创建的实例
+                this.uname = uname    // 属性
+                this.age = age    // 属性
+            }
+            sing(song) {    // 方法
+                console.log(this.uname + '唱《' + song + '》。');
+            }
+        }
+
+        /*
+            利用类创建对象 object （对象的实例化）。
+                会自动调用构造函数。
+        */
+        var carol = new Star('珈乐', 17 + 3)
+        var bella = new Star('贝拉', 19)
+
+        console.log(carol.uname);
+        console.log(bella.uname);
+        carol.sing('霓虹甜心')
+        bella.sing('星の在り処')
+    </script>
+</body>
+
+</html>
