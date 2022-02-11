@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-类中的共有属性和方法需要添加this.html</title>
+</head>
+
+<body>
+
+    <button>点击调用 nanami.sing()</button>
+
+    <script>
+
+        class Star {
+            constructor(uname, age) {
+                this.uname = uname
+                this.age = age
+                /*
+                    在构造函数中添加的方法，可在实例化后被立刻调用。
+                        类中的共有方法需要添加 this.
+                */
+                // this.sing()
+                this.btn = document.querySelector('button')
+                this.btn.onclick = this.sing    // 添加括号后，函数将被立即调用。所以此处不加括号
+            }
+            sing() {
+                // 类中的共有属性需要添加 this.
+                console.log(this.uname + 'is singing.');
+            }
+        }
+        
+        var nanami = new Star('七海', 90)
+
+    </script>
+</body>
+
+</html>

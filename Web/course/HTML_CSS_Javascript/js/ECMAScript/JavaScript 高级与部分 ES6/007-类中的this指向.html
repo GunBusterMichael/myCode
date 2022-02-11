@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-类中的this指向</title>
+</head>
+<body>
+
+    <button>点击调用 nanami.sing()</button>
+    
+    <script>
+
+        // this 指向其调用者。
+
+        var that = null
+
+        class Star {
+            constructor(uname, age) {
+                that = this
+
+                // 构造函数中的 this 指向被创建出来的实例对象
+
+                this.uname = uname
+                this.age = age
+                this.btn = document.querySelector('button')
+                this.btn.onclick = this.sing
+            }
+            sing() {
+
+                // 该方法被 btn 调用，所以该方法的 this 指向 btn
+
+                // console.log(this.uname);    // btn 中没有 uname，所以返回 undefined
+
+                console.log(that.uname);    // that 存储着构造函数的 this
+            }
+            dance() {    // 该方法被 nanami 调用，所以该方法的 this 指向 nanami
+
+                // 
+
+                console.log(this);
+            }
+        }
+
+        var nanami = new Star('七海', 90)
+        nanami.dance()
+
+    </script>
+
+</body>
+</html>

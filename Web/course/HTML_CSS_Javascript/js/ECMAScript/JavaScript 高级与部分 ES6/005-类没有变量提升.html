@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-类没有变量提升</title>
+</head>
+
+<body>
+    <script>
+
+        /* 
+            在 ES6 中，类不存在变量提升操作。
+                所以必须先定义类，才能通过类进行实例化对象。
+        */
+        var nanami = new Star('七海', 90)    // 005-类没有变量提升.html:14 Uncaught ReferenceError: Cannot access 'Star' before initialization
+        nanami.sing()
+
+        class Star {
+            constructor(uname, age) {
+                this.uname = uname
+                this.age = age
+            }
+            sing() {
+                console.log(uname + 'is singing.');
+            }
+        }
+    </script>
+</body>
+
+</html>
