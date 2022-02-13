@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-ES6之前创建对象的方法</title>
+</head>
+
+<body>
+    <script>
+
+        // 1. 利用 new Object() 创建对象
+        var obj1 = new Object()
+
+        // 2. 利用字面量创建对象
+        var obj2 = {}
+
+        // 3. 利用构造函数创建对象
+        function Star(uname, age) {
+            this.uname = uname
+            this.age = age
+            this.sing = function () {
+                console.log("I'm singing.");
+            }
+        }
+
+        var carol = new Star('Carol', 20)
+        console.log(carol);
+        carol.sing()
+
+    </script>
+</body>
+
+</html>

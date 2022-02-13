@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-原型 prototype</title>
+</head>
+<body>
+    <script>
+        /* 
+            每个构造函数都有一个原型对象，该对象中的所有属性和方法，都归构造函数所有
+
+            程序员可以将不变的属性和方法定义在 prototype 原型对象上。这样，所有的对象实例都可共享这些属性和方法，并节省内存资源。
+
+            一般情况下，将公共属性定义在构造函数中；
+                        将公共方法定义在原型中。
+        */
+        function Star(uname, age) {
+                this.uname = uname
+                this.age = age
+            }
+
+        // 原型
+        Star.prototype.sing = function () {
+                console.log("I'm singing.");
+        }
+        Star.prototype.gander = 'Female'
+
+        var carol = new Star('Carol', 20)
+        var bella = new Star('Bella', 19)
+
+        carol.sing()
+        bella.sing()
+        console.log(carol.gander);
+        console.log(bella.gander);
+
+        // 这两个实例中的 sing() 指向的是同一个内存地址
+        console.log(carol.sing === bella.sing);    // true
+    </script>
+</body>
+</html>
