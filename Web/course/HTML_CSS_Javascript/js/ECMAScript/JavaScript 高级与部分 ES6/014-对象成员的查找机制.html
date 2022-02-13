@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>014-对象成员的查找机制</title>
+</head>
+<body>
+    <script>
+        /* 
+            对象成员的查找机制：
+                访问一个对象的属性或方法时：
+                1. 先查找*对象自身*有无该属性或方法
+                2. 如果没有，再查找它的原型（构造函数的 prototype）
+                3. 如果还没有，再查找原型对象的原型（Object 的原型对象）
+        */
+
+        function Star(uname, age, gander, attributeOfStar) {
+            this.uname = uname
+            this.age = age
+            this.gander = gander
+            this.attributeOfStar = attributeOfStar
+        }
+
+        Star.prototype.gander = 'Male'
+        Object.prototype.gander = 'Le'
+        Star.prototype.attributeOfStarPrototype = 'attributeOfStarPrototype'
+        Object.prototype.attributeOfObjectPrototype = 'attributeOfObjectPrototype'
+
+        var carol = new Star('Carol', 20, 'Female', 'attributeOfStar')
+
+        console.log(carol.gander);    // 返回构造函数的 gander（就近原则）
+
+        console.log(carol.attributeOfStar);
+        console.log(carol.attributeOfStarPrototype);
+        console.log(carol.attributeOfObjectPrototype);
+
+    </script>
+</body>
+</html>

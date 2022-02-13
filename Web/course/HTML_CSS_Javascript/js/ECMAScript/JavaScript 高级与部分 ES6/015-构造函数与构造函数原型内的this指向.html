@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>015-构造函数与构造函数原型内的this指向</title>
+</head>
+
+<body>
+    <script>
+        function Star(uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+
+        var thisOfPrototype = null
+
+        Star.prototype.sing = function () {
+            console.log('sing');
+            thisOfPrototype = this
+        }
+
+        // 1. 构造函数中的 this 指向实例
+        // 2. 构造函数的原型中的 this 指向实例
+        var carol = new Star('Carol', 20)
+        carol.sing()
+        console.log(thisOfPrototype === carol);
+        console.log(thisOfPrototype);
+    </script>
+</body>
+
+</html>

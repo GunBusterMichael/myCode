@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>011-原型 __proto__</title>
+</head>
+
+<body>
+    <script>
+        /*
+            对象中存在一个__proto__原型属性。该属性指向构造函数的原型对象 prototype。
+
+            因为__proto__原型的存在，使得实例对象能够使用 prototype 中的属性和方法。
+        */
+
+        function Star(uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+
+        // 原型
+        Star.prototype.sing = function () {
+            console.log("I'm singing.");
+        }
+
+        var carol = new Star('Carol', 20)
+
+        console.log(carol.__proto__ === Star.prototype);    // 实例对象的__proto__与构造函数的prototype等价
+
+        /* 
+            调用方法时的优先级规则
+                调用方法时：
+                1. 先查找实例对象中有无要被调用的那个方法；
+                2. 如果没有，就去构造函数原型 prototype 中查找。
+         */
+    </script>
+</body>
+
+</html>
