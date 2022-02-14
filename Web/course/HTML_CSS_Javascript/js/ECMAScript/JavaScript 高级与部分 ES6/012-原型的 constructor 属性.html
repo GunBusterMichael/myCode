@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>012-原型的 constructor 属性</title>
 </head>
+
 <body>
     <script>
-        /* 
+        /*
             定义：
                 __proto__ 和 prototype 里都有一个 constructor 属性。
             指向：
@@ -24,7 +26,7 @@
         Star.prototype = {
             // 使用对象形式{}修改原型时，要手动利用 constructor 指回原来的构造函数
             constructor: Star,
-            sing: function() {
+            sing: function () {
                 console.log("I'm singing.");
             },
             dance: function () {
@@ -43,4 +45,5 @@
 
     </script>
 </body>
+
 </html>

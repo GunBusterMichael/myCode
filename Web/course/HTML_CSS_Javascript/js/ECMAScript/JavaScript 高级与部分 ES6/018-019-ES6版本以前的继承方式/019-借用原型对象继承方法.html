@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019-借用原型对象继承方法</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            text-align: center;
+        }
+        div {
+            border: 1px solid #576690;
+        }
+        p {
+            padding: 5px 0;
+            border-bottom: 1px solid #b8a6d9;
+        }
+        img {
+            padding: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>（错误）ES6版本以前继承方法Son.prototype = Father.prototype</p>
+        <img src="img/（错误）ES6版本以前继承方法Son.prototype = Father.prototype.jpg" alt="">
+    </div>
+    <div>
+        <p>（正确）ES6版本以前继承方法</p>
+        <img src="img/（正确）ES6版本以前继承方法.jpg" alt="">
+    </div>
+    <script>
+        
+        // 1.1 父构造函数
+        function Father(uname, age) {
+            // this 指向父构造函数的实例
+            this.uname = uname
+            this.age = age
+        }
+
+        // 2.1 原型
+        Father.prototype.money = function () {
+            console.log(10000.);
+        }
+
+        // 1.2 子构造函数
+        function Son(uname, age, score) {
+            // this 指向子构造函数的实例
+            Father.call(this, uname, age)    // 1.3 将父构造函数的 this 指向子构造函数的 this（从父构造函数的实例转为子构造函数的实例）
+            this.score = score
+        }
+
+        /*
+            2.2 利用原型继承方法
+            2.2.1 Son.prototype = Father.prototype
+                不能采取该种传递原型对象的方法，
+                    因为使用了该方法后，如果修改了子原型对象，父原型对象也会随之被修改。
+        */
+
+        // 2.2.2 正确方法
+        Son.prototype = new Father()
+        Son.prototype.constructor = Son
+
+        Son.prototype.exam = function () {
+            console.log('去考试');
+        }
+
+        var son = new Son('顶碗人', 18, 99)
+
+        console.log('实例son：'+son);
+
+        console.log('Father 的 prototype：'+Father.prototype);
+        console.log('Father 的 prototype 的 constructor：'+ Father.prototype.constructor);
+
+        console.log('Son 的 prototype：'+Son.prototype);
+        console.log('Son 的 prototype 的 constructor：' + Son.prototype.constructor);
+
+    </script>
+</body>
+</html>
