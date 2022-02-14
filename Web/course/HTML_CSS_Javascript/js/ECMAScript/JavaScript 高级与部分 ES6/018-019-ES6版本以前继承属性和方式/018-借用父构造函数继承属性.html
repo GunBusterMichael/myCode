@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-借用父构造函数继承属性</title>
+</head>
+
+<body>
+    <script>
+
+        // 1. 父构造函数
+        function Father(uname, age) {
+            // this 指向父构造函数的实例
+            this.uname = uname
+            this.age = age
+        }
+
+        // 2. 子构造函数
+        function Son(uname, age, score) {
+            // this 指向子构造函数的实例
+            Father.call(this, uname, age)    // 3. 将父构造函数的 this 指向子构造函数的 this（从父构造函数的实例转为子构造函数的实例）
+            this.score = score
+        }
+
+        var son = new Son('顶碗人', 18, 99)
+        console.log(son);
+    </script>
+</body>
+
+</html>

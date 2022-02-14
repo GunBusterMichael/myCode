@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-遍历（迭代）数组</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1, 2, 3]
+
+        // forEach 类似于 for 循环，形参可以是1，2，3个，形参名字可以改
+        arr.forEach(function (value, index, array) {
+            console.log('每个数组元素' + value);    // 循环打印每个数组元素
+            console.log('每个数组元素的索引号' + index);    // 循环打印每个数组元素的索引号
+            console.log('数组本身' + array);    // 打印 arr.length 遍 arr
+        })
+
+        // 利用 forEach 实现数组求和
+        var sum = 0
+        arr.forEach(function (value, index, array) {
+            sum += value
+        })
+        console.log(sum);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂数据类型赋值</title>
+</head>
+<body>
+    <script>
+        /* 
+            由于复杂数据类型间的赋值操作，是将一个变量的内存地址赋值给另一个变量，
+            所以在修改其中一个变量的值后，另一个变量的值也会随之改变。
+        */
+        var obj1 = {
+            width: 20
+        }
+        var obj2 = obj1
+        obj2.width = 40
+        console.log(obj1.width);
+    </script>
+</body>
+</html>

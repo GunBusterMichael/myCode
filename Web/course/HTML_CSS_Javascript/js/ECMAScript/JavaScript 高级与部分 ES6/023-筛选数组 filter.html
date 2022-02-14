@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-筛选数组 filter</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            filter 会遍历数组并筛选数组；
+            将被筛选数组中符合条件的元素组合成一个新数组；
+            返回新数组
+        */
+        /* 
+            value：被筛选数组的每一个元素；
+            index：被筛选数组的每一个元素的索引号；
+            array：被筛选的数组本身。
+        */
+
+        var arr = [12, 63, 3, 88]
+        var bigger20Arr = arr.filter(function (value, index, array) {
+            return value >= 20    // 筛选出大于等于 20 的元素
+        })
+        console.log(bigger20Arr);    // 返回 [66, 88]
+
+        var evenArr = arr.filter(function (value, index) {
+            return value % 2 === 0    // 筛选出偶数元素
+        })
+        console.log(evenArr);
+    </script>
+</body>
+
+</html>
