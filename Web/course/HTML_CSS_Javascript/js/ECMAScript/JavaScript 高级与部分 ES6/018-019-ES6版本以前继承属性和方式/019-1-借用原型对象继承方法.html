@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>019-借用原型对象继承方法</title>
+    <title>019-1-借用原型对象继承方法</title>
     <style>
         * {
             padding: 0;
@@ -38,7 +38,9 @@
     </div>
     <div>
         <p>（正确）ES6版本以前继承方法</p>
-        <img src="img/（正确）ES6版本以前继承方法.jpg" alt="">
+        <p>第一步：Son.prototype = new Father();</p>
+        <p>第二步Son.prototype.constructor = Son</p>
+        <img src="img/（正确）ES6版本以前继承方法Son.prototype = new Father();Son.prototype.constructor = Son.jpg" alt="">
     </div>
     <script>
 
@@ -70,7 +72,9 @@
 
         // 2.2.2 正确方法
         Son.prototype = new Father()
+        console.log(Son.prototype.constructor);    // Father 构造函数
         Son.prototype.constructor = Son
+        /// 2.2.2 正确方法
 
         Son.prototype.exam = function () {
             console.log('去考试');

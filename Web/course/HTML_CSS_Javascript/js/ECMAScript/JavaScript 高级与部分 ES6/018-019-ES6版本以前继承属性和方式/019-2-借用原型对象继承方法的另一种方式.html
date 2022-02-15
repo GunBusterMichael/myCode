@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019-2-借用原型对象继承方法的另一种方式.html</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        p,
+        img {
+            padding: 10px;
+            border-bottom: 1px solid #576690;
+        }
+    </style>
+</head>
+
+<body>
+    <p>（正确）ES6版本以前继承方法的另一种方式</p>
+    <p>Son.prototype.__proto__ = Father.prototype</p>
+    <img src="img/（正确）ES6版本以前继承方法Son.prototype.__proto__ = Father.prototype.jpg" alt="">
+    <script>
+        function Father() {
+
+        }
+
+        Father.prototype.money = function () {
+            console.log(10000);
+        }
+
+        function Son() {
+
+        }
+
+        /*
+            利用 prototype 与 __proto__ 继承方法：
+                将 Son.prototype.__proto__ 从 Object 构造函数的 prototype
+                改为
+                Father 的 prototype
+        */
+        Son.prototype.__proto__ = Father.prototype
+        /* 
+            /利用 prototype 与 __proto__ 继承方法
+        */
+
+        console.log('Son.prototype.constructor: ' + Son.prototype.constructor);    // Son 构造函数
+        console.log('Father.prototype.constructor: ' + Father.prototype.constructor);    // Father 构造函数
+
+        Son.prototype.exam = function () {
+            console.log('exam');
+        }
+        var son = new Son()
+        var father = new Father()
+
+        console.log(Son.prototype);
+        console.log(Son.prototype.__proto__);    // 返回 Father 的 prototype
+        console.log(Father.prototype);           // 返回 Father 的 prototype
+        console.log(Son.prototype === Father.prototype);    // false
+
+        son.money()
+        son.exam()
+        father.exam()
+    </script>
+</body>
+
+</html>

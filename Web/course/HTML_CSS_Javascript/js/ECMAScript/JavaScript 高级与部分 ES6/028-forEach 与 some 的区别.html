@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>028-forEach 与 some 的区别</title>
+</head>
+<body>
+    <script>
+        // 查询数组中是否存在 green 元素
+
+        var arr = ['red', 'green', 'black', 'white']
+
+        // forEach
+        arr.forEach(function (value) {
+            if (value == 'green') {
+                console.log('找到 green 了');
+                return true    // !在 forEach 中的 return true 不会终止遍历数组
+            }
+            console.log('forEach 在遍历 arr');
+        })
+
+        console.log('\n');
+
+        // some
+        arr.some(function (value) {
+            if (value == 'green') {
+                console.log('找到 green 了');
+                return true    // ?在 some 中的 return true 会终止遍历数组
+            }
+            console.log('some 在遍历 arr');
+        })
+
+        console.log('\n');
+
+        // filter
+        arr.filter(function (value) {
+            if (value == 'green') {
+                console.log('找到 green 了');
+                return true    // !在 filter 中的 return true 不会终止遍历数组
+            }
+            console.log('filter 在遍历 arr');
+        })
+    </script>
+</body>
+</html>

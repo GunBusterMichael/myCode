@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>030-修改或添加对象的属性-Object.defineProperty()</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        div,
+        p,
+        img {
+            padding: 10px;
+        }
+        hr {
+            color: #b8a6d9;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Object.defineProperty() 的介绍</p>
+        <hr>
+        <img src="img/Object.defineProperty().png" alt="Object.defineProperty() 的介绍">
+    </div>
+    <script>
+        var phone = {
+            id: 1,
+            brand: 'Redmi',
+            model: 'K40',
+            price: 2699
+        }
+
+        /* 
+        ?   Object.defineProperty(obj, prop, descriptor)
+        *       obj：要被定义属性的对象；
+        *       prop：要被定义或修改的属性的名称或 Symbol；
+        *       descriptor：要定义或修改的属性描述符：
+        *                   value：默认为 undefined。
+        *                   writable：通过 defineProperty 添加的属性默认为 false；
+        *                             通过其他方式添加的属性默认为 true。
+        *                   enumerable：通过 defineProperty 添加的属性默认为 false；
+        *                               通过其他方式添加的属性默认为 true。
+        *                   configurable：通过 defineProperty 添加的属性默认为 false；
+        *                                 通过其他方式添加的属性默认为 true。
+        */
+
+        //* 定义新属性
+        Object.defineProperty(phone, 'stock', {
+            value: 20000
+        })
+        console.log(phone.stock);    // 20000
+        phone.stock = 20
+        console.log(phone.stock);    // 20000
+
+        //* 修改已有属性
+        Object.defineProperty(phone, 'price', {
+            value: 1999,
+        })
+        console.log(phone.price);    // 1999
+        phone.price = 19
+        console.log(phone.price);    // 19
+
+        //* writable 设置属性是否可被赋值运算符改变
+        Object.defineProperty(phone, 'id', {
+            writable: false    //! writable 默认为 false
+        })
+        phone.id = 2
+        console.log(phone.id);    // 1
+        Object.defineProperty(phone, 'id', {
+                value: 3
+        })
+        console.log(phone.id);    // 3
+
+        //* enumerable 设置属性是否可被遍历
+        Object.defineProperty(phone, 'CPU', {
+            value: '高通骁龙 870',
+            enumerable: false    //! enumerable 默认为 false
+        })
+        console.log(Object.keys(phone))    // 返回 ['id', 'brand', 'model', 'price']
+
+        /*
+        *   configurable 设置属性是否可被删除；
+        *   configurable 设置属性的描述符是否可被修改。
+        */
+        Object.defineProperty(phone, 'RAM', {
+            value: '16GB',
+            configurable: false    //! configurable 默认为 false
+        })
+        delete phone.RAM
+        console.log(phone)    // 通过 Object.defineProperty() 添加的RAM 没有被删除
+        delete phone.model
+        console.log(phone)    // 声明对象时就存在的属性 model 可以被删除
+        Object.defineProperty(phone, 'RAM', {
+            enumerable: true    // 报错：Uncaught TypeError: Cannot redefine property: RAM
+        })
+    </script>
+</body>
+</html>

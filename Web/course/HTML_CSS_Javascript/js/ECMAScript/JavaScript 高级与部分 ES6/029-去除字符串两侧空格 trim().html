@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>029-去除字符串两侧空格 trim()</title>
+</head>
+<body>
+    <input type="text">
+    <button>提交</button>
+    <div></div>
+    <script>
+        var str = '   Web page   '
+        console.log(str);
+
+        /*
+        =功能：
+        =   trim() 可以去除原始字符串*两侧*的空格，
+        =   并返回没有空格的新字符串
+        */
+        var newStr = str.trim()
+        console.log(newStr);    // 返回 'Web page'
+
+        //? 利用 trim() 解决将空格' '判断为空字符串''的问题
+        var input = document.querySelector('input')
+        var button = document.querySelector('button')
+        var div = document.querySelector('div')
+        button.onclick = function () {
+            var valueWithoutSpaceOnBothSides = input.value.trim()
+            if (valueWithoutSpaceOnBothSides === '') {
+                alert('请输入内容😅')
+            } else {
+                div.innerHTML = valueWithoutSpaceOnBothSides
+            }
+        }
+    </script>
+</body>
+</html>

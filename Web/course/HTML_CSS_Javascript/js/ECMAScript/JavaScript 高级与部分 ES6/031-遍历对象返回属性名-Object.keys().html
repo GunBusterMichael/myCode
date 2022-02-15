@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>031-遍历对象返回属性名-Object.keys()</title>
+</head>
+<body>
+    <script>
+        //* Object.keys() 可以遍历对象，将所有属性名组合成数组返回。
+        var phone = {
+            id: 1,
+            brand: 'Redmi',
+            model: 'K40',
+            price: 2699
+        }
+        var arr = Object.keys(phone)
+        console.log(arr);    // 返回 ["id", "brand", "model", "price"]
+    </script>
+</body>
+</html>
