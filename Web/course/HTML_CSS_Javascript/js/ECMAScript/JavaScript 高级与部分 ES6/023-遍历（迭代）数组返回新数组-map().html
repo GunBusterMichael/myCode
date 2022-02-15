@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-遍历（迭代）数组返回新数组-map()</title>
+</head>
+
+<body>
+    <script>
+        /*
+        功能：
+            对原始数组的每一个元素执行一遍回调函数，
+            返回由被回调函数加工过的元素组成的新数组。
+        */
+        var arr = [1, 2, 3]
+        var arrPlusOne = arr.map(function (value, index, array) {
+            return ++value
+        })
+        console.log(arrPlusOne);    // 返回 [2, 3, 4]
+    </script>
+</body>
+
+</html>

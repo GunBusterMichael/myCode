@@ -12,7 +12,13 @@
     <script>
         var arr = [1, 2, 3]
 
-        // forEach 类似于 for 循环，形参可以是1，2，3个，形参名字可以改
+        /* 
+        功能：
+            forEach 类似于 for 循环，对每个元素执行一遍回调函数；
+            返回程序员指定返回的值。
+        形参：
+            index 与 array 可不写；形参名称可以变
+        */
         arr.forEach(function (value, index, array) {
             console.log('每个数组元素' + value);    // 循环打印每个数组元素
             console.log('每个数组元素的索引号' + index);    // 循环打印每个数组元素的索引号

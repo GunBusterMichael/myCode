@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>026-检查数组返回布尔值-every()</title>
+</head>
+<body>
+    <script>
+        /* 
+        功能：
+            every() 用于检测数组的所有元素是否都符合要求。
+
+            元素全部符合要求，返回 ture；
+            只要有一个元素不符合要求，返回 false。
+
+            在检测到不符合要求的元素后，停止遍历数组。
+        */
+        var arr = [1,2,3]
+
+        var re = arr.every(function (value, index, array) {
+            return value > 0
+        })
+        console.log(re);    // 返回 true
+
+        var re1 = arr.every(function (value, index, array) {
+            return value > 1
+        })
+        console.log(re1);    // 返回 false
+    </script>
+</body>
+</html>
