@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>024-筛选数组返回布尔值-some()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            some() 用于检测数组中是否有符合要求的元素
+
+                如果有符合要求的元素，返回 true；
+                如果没有符合要求的元素，则返回 false。
+        */
+        /* 
+            some() 在找到第一个符合要求的元素后，就停止遍历；
+                返回布尔值。
+            filter() 会遍历整个数组；
+                返回新数组。
+        */
+
+        var arr = [10, 30, 4]
+
+        var re = arr.some(function (value, index, array) {    // index 与 array 可不写；形参名称可以变
+            return value >= 20
+        })
+        console.log(re);    // 返回 true
+
+        var re1 = arr.some(function (value) {
+            return value < 3
+        })
+        console.log(re1);    // 返回 false
+
+        var asoul = ['Ava', 'Bella', 'Carol', 'Diana', 'Eileen']
+        var re2 = asoul.some(function (value) {
+            return value == 'Bella'
+        })
+        console.log(re2);
+    </script>
+</body>
+
+</html>
