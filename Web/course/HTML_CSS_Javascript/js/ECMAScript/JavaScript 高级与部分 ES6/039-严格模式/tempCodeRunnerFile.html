@@ -1,0 +1,14 @@
+'use strict'
+
+        //! 1. 变量名必须先声明再使用：
+        // num = 1    // 报错：Uncaught ReferenceError: num is not defined
+
+        //! 2. 不能删除已被声明的变量：
+        var num
+        // delete num    // 报错：Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+
+        //! 3. 全局作用中的函数的 this 指向 undefined：
+        function fn() {
+            console.log(this);
+        }
+        fn()    // 返回：undefined

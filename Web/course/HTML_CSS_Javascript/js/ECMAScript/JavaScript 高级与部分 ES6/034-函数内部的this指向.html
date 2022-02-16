@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>034-函数内部的this指向</title>
+</head>
+
+<body>
+    <button>点击调用函数</button>
+
+    <script>
+        var button = document.querySelector('button')
+
+        // 1. 普通函数
+        function fn(params) {
+            console.log('普通函数的this指向：' + this);    // 指向 window 对象
+        }
+        fn()
+        fn.call()
+
+        // 2. 对象的方法
+        var o = {
+            outputInformation: function () {
+                console.log('对象方法this指向：' + this);  // 指向对象 o
+            }
+        }
+        o.outputInformation()
+
+        // 3. 构造函数
+        function Star() {
+            console.log('构造函数this指向：'+this);    // 指向实例 carol
+        }
+        Star.prototype.sing=function () {
+            console.log('构造函数原型this指向：' +this);    // 指向实例 carol
+        }
+        var carol = new Star()
+        carol.sing()
+
+        // 4. 绑定事件函数
+        button.onclick = function () {    // 点击按钮调用函数
+            console.log('绑定事件函数this指向：'+this);    // 指向事件源 <button>点击调用函数</button>
+        }
+
+        // 5. 定时器函数
+        setInterval(function () {    // 每隔 1 秒，定时器就调用一次函数
+            console.log('定时器函数this指向：'+this);    // 指向 window 对象
+        }, 1000);
+
+        // 6. 立即执行函数
+        (function executeNow() {
+            console.log('立即执行函数this指向：'+this);  // 指向 window 对象
+        })();
+    </script>
+</body>
+
+</html>

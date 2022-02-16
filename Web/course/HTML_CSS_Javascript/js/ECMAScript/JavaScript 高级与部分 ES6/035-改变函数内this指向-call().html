@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改变函数内this指向</title>
+</head>
+<body>
+    <script>
+        //* call()
+        function Father(uname, age, gander) {
+            this.uname = uname
+            this.age = age
+            this.gander = gander
+        }
+        function Son(uname, age, gander) {
+            Father.call(this, uname, age, gander)
+        }
+        var son = new Son('Carol', 20, 'Female')
+    </script>
+</body>
+</html>

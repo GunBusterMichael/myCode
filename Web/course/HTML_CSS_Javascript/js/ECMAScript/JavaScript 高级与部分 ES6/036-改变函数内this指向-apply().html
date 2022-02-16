@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>036-改变函数内this指向-apply()</title>
+</head>
+
+<body>
+    <script>
+        /*
+        ?   apply(this指向, 要传递的实参)
+        =       功能：
+                    1. 调用函数；
+                    2. 改变函数内部this指向。
+        =       参数：
+                    1. this指向：
+                        直接写this指向的变量名；
+                        写 null 时不改变this指向。
+                    2. 要传递的实参：
+                        必须是数组（伪数组）形式。
+        =       用于：
+                    操作数组。
+        */
+
+        var o = {
+            uname: 'Carol'
+        }
+        function fn(arr) {
+            console.log(this);
+            console.log(arr);
+        }
+        fn.apply(o, ['Ava'])
+
+        // 操作数组：获得数组中最大的数字元素
+        var numArr = [45, 1645, 26, 4, 231, 61, -788]
+        var max = Math.max.apply(Math, numArr)
+        console.log(max);    // 返回 1645
+    </script>
+</body>
+
+</html>

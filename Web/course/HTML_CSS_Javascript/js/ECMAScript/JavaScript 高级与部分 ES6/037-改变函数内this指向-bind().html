@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>037-改变函数内this指向-bind()</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            bind()
+                功能：
+                    返回一个除 this 指向改变，但其余内容与原函数一样的新函数；
+                    原函数的 this 指向不改变;
+                    不执行原函数。
+        */
+        var o = {
+            name: 'Carol'
+        }
+        function fn() {
+            console.log(this);
+            console.log(1 + 2);
+        }
+        var newFn = fn.bind(o, 1, 2)
+        fn()
+        newFn()
+    </script>
+</body>
+
+</html>

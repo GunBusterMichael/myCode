@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>038-（案例）点击按钮后禁用该按钮 三秒后启用-使用bind()</title>
+</head>
+<body>
+    <button>想禁用我？就点击我！</button>
+    <script>
+        // 获取元素
+        var button = document.querySelector('button')
+        button.addEventListener('click', function () {
+            this.disabled = true    // 该this指向button
+            setInterval(function () {
+                // 定时函数内部的初始this指向window
+                // console.log(this);
+
+                this.disabled = false    // 该this指向button
+            }.bind(this), 2000)    // 该this指向button
+        })
+    </script>
+</body>
+</html>

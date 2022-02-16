@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>039-Codes-2-严格模式的变化</title>
+</head>
+<body>
+    <script>
+        'use strict'
+
+        //! 1. 变量名必须先声明再使用：
+        // num = 1    // 报错：Uncaught ReferenceError: num is not defined
+
+        //! 2. 不能删除已被声明的变量；只有configurable设置为true的对象属性，才能被删除。：
+        var num
+        // delete num    // 报错：Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+        var o = Object.create(null, {
+            'x': {
+                value: 1,
+                configurable: true
+            }
+        });
+        delete o.x; // 删除成功
+
+        //! 3. 全局作用中的普通函数的 this 指向 undefined：
+        function fn() {
+            console.log(this);
+        }
+        fn()    // 返回：undefined
+        //? 被实例化过的构造函数中的 this 仍然指向实例对象
+        function Asoul() {
+            console.log(this);    // 指向实例 carol
+        }
+        var carol = new Asoul()
+        //? 定时器函数的 this 仍然指向 window
+        setTimeout(function () {
+            console.log(this);    // 指向 window
+        }, 1000)
+
+        //! 4.同一个函数不能有重名的形参
+        /*
+        function duplicate(a, a) {
+            console.log(a+a);
+        }
+        duplicate(1,2)    // 报错：Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+        */
+        
+        //! 5. 禁止在“脚本或函数内部”以外的地方声明函数
+        if (true) {
+            function no1() {
+                console.log('if内的函数');
+            }
+        }
+        // no1()    //! 错误，该函数在 if 外部不会被调用
+
+        for (var i = 0; i < 5; i++) {
+            function no2() {
+                console.log('for内的函数');
+            }
+        }
+        // no2()    //! 错误，该函数在 for 外部不会被调用
+
+        function outside() {
+            function inside() {
+                console.log('在某个函数内部声明的函数');
+            }
+            inside()
+        }
+        outside()
+    </script>
+</body>
+</html>
