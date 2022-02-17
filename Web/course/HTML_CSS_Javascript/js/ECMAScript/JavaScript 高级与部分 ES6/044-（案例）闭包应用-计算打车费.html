@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算打车费</title>
+</head>
+
+<body>
+    <script>
+        /*
+            打车起步价 13（3 公里内，包括 3 公里），之后每多 1 公里增加 5 块钱。
+            用户输入公里数，就可以计算打车价格。
+            如果有拥堵情况，总价格多收取 10 块钱拥堵费。
+        */
+        var taxiFee = (function () {
+            var startingFee = 13    // 起步价
+            var totalFee = 0     // 总价
+
+            return {
+                // 里程费（不算拥堵）
+                mileageFee: function (n) {
+                    if (n <= 3) {
+                        totalFee = startingFee
+                    } else {
+                        totalFee = startingFee + (n - 3) * 5
+                    }
+                    return totalFee
+                },
+                // 拥堵费
+                congestionFee: function (flag) {
+                    /*
+                        如果 flag 为 true，则 totalFee 加 10 并返回 totalFee；
+                        如果 flag 为 false，则直接返回 totalFee。
+                    */
+                    return flag ? totalFee + 10 : totalFee
+                }
+            }
+        })()
+
+        console.log(taxiFee.mileageFee(5));    // 五公里价格 23 元
+        console.log(taxiFee.congestionFee(true));    // 如果拥堵，加 10 元，总价格 33 元·
+    </script>
+</body>
+
+</html>

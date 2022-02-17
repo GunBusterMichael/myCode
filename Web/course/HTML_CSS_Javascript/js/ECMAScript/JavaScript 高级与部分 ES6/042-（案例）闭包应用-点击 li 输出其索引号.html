@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>042-（案例）闭包应用-点击 li 输出其索引号</title>
+</head>
+<body>
+    <ul id="index">
+        <strong>动态添加自定义属性：</strong>
+        <li>榴莲</li>
+        <li>臭豆腐</li>
+        <li>鲱鱼罐头</li>
+        <li>大猪蹄子</li>
+    </ul>
+
+    <ul id="closure">
+        <strong>闭包：</strong>
+        <li>榴莲</li>
+        <li>臭豆腐</li>
+        <li>鲱鱼罐头</li>
+        <li>大猪蹄子</li>
+    </ul>
+
+    <script>
+        /*
+            需要实现的功能：
+                点击 li 输出其索引号。
+        */
+        
+        // 方法1：利用动态添加自定义属性的方法得到当前 li 的索引号
+        var lis = document.querySelector('#index').querySelectorAll('li')
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].index = i
+            lis[i].onclick = function () {
+                console.log(this.index);
+            }
+        }
+
+        // 方法2：利用闭包得到当前 li 的索引号
+        var lis = document.querySelector('#closure').querySelectorAll('li')
+        for (var i = 0; i < lis.length; i++) {
+            // 利用 for 循环创建了 4 个立即执行函数
+            (function (i) {
+                /*
+                    四个立即执行函数依次给四个点击事件创建不同的闭包，
+                    每个闭包的词法环境包含其对应的 i
+                */
+                lis[i].onclick = function () {
+                    console.log(i);
+                }
+            })(i)
+        }
+    </script>
+</body>
+</html>

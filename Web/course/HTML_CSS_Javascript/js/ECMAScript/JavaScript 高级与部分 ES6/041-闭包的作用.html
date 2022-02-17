@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>041-闭包的作用</title>
+</head>
+
+<body>
+    <script>
+        //* 闭包的主要作用：延申变量的作用范围。
+
+        function outside() {
+            var num = 10           //? 词法环境
+            function inside() {    //? 闭包函数
+                console.log(num);
+            }
+            return inside
+        }
+
+        /* 
+            将 inside 闭包赋值给 f，
+            inside 闭包包含：
+                            inside 函数和 inside 函数的词法环境（num)。
+            所以 f 能够调用 outside 内部作用域中的 num。
+        */
+        var f = outside()
+        f()
+
+        // outside 函数简写方式
+        function logNum() {
+            var num = 10
+            return function () {
+                console.log(num);
+            }
+        }
+        var shower = logNum()
+        shower()
+    </script>
+</body>
+
+</html>

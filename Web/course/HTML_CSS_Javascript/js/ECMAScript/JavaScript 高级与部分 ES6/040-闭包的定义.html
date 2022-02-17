@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>040-闭包的定义</title>
+</head>
+
+<body>
+    <script>
+        /*
+            闭包的定义：
+                闭包指有权访问另一个函数作用域中变量的函数。
+        *       闭包是由函数以及声明该函数的词法环境组合而成的;
+        *       该环境包含了这个闭包创建时作用域内（函数所处的作用域（不是函数内部的作用域）中，）的任何局部变量。
+        */
+
+        function outside() {
+            var num = 10           //? 词法环境
+            function inside() {    //? 闭包函数
+                console.log(num);
+            }
+            inside()
+        }
+        outside()
+    </script>
+</body>
+
+</html>

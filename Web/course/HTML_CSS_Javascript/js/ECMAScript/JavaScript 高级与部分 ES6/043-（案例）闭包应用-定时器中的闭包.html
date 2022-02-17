@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>043-（案例）闭包应用-定时器中的闭包</title>
+</head>
+<body>
+    <ul id="nav">
+        <strong>一秒后打印所有 li 的内容：</strong>
+        <li>榴莲</li>
+        <li>臭豆腐</li>
+        <li>鲱鱼罐头</li>
+        <li>大猪蹄子</li>
+    </ul>
+
+    <script>
+        var lis = document.querySelector('#nav').querySelectorAll('li')
+        for (var i = 0; i < lis.length; i++) {
+            (function (i) {
+                setTimeout(function () {
+                    console.log(lis[i].innerHTML);
+                }, 1000);
+            })(i);
+        }
+    </script>
+</body>
+</html>

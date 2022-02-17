@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>039-高阶函数</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            高阶函数：
+                1. 定义与分类
+                    1.1 接收的参数是一个函数的函数；
+                    1.2 返回的是一个函数的函数。
+        */
+
+        function fn(a, b, callback) {    // 函数 fn 是高阶函数
+            console.log(a + b);
+            callback && callback()    // 如果接收到了回调函数（callback == true），就执行回调函数
+        }
+        fn(1, 2, function () {
+            console.log('最后执行回调函数');
+        })
+    </script>
+</body>
+
+</html>
