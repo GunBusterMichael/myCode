@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>062-正则表达式-替换replace()</title>
+</head>
+
+<body>
+    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+    <button>提交</button>
+    <div></div>
+
+    <script>
+        var message = document.querySelector('#message')
+        var button = document.querySelector('button')
+        var div = document.querySelector('div')
+
+        button.onclick = function () {
+            div.innerHTML = message.value.replace(/激情|傻逼/g, '**')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>056-正则表达式-用户名验证时用的正则表达式.html</title>
+</head>
+<body>
+    <script>
+        /* 
+            /^[a-zA-Z0-9_-]{6-8}$/
+                可输入六至八位，仅限大小写字母、阿拉伯数字和_-
+        */
+        var regOfUsername = /^[a-zA-Z0-9_-]{6,8}$/
+        console.log(regOfUsername.test('Aa1Bb2'));      // 返回 true
+        console.log(regOfUsername.test('Aa1Bb2-_'));    // 返回 true
+        console.log(regOfUsername.test('Aa1Bb2?'));     // 返回 false
+        console.log(regOfUsername.test('aaa'));         // 返回 false
+        console.log(regOfUsername.test('123 456'));     // 返回 false
+    </script>
+</body>
+</html>

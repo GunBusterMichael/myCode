@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>060-（案例）正则表达式-国内座机号码验证</title>
+</head>
+<body>
+    <script>
+        // 010-12345678  或者  0530-1234567
+        var reg1 = /^\d{3}-\d{8}|\d{4}-\d{7}$/
+
+        var reg2 = /^\d{3,4}-\d{7,8}$/
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>057-（案例）正则表达式-用户名表单验证</title>
+    <style>
+        span {
+            color: #aaa;
+            font-style: 14px;
+        }
+        .right {
+            color: #9AC8E2
+        }
+        .wrong {
+            color: #DB7D74;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="uname" id="uname">
+    <span>请输入用户名（仅限6-16位大小写英文字母、阿拉伯数字、下划线_与横杠-）</span>
+
+    <script>
+        // 获取元素
+        var uname = document.querySelector('#uname')
+        var span = document.querySelector('span')
+
+        var regOfUname = /^[a-zA-Z0-9_-]{6,16}$/
+        uname.addEventListener('blur', function () {
+            if (regOfUname.test(uname.value)) {
+                span.innerHTML = '√ 用户名符合要求'
+                span.classList.remove('wrong')
+                span.classList.add('right')
+            } else {
+                span.innerHTML = '× 用户名不符合要求（仅限6-16位大小写英文字母、阿拉伯数字、下划线_与横杠-）'
+                span.classList.remove('right')
+                span.classList.add('wrong')
+            }
+        })
+    </script>
+</body>
+</html>

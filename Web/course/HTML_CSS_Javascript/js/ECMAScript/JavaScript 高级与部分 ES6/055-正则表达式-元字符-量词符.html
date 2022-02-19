@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>055-正则表达式中的元字符-量词符</title>
+</head>
+
+<body>
+    <script>
+        /*
+            量词符：
+                1. 定义
+                    设定某个模式出现的次数。
+        */
+
+        /*
+            2. 种类：
+                2.1 *：[0, +∞]
+        */
+        var rg1 = /^a*$/
+        console.log(rg1.test(''));    // 返回 true
+        console.log(rg1.test('a'));   // 返回 true
+        console.log(rg1.test('aa'));  // 返回 true
+
+        /*
+            2.2 +：[1, +∞]
+        */
+        var rg2 = /^a+$/
+        console.log(rg2.test(''));    // 返回 false
+        console.log(rg2.test('a'));   // 返回 true
+        console.log(rg2.test('aa'));  // 返回 true
+
+        /*
+            2.3 ?：一次或零次
+        */
+        var rg3 = /^a?$/
+        console.log(rg3.test(''));    // 返回 true
+        console.log(rg3.test('a'));   // 返回 true
+        console.log(rg3.test('aa'));  // 返回 false
+
+        /*
+            2.4 {3}：重复三次返回 true
+                    /^abc{3}$/：abccc 返回 true
+        */
+        var rg4 = /^abc{3}$/
+        console.log(rg4.test('abccc'));    // 返回 true
+        console.log(rg4.test('abcabcabc'));      // 返回 false
+
+        /*
+            2.5 {3,}：重复 [3, +∞] 返回 true
+        */
+        var rg5 = /^a{3,}$/
+        console.log(rg5.test('aaa'));    // 返回 true
+        console.log(rg5.test('a'));      // 返回 false
+        console.log(rg5.test('aaaa'));   // 返回 true
+
+        /*
+            2.6 {3,6}：重复 [3, 6] 返回 true
+                ！{}内不要打空格！
+        */
+        var rg6 = /^a{3,6}$/
+        console.log(rg6.test('aaa'));      // 返回 true
+        console.log(rg6.test('aaaaaa'));   // 返回 false
+        console.log(rg6.test('aaaa'));     // 返回 true
+        console.log(rg6.test('aa'));       // 返回 false
+        console.log(rg6.test('aaaaaaa'));  // 返回 false
+    </script>
+</body>
+
+</html>

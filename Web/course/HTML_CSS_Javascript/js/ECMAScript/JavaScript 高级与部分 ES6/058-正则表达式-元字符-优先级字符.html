@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>058-正则表达式的元字符-优先级字符</title>
+</head>
+<body>
+    <script>
+        /*
+            ()：优先级字符，将括号内的字符当作整体。
+        */
+        // /^(abc){3}$/：abc 重复三次返回 true
+        var reg = /^(abc){3}$/
+        console.log(reg.test('abcabcabc'));
+    </script>
+</body>
+</html>
