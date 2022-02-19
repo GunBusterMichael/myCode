@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>045-递归函数定义</title>
+</head>
+
+<body>
+    <script>
+        /*
+            递归函数定义：
+        *       “在函数内部调用自己”的函数。
+            退出循环：
+        *       添加判断条件，利用 return 退出。
+        */
+
+        var num = 1
+        function fn() {
+            console.log('打印六次' + num);
+            if (num >= 6) {
+                return
+            }
+            num++
+            fn()
+        }
+        fn()
+    </script>
+</body>
+
+</html>

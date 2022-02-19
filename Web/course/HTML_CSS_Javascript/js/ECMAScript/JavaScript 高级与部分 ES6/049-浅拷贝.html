@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>049-浅拷贝</title>
+</head>
+<body>
+    <script>
+        /* 
+            浅拷贝：
+                拷贝复杂数据类型时，只拷贝地址（指针）。
+                修改拷贝数据或源数据的其中一个时，另一个也会被改变。
+            深拷贝：
+                拷贝复杂数据类型时，拷贝完整数据，地址与源数据地址不同。
+        */
+
+        var originInfo = {
+            id: 1,
+            name: 'Carol',
+            parents: {
+                father: '狼爸',
+                mother: '狼妈'
+            }
+        }
+
+        // es6 以前版本的浅拷贝代码：
+        var copyInfo = {}
+        for(var k in originInfo) {
+            /* k: 属性名
+               originInfo[k]: 属性值 */
+            copyInfo[k] = originInfo[k]
+        }
+
+        console.log(originInfo.parents);
+        copyInfo.parents.mother = '皇珈骑士'
+        console.log(originInfo.parents);
+
+        // es6 版本的浅拷贝代码：
+        var copyInfoEs6 = {}
+        // 将后一个对象浅拷贝至前一个对象
+        Object.assign(copyInfoEs6, originInfo)
+
+        console.log(originInfo.parents);
+        copyInfoEs6.parents.father = '狼の爸'
+        console.log(originInfo.parents);
+        console.log(copyInfo.parents);
+    </script>
+</body>
+</html>

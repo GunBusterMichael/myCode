@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝</title>
+</head>
+
+<body>
+    <script>
+        /*
+            浅拷贝：
+                拷贝复杂数据类型时，只拷贝地址（指针）。
+                修改拷贝数据或源数据的其中一个时，另一个也会被改变。
+            深拷贝：
+                拷贝复杂数据类型时，拷贝完整数据，地址与源数据地址不同。
+        */
+
+        var originInfo = {
+            id: 1,
+            name: '珈乐',
+            parents: {
+                father: '狼爸',
+                mother: '狼妈'
+            },
+            friends: ['向晚', '贝拉', '嘉然', '乃琳']
+        }
+        var copyInfo = {}
+
+        // 封装深拷贝函数
+        function deepCopy(deepCopyObj, originObj) {
+            for (var k in originObj) {
+
+                // 判断属性值是简单数据类型还是复杂数据类型
+                // 获取属性值
+                var item = originObj[k]
+                // 判断属性值是否为数组
+                if (item instanceof Array) {
+                    // 在 deepCopyObj 中创建相同属性名的数组类型属性
+                    deepCopyObj[k] = []
+                    // 调用 deepCopy() 深拷贝数组中的每一个元素
+                    deepCopy(deepCopyObj[k], item)
+                
+                // 判断属性值是否为对象
+                } else if (item instanceof Object) {
+                    // 在 deepCopyObj 中创建相同属性名的对象类型属性
+                    deepCopyObj[k] = {}
+                    deepCopy(deepCopyObj[k], item)
+                // 属性值属于简单数据类型
+                } else {
+                    deepCopyObj[k] = item
+                }
+            }
+        }
+
+        deepCopy(copyInfo, originInfo)
+
+        console.log(copyInfo);
+        copyInfo.parents.mother = '黄嘉琪'
+        console.log(originInfo);
+    </script>
+</body>
+
+</html>

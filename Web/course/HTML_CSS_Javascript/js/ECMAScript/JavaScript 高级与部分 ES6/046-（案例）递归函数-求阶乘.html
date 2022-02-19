@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>046-（案例）递归函数-求阶乘</title>
+</head>
+
+<body>
+    <script>
+        // 利用递归函数求1~n的阶乘: 1 * 2 * 3 * 4 * ... * n
+
+        function getFactorial(n) {
+            if (n == 1) {
+                return 1
+            }
+            return n * getFactorial(n - 1)
+        }
+        console.log(getFactorial(3))
+
+        /* 
+            运行过程：
+                3 * fn(3-1)
+                    2 * fn(2 - 1)
+                        1（if n == 1, return 1）
+                          == 6
+        */
+    </script>
+</body>
+
+</html>
