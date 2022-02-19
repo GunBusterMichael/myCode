@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>053-正则表达式中的元字符-边界符</title>
+</head>
+<body>
+    <script>
+        /*
+            ^ 表示以某字符开头；
+            $ 表示以某字符结尾。
+        */
+
+        /*
+            /abc/
+                只要包含 'abc' 这个字符串，就会返回 true
+        */
+        var rg1 = /abc/
+        console.log(rg1.test('aabccc'));    // 返回 true
+        console.log(rg1.test('aabbcc'));    // 返回 false
+
+        /*
+            /^abc/
+                必须以 'abc' 开头，才返回 true
+        */
+        var rg2 = /^abc/
+        console.log(rg2.test('abcc'));    // 返回 true
+        console.log(rg2.test('aabcc'));   // 返回 false
+        
+
+        /* 
+            /abc$/
+                必须以 'abc' 结尾，才返回 true
+        */
+        var rg4 = /abc$/
+        console.log(rg4.test('561651651561sdvsaabc'));    // 返回 true
+        console.log(rg4.test('abcc'));    // 返回 false
+
+        /*
+            /^abc$/
+                字符串必须只能是 'abc'，才返回 true
+        */
+        var rg3 = /^abc$/
+        console.log(rg3.test('abc'));    // 返回 true
+        console.log(rg3.test('abcabc')); // 返回 false
+    </script>
+</body>
+</html>

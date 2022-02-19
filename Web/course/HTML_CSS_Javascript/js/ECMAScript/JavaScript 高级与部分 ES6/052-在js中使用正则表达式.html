@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>052-在js中使用正则表达式</title>
+</head>
+<body>
+    <script>
+        var rg = /123/
+
+        /*
+        格式：
+            正则表达式变量名.test(需要被检测的字符串)
+        返回值：
+            如果字符串符合正则表达式的规则，则返回 true；
+            如果字符串不符合正则表达式的规则，则返回 false；
+        */
+        console.log(rg.test(123));    // 返回 true
+        console.log(rg.test('aqz'));  // 返回 false
+    </script>
+</body>
+</html>

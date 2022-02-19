@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>054-正则表达式中的元字符-字符类</title>
+</head>
+<body>
+    <script>
+        /*
+        *   []：字符类
+        *       表示“或”的意思，
+                只要包含 [] 中的任何一个字符，就会返回 true。
+        */
+        var rg1 = /[abc]/
+        console.log(rg1.test('qwera'));    // 返回 true
+        console.log(rg1.test('qwert'));    // 返回 false
+
+        /*
+            /^[abc]$/
+                字符串为 a 或为 b 或为 c 时，返回 true
+        */
+        var rg2 = /^[abc]$/
+        console.log(rg2.test('a'))    // 返回 true
+        console.log(rg2.test('b'))    // 返回 true
+        console.log(rg2.test('c'))    // 返回 true
+        console.log(rg2.test('abc'))    // 返回 false
+        console.log(rg2.test('aaa'))    // 返回 false
+
+        /*
+            /^[a-z]$/
+                字符串为小写英文字母的任意一个，且只是一个时，返回 true
+        */
+        var rg3 = /^[a-z]$/
+        console.log(rg3.test('f'));    // 返回 true
+        console.log(rg3.test('F'));    // 返回 false
+        console.log(rg3.test(545));    // 返回 false
+
+        /*
+        *字符组合：
+            /^[a-zA-Z0-9-_]$/
+                字符串为：
+                    大小写英文字母的任意一个，
+                    或为阿拉伯数字的任意一个，
+                    或为_-中的任意一个，
+                且只是一个（字符串长度为一）时，返回 true。
+        */
+        var rg3 = /^[a-zA-Z0-9-_]$/
+        console.log(rg3.test('f'));    // 返回 true
+        console.log(rg3.test('F'));    // 返回 true
+        console.log(rg3.test(9));    // 返回 true
+        console.log(rg3.test('-'));    // 返回 true
+        console.log(rg3.test('!'));    // 返回 false
+
+        /*
+        *[^]：取反
+            不包含 [] 中的 ^ 后任意一个字符时，返回 true
+        */
+
+        /*
+            /^[^12]$/
+                字符串不为 1 或 2，且字符串长度为一时，返回 true
+        */
+        var rg4 = /^[^12]$/
+        console.log(rg4.test(''));
+        
+        /*
+            /^[^a-zA-Z0-9-_]$/
+                字符串不为：
+                    大小写英文字母的任意一个，
+                    或为阿拉伯数字的任意一个，
+                    或为_-中的任意一个，
+                且只是一个（字符串长度为一）时，返回 true。
+        */
+        var rg4 = /^[^a-zA-Z0-9-_]$/
+        console.log(rg4.test('!'));
+        console.log(rg4.test('f'));
+    </script>
+</body>
+</html>
