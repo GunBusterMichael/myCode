@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-04-暂时性死区</title>
+</head>
+
+<body>
+    <script>
+        /*
+            暂时性死区（temporal dead zone，简称 TDZ）
+            ！在一个代码块中，使用let声明某变量前，不可对该变量进行任何操作，
+            这在语法上，被称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+            暂时性死区的本质是：
+                只要一进入当前作用域，
+                所要使用的变量就已经存在了，
+                但是不可获取。
+                只有等到声明变量的那一行代码出现，
+                才可以获取和使用该变量。
+        */
+        var tmp = 1
+        if (true) {
+            // TDZ 开始
+            tmp = 'abc'
+            console.log(tmp);    // 报错 Uncaught ReferenceError: Cannot access 'tmp' before initialization
+            // TDZ 结束
+            let tmp
+        }
+
+        // 与 typeof 有关的 TDZ
+        {
+            typeof x    // TDZ 报错 ReferenceError
+            let x
+        }
+        {
+            typeof undeclared_variable    // 返回 undefined
+        }
+
+        // 与 赋值 有关的 TDZ
+        // 在声明 y 前就取 y 的值，报错
+        function bar(x = y, y = 2) {
+            return [x, y]
+        }
+        bar()    // 报错
+        // 先初始化 x，再取 x 的值，不报错
+        function bar(x = 2, y = x) {
+            return [x, y]
+        }
+        bar()    // 不报错
+        // 在声明 x 前就取 x 的值，报错
+        let x = x    // 报错 ReferenceError: x is not defined
+    </script>
+</body>
+
+</html>

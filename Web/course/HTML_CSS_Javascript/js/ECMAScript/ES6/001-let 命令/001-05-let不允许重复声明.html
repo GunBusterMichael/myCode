@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-05-let不允许重复声明</title>
+</head>
+<body>
+    <script>
+        /*
+            ！let 不允许在相同作用域内，重复声明同一个变量。
+        */
+
+        // 不同作用域中可重复声明
+        let tmp = 1
+        function fn() {
+            let tmp = 2
+        }
+
+        // 相同作用域中不可重复声明
+        function func1() {
+            let a = 10
+            var a = 1    // 报错 SyntaxError: Identifier 'a' has already been declared
+        }
+        func1()
+        function func2() {
+            let a = 10
+            let a = 1    // 报错 SyntaxError: Identifier 'a' has already been declared
+        }
+        func2()
+
+        // 不可在函数内部重新声明形参
+        function func3(arg) {
+            let arg = 1    // 报错 SyntaxError: Identifier 'arg' has already been declared
+        }
+        func3()
+    </script>
+</body>
+</html>

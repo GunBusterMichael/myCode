@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-06-块级作用域</title>
+</head>
+<body>
+    <script>
+        // ES5 只有全局作用域和函数作用域，没有块级作用域；
+        // 变量提升：把所有的变量声明提升到*当前作用域*的*最前面*，不提升赋值操作。
+        var tmp = new Date()
+        function f() {
+            console.log(tmp);
+            if (false) {
+                var tmp = 'hello world'
+            }
+        }
+        f()    // 返回 undefined
+    </script>
+</body>
+</html>

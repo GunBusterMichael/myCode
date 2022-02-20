@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-03-let不存在变量提升</title>
+</head>
+<body>
+    <script>
+        /*
+            var：
+                存在变量提升，
+                在赋值前使用，返回 undefined。
+        */
+        console.log(foo);
+        var foo = 2    // 返回 undefined
+
+        /*
+            let：
+                不存在变量提升，
+                在赋值前使用，会报错：Cannot access 'bar' before initialization。
+        */
+        console.log(bar);
+        let bar = 3    // 报错：Cannot access 'bar' before initialization
+    </script>
+</body>
+</html>

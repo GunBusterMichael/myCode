@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-02-for循环中的let</title>
+</head>
+
+<body>
+    <script>
+        /*
+            var：
+                i 为全局变量，所有元素中 log 的 i 都指向这个全局变量。
+                全局变量 i 的值为 10.
+        */
+        var arr1 = []
+        for (var i = 0; i < 10; i++) {
+            arr1[i] = function () {
+                console.log(i);
+            }
+        }
+        arr1[6]()    // 返回 10
+
+        /*
+            let：
+                每一次循环中的 i 都是一个新的变量，每个元素都指向不同的 i。
+        */
+        var arr2 = []
+        for (let i = 0; i < 10; i++) {
+            arr2[i] = function () {
+                console.log(i);
+            }
+        }
+        arr2[6]()    // 返回 6
+
+        /*
+            设置循环变量的那部分是一个父作用域，
+            循环体内部是一个单独的子作用域。
+        */
+        for (let i = 0; i < 3; i++) {
+            let i = 'abc'
+            console.log(i);    // 输出了三次 abc
+        }
+    </script>
+</body>
+
+</html>
