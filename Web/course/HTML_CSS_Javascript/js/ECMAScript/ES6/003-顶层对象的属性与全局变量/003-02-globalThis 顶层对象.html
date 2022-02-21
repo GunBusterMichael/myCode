@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>003-02-globalThis 顶层对象</title>
+</head>
+<body>
+    <script>
+        /*
+            顶层对象在各种环境里面是不统一的：
+                浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。
+                浏览器和 Web Worker 里面，self也指向顶层对象，但是 Node 没有self。
+                Node 里面，顶层对象是global，但其他环境都不支持。
+        */
+
+        // ES2020中，引入 globalThis 作为顶层对象，在所有环境中都可被拿到。
+        console.log(globalThis);    // 返回 window 对象
+    </script>
+</body>
+</html>

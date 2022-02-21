@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>003-01-顶层对象的属性与全局变量</title>
+</head>
+<body>
+    <script>
+        // 在 es5 中，顶级对象的属性与全局变量等价
+        var a = 1
+        console.log(window.a === a);    // true
+
+        /*
+            在 es6 中：
+                var命令和function命令声明的全局变量，依旧是顶层对象的属性；
+                let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性。
+        */
+        let b = 2
+        console.log(window.b);    // undefined
+    </script>
+</body>
+</html>

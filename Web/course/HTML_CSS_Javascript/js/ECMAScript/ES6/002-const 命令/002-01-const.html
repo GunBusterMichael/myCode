@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>002-01-const</title>
+</head>
+<body>
+    <script>
+        /*
+        const
+            1. 作用
+        ?        声明只读常量。
+                一旦声明，常量的值就不能被改变。
+        */
+        const a = 1
+        console.log(a);    // 返回 1
+        a = 2    // 报错： Assignment to constant variable. 
+
+        /*
+            2. 声明方式：
+        ?       必须是初始化。
+                只声明不赋值，会报错。
+        */
+        const foo    // 报错 Uncaught SyntaxError: Missing initializer in const declaration
+
+        /*
+            3. 块级作用域
+        ?       只在被声明时所处的块级作用域内有效。
+        */
+        {
+            const max = 10
+        }
+        console.log(max);    // 报错：max is not defined
+
+        /*
+            4. 暂时性死区
+        ?       变量只能在声明后使用。
+        */
+        {
+            console.log(as);    // 报错 Uncaught ReferenceError: Cannot access 'as' before initialization
+            const as
+        }
+
+        /*
+        ?   5. 在相同作用域内不可重复声明
+        */
+        {
+            var msg = 'hello'
+            let age = 20
+
+            // 以下两行报错
+            const msg    // SyntaxError: Identifier 'msg' has already been declared
+            const age    // SyntaxError: Identifier 'msg' has already been declared
+        }
+
+        /*
+        !   const 只能保证变量所指的内存地址不会被改动，
+                    内存地址所指向的数据可以被改动。
+        */
+
+        // 对象的数据可被改动，内存地址不可被改动。
+        const obj = {}
+        // 为 obj 添加属性，成功
+        obj.age = 20
+        console.log(obj.age)    // 返回 20
+        // 将 obj 指向另一个对象，会报错
+        obj = {    // Assignment to constant variable. 
+            name: 'Carol'
+        }
+
+        // 数组可写，但不可被赋值为其他数组
+        const arr = []
+        arr.push(1)    // 可行
+        arr.length = 0 // 可行
+        a = ['Carol']  // 报错
+
+        // 冻结对象：Object.freeze()
+        const obj2 = Object.freeze()
+        // 常规模式时，下面一行不起作用；
+        // 严格模式时，该行会报错
+        foo.prop = 123;
+
+        // 封装冻结对象及其属性的函数：
+        var constantize = (obj) => {
+            Object.freeze(obj);
+            Object.keys(obj).forEach((key, i) => {
+                if (typeof obj[key] === 'object') {
+                    constantize(obj[key]);
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-06-块级作用域</title>
+</head>
+<body>
+    <script>
+        // ES5 只有全局作用域和函数作用域，没有块级作用域；
+        // 变量提升：把所有的变量声明提升到*当前作用域*的*最前面*，不提升赋值操作。
+        var tmp = new Date()
+        function f() {
+            console.log(tmp);
+            if (false) {
+                var tmp = 'hello world'
+            }
+        }
+        f()    // 返回 undefined
+
+        /*
+            {} 块级作用域
+                1. 作用
+                    块级内部定义的变量在代码块外部是无法访问的，
+                    并且等该代码块中的代码执行完成之后，代码块中定义的变量会被销毁。
+                    类似于立即执行函数。
+                2. 产生
+                    在 {} 内部用 let 或 const 声明变量。
+        */
+        {
+            let a = 1
+        }
+        console.log(a);    // 报错
+
+        /* 
+            ！避免在块级作用域内用函数声明语句声明函数。
+            ！如必须声明，要用函数表达式。
+                原因：
+                    在浏览器的 es6 环境中，
+                    在块级作用域中用函数声明语句声明，
+                    会导致该函数的函数名被提升到全局作用域或函数作用域的头部
+        */
+        /*
+        实际代码：
+        function f() { console.log('I am outside!'); }
+        (function () {
+            if (false) {
+                function f() { console.log('I am inside!'); }
+            }
+            f();
+        }());
+        */
+        /*
+        实际运行情况
+        function f() { console.log('I am outside!'); }
+        (function () {
+            var f = undefined;    //！ f 被提升
+            if (false) {
+                function f() { console.log('I am inside!'); }
+            }
+            f();
+        }());    // 报错：Uncaught TypeError: f is not a function
+        */
+        // ？不要在块级作用域内使用函数声明语句：
+        {
+            let a = 1
+            function f() {
+                return a
+            }
+        }
+        // ？在块级作用域内，优先使用函数表达式：
+        {
+            let a = 1
+            let f = function () {
+                return a
+            }
+        }
+    </script>
+</body>
+</html>
