@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004-02-对象的解构赋值</title>
+</head>
+<body>
+    <script>
+    // 必须有与变量同名的属性，才能取到值
+    {
+        // 变量与属性的排序可以不一样
+        let { foo, bar } = {
+            bar: 'aaa',
+            foo: 'bbb'
+        }
+        console.log(foo)    // aaa
+        console.log(bar)    // bbb
+    }
+
+    // 没有同名属性，变量会等于 undefined
+    {
+        let { baz } = {
+            hes: 1
+        }
+        console.log(baz)    // undefined
+    }
+
+    // 将现有对象的方法赋值到相同名字的变量中
+    {
+        let str = 'hello'
+        const { log } = console
+        log(str)    // hello
+    }
+
+    // 将属性赋值给名字与之不同的变量
+    {
+        // 将 foo 的值赋值给 baz
+        let {
+            foo: baz
+        } = {
+            foo: 'aaa'
+        }
+        console.log(baz)    // aaa
+        // 不是给属性名赋值，是给属性名后的变量赋值
+        // console.log(foo)    // error: foo is not defined
+
+        // 实际赋值机制：对同名属性后的变量赋值
+        let { foo: foo, bar: bar } = { foo: 'aaa', bar: 'bbb' };
+    }
+    {
+        let obj = {
+            p: [
+                'Hello',
+                { y: 'World' }
+            ]
+        };
+
+        let {
+            p,
+            p: [
+                x,
+                { y }
+            ]
+        } = obj;
+        x // "Hello"
+        y // "World"
+        p // ["Hello", {y: "World"}]
+    }
+    </script>
+</body>
+</html>

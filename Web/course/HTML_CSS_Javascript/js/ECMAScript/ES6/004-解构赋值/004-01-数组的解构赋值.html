@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004-01-数组的解构赋值.html</title>
+</head>
+<body>
+    <script>
+        /*
+            结构赋值：
+                按照一定模式，从数组和对象中提取值，对变量进行复制。
+        */
+        /*
+            模式匹配：
+                只要等号两边的模式相同，左边的变量就会被赋予对应的值。
+        */
+        let [a, b, c] = [1, 2, 3]
+        console.log(a)    // 1
+        console.log(b)    // 2
+        console.log(c)    // 3
+
+        // 嵌套数组进行解构：
+        let [foo, [[bar], baz]] = [1, [[2], 3]]
+        console.log(foo)    // 1
+        console.log(bar)    // 2
+        console.log(baz)    // 3
+
+        let [head, ...tail] = [1, 2, 3, 4];
+        console.log(head)    // 1
+        console.log(tail)    // [2, 3, 4]
+
+        let [, , third] = ['aa', 'bb', 'cc']
+        console.log(third)    // cc
+
+        let [x, , z] = [1, , 3]
+        console.log(x)    // 1
+        console.log(z)    // 3
+
+        // 如果结构不成功，变量的值就等于 undefined
+        let [ava] = []
+        console.log(ava)    // undefined
+        let [bella, carol] = [1]
+        console.log(carol)    // undefined
+
+        /* 
+            不完全解构：
+                等号左边的模式，只匹配一部分的等号右边数组。
+        */
+        let [d, e] = [1, 2, 3]
+        console.log(d)    // 1
+        console.log(e)    // 2
+
+        let [vr1, [vr2], vr4] = [1, [2, 3], 4]
+        console.log(vr1)    // 1
+        console.log(vr2)    // 2
+        console.log(vr4)    // 4
+
+        // 等号右边不是数组（不是可遍历的结构），会报错
+        // let [wrong] = 1    // Uncaught TypeError: 1 is not iterable
+        // let [wrong] = true    // Uncaught TypeError: boolean true is not iterable
+        // let [wrong] = NaN    // Uncaught TypeError: number NaN is not iterable
+        // let [wrong] = undefined    // Uncaught TypeError: undefined is not iterable
+        // let [wrong] = null    // Uncaught TypeError: object null is not iterable
+        // let [wrong] = {id: 1}    // Uncaught TypeError: object is not iterable
+
+        // 默认值
+        {
+            // 只当某数组成员严格为 undefined 或缺失成员的情况下，对应的默认值才会生效
+            let [a = 1] = []
+            console.log(a)    // 1
+
+            let [b = 2] = [undefined]
+            console.log(b)    // 2
+
+            let [x, y = 2] = [1]
+            console.log(x)    // 1
+            console.log(y)    // 2
+
+            // null 等不生效
+            let [ava = 1] = [null]
+            console.log(ava)    // null
+
+            let [bvb = 1] = ['']
+            console.log(bvb);    // 空字符串
+
+            // 默认值引用解构赋值的其他变量
+            // 优先以等号右边数组为准
+            let [c = 1, d = c] = []
+            console.log(c, d)    // 1 1
+            let [e = 1, f = e] = [2]
+            console.log(e)    // 2
+            console.log(f)    // 2
+            let [g = 1, h = g] = [2]
+            console.log(g)    // 2
+            console.log(h)    // 2
+
+            // 不可默认为没被声明的变量
+            let [foo = bar, bar = 1] = []    // ReferenceError: y is not defined
+        }
+    </script>
+</body>
+</html>
