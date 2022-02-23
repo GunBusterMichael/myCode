@@ -1,73 +1,152 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>004-02-对象的解构赋值</title>
 </head>
+
 <body>
     <script>
-    // 必须有与变量同名的属性，才能取到值
-    {
-        // 变量与属性的排序可以不一样
-        let { foo, bar } = {
-            bar: 'aaa',
-            foo: 'bbb'
+        // 必须有与变量同名的属性，才能取到值
+        {
+            // 变量与属性的排序可以不一样
+            let { foo, bar } = {
+                bar: 'aaa',
+                foo: 'bbb'
+            }
+            console.log(foo)    // aaa
+            console.log(bar)    // bbb
         }
-        console.log(foo)    // aaa
-        console.log(bar)    // bbb
-    }
 
-    // 没有同名属性，变量会等于 undefined
-    {
-        let { baz } = {
-            hes: 1
+        // 没有同名属性，变量会等于 undefined
+        {
+            let { baz } = {
+                hes: 1
+            }
+            console.log(baz)    // undefined
         }
-        console.log(baz)    // undefined
-    }
 
-    // 将现有对象的方法赋值到相同名字的变量中
-    {
-        let str = 'hello'
-        const { log } = console
-        log(str)    // hello
-    }
-
-    // 将属性赋值给名字与之不同的变量
-    {
-        // 将 foo 的值赋值给 baz
-        let {
-            foo: baz
-        } = {
-            foo: 'aaa'
+        // 将现有对象的方法赋值到相同名字的变量中
+        {
+            let str = 'hello'
+            const { log } = console
+            log(str)    // hello
         }
-        console.log(baz)    // aaa
-        // 不是给属性名赋值，是给属性名后的变量赋值
-        // console.log(foo)    // error: foo is not defined
 
-        // 实际赋值机制：对同名属性后的变量赋值
-        let { foo: foo, bar: bar } = { foo: 'aaa', bar: 'bbb' };
-    }
-    {
-        let obj = {
-            p: [
-                'Hello',
-                { y: 'World' }
-            ]
-        };
+        // 将属性赋值给名字与之不同的变量
+        {
+            // 将 foo 的值赋值给 baz
+            let {
+                foo,
+                foo: baz
+            } = {
+                foo: 'aaa'
+            }
+            console.log(baz)    // aaa
+            // 不是给属性名赋值，是给属性名后的变量赋值
+            // console.log(foo)    // error: foo is not defined
 
-        let {
-            p,
-            p: [
-                x,
-                { y }
-            ]
-        } = obj;
-        x // "Hello"
-        y // "World"
-        p // ["Hello", {y: "World"}]
-    }
+            // 实际赋值机制：对同名属性后的变量赋值
+            let { foo: foo, bar: bar } = { foo: 'aaa', bar: 'bbb' };
+        }
+
+        /*
+            嵌套结构
+        */
+        {
+            let obj = {
+                p: [
+                    'Hello',
+                    { y: 'World' }
+                ]
+            };
+
+            let {
+                p: [
+                    x,
+                    { y }
+                ]
+            } = obj;
+            console.log(x)    // "Hello"
+            console.log(y)    // "World"
+        }
+
+        // 为属性名赋值
+        {
+            let {
+                a: aname,
+                b,        //？将属性名单独写出来
+                a,        //？将属性名单独写出来
+                b: bname,
+            } = {
+                a: 'Ava',
+                b: 'Bella',
+            }
+            console.log(a)        // Ava
+            console.log(aname)    // Ava
+            console.log(b)        // Bella
+            console.log(bname)    // Bella
+        }
+
+        // 对象的解构赋值可以取到继承的属性
+        {
+            const obj1 = {}
+            const obj2 = {
+                foo: 'bar'
+            }
+            Object.setPrototypeOf(obj1, obj2)    // 将 obj1 的原型设定为 obj2
+
+            const { foo } = obj1
+            console.log(foo);    // bar
+        }
+
+        /*
+            默认值：
+                对象的解构可以指定默认值，
+            默认值生效的条件：
+                对象的属性值严格等于 undefined（undefined 或不写属性值）
+        */
+        {
+            var { x = 1 } = {}
+            console.log(x)    // 1
+
+            var { x, y = 2 } = { x: 1 }
+            console.log(x)    // 1
+
+            var { x: y = 3 } = {}
+            console.log(y)    // 3
+
+            // x的属性值不为undefined，默认值不生效
+            var { x: y = 3 } = { x: 4 }
+            console.log(y)    // 4
+        }
+
+        // 对已被声明的变量进行解构赋值时，要将解构赋值语句放进小括号中
+        {
+            let x;
+            // 不放进小括号中，会报错
+            // { x } = { x: 1 }    // SyntaxError: Unexpected token
+        }
+        {
+            let x;
+            // 要将解构赋值语句放进小括号中
+            ({ x } = { x: 1 })
+            console.log(x)    // 1
+        }
+
+        // 等号左边的模式中可以不放置任何变量名，无意义，不会报错
+        ({ } = 'abc')
+
+        // 因为数组本质是对象，所以可以对数组进行对象属性的结构
+        {
+            let arr = [1, 2, 3]
+            let { 0: first } = arr
+            console.log(first)    // 1
+        }
     </script>
 </body>
+
 </html>

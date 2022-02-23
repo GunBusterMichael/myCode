@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态方法与实例方法</title>
+</head>
+<body>
+    <script>
+        /*
+            静态方法：
+                定义在对象本身，而不是在对象实例上的方法。
+                对象实例无法调用这些方法。
+        */
+        /* 
+            实例方法：
+                定义在对象的原型上。
+                对象实例可以调用实例方法。
+        */
+
+        /*
+            静态方法举例：
+                Number.POSITIVE_INFINITY
+        */
+        console.log(Number.POSITIVE_INFINITY)    // 返回 Infinity
+
+        /*
+            实例方法举例：
+                Number.prototype.toString()
+        */
+        console.log((10).toString(8))    // 将十进制数字10转换为八进制数字12并返回
+    </script>
+</body>
+</html>

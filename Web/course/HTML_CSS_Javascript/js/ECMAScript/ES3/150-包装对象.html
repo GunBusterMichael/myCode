@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包装对象</title>
+</head>
+
+<body>
+    <a href="https://www.jianshu.com/p/32465288e738">JS包装对象</a>
+    <script>
+        /*
+            包装对象
+                1. 定义
+                    与数值、字符串和布尔值分别对应的 Number 、 String 和 Boolean 三个内置（原生）对象
+        */
+
+        // ？配合 new 将原始类型的值转换为（包装成）对象
+        var v1 = new Number(123)
+        var v2 = new String('abc')
+        var v3 = new Boolean(true)
+
+        // ？包装对象的数据类型为对象
+        console.log(typeof v1)    // object
+        console.log(typeof v2)    // object
+        console.log(typeof v3)    // object
+
+        console.log(v1 === 123)    // false
+        console.log(v2 === 'abc')    // false
+        console.log(v3 === true)    // false
+
+        // ？直接作为普通函数调用内置对象，会将任意类型的值转换为数值、字符串和布尔值
+        // 字符串转换为数值
+        console.log(Number('123'))    // 123
+        // 数值转换为字符串
+        console.log(String(123))    // '123'
+        // 数值转换为布尔值
+        console.log(Boolean(0))    // false
+
+        // 部分实例方法
+        // valueOf() 返回包装对象实例对应的原始类型的值
+        var value1 = new Number(123).valueOf()
+        console.log(value1)    // 123
+        var value2 = new String('abc').valueOf()
+        console.log(value2)    // 'abc'
+        var value3 = new Boolean(123).valueOf()
+        console.log(value3)    // 123
+
+        /*
+            原始类型与实例对象的自动转换
+                在原始类型的值调用包装对象方法的时候，会将原始对象转为包装对象。
+                调用结束后，这个临时的包装对象会被销毁。
+        */
+        // 举例
+        var str = 'abc'
+        console.log(str.length)    // 3
+        // 自动转换的包装对象是只读的，无法对其添加属性
+        str.num = 3
+        console.log(str.num)    // undefined
+
+        /*
+            自定义方法：
+                若要为包装对象添加自定义方法，需要在内置对象的prototype上添加。
+        */
+        String.prototype.getDouble = function () {
+            // 对包装对象实例对应的原始类型的值进行自加
+            return this.valueOf() + this.valueOf()
+        }
+        console.log(str.getDouble())    // 'abcabc'
+
+        //！new Boolean() 会被判断为 true
+        if (new Boolean()) {
+            console.log('true');
+        }
+        if (new Boolean(null)) {
+            console.log('true');
+        }
+        if (new Boolean(true)) {
+            console.log('true');
+        }
+        if (new Boolean(false)) {
+            console.log('true');
+        }
+
+        //！Boolean() 依据括号内容判断为 true 或 false
+        if (Boolean()) {
+            console.log('true');
+        }
+        if (Boolean(null)) {
+            console.log('true');
+        }
+        if (Boolean(true)) {
+            console.log('true');
+        }
+        if (Boolean(false)) {
+            console.log('true');
+        }
+    </script>
+</body>
+
+</html>

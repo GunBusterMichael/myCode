@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004-07-圆括号问题</title>
+</head>
+
+<body>
+    <script>
+        /*
+            圆括号会对解构造成歧义。
+                尽量不要在模式（等号左边）中放入圆括号。
+        */
+
+        //！ 不能使用圆括号的情况
+        // 1. 变量声明语句：数组与对象
+        {
+            // let [(a)] =[1]    // SyntaxError: Unexpected token
+
+            // let {x:(c)} = {x:1}    // SyntaxError: Unexpected token
+            // let ({x: c}) = {x:1}    // SyntaxError: Unexpected token
+            // let {(x: c)} = {x:1}    // SyntaxError: Unexpected token
+            // let {(x): c} = {x:1}    // SyntaxError: Unexpected token
+
+            // let { o: ({ p: p }) } = { o: { p: 2 } }    // SyntaxError: Unexpected token
+        }
+
+        // 2. 变量声明语句：函数
+        /*
+            function f([(z)]) {    // SyntaxError: Unexpected token
+                return z
+            }
+        */
+        /*
+            function f([z,(x)]) {
+                return x;
+            }
+        */
+
+        // 3. 赋值语句
+        // 将整个模式放入圆括号中
+        // var ([a]) = [5]    // 报错 Uncaught SyntaxError: Invalid left-hand side in assignment
+        // var ({ p: a }) = { p: 42 }    // 报错 Uncaught SyntaxError: Invalid left-hand side in assignment
+        // 将一部分模式放入圆括号中
+        // var [({ p: a }), { x: c }] = [{}, {}]    // 报错 Uncaught SyntaxError: Invalid left-hand side in assignment
+
+        //？可以使用圆括号的情况
+        // 赋值语句的非模式部分
+        // [(b)] = [3]    // 正确
+        ({ p: (d) } = {})    // 正确
+        [(parseInt.prop)] = [3]    // 正确
+    </script>
+</body>
+
+</html>

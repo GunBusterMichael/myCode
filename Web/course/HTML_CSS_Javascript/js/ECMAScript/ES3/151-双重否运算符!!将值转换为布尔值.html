@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>151-双重否运算符!!将值转换为布尔值</title>
+</head>
+<body>
+    <script>
+        console.log(!!undefined)       // false
+        console.log(!!null)            // false
+        console.log(!!0)               // false
+        console.log(!!'')              // false
+        console.log(!!NaN)             // false
+
+        console.log(!!1)               // true
+        console.log(!!'false')         // true
+        console.log(!![])              // true
+        console.log(!!{})              // true
+        console.log(!!function () { }) // true
+        console.log(!!/foo/)           // true
+    </script>
+</body>
+</html>

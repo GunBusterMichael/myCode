@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004-04-数值与布尔值的解构</title>
+</head>
+<body>
+    <script>
+        /*
+            解构赋值的规则：
+                如果等号右边的值不是对象或数组，就前将其转换为数组。
+        */
+        {
+            let { toString: ts1 } = 12345
+            console.log(ts1 === Number.prototype.toString)
+
+            let { toString: ts2 } = true
+            console.log(ts2 === Boolean.prototype.toString)
+        }
+
+        // undefined 与 null 无法进行解构赋值，因为它们无法被转换为对象。
+        {
+            // let { prototype: p } = undefined    // 报错 Cannot destructure property 'prototype' of '($_$w(...) , undefined)' as it is undefined.
+            // let { prototype: p } = null    // 报错 Cannot destructure property 'prototype' of '($_$w(...) , null)' as it is null.
+        }
+    </script>
+</body>
+</html>
