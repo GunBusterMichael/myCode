@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>004-05-函数参数的解构赋值</title>
 </head>
+
 <body>
     <script>
-        
+        // 函数参数的解构赋值
+        {
+            function add([x, y]) {
+                return x + y
+            }
+            console.log(add([1, 2]))    // 3
+        }
+
+        // 默认值
+        /*
+            1. 为变量设置默认值
+                函数参数为一个对象；
+                对这个对象进行解构，对变量 x 和 y 赋值；
+                如果解构失败，变量就等于 undefined。
+        */
+        {
+            function move({ x = 0, y = 0 } = {}) {
+                return [x, y]
+            }
+
+            console.log(move({ x: 3, y: 8 }))    // [3, 8]
+            console.log(move({ x: 3 }))     // [3, 0]
+            console.log(move({}))           // [0, 0]
+            console.log(move())             // [0, 0]
+        }
+        /* 
+            2. 为参数指定默认值
+                调用函数时传进来的实参对象会覆盖参数的默认值。
+        */
+        {
+            function move({ x, y } = { x: 0, y: 0 }) {
+                return [x, y]
+            }
+
+            console.log(move({ x: 3, y: 8 }))    // [3, 8]
+            console.log(move({ x: 3 }))          // [3, undefined]
+            console.log(move({}))                // [undefined, undefined]
+            console.log(move())                  // [0, 0]
+        }
     </script>
 </body>
+
 </html>
