@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-05-字符串模板-标签模板</title>
+</head>
+
+<body>
+    <script>
+        /*
+            标签模板：
+                1. 定义
+                    在函数后紧跟一个字符串模板，
+                    该函数将被调用来处理这个字符串模板。
+        
+                    标签：
+                        函数；
+                    模板：
+                        模板字符串。
+        */
+
+        // 2. 调用方式
+        // 2.1 模板字符串中没有变量
+        {
+            console.log`hello`
+            // 等同于
+            console.log(['hello'])
+        }
+
+        /*
+            2.2 模板字符串中有变量：
+                先将模板字符串处理成多个参数，再调用函数。
+        */
+        {
+            function tag(stringArr, value1, value2) {
+                console.log(stringArr[0]);
+                console.log(stringArr[1]);
+                console.log(stringArr[2]);
+                console.log(value1);
+                console.log(value2);
+            }
+
+            let a = 5
+            let b = 10
+
+            tag`Hello ${a + b} world ${a * b}`
+            /* 
+                函数的第一个参数：
+                    数组，数组的成员为模板字符串中非变量的部分：
+                    ['Hello ', ' world ']
+                后续参数：
+                    模板字符串中的变量们：
+                    ${a + b}
+                    ${a * b}
+            */
+            // 等同于
+            tag(['Hello ', ' world '], 15, 20)
+        }
+
+        // 3. 应用
+        // 3.1 过滤 HTML 字符串，防止用户输入恶意内容
+        {
+            let sender = '内容'
+            function f(arr) {
+                console.log(arr);
+                console.log(arguments);
+            }
+            f`<p>${sender} has sent you a message.</p>`
+        }
+        {
+            // 过滤函数
+            function saferHTML(stringArr) {    // stringArr 为数组
+                let re = stringArr[0]    // 将数组中的第一个成员添加到要返回的结果中
+
+                // 遍历函数参数中的 ${}
+                for (let i = 1; i < arguments.length; i++) {
+                    let arg = arguments[i]
+
+                    // 去除 ${} 中的特殊字符 < > &
+                    re += arg.replace(/&/g, '&amp;').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+                    // 将数组中的第 i 个成员添加到要返回的结果中
+                    re += stringArr[i]
+                }
+
+                // 返回结果
+                return re
+            }
+
+            let sender = '<p>HAHAHA</p>'; // 恶意代码
+            let message = saferHTML`<p>${sender} has sent you a message.</p>`;
+            console.log(message) // 返回 <p>&lt;script&gt;alert("abc")&lt;/script&gt; has sent you a message.</p>
+        }
+
+        /*
+            4. raw 属性
+                标签模板的第一个参数：数组的一个属性。
+            内含：
+                原字符串被转义后的字符串。
+        */
+        {
+        function tag(stringArr) {
+
+        // 原字符串被转义后的字符串数组
+        console.log(stringArr.raw);
+
+        // 没被转义的原字符串数组
+        console.log(stringArr);
+        }
+        tag`First line\nSecond line${1 + 1}After$大括号`
+        }
+
+        /*
+            5. 模板字符串的转义
+                模板字符串会对 \uxxxx 进行转义
+
+            5.1 转义失败：
+                5.1.1 标签模板中的转义失败
+                    转义失败时，会将转义失败的那部分字符串当作 undefined 返回到数组中，
+                    raw 属性中是原字符串被转义后的字符串（仅在反斜杠前加入转义符 \ ）。
+                5.1.2 其他情况下的模板字符串的转义失败
+                    报错
+        */
+        // 5.1.1 标签模板中的转义失败
+        {
+            function tag(strArr) {
+                console.log(strArr)
+                console.log(strArr[0])
+                console.log(strArr.raw)
+                console.log(strArr.raw[0])
+            }
+
+            tag`\unicode and \u{55}${1 + 1}After$`
+        }
+        // 5.1.2 其他情况下的模板字符串的转义失败
+        {
+            // let error = `bad escape sequence: \unicode` // SyntaxError: Invalid Unicode escape sequence 
+        }
+    </script>
+</body>
+
+</html>

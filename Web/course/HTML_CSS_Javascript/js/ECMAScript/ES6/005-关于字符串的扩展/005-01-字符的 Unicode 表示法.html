@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-01-字符的 Unicode 表示法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 码点在\u0000~\uFFFF之间的 Unicode 字符表示法：
+                JavaScript 采用 \uxxxx 形式表示一个字符。
+                    其中，xxxx 表示字符的 Unicode 码点。
+        */
+        console.log('\u0061')    // 返回 'a'
+
+        /*
+            1. 超过上述范围的字符，要使用双字符或大括号的方式表示：
+                1.1 双字符：
+                    \uD842\uDFB7
+                1.2 大括号：
+                    \u{20BB7}
+        */
+        // 双字符：
+        console.log('\uD842\uDFB7')    // 返回 '𠮷'
+        // 大括号：
+        console.log('\u{20BB7}')    // 返回 '𠮷'
+        /*
+            不用双字符或大括号:
+                JavaScript 会理解为 '\u20BB' + 7
+        */
+        console.log('\u20BB7')    // 返回 '₻7'
+    </script>
+</body>
+
+</html>

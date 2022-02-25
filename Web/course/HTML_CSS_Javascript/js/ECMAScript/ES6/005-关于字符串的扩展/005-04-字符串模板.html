@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-04-字符串模板</title>
+</head>
+
+<body>
+    <script>
+        /*
+            字符串模板：
+                1. 表示方法
+                    用``标识。
+                2. 用法
+                    当作普通字符串使用；
+                    定义多行字符串；
+                    在字符串模板中嵌入变量。
+        */
+
+        //= 2.1 普通字符串
+        console.log(`In JavaScript '\\n' is a line-feed.`)    // 返回 In JavaScript '\n' is a line-feed.
+
+        //= 2.1.1 在模板字符串中使用反引号，需要使用转义符
+        {
+            let str = `反引号：\`。`
+            console.log(str)    // 返回 反引号：`。
+        }
+
+        //= 2.2 多行字符串
+        {
+            console.log(`第二行
+        第三行`)
+        /* 返回：
+        第二行
+                第三行
+        */}
+
+        //= 2.2.1 所有的空格、缩进与回车都会被保存在模板字符串中
+        {
+            let str = `
+            <ul>
+                <li>first</li>
+                <li>second</li>
+            </ul>
+            `
+            console.log(str)
+            /* 返回：
+            
+                        <ul>
+                            <li>first</li>
+                            <li>second</li>
+                        </ul>
+                        
+            */
+        }
+        //= 2.2.2 使用 trim() 消除模板字符串两侧的空白符
+        {
+            let str = `
+            <ul>
+                <li>first</li>
+                <li>second</li>
+            </ul>
+            `
+            console.log(str.trim())
+            /* 返回：
+            <ul>
+                            <li>first</li>
+                            <li>second</li>
+                        </ul>
+            */
+        }
+
+        /*
+        =   2.3 嵌入变量
+        =           将变量名写在 ${} 中。
+        */
+        {
+            let name = '珈乐', age = 20
+            console.log(`我叫${name}，今年${age}岁。`)    // 返回 我叫珈乐，今年20岁。
+        }
+
+        //= 2.3.1 写在 {} 内部的 JavaScript 会被运算
+        {
+            let x = 1
+            let y = 2
+            let re = `${x} + ${y * 2} = ${x + y * 2}`
+            console.log(re)    // 返回 1 + 4 = 5
+        }
+
+        //= 2.3.2 {} 内可以引用对象属性
+        {
+            let obj = {
+                x: 1,
+                y: 2
+            }
+            console.log(`对象属性：${obj.x + obj.y}`)    // 返回 对象属性：3
+        }
+
+        //= 2.3.3 {} 内可以调用函数
+        {
+            function fn() {
+                return 'hello world'
+            }
+
+            console.log(`打印：${fn()}`)    // 返回 打印：hello world
+        }
+
+        //= 2.3.4 {} 内的字符串将被原样输出
+        {
+            console.log(`Hello ${'World'}`)    // 返回 Hello World
+        }
+
+        //= 2.3.5 嵌套模板字符串
+        {
+            const tmpl = addrs => `
+                <table>
+                ${addrs.map(addr => `
+                    <tr><td>${addr.first}</td></tr>
+                    <tr><td>${addr.last}</td></tr>
+                `).join('')}
+                </table>
+            `;
+
+            const data = [
+                { first: '<Jane>', last: 'Bond' },
+                { first: 'Lars', last: '<Croft>' },
+            ];
+
+            console.log(tmpl(data));
+
+            // 返回：
+            // <table>
+
+            //     <tr><td><Jane></td></tr>
+            //     <tr><td>Bond</td></tr>
+
+            //     <tr><td>Lars</td></tr>
+            //     <tr><td><Croft></td></tr>
+
+            // </table>
+            
+        }
+    </script>
+</body>
+
+</html>

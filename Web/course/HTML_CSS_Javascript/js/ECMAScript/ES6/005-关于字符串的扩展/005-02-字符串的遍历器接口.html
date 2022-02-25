@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-02-字符串的遍历器接口</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 字符串有遍历器 Iterator 接口，
+                可以被 for of 循环遍历。
+        */
+
+        // for of 循环遍历字符串
+        {
+            for (let letter of 'foz') {
+                console.log(letter)
+            }
+            // 返回 f
+            // 返回 o
+            // 返回 z
+        }
+
+        /*
+            2. 与传统 for 循环的区别：
+                for of 可以识别大于 0xFFFF 的码点，
+                传统 for 循环无法识别大于 0xFFFF 的码点。
+        */
+
+        /* 
+            2.1 传统 for 循环遍历大于 0xFFFF 的码点：
+                for循环会认为大于 0xFFFF 的码点包含两个字符（都不可打印）。
+        */
+        {
+            var text = String.fromCodePoint(0x20bb7)
+
+            for (let i = 0; i < text.length; i++) {
+                console.log(text[i])
+            }
+            // 返回 '�'
+            // 返回 '�'
+        }
+
+        /*
+            2.2 for of 循环遍历大于 0xFFFf 的码点：
+                for...of循环会正确识别出这一个大于 0xFFFf 的码点的字符。
+        */
+        {
+            for (let i of text) {
+                console.log(i)
+            }
+            // 返回 '𠮷'
+        }
+    </script>
+</body>
+
+</html>

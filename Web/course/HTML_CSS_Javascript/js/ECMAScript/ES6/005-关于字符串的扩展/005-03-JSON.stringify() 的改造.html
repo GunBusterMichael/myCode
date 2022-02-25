@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005-03-JSON.stringify() 的改造</title>
+</head>
+
+<body>
+    <script>
+        /*
+            UTF-8 标准规定，0xD800 到 0xDFFF 之间的码点，不能单独使用，必须配对使用。
+        
+            JSON.stringify() 如果遇到 0xD800 到 0xDFFF 之间的单个码点，或者不存在的配对形式，
+            就会返回转义字符串，留给应用自己决定下一步的处理。
+        */
+
+        console.log(JSON.stringify('\u{D834}'))        // 返回 ""\\uD834""
+        console.log(JSON.stringify('\uDF06\uD834'))    // 返回 ""\\udf06\\ud834""
+    </script>
+</body>
+
+</html>
