@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-09-替换匹配的所有字符-replaceAll()</title>
+</head>
+<body>
+    <script>
+        let str = 'aabbcc'
+        
+        // replace() 只能替换匹配的第一个字符
+        {
+            // 将 b 替换成 *
+            let re = str.replace('b', '*')
+            console.log(re)    // 返回 'aa*bcc'
+        }
+    
+        /*
+            使用 replace() 替换匹配的全部字符：
+                利用正则表达式的 g 修饰符。
+        */
+        {
+            let re = str.replace(/b/g, '*')
+            console.log(re)    // 返回 'aa**cc'
+        }
+    
+        /*
+        *   ES6 方法一次性替换所有匹配的字符：
+        *       字符串.replaceAll(要被替换掉的字符或正则表达式, 要被替换成的字符)
+        */
+        {
+            let re = str.replaceAll('b', '*')
+            console.log(re)    // 返回 aa**cc
+        }
+    
+        // replaceAll() 的正则表达式必须带 g 全局修饰符
+        {
+            // let re = str.replaceAll(/b/, '*')    // 报错 Uncaught TypeError: String.prototype.replaceAll called with a non-global RegExp argument
+        
+            let re = str.replaceAll(/b/g, '*')
+            console.log(re)    // 返回 aa**cc
+        }
+    
+        // replaceAll() 第二个参数的特殊字符
+        /* 
+            1. $&
+                匹配的字符串
+        */
+        {
+            // str = 'aabbcc'
+            /* 
+                $& 表示匹配的字符串，即 b 本身；
+                    所以返回与原字符串一致的字符串。
+            */
+            console.log(str.replaceAll('b', '$&'))    // 返回 'aabbcc'
+        }
+    
+        /*
+            2. $`
+                匹配的字符串前面的文本（不包括匹配的字符串）
+        */
+        {
+            // str = 'aabbcc'
+            /* 
+                $` 表示匹配的字符串前面的文本；
+                    对于第一个 b，指代为 aa；
+                    对于第二个 b，指代为 aab；
+            */
+            console.log(str.replaceAll('b', '$`'))    // 返回 aaaaaabcc
+        }
+    
+        /*
+            3. $'
+                匹配的字符串前面的文本
+        */
+        {
+            // str = 'aabbcc'
+            /*
+                $` 表示匹配的字符串后面的文本；
+                    对于第一个 b，指代为 bcc；
+                    对于第二个 b，指代为 cc；
+            */
+            console.log(str.replaceAll('b', "$'"))    // 返回 aabcccccc
+        }
+    
+        /* 
+            4. $n
+                指代匹配成功的第 n 组内容；
+                    n 为从 1 开始的自然数；
+        ！           replaceAll() 的第一个参数必须为正则表达式。
+        */
+        {
+            // str = 'aabbcc'
+            /*
+                $1 表示匹配成功的第一组内容，即 ab；
+                $2 表示匹配成功的第二组内容，即 bc；
+            */
+            console.log(str.replaceAll(/(ab)(bc)/g, '$2$1'))    // 返回 abcabc
+        }
+    
+        /*
+            5. $$
+                指代 $ 符号
+        */
+        {
+            // str = 'aabbcc'
+            /*
+                $$ 指代 $
+            */
+            console.log(str.replaceAll('b', '$$'))    // 返回 aa$$bb
+        }
+    
+        /*
+            replaceAll() 第二个参数可被携写成函数：
+                该函数的返回值会替换掉匹配的字符。
+        */
+        {
+            let re = str.replaceAll('b', function () {
+                return '*'
+            })
+            console.log(re)    // 返回 aa**cc
+        }
+        /*
+            函数的第一个参数：捕捉到的匹配的字符；
+            函数的第二至 n+1 个参数：捕捉到的匹配的第 1 组至第 n 组字符；
+            函数的倒数第二个参数：捕捉到的匹配的字符在原字符串中的位置；
+            函数的倒数第一个参数：原字符串。
+        */
+        {
+            const str = '123abc456'
+        
+            /*
+                匹配的第一个字符串：至少一个数字；
+                匹配的第二个字符串：至少一个小写字母；
+                匹配的第三个字符串：至少一个数字。
+            */
+            const regex = /(\d+)([a-z]+)(\d+)/g
+        
+            // match, p1, p2, p3 必写
+            function replacer(match, p1, p2, p3, offset, originString) {
+            
+                // 将匹配的字符串替换为 'p1 - p2 - p3'
+                return [p1, p2, p3].join(' - ')
+            }
+        
+            console.log(str.replaceAll(regex, replacer))    // 返回 '123 - abc - 456'
+        
+            /*
+                match: '123abc456'
+                p1: '123'
+                p2: 'abc'
+                p3: '456'
+            */
+        }
+    </script>
+</body>
+</html>

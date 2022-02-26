@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-03-检查某字符串是否在另一个字符串中-includes()</title>
+</head>
+<body>
+    <script>
+        /*
+            字符串1.includes(字符串2, 开始搜索的位置)
+            作用：
+                判断在字符串1中是否存在字符串2。
+            返回：
+                true：在字符串1中存在字符串2；
+                false：在字符串1中不存在字符串2；
+        */
+
+        let s = '0123456'
+
+        /*
+            不加开始搜索的位置：
+                在字符串1中全局搜索。
+        */
+        console.log(s.includes('34'))    // 返回 true
+        console.log(s.includes('35'))    // 返回 false
+
+        /* 
+            加开始搜索的位置：
+                从该位置开始搜索（包括该位置）；
+                位置从 0 开始排起。
+        */
+        console.log(s.includes('345', 3))    // 返回 true
+        console.log(s.includes('23', 4))    // 返回 false
+    </script>
+</body>
+</html>

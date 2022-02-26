@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-07-字符串补全长度-padStart()-padEnd().html</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 补全头部
+                字符串.padStart(字符串指定长度, 用来补全的字符串)
+        */
+        {
+            console.log('x'.padStart(5, 'ab'))    // 返回 'ababx'
+            console.log('x'.padStart(4, 'ab'))    // 返回 'abax'
+        }
+
+        /*
+            2. 补全尾部
+                字符串.padEnd(字符串指定长度, 用来补全的字符串)
+        */
+        {
+            console.log('x'.padEnd(5, 'ab'))    // 返回 'xabab'
+            console.log('x'.padEnd(4, 'ab'))    // 返回 'xaba'
+        }
+
+        // 若原字符串的长度大于或等于指定长度，则返回原字符串
+        {
+            console.log('xxx'.padStart(2, 'ab'))   // 返回 xxx
+            console.log('xxx'.padEnd(2, 'ab'))     // 返回 xxx
+        }
+
+        // 若原字符串与补全字符串的长度之和超过了指定长度，则会截去超出长度的补全字符串
+        {
+            console.log('xxx'.padStart(10, '123456789'))    // 返回 '1234567xxx'
+        }
+
+        // 若不指定用来补全的字符串，则用空格补全
+        {
+            console.log('xx'.padStart(6))    // 返回 '    xx'
+            console.log('xx'.padEnd(6))      // 返回 'xx    '
+        }
+
+        /* 
+            3. 用途
+                3.1 补全数字
+        */
+        // 生成 10 位数值字符串
+        {
+            console.log('1'.padStart(10, '0'))          // 返回 0000000001
+            console.log('123'.padStart(10, '0'))        // 返回 0000000123
+            console.log('7896496'.padStart(10, '0'))    // 返回 0007896496
+        }
+
+        // 3.2 提示字符串格式
+        {
+            console.log('12'.padStart(10, 'YYYY-MM-DD'))       // 返回 YYYY-MM-12
+            console.log('11-02'.padStart(10, 'YYYY-MM-DD'))    // 返回 YYYY-11-02
+        }
+    </script>
+</body>
+
+</html>

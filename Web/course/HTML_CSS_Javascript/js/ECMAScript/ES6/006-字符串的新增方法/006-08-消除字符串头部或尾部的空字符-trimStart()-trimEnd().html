@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-08-消除字符串头部或尾部的空字符-trimStart()-trimEnd()</title>
+</head>
+<body>
+    <script>
+        /*
+            消除字符串头部的空格：
+                字符串.trimStart()
+        */
+
+        /*
+            消除字符串尾部的空格：
+                字符串.trimEnd()
+        */
+
+        {
+            const s = '   abc   '
+
+            console.log(s.trim())         // 返回 'abc'
+            console.log(s.trimStart())    // 返回 'abc   '
+            console.log(s.trimEnd())      // 返回 '   abc'
+        }
+    </script>
+</body>
+</html>

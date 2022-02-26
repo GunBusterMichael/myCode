@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-02-返回字符的Unicode码点</title>
+</head>
+
+<body>
+    <a
+        href="https://wangdoc.com/es6/string-methods.html#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95codepointat">实例方法：codePointAt()</a>
+
+    <script>
+        /*
+            字符串.codePointAt(字符串中的第几位字符)
+                作用：
+                    返回指定字符的 Unicode 码点，支持 32 位的 UTF-16 字符的十进制码点。
+        */
+
+        // 返回十进制 Unicode
+        {
+            console.log('珈乐'.codePointAt(0))    // 返回“珈”的 Unicode 十进制码点 29640
+        }
+
+        // 返回十六进制 unicode
+        {
+            console.log('珈乐'.codePointAt(0).toString(16))    // 返回“珈”的 Unicode 十六进制码点 73c8
+        }
+
+        // 利用 codePointAt() 测试一个字符是由两个字节还是四个字节组成
+        {
+            function is32Bit(char) {
+                return char.codePointAt(0) > 0xFFFF    // Unicode 码大于 0xFFFF 的字符由四个字节组成
+            }
+
+            console.log(is32Bit('𠮷'))    // 返回 true
+            console.log(is32Bit('珈'))    // 返回 false
+            console.log(is32Bit('a'))     // 返回 false
+        }
+    </script>
+</body>
+
+</html>

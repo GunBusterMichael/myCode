@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-05-检查某字符串是否在另一个字符串的尾部-endsWith()</title>
+</head>
+<body>
+    <script>
+        /*
+            字符串1.endsWith(字符串2, 搜索n个字符)
+            作用：
+                判断字符串2是否在字符串1的尾部。
+            返回：
+                true：字符串2在字符串1的尾部；
+                false：字符串2不在字符串1的尾部。
+        */
+
+        let s = '0123456'
+
+        /*
+            不加搜索n个字符：
+                在字符串1中全局搜索。
+        */
+        console.log(s.endsWith('56'))    // 返回 true
+        console.log(s.endsWith('73'))    // 返回 false
+
+        /*
+            加搜索n个字符：
+                只搜索前n个字符。
+        */
+        // 只搜索前2个字符
+        console.log(s.endsWith('23', 4))    // 返回 true
+        console.log(s.endsWith('023', 4))    // 返回 false
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>006-04-检查某字符串是否在另一个字符串的头部-startsWith()</title>
+</head>
+<body>
+    <script>
+        /*
+            字符串1.startsWith(字符串2, 开始搜索的位置)
+            作用：
+                判断字符串2是否在字符串1的开头。
+            返回：
+                true：字符串2在字符串1的开头；
+                false：字符串2不在字符串1的开头。
+        */
+
+        let s = '0123456'
+
+        /*
+            不加开始搜索的位置：
+                在字符串1中全局搜索。
+        */
+        console.log(s.startsWith('012'))    // 返回 true
+        console.log(s.startsWith('123'))    // 返回 false
+
+        /*
+            加开始搜索的位置：
+                从该位置开始搜索（包括该位置）；
+                位置从 0 开始排起。
+        */
+        console.log(s.startsWith('34', 3))    // 返回 true
+        console.log(s.startsWith('34', 4))    // 返回 false
+    </script>
+</body>
+</html>
