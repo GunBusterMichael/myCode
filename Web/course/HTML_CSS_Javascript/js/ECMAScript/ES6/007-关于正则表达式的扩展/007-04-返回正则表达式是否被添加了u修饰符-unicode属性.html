@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-04-返回正则表达式是否被添加了u修饰符-unicode属性</title>
+</head>
+<body>
+    <script>
+        {
+            const reg=/hello/
+            const regu=/hello/u
+
+            console.log(reg.unicode)     // 没有u修饰符，返回 false
+            console.log(regu.unicode)    // 有u修饰符，返回 true
+        }
+    </script>
+</body>
+</html>

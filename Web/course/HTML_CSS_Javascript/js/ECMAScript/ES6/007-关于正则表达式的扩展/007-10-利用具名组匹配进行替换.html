@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-10-利用具名组匹配进行替换</title>
+</head>
+<body>
+    <script>
+        // 字符串替换时，使用 $<组名> 引用具名组
+        {
+            var reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u
+
+            // replace() 的第一个参数是正则表达式，第二个参数可以是包含组名的字符串
+            console.log('2022-02-28'.replace(reg, '$<day>/$<month>/$<year>'))
+        }
+
+        // replace() 的第二个也可以是包含组名的字符串
+        {
+            let newDate = '2022-02-28'.replace(reg, (
+                matched, // 整个匹配结果 2015-01-02
+                capture1, // 第一个组匹配 2015
+                capture2, // 第二个组匹配 01
+                capture3, // 第三个组匹配 02
+                position, // 匹配开始的位置 0
+                S, // 原字符串 2015-01-02
+                groups // 具名组构成的一个对象 {year, month, day}
+            ) => {
+                // 函数内部可以直接对 groups 对象进行解构赋值。
+                let { day, month, year } = groups;
+                return `${day}/${month}/${year}`;
+            })
+
+            console.log(newDate);
+        }
+    </script>
+</body>
+</html>

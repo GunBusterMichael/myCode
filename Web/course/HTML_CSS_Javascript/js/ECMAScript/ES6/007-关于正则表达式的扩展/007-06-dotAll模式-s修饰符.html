@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-06-dotAll模式-s修饰符</title>
+</head>
+<body>
+    <script>
+        /*
+            正则表达式中的点 .：
+                含义：
+                    表示任意的单个字符。
+                ES5 中的点的缺陷：
+                    无法识别行终止符。
+                        行终止符：
+                            U+000A 换行符（\n）；
+                            U+000D 回车符（\r）；
+                            U+2028 行分隔符（line separator）；
+                            U+2029 段分隔符（paragraph separator）。
+            s 修饰符：
+                作用：
+                    开启 dotAll 模式。
+            dotAll 模式：
+                作用：
+                    让点能表示行终止符。
+        */
+
+        {
+            const reg = /foo.bar/
+            console.log(reg.test('foo?bar'))    // 返回 true
+            console.log(reg.test('foo\nbar'))    // 返回 false
+
+            const newReg = /foo.bar/s
+            console.log(newReg.test('foo?bar'))    // 返回 true
+            console.log(newReg.test('foo\nbar'))    // 返回 true
+        }
+
+        /*
+            dotAll 属性
+                作用：
+                    返回布尔值；
+                    表示该正则表达式是否处于 dotAll 模式（是否有 s 修饰符）
+        */
+
+        {
+            const newReg = /foo.bar/s
+            console.log(newReg.dotAll)    // 返回 true
+        }
+    </script>
+</body>
+</html>

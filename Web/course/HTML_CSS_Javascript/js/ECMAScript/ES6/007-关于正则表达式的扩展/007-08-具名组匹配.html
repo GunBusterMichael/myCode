@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-08-具名组匹配-?<></title>
+</head>
+<body>
+    <script>
+        /*
+            组匹配：
+        */
+
+        {
+            const regDate=/(\d{4})-(\d{2})-(\d{2})/
+
+            // 使用 exec 方法将三个括号中的组匹配结果提取到一个对象中
+            const matchObj = regDate.exec('2022-02-08')
+            console.log(typeof matchObj)    // 返回 Object
+            console.log(matchObj)    // 返回 Object
+
+            // 利用索引号返回年月日
+            const year = matchObj[1]
+            console.log(year)
+            const month = matchObj[2]
+            console.log(month)
+            const day = matchObj[3]
+            console.log(day)
+        }
+
+        console.log('——————————分割线——————————');
+
+        /*
+            具名组匹配：
+                作用：
+                    可以为组匹配添加具体的名字。
+        */
+
+        {
+            const regDate = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/
+
+            // 使用 exec 方法将三个括号中的组匹配结果提取到一个对象中
+            const matchObj = regDate.exec('2022-02-08')
+
+            // 利用索引号返回年月日
+            const year = matchObj.groups.year
+            console.log(year)
+            const month = matchObj.groups.month
+            console.log(month)
+            const day = matchObj.groups.day
+            console.log(day)
+        }
+
+        console.log('——————————分割线——————————');
+
+        // 如果具名组没有匹配，则返回 undefined
+        {
+            const RE_OPT_A = /^(?<as>a+)?$/;
+            const matchObj = RE_OPT_A.exec('');
+
+            console.log(matchObj.groups.as)    // as 组没有匹配，返回 undefined
+            console.log('as' in matchObj.groups)    // as 键名在 groups 中存在，返回 true
+        }
+    </script>
+</body>
+</html>

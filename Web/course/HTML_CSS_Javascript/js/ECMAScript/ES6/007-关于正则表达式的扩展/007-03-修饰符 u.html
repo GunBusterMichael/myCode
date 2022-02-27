@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>u 修饰符</title>
+</head>
+<body>
+    <a href="https://wangdoc.com/es6/regex.html#u-%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank">u 修饰符</a>
+    <script>
+        /*
+            u 修饰符
+                1. 含义
+                    Unicode 模式。
+                2. 作用
+                    正确处理大于 \uFFFF 的 Unicode 字符，
+                    即四个字节的 UTF-16 编码。
+        */
+
+        {
+            /*
+                \uD83D\uDC2A是一个四个字节的 UTF-16 编码，代表一个字符;
+                不加 u 修饰符，JavaScript 只能识别前两个字节，即\uD83D；
+                加 u 修饰符，JavaScript 能识别完整的四个字节，即\uD83D\uDC2A；
+            */
+            console.log(/^\uD83D/.test('\uD83D\uDC2A'))     // 只能识别前两个字节，返回 true
+            console.log(/^\uD83D/u.test('\uD83D\uDC2A'))    // 能识别完整的四个字节，返回 false
+        }
+        
+        // 应用：制作正确返回字符串长度的函数
+        {
+            function getStringLength(string) {
+
+                /*
+                    查找所有空白字符与非空白字符，
+                    并将其添加至 resultArray 数组；
+                    如果没有找到空白字符与非空白字符，
+                    则将 resultArray 赋值为 null
+                */
+                var resultArray = string.match(/[\s\S]/gu)
+
+                // 返回 resultArray 数组的长度
+                return resultArray ? resultArray.length : 0
+            }
+
+            let str1 = ''
+            let str2 = '𠮷'
+
+            console.log(getStringLength(str1))    // 返回 0
+            console.log(getStringLength(str2))    // 返回 1
+        }
+    </script>
+</body>
+</html>

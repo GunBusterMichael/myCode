@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp构造函数</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            RegExp 构造函数的两种情况：
+                1. 参数是字符串；
+                2. 参数是正则表达式（ES6版本）。
+        */
+
+        /*
+            1. 参数是字符串
+                第一个参数是是正则表达式//内的文本；
+                第二个参数是正则表达式的修饰符。
+        */
+        {
+            var regex = new RegExp('xyz', 'i')
+            // 等价于
+            var regex = /xzy/i
+        }
+
+        /*
+            2. 参数是正则表达式
+                第一个参数是是正则表达式（可包含修饰符）
+                第二个参数是正则表达式的修饰符；
+                    并会覆盖第一个参数的正则表达式的修饰符。
+        */
+        {
+            var regex1 = new RegExp(/xyz/g, 'i')
+            // 等价于
+            var regex2 = /xzy/i
+
+            console.log(regex1.flags)    // 返回 regex1 的修饰符（flag）：i
+            console.log(regex1)    // 返回 regex1 正则表达式：/xzy/i
+        }
+    </script>
+</body>
+
+</html>

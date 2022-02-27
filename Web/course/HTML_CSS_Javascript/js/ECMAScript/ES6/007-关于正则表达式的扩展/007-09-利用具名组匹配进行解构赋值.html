@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-09-利用具名组匹配进行解构赋值</title>
+</head>
+<body>
+    <script>
+        // 通过具名组进行解构赋值
+        {
+            let {
+                groups: {
+                    one,
+                    two
+                }
+            } = /^(?<one>.*):(?<two>.*)$/u.exec('foo:bar')
+
+            console.log(one)    // 返回 foo
+            console.log(two)    // 返回 bar
+        }
+    </script>
+</body>
+</html>

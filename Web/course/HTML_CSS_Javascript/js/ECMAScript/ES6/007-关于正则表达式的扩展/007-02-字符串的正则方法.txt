@@ -1,0 +1,7 @@
+可以使用正则表达式的四个字符串方法，
+在语言内部会调用定义在 RegExp 对象上的方法：
+
+String.prototype.match 调用 RegExp.prototype[Symbol.match]
+String.prototype.replace 调用 RegExp.prototype[Symbol.replace]
+String.prototype.search 调用 RegExp.prototype[Symbol.search]
+String.prototype.split 调用 RegExp.prototype[Symbol.split]

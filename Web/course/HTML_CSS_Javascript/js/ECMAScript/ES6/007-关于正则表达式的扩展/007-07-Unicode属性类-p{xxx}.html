@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-07-Unicode属性类-p{xxx}</title>
+</head>
+<body>
+    <script>
+        /*
+            Unicode 属性类：
+                作用：
+                    使用 \p{xxx} 和 \P{xxx}（\p的否定形式）
+                    代表一类 Unicode 字符，
+                    匹配满足条件的所有字符。
+        */
+
+        {
+            const reg = /\p{Script=Greek}/u    // 匹配所有希腊字母
+
+            console.log(reg.test('Ππ'))    // 返回 true
+        }
+    </script>
+</body>
+</html>
