@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007-11-引用具名组</title>
+</head>
+<body>
+    <script>
+        /*
+            在正则表达式内部引用某个“具名组匹配”
+                1. ES6 写法
+                    \k<组名>
+        */
+
+        {
+            // 等价于 /^([a-z]+)!([a-z]+)$/ 并且两个组所匹配的内容需要一致
+            let reg = /^(?<word>[a-z]+)!\k<word>$/
+        
+            console.log(reg.test('qwe!qwe'))    // 返回 true
+            console.log(reg.test('qwe!rty'))    // 返回 false
+        }
+
+        /*
+            2. ES5 写法
+                \数字
+                    数字为组号，从 1 开始；
+                    可以与\k一起用。
+        */
+
+        {
+            let reg = /^(?<word>[a-z]+)!\k<word>!\1$/
+            console.log(reg.test('qwe!qwe!qwe'))    // 返回 true
+        }
+    </script>
+</body>
+</html>

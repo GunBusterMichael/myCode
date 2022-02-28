@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-04-判断数值是否为NaN-Number.isNaN()</title>
+</head>
+<body>
+    <script>
+        /*
+            Number.isNaN()
+                1. 作用
+                    检查一个数值是否为有限
+                2. 返回值
+                    如果参数不是 NaN，一律返回 false
+                    NaN 返回 false
+        */
+        {
+            console.log(Number.isNaN(NaN))        // 返回 true
+            console.log(Number.isNaN(NaN + 1))    // 返回 true
+            console.log(Number.isNaN(1/'q'))      // 返回 true
+            console.log(Number.isNaN('q'/'q'))    // 返回 true
+
+            console.log(Number.isNaN('NaN'))   // 返回 false
+            console.log(Number.isNaN('qqq'))   // 返回 false
+            console.log(Number.isNaN(0.1))     // 返回 false
+            console.log(Number.isNaN('0.1'))   // 返回 false
+            console.log(Number.isNaN(true))    // 返回 false
+        }
+
+        /*
+            3. 与 isNaN() 的区别
+                isNaN() 会先将非数值的数据转换为数值数据；
+                Number.isNaN() 不会返回非数值数据；
+                    对于非数值，一律返回 false
+        */
+        {
+            console.log(isNaN('NaN'))           // 返回 true
+            console.log(Number.isNaN('NaN'))    // 返回 false
+        }
+    </script>
+</body>
+</html>

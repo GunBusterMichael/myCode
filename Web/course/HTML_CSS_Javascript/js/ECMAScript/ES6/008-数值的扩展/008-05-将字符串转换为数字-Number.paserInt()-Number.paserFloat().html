@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-05-将字符串转换为数字-Number.paserInt()-Number.paserFloat()</title>
+</head>
+<body>
+    <script>
+        /*
+            1. 将字符串转换为整数
+        */
+        // 1.1 ES5 写法
+        console.log(parseInt('12.34q'))    // 返回 12
+        // 1.2 ES6 写法
+        console.log(Number.parseInt('12.34q'))    // 返回 12
+
+        /*
+            2. 将字符串转换为整数
+        */
+        // 2.1 ES5 写法
+        console.log(parseFloat('12.34q'))    // 返回 12.34
+        // 2.2 ES6 写法
+        console.log(Number.parseFloat('12.34q'))    // 返回 12.34
+
+        // ? ES5 与 ES6 的方法在使用与结果上没有区别
+    </script>
+</body>
+</html>

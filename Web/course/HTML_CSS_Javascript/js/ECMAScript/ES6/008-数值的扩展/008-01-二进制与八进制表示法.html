@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-01-二进制与八进制表示法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 二进制表示法
+                前缀：0b 或 0B
+        */
+
+        console.log(0b111110111 === 503)    // 返回 true
+
+        /*
+            2. 八进制表示法
+                前缀：0o 或 0O （零和字母o）
+        */
+
+        console.log(0o767 === 503)    // 返回 true
+
+        /* 
+            2. 将 0b 或 0B、0o 或 0O 前缀的数值或数值字符串转换为十进制数值
+                需要 Number() 方法
+        */
+
+        console.log(Number('0b111110111'))    // 返回 503
+        console.log(Number(0b111110111))    // 返回 503
+        console.log(typeof Number('0b111110111'))    // 返回 number
+
+        console.log(Number('0o767'))    // 返回 503
+        console.log(Number(0o767))    // 返回 503
+        console.log(typeof Number('0o767'))    // 返回 number
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-01-函数参数的默认值-基本用法</title>
+</head>
+
+<body>
+    <script>
+        // 直接将默认值写在形参的后面
+        {
+            function showPoint(x = 0, y = 0) {
+                console.log(x + ', ' + y);
+            }
+
+            showPoint(3)    // 返回 3, 0
+        }
+
+        // 可将默认值设置为表达式
+        {
+            function plus(re=x+1) {
+                console.log(re)
+            }
+
+            let x = 100
+            plus()    // 返回 101
+
+            x = 101
+            plus()    // 返回 102
+        }
+
+        //! 不可在函数体内使用 let 和 const 再次声明有默认值的形参
+        {
+            function ex(x=0) {
+                var x=0    // 不报错
+                // let x=0    // 报错 Uncaught SyntaxError: Identifier 'x' has already been declared
+                // const x=0  // 报错 Uncaught SyntaxError: Identifier 'x' has already been declared
+            }
+        }
+
+        //! 使用参数默认值时，同一个函数不能有同名形参
+        {
+            // 报错 Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+            /* function error (x, x, y=0) {
+                // xxx
+            } */
+        }
+    </script>
+</body>
+
+</html>

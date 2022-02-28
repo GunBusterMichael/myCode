@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-03-参数默认值的位置</title>
+</head>
+<body>
+    <script>
+        /*
+            参数默认值的位置
+*               1. 建议位置
+?                   应为最后一个形参。
+                2. 不建议位置
+                    开头或中间的形参。
+                        2.1 原因
+                            无法省略有默认值的形参对应的实参。
+        */
+
+        // 将形参放在开头或中间
+        {
+            function f(x = 1, y) {
+                console.log(`x: ${x}, y: ${y}`)
+            }
+
+            f()    // 返回 x: 1, y: undefined
+            f(2)   // 返回 x: 2, y: undefined
+            // f(,1)   // 报错 Uncaught SyntaxError: Unexpected token ','
+
+            // 若要给 y 传参的同时，使用 x 的默认值，需要将 undefined 传参给 x
+            f(undefined, 2)   // 返回 x: 1, y: 2
+        }
+
+        console.log('——————————分割线——————————');
+
+        // 将形参放在最后
+        {
+            function f(x, y = 1) {
+                console.log(`x: ${x}, y: ${y}`)
+            }
+
+            f()    // 返回 x: undefined, y: 1
+            f(2)   // 返回 x: 2, y: 1
+            // f(,1)   // 报错 Uncaught SyntaxError: Unexpected token ','
+            f(1, 2)   // 返回 x: 1, y: 2
+        }
+    </script>
+</body>
+</html>

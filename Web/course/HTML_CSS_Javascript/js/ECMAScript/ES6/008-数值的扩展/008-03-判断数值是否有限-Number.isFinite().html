@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-03-判断数值是否有限-Number.isFinite()</title>
+</head>
+<body>
+    <script>
+        /* 
+            Number.isFinite()
+                1. 作用
+                    检查一个数值是否为有限
+                2. 返回值
+                    如果参数不是数值，一律返回 false
+                    Infinity -Infinity NaN 返回 false
+                    有限数值，返回 true
+        */
+        {
+            console.log(Number.isFinite(15))           // 返回 true
+            console.log(Number.isFinite(0.1))          // 返回 true
+            console.log(Number.isFinite(Infinity))     // 返回 false
+            console.log(Number.isFinite(-Infinity))    // 返回 false
+            console.log(Number.isFinite(NaN))          // 返回 false
+            console.log(Number.isFinite('15'))         // 返回 false
+            console.log(Number.isFinite('asd'))        // 返回 false
+            console.log(Number.isFinite(true))         // 返回 false
+            console.log(Number.isFinite(undefined))    // 返回 false
+        }
+
+        /*
+            3. 与 isFinite() 的区别
+                isFinite() 会先将非数值的数据转换为数值数据；
+                Number.isFinite() 不会返回非数值数据；
+                    对于非数值，一律返回 false
+        */
+        {
+            console.log(isFinite('25'))           // 返回 true
+            console.log(Number.isFinite('25'))    // 返回 false
+        }
+    </script>
+</body>
+</html>

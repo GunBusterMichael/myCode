@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>008-02-数值分隔符_</title>
+</head>
+<body>
+    <script>
+        /*
+            数值分隔符_
+                1. 作用
+                    可以使用下划线_对 JavaScript 的数值进行分割
+                           1_000_000
+                    类似于 1,000,000
+        */
+
+        // 2. 数值分隔符没有指定间隔的位数
+        {
+            console.log(1_000 === 1000)    // 返回 true
+            console.log(1_000 === 100_0)    // 返回 true
+        }
+
+        // 3. 小数与科学计数法也可使用数值分隔符
+        {
+            // 3.1 小数
+            console.log(0.000_001 === 0.000001)    // 返回 true
+
+            // 3.2 科学计数法
+            console.log(1e10_000 === 1e10_000)     // 返回 true
+        }
+
+
+        // 4. 其他进制也可使用分隔符
+        {
+            // 按字节分隔，可提升阅读感
+
+            // 4.1 二进制
+            0b1010_0001_1000_0101
+
+            // 4.2 十六进制
+            0xA0_B0_C0
+        }
+
+        // 5. 数值分隔符对于数值的存储与输出，没有影响
+        {
+            let num = 1_000
+
+            console.log(num)    // 返回 1000
+            console.log(num.toString())    // 返回 '1000'
+        }
+
+        //！ 4. 报错写法
+        {
+            // 4.1 不能放在数值的最前面或最后面
+            {
+                // _123    // 报错 Uncaught ReferenceError: _123 is not defined
+                // 123_    // 报错 Uncaught SyntaxError: Numeric separators are not allowed at the end of numeric literals
+            }
+            
+            // 不能将两个或两个以上的分隔符连在一起
+            {
+                // 100__000    // 报错 Uncaught SyntaxError: Only one underscore is allowed as numeric separator
+                // 100___000    // 报错 Uncaught SyntaxError: Only one underscore is allowed as numeric separator
+            }
+
+            // 小数点前后不能有分隔符
+            {
+                // 3_.14    // 报错 Uncaught SyntaxError: Numeric separators are not allowed at the end of numeric literals
+                // 3._14    // 报错 Uncaught SyntaxError: Invalid or unexpected token
+            }
+
+            // 科学计数法中，表示指数的 e 或 E 前后不能有分隔符
+            {
+                // 1e_12    // 报错 Uncaught SyntaxError: Invalid or unexpected token
+                // 1_e12    // 报错 Uncaught SyntaxError: Numeric separators are not allowed at the end of numeric literals
+            }
+
+            /*
+                禁止前缀后不能紧跟分隔符：
+                    0b、0B、0o、0O、0x、0X
+            */
+            {
+                // 0b_1110    // 报错 Uncaught SyntaxError: Invalid or unexpected token
+                // 0_b1110    // 报错 Uncaught SyntaxError: Uncaught SyntaxError: Numeric separator can not be used after leading 0.
+            }
+
+            /* 
+                以下三个将字符串转换为数值的函数，不支持数值分隔符：
+                    Number()
+                    parseInt()
+                    parseFloat()
+            */
+            {
+                console.log(Number('1_000'))    // 返回 NaN
+                console.log(parseInt('1_000'))    // 返回 1
+                console.log(parseFloat('0.00_001'))    // 返回 0
+            }
+        }
+    </script>
+</body>
+</html>

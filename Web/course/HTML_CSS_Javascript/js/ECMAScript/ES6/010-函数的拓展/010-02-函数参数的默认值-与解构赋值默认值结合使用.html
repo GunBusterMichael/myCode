@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-02-函数参数的默认值-与解构赋值默认值结合使用</title>
+</head>
+
+<body>
+    <script>
+        {
+            //              |解构赋值默认值| |函数参数默认值|
+            function showPoint({ x, y = 0 } = {}) {
+                console.log(`(${x}, ${y})`)
+            }
+
+            // 没有被赋值的形参会被赋值为 undefined
+            showPoint()    // 返回 (undefined, 0)
+        }
+    </script>
+</body>
+
+</html>

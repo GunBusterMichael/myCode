@@ -107,19 +107,19 @@
             默认值：
                 对象的解构可以指定默认值，
             默认值生效的条件：
-                对象的属性值严格等于 undefined（undefined 或不写属性值）
+                所有对象的属性值严格等于 undefined（undefined 或不写属性值）
         */
         {
             var { x = 1 } = {}
             console.log(x)    // 1
 
-            var { x, y = 2 } = { x: 1 }
+            var { x, y = 3 } = { x: 1 }
             console.log(x)    // 1
 
             var { x: y = 3 } = {}
             console.log(y)    // 3
 
-            // x的属性值不为undefined，默认值不生效
+            // x的属性值不为 undefined，默认值不生效
             var { x: y = 3 } = { x: 4 }
             console.log(y)    // 4
         }

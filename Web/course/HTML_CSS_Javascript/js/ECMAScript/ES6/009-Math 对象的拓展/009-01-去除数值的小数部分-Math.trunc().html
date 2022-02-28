@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>009-01-去除数值的小数部分-Math.trunc()</title>
+</head>
+<body>
+    <script>
+        /* 
+            Math.trunc()
+                1. 作用
+                    返回数值与字符串型数值的整数部分
+        */
+
+        {
+            console.log(Math.trunc(4.9))       // 返回 4
+            console.log(Math.trunc(-4.9))      // 返回 -4
+            console.log(Math.trunc('-4.9'))    // 返回 -4
+
+            // 空字符串返回 0
+            console.log(Math.trunc(''))    // 返回 0
+
+            console.log(Math.trunc(true))    // 返回 1
+            console.log(Math.trunc(false))    // 返回 0
+            console.log(Math.trunc([]))    // 返回 0
+        }
+
+        /* 
+            2. 空值与无法取整的值：
+                返回 NaN
+        */
+
+        {
+            console.log(Math.trunc(NaN))       // 返回 NaN
+            console.log(Math.trunc('wert'))    // 返回 NaN
+            console.log(Math.trunc())          // 返回 NaN
+            console.log(Math.trunc(undefined)) // 返回 NaN
+        }
+    </script>
+</body>
+</html>
