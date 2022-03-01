@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-07-rest参数</title>
+</head>
+<body>
+    <script>
+        /*
+            rest 参数
+                1. 作用
+                    获取函数的多余实参；
+                    淘汰了 arguments 对象。
+        */
+
+        /*
+            2. rest 参数的数据类型
+*               ...形参是数组，
+        */
+        {
+            function rest(...re) {
+                console.log(re);
+            }
+
+            rest(1,2,3)    // 返回rest参数 [1, 2, 3]
+        }
+
+        /*
+            3. 与 arguments 的不同
+                arguments 是伪数组对象，无法直接使用数组的属性与方法；
+                rest 参数是数组，可以使用数组的属性和方法。
+        */
+
+        //！4. rest 参数后面不可有其他参数，否则会报错
+        {
+            /* function error(a, ...b, c) {
+                // xxx
+            }
+            error()    // 报错 Uncaught SyntaxError: Rest parameter must be last formal parameter */
+        }
+
+        //？5. 函数的 length 属性不包含 rest 参数
+        {
+            console.log((function(a, ...b) {}).length)    // 返回 1
+        }
+    </script>
+</body>
+</html>

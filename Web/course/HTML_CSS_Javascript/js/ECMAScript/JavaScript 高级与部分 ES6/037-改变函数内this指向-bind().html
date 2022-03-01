@@ -25,8 +25,12 @@
             console.log(1 + 2);
         }
         var newFn = fn.bind(o, 1, 2)
+
         fn()
+        // this 为 window
+
         newFn()
+        // this 为 o 对象
     </script>
 </body>
 

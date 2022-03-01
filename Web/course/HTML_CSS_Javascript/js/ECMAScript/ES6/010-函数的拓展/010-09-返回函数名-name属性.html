@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-09-返回函数名-name属性</title>
+</head>
+<body>
+    <script>
+        // 函数的 name 属性，返回函数的函数名
+
+        /*
+            1. 普通具名函数
+                返回函数名
+        */
+        {
+            function foo() {}
+            console.log(foo.name)    // 返回 foo
+        }
+
+        /*
+            2. 将匿名函数赋值给变量
+                返回变量名
+        */
+        {
+            const f = function () {}
+            console.log(f.name)    // 返回 f
+        }
+
+        /*
+            3. 将具名函数赋值给变量
+                返回函数名
+        */
+        {
+            const f = function foo () {}
+            console.log(f.name)    // 返回 fpp
+        }
+
+        /* 
+            4. Function 构造函数的实例
+                返回 anonymous
+        */
+        {
+            let f = new Function()
+            console.log(f.name)    // 返回 anonymous
+        }
+
+        /* 
+            5. bind() 返回的函数
+                返回 'bound 原函数名'
+        */
+        {
+            let carol = {
+                name: 'Carol',
+                age: 20
+            }
+
+            function foo() {
+                console.log(this);
+            }
+
+            var newFoo = foo.bind(carol)
+            console.log(newFoo.name)    // bound foo
+        }
+    </script>
+</body>
+</html>

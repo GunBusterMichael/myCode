@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-06-函数默认值的应用-指定某个参数可以或不可省略</title>
+</head>
+<body>
+    <script>
+        /*
+*           1. 指定某个参数不可省略：
+                给该参数设定报错函数默认值。
+        */
+        {
+            function error() {
+                throw new Error('参数不可省略。')
+            }
+
+            function doTest(must = error()) {    // 形参 must 的默认值等于 error() 函数的返回值
+                return must
+            }
+
+            // 给不可省略的参数传参，不报错
+            console.log(doTest(1))
+
+            // 没有给不可省略的形参传参，报错 Uncaught Error: 参数不可省略。
+            doTest()
+            
+        }
+
+        /*
+*            2. 指定某个参数可以省略：
+                给该参数设定 undefined 默认值。
+        */
+        {
+            function f(alternative = undefined) {
+                // xxx
+            }
+
+            f()
+        }
+    </script>
+</body>
+</html>

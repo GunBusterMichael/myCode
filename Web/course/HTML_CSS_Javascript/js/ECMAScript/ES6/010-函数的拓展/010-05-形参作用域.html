@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-05-形参作用域</title>
+</head>
+
+<body>
+    <script>
+        /*
+            形参作用域
+                1. 存在条件
+                    为形参设定默认值后，在函数进行声明初始化时，
+                    形参会形成一个单独的作用域（Context）；
+                    在初始化结束后销毁。
+!               不设置默认值时，形参作用域不存在。
+        */
+
+        // 2. 形参作用域与函数外部作用域不是同一个作用域
+        {
+            let x = 1
+
+            function f(x, y = x) {    // 第一个形参 x 在形参作用域中被声明，第二个形参 y 的默认值指向第一个形参 x ，而不是函数外部的 x
+                console.log(y)
+            }
+
+            f(2)    // 形参 x 被赋值为 2，所以形参 y 的默认值为 2
+            // 返回 2
+        }
+
+        // 3. 形参作用域与函数内部作用域不是同一个作用域
+        {
+            let x = 1
+
+            function f(y = x) {    // 形参 y 的默认值 x 依据最近原则，指向函数外部变量 x
+                let x = 2          // 在函数内的 x 与形参 x 不同
+                // x = 2           // 如果不声明，只赋值 x，则该 x 指向形参 x
+                console.log(y)
+            }
+
+            f()    // 返回 1
+            
+        }
+    </script>
+</body>
+
+</html>
