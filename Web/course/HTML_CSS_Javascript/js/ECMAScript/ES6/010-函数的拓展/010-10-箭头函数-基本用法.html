@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-10-箭头函数-基本用法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            箭头函数：
+                用 => 定义函数。
+        */
+
+        // 1. 基本写法
+        // 1.1 函数只有一个参数时：不用小括号包含形参
+        {
+            var f = function (v) {
+                return v
+            }
+            // 等效于
+            var f = v => v
+            // 初始化 f 为函数：形参为 v，返回 v 的值。
+        }
+
+        // 1.2 函数没有形参或不止一个形参时：用小括号包含形参
+        {
+            // 1.2.1 没有形参
+            var f = function () {
+                return 1
+            }
+            // 等效于
+            var f = () => 5
+
+            // 1.2.2 不止一个形参
+            var f = function (n1, n2) {
+                return n1, n2
+            }
+            // 等效于
+            var f = (n1, n2) => n1 + n2
+            console.log(f(1, 2))    // 返回 3
+        }
+
+        // 2. 箭头函数的代码块
+        // 2.1 返回对象时：用大括号包含返回值
+        {
+            // 给对象返回值加小括号，不报错
+            var f = (id) => ({ id: id, name: 'Carol' })
+
+            // 不给对象返回值加小括号，报错
+            // var f = (id) => { id: id, name: 'Carol' }    // 给对象返回值加小括号，不报错
+        }
+
+        /*
+            2.2 代码块语句多于一行时：
+                    用大括号包含代码块；
+                    用 return 返回。
+        */
+        {
+            const getSum = (num1, num2) => {
+                let sum = num1 + num2
+                return sum
+            }
+            console.log(getSum(1, 2))
+        }
+
+        // 3. 箭头函数的 rest 参数
+        {
+            const getNumsArr = (...nums) => console.log(nums);
+
+            getNumsArr(1, 2, 3)    // 返回 [1, 2, 3]
+        }
+
+        /*
+            4. 箭头函数的用处
+                4.1 简化回调函数
+        */
+        {
+            // 举例：排序方法 sort() 从小到大排序的回调函数
+            let arr1 = [45, 84, 64, 68, 465, 8654, 9]
+            let arr2 = [45, 84, 64, 68, 465, 8654, 9]
+
+            // 普通函数写法
+            arr1.sort(function (a, b) {
+                return a - b    // 从小到大排序
+            })
+            console.log(arr1)
+
+            // 箭头函数写法
+            arr2.sort((a, b) => a - b)
+            console.log(arr2)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-13-箭头函数-不适用的场合</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #b8a6d9;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>点我试试？</div>
+
+    <script>
+        //！ 1. 定义对象的方法，且该方法需要调用 this
+        {
+            const o = {
+                num: 10,
+                minus: () => this.mun--
+            }
+
+            console.log(o.minus())    // 返回 NaN
+
+            /*
+                因为对象内部不构成单独的作用域，
+                所以 minus 方法内的 this 指向 window。
+            */
+        }
+
+        //！ 2. 绑定事件
+        {
+            var div = document.querySelector('div')
+
+            div.addEventListener('click', () => {    // 没有反应
+                this.innerHTML = '点击了。'
+            })
+
+            /*
+                绑定事件内的箭头函数 this 指向全局对象
+            */
+        }
+
+        /*
+！           3. 函数体复杂，有很多行；
+！           4. 函数内部有大量的读写操作，不单纯是为了计算。
+        */
+    </script>
+</body>
+
+</html>

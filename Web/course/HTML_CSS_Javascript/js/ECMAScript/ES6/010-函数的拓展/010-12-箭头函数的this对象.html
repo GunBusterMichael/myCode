@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-12-箭头函数的this对象</title>
+</head>
+
+<body>
+    <script>
+        /*
+*           箭头函数没有单独的 this，
+*           只能借用定义该函数时上层作用域的 this
+        */
+        {
+            // 定时器内部的普通函数
+            {
+                function f() {
+                    setTimeout(function () {
+                        console.log(this)
+                    }, 1000)
+                }
+
+                let o = {
+                    id: 1
+                }
+
+                f.call(o)    // 定时器内部普通函数的 this 永远指向 window
+            }
+
+            // 定时器内部的箭头函数
+            {
+                function f() {
+                    setTimeout(()=>{
+                        console.log(this)
+                    }, 1000)
+                }
+                
+                let o = {
+                    id: 1
+                }
+
+                f.call(o)    // 定时器内部箭头函数借用其外部作用域：f() 的 this
+            }
+        }
+
+        /*
+            不能用：
+                1. call();
+                2. apply();
+                3. bind()
+            直接改变箭头函数的 this 指向。
+        */
+    </script>
+</body>
+
+</html>
