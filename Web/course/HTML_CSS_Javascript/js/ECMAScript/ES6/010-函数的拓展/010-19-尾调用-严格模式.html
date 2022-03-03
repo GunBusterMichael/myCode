@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-19-尾调用-严格模式</title>
+</head>
+<body>
+    <script>
+        //! 尾调用优化只会在严格模式下开启
+
+        /* 
+            正常模式下，
+                agruments：返回调用时函数的参数；
+                caller：返回调用当前函数的函数
+            会跟踪函数的调用栈。
+
+            因为尾调用优化会改写调用栈，所以这两个变量会失真。
+
+            严格模式禁用了这两个变量。
+        */
+
+        {
+            function restricted() {
+                'use strict'
+                console.log(restricted.arguments)
+                console.log(restricted.caller)
+            }
+            restricted()
+            // 报错 Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+        }
+    </script>
+</body>
+</html>

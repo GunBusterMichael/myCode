@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-18-尾调用-尾递归</title>
+</head>
+
+<body>
+    <script>
+        /*
+            定义：
+                函数尾调用本身。
+
+            用处：
+                减少内存占用，防止发生栈溢出。
+        */
+
+        // 举例：计算阶乘的函数
+        {
+            /*
+                普通递归
+                    复杂度：O(n)
+            */
+            {
+                function factorial(n) {
+                    if (n === 1) {
+                        return 1
+                    }
+                    return n * factorial(n - 1)
+                }
+                console.log(factorial(5))    // 返回 120
+            }
+
+            /*
+                尾递归
+                    复杂度：O(1)
+            */
+            {
+                /*
+                    re：内部变量转写成的形参。
+                        通过给 re 设置默认值，使得在调用函数时不用手动传入 re 的值。
+                */
+                function factorial(n, re = 1) {
+                    if (n === 1) {
+                        return re
+                    }
+
+                    /*
+                        将内部函数需要用到的，
+                        外部函数内部变量，
+                        转写成内部函数的形参。
+                    */
+                    return factorial(n - 1, n * re)
+                }
+                console.log(factorial(5))
+            }
+        }
+    </script>
+</body>
+
+</html>

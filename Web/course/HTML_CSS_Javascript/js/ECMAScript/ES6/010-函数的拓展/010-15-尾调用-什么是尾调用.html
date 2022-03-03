@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-15-尾调用-什么是尾调用</title>
+</head>
+
+<body>
+    <script>
+        /*
+            尾调用
+                1. 定义
+                    函数的最后一步是调用另一个函数。
+        */
+
+        // 属于尾调用的函数
+        {
+            // g() 是 f() 的最后一步操作，属于尾调用。
+            {
+                function f(x) {
+                    return g(x)
+                }
+            }
+
+            // m() 和 n() 都是 f() 的最后一步操作，都属于尾调用。
+            {
+                function f(x) {
+                    if (x > 0) {
+                        return m(x)
+                    }
+                    return n(x)
+                }
+            }
+        }
+
+        // 不属于尾调用的函数：
+        {
+            // 1. 调用函数后还有赋值操作
+            {
+                function f(x) {
+                    let y = g(x)
+                    return y
+                }
+            }
+
+            // 2. 调用函数后还有加法操作
+            {
+                function f(x) {
+                    return g(x) + 1
+                }
+            }
+
+            // 3. 没将调用函数写在 ruturn 这一步中
+            {
+                function f(x) {
+                    g(x)
+                    // return undefined    // 此步虽然没写，但是存在
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

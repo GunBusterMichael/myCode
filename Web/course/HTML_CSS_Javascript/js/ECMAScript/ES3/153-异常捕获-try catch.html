@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>153-异常捕获-try catch</title>
+</head>
+<body>
+    <script>
+        /*
+            try...catch
+                1. 作用：
+                    运行代码并返回错误。
+                2. 代码块中包含的内容：
+                    2.1 try
+                        包含需要测试的代码。
+                    2.2 catch
+                        包含测试代码出现错误时，需要运行的代码。
+                3. 注意点：
+                    catch 代码块中，throw 之后的代码不会执行；
+                    若捕捉到异常，catch 代码块后的代码不会执行。
+        */
+
+        // 举例
+        {
+            let a = 0
+            try {
+                a()
+            } catch (error) {
+                // 只输出字符串：
+                // throw '这不是一个函数或方法'    // 返回 Uncaught 这不是一个函数或方法
+
+                // error 中包含 try 返回的错误对象
+                console.log(error)    /* 返回 TypeError: a is not a function
+    at 153-异常捕获-try catch.html:29:17 */
+
+                // 输出字符串并附带堆栈信息
+                throw new Error('这不是一个函数或方法')
+                /* 返回 153-异常捕获-try catch.html:33 Uncaught Error: 这不是一个函数或方法
+                    at 153-异常捕获-try catch.html:33:23 */
+
+                console.log('我不会被执行😭')    // 没被执行
+            }
+        }
+
+        console.log('如果捕捉到错误，我也不会被执行😭')    // 没被执行
+    </script>
+</body>
+</html>

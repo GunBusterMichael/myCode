@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010-17-尾调用-尾调用优化</title>
+</head>
+<body>
+    <script>
+        /*
+            定义：
+                    由于尾调用是函数的最后一步操作，
+                在执行完最后一步操作后，外层函数就运行完毕，
+                其调用位置、内部变量就不用再被保留。
+*               所以只用保留内层函数的调用帧即可。
+            用处：
+                节省内存。
+        */
+
+        // 举例
+        {
+            function f() {
+                let m = 1
+                let n = 2
+                return g(m+n)
+            }
+            // 等效于
+            function f() {
+                return g(3)
+            }
+            // 等效于
+            g(3)
+
+            /*
+                    f() 已被调用完毕，其调用帧可被删除；
+                只用留下 g(3) 的调用帧。
+            */
+        }
+
+        //！如果内层函数会用到外层函数的内部变量，则无法进行尾调用优化
+        {
+            function add(a) {
+                let b = 1
+                function inner() {
+                    return a+b
+                }
+                return inner()
+            }
+            // 内层函数需要获取外层函数的变量 a 和 b
+        }
+    </script>
+</body>
+</html>

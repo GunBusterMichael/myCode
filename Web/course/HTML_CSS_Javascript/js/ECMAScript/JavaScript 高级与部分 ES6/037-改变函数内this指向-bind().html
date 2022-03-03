@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        /* 
+        /*
             bind()
                 功能：
                     返回一个除 this 指向改变，但其余内容与原函数一样的新函数；
@@ -31,6 +31,14 @@
 
         newFn()
         // this 为 o 对象
+
+        // 如果第一个参数为 null，则不改变 this 指向
+        function f(a, b) {
+            console.log(this);
+            console.log(a + b);
+        }
+        var nf = f.bind(null, 1, 2)
+        nf()    // this 指向 window
     </script>
 </body>
 
