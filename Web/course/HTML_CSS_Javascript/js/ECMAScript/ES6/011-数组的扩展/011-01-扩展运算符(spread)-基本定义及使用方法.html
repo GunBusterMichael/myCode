@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>011-01-扩展运算符(spread)-基本定义及使用方法</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        /* 
+            拓展运算符
+                1. 写法
+                    三个点 ...
+                2. 作用
+                    将一个数组转为用逗号隔开的序列。
+        */
+
+        // 举例
+        {
+            console.log(...[1, 2, 3, 4, 5])    // 返回 1 2 3 4 5
+
+            console.log(1, ...[2, 3, 4], 5)    // 返回 1 2 3 4 5
+
+            console.log(...document.querySelectorAll('div'))    // 返回 <div></div> <div></div> <div></div>
+        }
+
+        /*
+            3. 用处
+                作为函数实参
+        */
+        {
+            function add(a, b) {
+                console.log(a + b)
+            }
+
+            add(...[1, 2])    // 返回 3
+        }
+
+        // 拓展运算符后可放置表达式
+        {
+            let arr = [...(x > 0 ? ['a'] : []), 'b']
+        }
+
+        // 如果拓展运算符后是一个空数组，则不起效果
+        console.log([...[], 1])
+
+        //! 只有在作为函数实参时，拓展运算符才能被写在小括号中，否则会报错
+        {
+            (...[1, 2])    // 报错 Uncaught SyntaxError: Unexpected token '...'
+            
+            console.log((...[1, 2]))    // 报错 Uncaught SyntaxError: Unexpected token '...'
+        }
+    </script>
+</body>
+
+</html>
