@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>012-01-属性和方法的的简写</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 属性与方法的简写：
+                直接在对象中写入变量和函数，
+                    作为对象的属性和方法。
+        */
+
+        // 1.1 属性简写
+        {
+            {
+                let uname = 'Carol'
+                let star = { uname }
+
+                // 等同于：
+                // let star = {uname: 'Carol'}
+
+                console.log(star)    // 返回 {uname: 'Carol'}
+            }
+            {
+                function f(x, y) {
+                    return { x, y }
+                }
+
+                // 等同于：
+                /*
+                    function f(x, y) {
+                        return {x: x, y: y}
+                    }
+                */
+
+                console.log(f(1, 2))    // 返回 {x: 1, y: 2}
+            }
+        }
+
+        // 1.2 方法简写
+        {
+            {
+                {
+                    let o = {
+                        say() {
+                            console.log('Hello')
+                        }
+                    }
+                }
+                // 等同于：
+                {
+                    let o = {
+                        say: function () {
+                            console.log('Hello')
+                        }
+                    }
+                }
+            }
+        }
+
+        //! 简写的对象方法不能作为构造函数，否则会报错
+        {
+            let o = {
+                Star () {
+                    this.name = 'Ava'
+                }
+            }
+
+            new o.Star()    // 报错 Uncaught TypeError: o.Star is not a constructor
+        }
+    </script>
+</body>
+
+</html>

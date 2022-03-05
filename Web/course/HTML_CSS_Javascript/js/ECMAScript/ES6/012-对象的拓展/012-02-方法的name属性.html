@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>012-02-方法的name属性</title>
+</head>
+
+<body>
+    <script>
+        // 方法的 name 属性返回函数名，即方法名。
+        {
+            let carol = {
+                sing() {
+                    console.log('我会唱歌')
+                },
+                dance: function () {
+                    console.log('我会跳舞')
+                }
+            }
+
+            console.log(carol.sing.name)     // 返回 sing
+            console.log(carol.dance.name)    // 返回 dance
+        }
+    </script>
+</body>
+
+</html>
