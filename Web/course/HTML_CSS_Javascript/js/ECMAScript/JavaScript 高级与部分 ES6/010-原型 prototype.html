@@ -26,17 +26,22 @@
             console.log("I'm singing.");
         }
         Star.prototype.gander = 'Female'
+        Star.prototype.logThis = function () {
+                return this
+        }
 
         var carol = new Star('Carol', 20)
         var bella = new Star('Bella', 19)
 
-        carol.sing()
-        bella.sing()
-        console.log(carol.gander);
-        console.log(bella.gander);
+        carol.sing()    // 返回 I'm singing.
+        bella.sing()    // 返回 I'm singing.
+        console.log(carol.gander)    // 返回 Female
+        console.log(bella.gander)    // 返回 Female
+        console.log(carol.logThis())    // 返回 carol 实例
+        console.log(bella.logThis())    // 返回 bella 实例
 
         // 这两个实例中的 sing() 指向的是同一个内存地址
-        console.log(carol.sing === bella.sing);    // true
+        console.log(carol.sing === bella.sing);    // 返回 true
     </script>
 </body>
 </html>

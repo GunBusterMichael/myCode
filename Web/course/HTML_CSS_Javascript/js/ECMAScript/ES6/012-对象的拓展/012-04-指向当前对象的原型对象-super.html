@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>012-04-指向当前对象的原型对象-super</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            super 关键字
+                1. 功能
+                    指向当前对象的原型对象。
+        */
+
+        // 举例
+        {
+            // 创建对象 aProto，日后作为 obj 的原型对象
+            let aProto = {
+                id: '我是原型对象。'
+            }
+
+            // 创建对象 obj，日后将 aProto 作为 obj 的原型对象
+            let obj = {
+                id: '我是普通对象。',
+                sayPrototype() {
+                    console.log(super.id)
+                    // console.log(super)    // super 关键字不能单独使用
+                },
+                sayThis() {
+                    console.log(this.id)
+                }
+            }
+
+            // 将 obj 的原型对象设置为 aProto
+            Object.setPrototypeOf(obj, aProto)
+
+            // 测试 super 指向
+            obj.sayPrototype()    // 返回 我是原型对象。
+
+            // 测试 this 指向
+            obj.sayThis()         // 返回 我是普通对象。
+        }
+
+        /*
+            2. 用处
+？               只能用在对象的方法简写中；
+！               不能用在属性和 方法名: 函数 中。
+        */
+        {
+            //！不能用在属性中
+            {
+                let err = {
+                    // a: super.id    // 报错 Uncaught SyntaxError: 'super' keyword unexpected here
+                }
+            }
+            //！不能用在 方法名: 函数 中
+            {
+                let err = {
+                    // a: () => super.id    // 报错 Uncaught SyntaxError: 'super' keyword unexpected here
+                }
+            }
+            //！不能用在属性中
+            {
+                let err = {
+                    a: function () {
+                        // return super.id    // 报错 Uncaught SyntaxError: 'super' keyword unexpected here
+                    }
+                }
+            }
+        }
+
+        /*
+            某对象用 super 调用其原型的方法，
+            此时，
+            原型的方法指向调用它的某对象。
+        */
+        {
+            /*
+                obj的方法 调用obj的原型对象pro的 方法，
+                此时，
+                原型对象的方法的this 指向obj。
+            */
+            let pro = {
+                logThis() {
+                    console.log(this)
+                }
+            }
+
+            let obj = {
+                id: 1,
+                useSuper() {
+                    super.logThis()
+                }
+            }
+
+            Object.setPrototypeOf(obj, pro)
+
+            obj.useSuper()    // 返回 obj
+        }
+    </script>
+</body>
+
+</html>
