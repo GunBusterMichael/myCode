@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>012-05-对象中的扩展运算符-解构赋值</title>
+</head>
+
+<body>
+    <script>
+        /*
+            通过拓展运算符，
+*               可将未被获取的属性名和属性值，
+*               一起赋值到指定对象上。
+        */
+
+        // 举例
+        {
+            // 将未被读取的属性名和属性值一起赋值到对象 z 中👇
+            let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 }
+
+            console.log(x)    // 返回 1
+            console.log(y)    // 返回 2
+            console.log(z)    // 返回 {a: 3, b: 4}
+        }
+
+        /*
+            注意事项
+！               1. 等号右边必须是对象；
+                    如果是不能转化为对象的 undefined 或 null，就会报错。
+        */
+        {
+            // let { ...a } = undefined    // 返回 Uncaught TypeError: Cannot destructure 'undefined' as it is undefined.
+            // let { ...a } = null          // 返回 Uncaught TypeError: Cannot destructure 'null' as it is null.
+        }
+
+        /*
+！           2. 解构赋值的必须是最后一个参数，
+                否则会报错。
+        */
+        {
+            // let { x, ...y, ...z } = { x: 1, y: 2, a: 3, b: 4 }    // 报错 Uncaught SyntaxError: Rest element must be last element
+        }
+
+        //！3. 解构赋值是浅拷贝！
+        {
+            let obj = { a: { an: 1 } }
+
+            // 将对象 obj 赋值给对象 x
+            let { ...x } = obj
+
+            // 修改对象 obj 的属性值
+            obj.a.an = 2
+
+            // 对象 obj 的属性值被修改后，对象 x 的对应属性值也被修改了。
+            console.log(x)    // 返回 2
+        }
+
+        //！3. 解构赋值不能复制继承自原型对象的属性
+        {
+            let pro = { a: 1 }
+            let o = { b: 2 }
+
+            // 将对象 o 的原型对象设置为 pro
+            o.__proto__ = pro
+
+            // 将对象 o 解构赋值到对象 x 中
+            let { ...x } = o
+
+            // 对象 o 中继承自原型对象 pro 的属性 a 没有被解构赋值到对象 x 中
+            console.log(x.a)    // 返回 undefined
+            console.log(x)    // 返回 {b: 2}
+        }
+
+        /*
+            ！4. 在变量声明语句中，如果使用解构赋值，
+？                   扩展运算符后必须是一个变量名，
+！                   不能是一个解构赋值表达式，会报错。
+        */
+        {
+            // let { x, ...{ y, z } } = o    // 报错 Uncaught SyntaxError: `...` must be followed by an identifier in declaration contexts
+        }
+
+        /*
+            对象解构赋值的用处：
+                将函数的某些形参引入到别的函数中。
+        */
+        {
+            // 原始函数
+            function originFn({a, b}) {
+                console.log(a, b)
+            }
+
+            // 原始函数的拓展函数，能够接受多余参数，并通过尾调用实现原始函数的功能
+            function wrapperFn({x, y, ...rest}) {
+                // 使用 x 和 y 参数进行操作
+                console.log(x, y)
+
+                // 将其余参数传递给 originFn
+                return originFn(rest)
+            }
+        }
+    </script>
+</body>
+
+</html>
