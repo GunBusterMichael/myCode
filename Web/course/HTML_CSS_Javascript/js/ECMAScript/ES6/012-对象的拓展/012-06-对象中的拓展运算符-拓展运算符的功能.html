@@ -47,20 +47,20 @@
                 由于该对象没有自身属性，所以返回空对象 {}
             */
             // 等同于 {...Object(1)}
-            console.log({...1})    // 返回 {}
+            console.log({ ...1 })    // 返回 {}
 
             // 等同于 {...Object(true)}
-            console.log({...true})    // 返回 {}
+            console.log({ ...true })    // 返回 {}
 
             // 等同于 {...Object(undefined)}
-            console.log({...undefined})    // 返回 {}
+            console.log({ ...undefined })    // 返回 {}
 
             // 等同于 {...Object(null)}
-            console.log({...null})    // 返回 {}
+            console.log({ ...null })    // 返回 {}
 
             // 如果拓展运算符后是字符串，会将其传换成一个类似数组的对象
             {
-                console.log({...'hello'})    // 返回 {0: 'h', 1: 'e', 2: 'l', 3: 'l', 4: 'o'}
+                console.log({ ...'hello' })    // 返回 {0: 'h', 1: 'e', 2: 'l', 3: 'l', 4: 'o'}
             }
         }
 
@@ -121,10 +121,67 @@
                 }
             }
 
-            let ab = {...a, ...b}
+            let ab = { ...a, ...b }
 
             // 重名的属性将会被后定义的那个覆盖
             console.log(ab)    // 返回 {id: 2, sing: ƒ, dance: ƒ}
+        }
+
+        /*
+            如果用户自定义的属性，
+                放到了扩展运算符的后面，
+                则扩展运算符内的同名属性会被覆盖掉。
+        */
+        {
+            let a = {
+                x: 1,
+                y: 2
+            }
+
+            let b = {
+                ...a,
+                x: 3,
+                y: 4
+            }
+
+            /*
+                对象 a 中的 x, y 属性，
+                    在被拷贝到对象 b 后，
+                    被对象 b 中的 x, y 属性覆盖。
+
+                可用来修改现有对象的部分属性。
+            */
+            console.log(b)    // 返回 {x: 3, y: 4}
+        }
+
+        /*
+            如果用户自定义的属性，
+                放到了扩展运算符的前面，
+                则相当于设置新对象的属性的默认属性值。
+        */
+        {
+            let a = {
+                x: 1,
+                y: 2
+            }
+
+            let b = {
+                x: 3,
+                y: 4,
+                ...a,
+            }
+
+            console.log(b)    // 返回 {x: 1, y: 2}
+        }
+
+        // 对象的扩展运算符后可以跟表达式
+        {
+            let x = 2
+            const obj = {
+                ...(x > 1 ? { a: 1 } : {}),
+                b: 2,
+            }
+            console.log(obj)    // {a: 1, b: 2}
         }
     </script>
 </body>

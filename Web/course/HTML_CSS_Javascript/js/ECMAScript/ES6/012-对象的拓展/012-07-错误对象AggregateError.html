@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>012-07-错误对象AggregateError</title>
+</head>
+<body>
+    <script>
+        /* 
+            AggregateError 错误对象
+                1. 包含的内容
+                    AggregateError 错误对象封装了多个错误
+                2. 用处
+                    如果某个单一操作，同时引发了多个错误，
+                    就可以抛出一个AggregateError 错误对象，将各种错误放在里面。
+        */
+        /* 
+            3. 用法
+                AggregateError(errors[, message]) 是一个构造函数：
+                    3.1 errors
+                        是个数组，不可省略。
+                        它的每个成员都是一个错误对象。
+                    3.2 message
+                        是个字符串，可省略。
+                        表示 AggregateError 抛出时的提示信息。
+        */
+
+        // 举例
+        {
+            const error = new AggregateError([
+                new Error('ERROR_11112'),
+                new TypeError('First name must be a string'),
+                new RangeError('Transaction value must be at least 1'),
+                new URIError('User profile link must be https'),
+            ], 'Transaction cannot be processed')
+            /* 
+                上面示例中，AggregateError()的第一个参数数组里面，一共有四个错误实例。
+                第二个参数字符串则是这四个错误的一个整体提示。
+            */
+        }
+
+        /* 
+            4. AggregateError 的实例对象的属性
+                1. name：错误名称，默认为“AggregateError”；
+                2. message：错误的提示信息；
+                3. errors：数组，每个成员都是一个错误对象。
+        */
+
+        // 举例
+        {
+            try {
+                throw new AggregateError([
+                    new Error("some error"),
+                ], 'Hello');
+            } catch (e) {
+                console.log(e instanceof AggregateError); // 返回 true
+                console.log(e.message);                   // 返回 "Hello"
+                console.log(e.name);                      // 返回 "AggregateError"
+                console.log(e.errors);                    // 返回 [ Error: "some error" ]
+            }
+        }
+    </script>
+</body>
+</html>
