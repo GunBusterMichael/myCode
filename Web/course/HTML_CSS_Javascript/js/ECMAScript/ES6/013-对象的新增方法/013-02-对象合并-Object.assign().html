@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-02-对象合并-Object.assign()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Object.assign(target, source1, source2......)
+                1. 作用
+                    用于对象的合并：
+                        将源对象（source）的所有可枚举属性，
+                        复制到目标对象（target）中。
+        */
+        // 举例
+        {
+            const target = { a: 0 }
+
+            const source1 = {
+                b: 1,
+                dance() {
+                    return '我会跳舞。'
+                }
+            }
+            const source2 = {
+                c: 2,
+                sing: function () {
+                    return '我会唱歌。'
+                }
+            }
+
+            /*
+                将 source1，source2 中的所有可遍历属性，
+                    复制到 target 中；
+                    target 本身的属性保留。
+            */
+            Object.assign(target, source1, source2)
+
+            console.log(target)    // 返回 {a: 0, b: 1, c: 2, dance: ƒ, sing: ƒ}
+        }
+
+        /*
+            2. 同名属性
+                如果目标对象和源对象有同名属性，
+                    或是多个源对象之间有同名属性，
+                    则后面的属性会覆盖前面的属性。
+        */
+        {
+            const target = {
+                a: 1,
+                b: 2
+            }
+
+            const source1 = {
+                a: 2,
+                c: 3
+            }
+            const source2 = {
+                c: 3
+            }
+
+            Object.assign(target, source1, source2)
+
+            console.log(target)
+        }
+
+        // 3. 小括号中只有一个参数时，直接返回该参数
+        {
+            // 3.1 参数为对象时，直接返回对象
+            {
+                const obj = {
+                    a: 0
+                }
+
+                console.log(Object.assign(obj))            // 返回 {a: 0}
+                console.log(Object.assign(obj) === obj)    // 返回 true
+            }
+
+            // 3.2 如果该参数不是对象，会先将其转换为参数，再返回
+            {
+                console.log(Object.assign(1))    // 返回 Number {1}
+
+                console.log(typeof Object.assign(1))    // 返回 'object'
+            }
+
+            // 3.3 由于 undefined 和 null 无法转换为对象，所以将它们作为参数时，会报错
+            {
+                // Object.assign(undefined)    // 报错 Uncaught TypeError: Cannot convert undefined or null to object
+                // Object.assign(null)         // 报错 Uncaught TypeError: Cannot convert undefined or null to object
+            }
+        }
+
+        /*
+            4. 非对象参数出现在源对象的位置：
+                会先将其转换为对象；
+                    如果无法转化，就将其跳过。
+                    （如果 undefined 和 null 是源对象，就不会报错）
+        */
+        {
+            console.log(Object.assign(1, undefined, null))    // 返回 Number {1}
+        }
+        /*
+            字符串出现在源对象位置：
+                会以键值对的形式，拷贝到目标对象。
+
+？               因为只有字符串的包装对象会产生可枚举属性。
+        */
+        /*
+            其他值出现在源对象位置：
+                没有效果。
+
+？               因为只有字符串的包装对象会产生可枚举属性。
+        */
+        {
+            const v1 = 'abc'
+            const v2 = true
+            const v3 = 10
+
+            const obj = Object.assign({}, v1, v2, v3)
+
+            console.log(obj)    // 返回 {0: 'a', 1: 'b', 2: 'c'}
+            // 布尔值和数值没有被复制到目标对象中。
+        }
+
+        /*
+            包装对象的原始值被包装到了内部属性 PrimitiveValue 中，
+                这个属性不可枚举，不会被 Object.assign() 拷贝。
+
+            只有字符串的包装对象会产生了枚举的属性，这些属性会被拷贝。
+        */
+        {
+            Object(true)     // {[[PrimitiveValue]]: true}
+            Object(10)       // {[[PrimitiveValue]]: 10}
+            Object('abc')    // {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}
+        }
+    </script>
+</body>
+
+</html>

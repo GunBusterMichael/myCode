@@ -97,6 +97,18 @@
         if (Boolean(false)) {
             console.log('true');
         }
+
+        /*
+            包装对象的原始值被包装到了内部属性 PrimitiveValue 中，
+                这个属性不可枚举，不会被 Object.assign() 拷贝。
+
+            只有字符串的包装对象会产生了枚举的属性，这些属性会被拷贝。
+        */
+        {
+            Object(true)     // {[[PrimitiveValue]]: true}
+            Object(10)       // {[[PrimitiveValue]]: 10}
+            Object('abc')    // {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}
+        }
     </script>
 </body>
 
