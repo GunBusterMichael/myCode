@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-04-对象合并-Object.assign()-常见用途.html</title>
+</head>
+
+<body>
+    <script>
+        // 1. 为对象添加属性
+        {
+            // 为 obj 添加属性 b
+            let obj = {
+                a: 1
+            }
+
+            obj = Object.assign(obj, { b: 2 })
+
+            console.log(obj)    // 返回 {a: 1, b: 2}
+        }
+
+        // 2. 为对象添加方法
+        {
+            let star = {
+                name: 'Carol'
+            }
+
+            Object.assign(star, {
+                sing() {
+                    console.log('我会唱歌')
+                }
+            })
+
+            star.sing()    // 返回 我会唱歌
+        }
+
+        /* 
+            3. 克隆对象
+                只能复制对象自身的值，不能复制其继承的值。
+        */
+        {
+            let obj = {
+                a: 1
+            }
+
+            let clone = Object.assign({}, obj)
+
+            console.log(clone)    // 返回 {a: 1}
+
+            // 克隆对象自身值与继承值的函数
+            {
+                function clone(origin) {
+                    let originProto = Object.getPrototypeOf(origin)
+                    return Object.assign(Object.create(originProto), origin)
+                }
+            }
+        }
+
+        // 4. 合并多个对象
+        {
+            /*
+                将多个对象(...sources)合并到target对象中
+            */
+            const merge = (target, ...sources) => Object.assign(target, ...sources)
+        }
+
+        // 5. 为属性指定默认值
+        {
+            const defaultData = {
+                id: 0,
+                color: 'white'
+            }
+
+            function loginData(optionData) {
+                optionData = Object.assign({}, defaultData, optionData)
+                return optionData
+            }
+            /*
+                defaultData 是默认值。
+                    如果用户提供的 optionData 中有和 defaultData 相同属性名的属性值，
+                    则用户提供的属性会替代默认属性。
+            */
+
+            //！默认值与用户值最好是简单类型，否则默认值不起作用
+            {
+                const defaultData = {
+                    url: {
+                        host: 'baidu.com',
+                        port: 8080
+                    }
+                }
+
+                function loginData(optionData) {
+                    optionData = Object.assign({}, defaultData, optionData)
+                    return optionData
+                }
+
+                let newDate = loginData({url: {host: 'hao123.com'}})
+
+                console.log(newDate)    // 返回 {url: {host: "hao123.com"}}
+                /* 
+                    本来只想更改 host，却是 optionData.url 覆盖掉了 defaultData.url
+                */
+            }
+        }
+    </script>
+</body>
+
+</html>
