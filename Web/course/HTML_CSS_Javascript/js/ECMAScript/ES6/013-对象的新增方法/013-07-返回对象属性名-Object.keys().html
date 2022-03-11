@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-07-返回对象属性名-Object.keys()</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.keys()
+                1. 作用
+                    返回一个数组；
+                        成员是小括号内参数对象自身的（不含继承的），
+                        所有可遍历属性的键名（属性名）。
+        */
+        // 举例
+        {
+            let o = {
+                a: 1,
+                b: 2,
+                say() {
+                    console.log('我会说话。')
+                }
+            }
+
+            console.log(Object.keys(o))    // 返回 ["a", "b", "say"]
+
+            // 2. for of 循环
+            {
+                for (let key of Object.keys(o)) {
+                    console.log(key)
+                    // 'a'
+                    // 'b'
+                    // 'say'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

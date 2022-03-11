@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-05-设置对象原型-Object.setPrototypeOf()</title>
+</head>
+<body>
+    <script>
+        /*
+            Object.setPrototypeOf()
+                1. 作用
+                    设置一个对象的原型对象（prototype）。
+                2. 返回值
+                    返回被设置原型对象的对象。
+                3. 用法
+                    Object.setPrototypeOf(要被设置原型对象的对象, 原型对象)
+        */
+        // 举例
+        {
+            const obj = {}
+            const prot = {
+                a: 1
+            }
+            prot.b=2
+
+            // 将 prot 设置为 obj 的原型对象
+            Object.setPrototypeOf(obj, prot)
+
+            // obj 可以使用其原型对象 prot 的属性
+            console.log(obj.a)    // 返回 1
+            console.log(obj.b)    // 返回 2
+        }
+
+        /*
+            4. 如果第一个参数不是对象：
+                4.1 null 或 undefined 以外的值
+                    先将其转化为对象，再返回第一个参数（数据类型不变）
+        */
+        {
+            console.log(Object.setPrototypeOf(1, {}) === 1)    // 返回 true
+        }
+
+        /*
+            4.2 null 或 undefined
+                由于无法被转化为对象，所以会报错。
+        */
+        {
+            // console.log(Object.setPrototypeOf(null, {}))    // 报错 Uncaught TypeError: Object.setPrototypeOf called on null or undefined
+            // console.log(Object.setPrototypeOf(undefined, {}))    // 报错 Uncaught TypeError: Object.setPrototypeOf called on null or undefined
+        }
+    </script>
+</body>
+</html>

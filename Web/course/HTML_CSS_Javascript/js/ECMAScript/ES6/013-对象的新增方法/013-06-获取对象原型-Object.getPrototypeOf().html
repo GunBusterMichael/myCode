@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-06-获取对象原型-Object.getPrototypeOf()</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.getPrototypeOf()
+                1. 作用
+                    获取一个对象的原型对象。
+                2. 返回值
+        */
+        // 举例
+        {
+            function Star() {
+                // xxx
+            }
+
+            let carol = new Star()
+
+            console.log(Object.getPrototypeOf(carol))    // 返回 构造函数 Star
+            console.log(Object.getPrototypeOf(carol) === carol.__proto__)    // 返回 true
+        }
+
+        /*
+            3. 如果参数不是对象：
+                3.1 null 或 undefined 以外的值
+                    将其转化为对象.
+        */
+        {
+            // 数值
+            {
+                console.log(Object.getPrototypeOf(1))    // 返回 Number {[[PrimitiveValue]]: 0}
+                // 等价于
+                console.log(Object.getPrototypeOf(Number(1)))    // 返回 Number {[[PrimitiveValue]]: 0}
+            }
+
+            // 字符串
+            {
+                console.log(Object.getPrototypeOf('foo'))    // 返回 String {length: 0, [[PrimitiveValue]]: ""}
+                // 等价于
+                console.log(Object.getPrototypeOf(String('foo')))    // 返回 String {length: 0, [[PrimitiveValue]]: ""}
+            }
+
+            // 布尔值
+            {
+                console.log(Object.getPrototypeOf(true))    // 返回 Boolean {[[PrimitiveValue]]: false}
+                // 等价于
+                console.log(Object.getPrototypeOf(Boolean(true)))    // 返回 Boolean {[[PrimitiveValue]]: false}
+            }
+
+            console.log(Object.getPrototypeOf(1) === Number.prototype)        // true
+            console.log(Object.getPrototypeOf('foo') === String.prototype)    // true
+            console.log(Object.getPrototypeOf(true) === Boolean.prototype)    // true
+        }
+
+        /*
+            3.2 null 或 undefined
+                由于无法被转化为对象，所以会报错。
+        */
+        {
+            Object.getPrototypeOf(null)         // 返回 Uncaught TypeError: Cannot convert undefined or null to object
+            Object.getPrototypeOf(undefined)    // 返回 Uncaught TypeError: Cannot convert undefined or null to object
+        }
+    </script>
+</body>
+
+</html>
