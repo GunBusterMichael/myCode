@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>014-02-链判断运算符</title>
+</head>
+
+<body>
+    <script>
+        /*
+            ?.
+                1. 作用
+                    在链式调用时，
+                        判断左侧对象是否为 null 或 undefined；
+                        如果是，则返回 undefined，右侧语句不执行；
+                        如果不是，返回 右侧对象的值。
+        */
+
+        // 举例
+        // 判断对象中是否存在指定属性
+        {
+            let obj = {
+                a: {
+                    aa: 1
+                }
+            }
+
+            console.log(obj?.a?.aa)    // 返回 1
+            console.log(obj?.b?.aa)    // 返回 undefined
+        }
+
+        /*
+            判断对象中是否存在指定方法；
+                如果存在，就执行
+        */
+        {
+            function Star() {
+                this.sing = function () {
+                    console.log('我会唱歌')
+                }
+            }
+
+            let carol = new Star()
+
+            /* 
+                判断实例对象 carol 中是否存在 sing 方法；
+                    如果存在，就执行；
+                    如果不存在，返回 undefined。
+            */
+            carol.sing?.()    // 返回 '我会唱歌'
+
+            /*
+                判断实例对象 carol 中是否存在 sing 方法；
+                    如果存在，就执行；
+                    如果不存在，返回 undefined。
+            */
+            console.log(carol.leave?.())    // 返回 undefined
+        }
+
+        /*
+            写法1
+                obj?.prop 判断对象属性是否存在；
+            写法2
+                obj?.[expr] 判断对象属性是否存在；
+            写法3
+                func?.(...args) 函数或对象方法是否存在
+        */
+        {
+            a={
+                b: 'bb'
+            }
+
+            a?.b
+            // 等同于
+            a == null ? undefined : a.b
+
+            // a?.[b]
+            // 等同于
+            // a == null ? undefined : a[b]
+
+            a?.fn()
+            // 等同于
+            a == null ? undefined : a.b()
+
+            a?.()
+            // 等同于
+            a == null ? undefined : a()
+
+            //！如果 a?.b() 里面的 a.b 有值，但不是函数，不可调用，那么 a?.b() 会报错；
+            //！如果 a 不是 null 或 undefined，但也不是函数，那么 a?.() 会报错。
+        }
+
+        /* 
+            注意：
+                1. 短路机制
+        */
+        {
+            // 如果 a 不存在，就不执行 ++x
+            a?.[++x]
+        }
+    </script>
+</body>
+
+</html>

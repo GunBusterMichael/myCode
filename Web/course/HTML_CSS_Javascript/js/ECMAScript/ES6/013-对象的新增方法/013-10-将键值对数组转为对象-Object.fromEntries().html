@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013-10-将键值对数组转为对象-Object.fromEntries()</title>
+</head>
+<body>
+    <script>
+        /* 
+            Object.fromEntries()
+                1. 作用
+                    将一个键值对数组转化为对象
+        */
+        // 举例
+        {
+            let o = Object.fromEntries(
+                [
+                    ['name', 'Carol'],
+                    ['age', 20]
+                ]
+            )
+
+            console.log(o)    // 返回 {"name": "Carol", "age": 20}
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>014-01-指数运算符.html</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            指数运算符
+                1. 写法
+                    **
+        */
+        // 举例
+        {
+            // 2 的 2 次方
+            console.log(2 ** 2)    // 返回 4
+
+            // 2 的 3 次方
+            console.log(2 ** 3)    // 返回 8
+        }
+
+        // 2. 赋值运算符 **=
+        {
+            {
+                let num = 2
+
+                console.log(num **= 2)
+                // 等同于
+                // console.log(num = num ** 2)
+                // 等同于
+                // console.log(num = num * num)
+            }
+            {
+                let num = 2
+
+                console.log(num **= 3)
+                // 等同于
+                // console.log(num = num ** 3)
+                // 等同于
+                // console.log(num = num * num * num)
+            }
+        }
+    </script>
+</body>
+
+</html>
