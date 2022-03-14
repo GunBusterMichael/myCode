@@ -69,7 +69,7 @@
                 func?.(...args) 函数或对象方法是否存在
         */
         {
-            a={
+            a = {
                 b: 'bb'
             }
 
@@ -93,13 +93,67 @@
             //！如果 a 不是 null 或 undefined，但也不是函数，那么 a?.() 会报错。
         }
 
-        /* 
+        /*
             注意：
                 1. 短路机制
+                    如果运算符左侧对象为 null 或 undefined，就不再执行右侧的代码。
         */
         {
-            // 如果 a 不存在，就不执行 ++x
+            // 如果 a 不存在，就不执行 ++x 
             a?.[++x]
+        }
+
+        /*
+            2. 小括号
+                链判断运算符对小括号外部没有影响:
+                    不管小括号内运行情况如何，小括号外的代码仍会被执行。
+            一般情况下，在使用链判断运算符时，不应使用小括号。
+        */
+        {
+            (a?.b).c
+                // 等价于
+                (a == null ? undefined : a.b).c
+            /* 
+                不管对象 a 存不存在，
+                    小括号外的 .c 总会被执行。
+            */
+        }
+
+        /* 
+            3. 错误写法
+                会报错
+        */
+        // 3.1 构造函数
+        {
+            new a?.()
+            new a?.b()
+        }
+        // 3.2 链判断运算符右侧存在模板字符串
+        {
+            // a?.`{b}`    // 报错 Tagged template expressions are not permitted in an optional chain.
+            // a?.b`{c}`    // 报错 Tagged template expressions are not permitted in an optional chain.
+        }
+        // 3.3 链判断运算符的左侧是 super
+        {
+            // super?.()    // 报错 'super' must be followed by an argument list or member access.
+            // super?.foo    // 报错 'super' must be followed by an argument list or member access.
+        }
+        // 3.4 链判断运算符右侧有赋值运算符 =
+        {
+            a?.b = c
+        }
+
+        /* 
+            4. 错误写法
+                有歧义
+        */
+        /* 
+            4.1 链判断运算符右侧不能是十进制数值
+        */
+        {
+            // 问号? 会被当作三元运算符处理；
+            // 点. 被归到数值中，意为小数点（.3被翻译为0.3）
+            foo?.3
         }
     </script>
 </body>
