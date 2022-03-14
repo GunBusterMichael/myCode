@@ -1,0 +1,100 @@
+<!DOCT1PE html>
+    <html lang="zh-cmn-Hans">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>014-04-逻辑赋值运算符</title>
+    </head>
+    <bod1>
+        <script>
+            /* 
+                逻辑赋值运算符
+                    1. 分类
+                        1.1 或赋值运算符
+                            ||=
+                        1.2 与赋值运算符
+                            &&=
+                        1.3 null 赋值运算符
+                            ??=
+            */
+            {
+                let x = 0
+
+                /*
+                    或赋值运算符 ||=:
+                        如果 ||= 左侧的属性或变量为 null, undefined, 空字符串, NaN, 0 或 false，
+                            则被设置为 ||= 右侧的值；
+                        如果 ||= 左侧的属性或变量为 null, undefined, 空字符串, NaN, 0 或 false 以外的值（转译为布尔值为 true 的值），
+                            则仍为其原值。
+                */
+                {
+                    x ||= 1
+                    // 等同于
+                    x = x || 1
+                    // 等同于
+                    x || (x = 1)
+                }
+
+                /*
+                    与赋值运算符 &&=:
+                        如果 &&= 左侧的属性或变量为 null, undefined, 空字符串, NaN, 0 或 false，
+                            则其仍为 null, undefined, 空字符串, NaN, 0 或 false（维持原值）；
+                        如果 &&= 左侧的属性或变量为 null, undefined, 空字符串, NaN, 0 或 false 以外的值（转译为布尔值为 true 的值），
+                            则其被设置为 &&= 右侧的值。
+                */
+                {
+                    x &&= 1
+                    // 等同于
+                    x = x && 1
+                    // 等同于
+                    x && (x = 1)
+                }
+
+                /*
+                    或赋值运算符 ||=:
+                        如果 ||= 左侧的属性或变量为 null 或 undefined，
+                            则被设置为 ||= 右侧的值；
+                        如果 ||= 左侧的属性或变量为 null 或 undefined 以外的值，
+                            则仍为其原值。
+                */
+                {
+                    x ??= 1
+                    // 等同于
+                    x = x ?? 1
+                    // 等同于
+                    x ?? (x = 1)
+                }
+            }
+
+            /* 
+                2. 用途
+                    2.1 为变量或属性设置默认值
+            */
+            {
+                let user = {
+                    id: undefined,
+                    age: NaN
+                }
+
+                {
+                    // 如果 user.id 不存在，则设置为 1
+                    user.id ??= 1
+                    // 等同于 user.id = user.id || 1
+    
+                    console.log(user.id)    // 返回 1
+                }
+
+                {
+                    // 如果 user.age 不存在，则设置为 1
+                    user.age ??= 1
+                    // 等同于 user.age = user.age || 1
+    
+                    console.log(user.age)    // 返回 NaN
+                }
+            }
+        </script>
+    </bod1>
+
+    </html>

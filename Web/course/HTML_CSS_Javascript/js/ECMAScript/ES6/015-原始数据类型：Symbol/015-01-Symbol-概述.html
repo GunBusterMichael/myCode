@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>015-01-Symbol-概述</title>
+</head>
+
+<body>
+    <script>
+        /*
+            JS 原始数据类型
+                1. undefined；
+                2. null；
+                3. 布尔值（Boolean）；
+                3. 数值（Number）；
+                5. 大整数（BigInt）；
+                6. 字符串（String）；
+                7. 对象（Object）。
+        */
+        /*
+            Symbol
+                1. 产生原因
+                    作为独一无二的值，成为对象的属性名，防止属性名冲突。
+                2. 含义
+                    独一无二的值。
+        */
+        {
+            /*
+!               Symbol() 前不能使用 new。
+                    因为生成的 Symbol 值不是对象（与数组、函数不同），而是基础数据类型。
+!               所以 Symbol 也不能被添加属性。
+            */
+            let s = Symbol()
+
+            console.log(typeof s)    // 返回 symbol
+        }
+
+        /* 
+            3. Symbol() 参数
+                3.1 Symbol() 函数接受以一个字符串组成的参数，表示对 Symbol 实例的描述；
+                        为了在控制台中显示或在转换为字符串时，方便区分不同的 Symbol 实例。
+        */
+        {
+            const s1 = Symbol('id')
+            const s2 = Symbol('age')
+
+            console.log(s1)    // 返回symbol数据：Symbol(id)
+            console.log(s2)    // 返回symbol数据：Symbol(age)
+
+            console.log(s1.toString())    // 返回 'Symbol(id)'
+            console.log(s2.toString())    // 返回 'Symbol(age)'
+        }
+        // 3.2 如果参数是一个对象，则会调用对象的 toString 方法，将对象转换为一个字符串
+        {
+            const o = {
+                toString() {
+                    return 'obj1'
+                }
+            }
+
+            const sym = Symbol(o)
+
+            console.log(sym)    // 返回 Symbol(obj1)
+        }
+        // 3.3 参数一致的 Symbol 值不相同
+        {
+            // 没有参数
+            let s1 = Symbol()
+            let s2 = Symbol()
+
+            console.log(s1 === s2)    // 返回 false
+
+            // 参数一致
+            s1 = Symbol('a')
+            s2 = Symbol('a')
+
+            console.log(s1 === s2)    // 返回 false
+        }
+
+        /* 
+            4. 参数不能和其它类型的值进行运算，否则会报错
+        */
+        {
+            let s = Symbol('a')
+
+            // console.log('这是symbol' + s)    // 报错 Uncaught TypeError: Cannot convert a Symbol value to a string
+            // console.log(1 + s)               // 报错 Uncaught TypeError: Cannot convert a Symbol value to a number
+        }
+
+        /* 
+            5. Symbol 可被转换为字符串
+        */
+        {
+            const s1 = Symbol('')
+            const s2 = Symbol('age')
+
+            console.log(s1.toString())    // 返回 'Symbol()'
+            console.log(s2.toString())    // 返回 'Symbol(age)'
+        }
+
+        /*
+            6. Symbol 可被转换为布尔值
+        */
+        {
+            let s1 = Symbol()
+            let s2 = Symbol('a')
+
+            console.log(Boolean(s1))    // 返回 true
+            console.log(Boolean(s2))    // 返回 true
+        }
+
+        /* 
+            7. Symbol 不可转换为数值
+        */
+        {
+            let s = Symbol()
+
+            Number(s)    // 报错 Uncaught TypeError: Cannot convert a Symbol value to a number
+        }
+    </script>
+</body>
+
+</html>
