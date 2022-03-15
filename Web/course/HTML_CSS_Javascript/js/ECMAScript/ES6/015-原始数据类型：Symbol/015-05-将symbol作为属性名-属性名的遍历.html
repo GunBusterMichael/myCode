@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>015-05-将symbol作为属性名-属性名的遍历</title>
+</head>
+<body>
+    <script>
+        /*
+            在遍历属性时，属性名为 Symbol 的属性
+                不会被 for...in、
+                    for...of、
+                    Object.keys()、
+                    Object.getOwnPropertyNames() 
+                    和
+                    JSON.stringify()
+                    返回。
+*           用处：
+*               为对象定义 非私有、但又只用于内部的方法。
+        */
+        /*
+            Object.getOwnPropertySymbols()
+                1. 作用
+                    获取指定对象的所有 Symbol 属性名。
+                2. 返回值
+                    返回一个数组，成员是指定对象的所有 Symbol 属性名。
+        */
+        // 举例
+        {
+            const o = {}
+
+            let a = Symbol('a')
+            let b = Symbol('b')
+
+            o[a] = 0
+            o[b] = 1
+
+            const oSymbols = Object.getOwnPropertySymbols(o)
+
+            console.log(oSymbols)    // 返回 [Symbol(a), Symbol(b)]
+        }
+
+        /*
+            Reflect.ownKeys()
+                1. 作用
+                    返回对象所有类型的键名，包括字符串键名和 Symbol 键名。
+                2. 返回值
+                    返回一个数组，成员是指定对象的所有属性名。
+        */
+        {
+            let o = {
+                [Symbol('id')]: 1,
+                name: 'Carol',
+                age: 20
+            }
+
+            console.log(Reflect.ownKeys(o))    // 返回 ['name', 'age', Symbol(id)]
+        }
+    </script>
+</body>
+</html>

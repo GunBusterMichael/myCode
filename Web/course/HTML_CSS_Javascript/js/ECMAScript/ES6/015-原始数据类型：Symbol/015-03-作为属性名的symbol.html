@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>015-03-作为属性名的symbol</title>
+</head>
+
+<body>
+    <script>
+        // 将属性名设置为 symbol 的写法
+        {
+            let sym = Symbol()
+            let sym2 = Symbol()
+
+            // 第一种
+            {
+                let a = {
+                    id: 1
+                }
+                a[sym] = 'Hello!'
+
+                console.log(a)    // 返回 {id: 1, Symbol(): 'Hello!'}
+                console.log(a[sym])    // 返回 'Hello!'
+            }
+
+            // 第二种
+            {
+                let a = {
+                    [sym]: 'Hello!',
+                    [sym2]() {
+                        return '你好'
+                    }
+
+                }
+
+                console.log(a)    // 返回 {Symbol(): 'Hello!', Symbol(): ƒ}
+                console.log(a[sym])    // 返回 'Hello!'
+                console.log(a[sym2]())    // 返回 '你好'
+            }
+
+            // 第三种
+            {
+                let a = {}
+                Object.defineProperty(a, sym, { value: 'Hello!' })
+
+                console.log(a)    // 返回 {Symbol(): 'Hello!'}
+                console.log(a[sym])    // 返回 'Hello!'
+            }
+
+            //！当 symbol 值作为对象属性名时，不能使用点运算符.
+            {
+                const a = {}
+
+                a.sym = 'Hello!'
+
+                /*
+                    点运算符后的内容总会被识别为字符串。
+                        所以 a.sym 是在对 'sym' 属性名进行赋值，
+                        而不是对 Symbol 值 sym 进行赋值。
+                */
+                console.log(a[sym])    // 返回 undefined
+
+                /*
+                    这两种写法是在获取属性名为 'sym' 的值。
+                */
+                console.log(a['sym'])    // 返回 'Hello!'
+                console.log(a.sym)       // 返回 'Hello!'
+            }
+        }
+    </script>
+</body>
+
+</html>
