@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>015-06-全局symbol注册表-创建与获取 Symbol 值-Symbol.for()</title>
+</head>
+<body>
+    <script>
+        /*
+            Symbol.for()
+                1. 功能
+                    在括号内添加一个字符串参数，
+                    然后搜索有无以该字符串作为描述的 symbol 值。
+                        如果有，返回该值；
+                        如果没有，则新建一个以该字符串为描述的 symbol 值，并将其注册到全局。
+        */
+        // 举例
+        {
+            // 新建一个以'hal'为描述的 symbol 值
+            let s1 = Symbol.for('hal')
+            // 返回一个以'hal'为描述的 symbol 值
+            let s2 = Symbol.for('hal')
+            // 新建一个以'hal'为描述的 symbol 值，与 s1 不是同一个值
+            let s3 = Symbol('hal')
+
+            // s1 与 s2 是同一个值
+            console.log(s1===s2)    // 返回 true
+            // s1 与 s3 不是同一个值
+            console.log(s1===s3)    // 返回 false
+        }
+        let ss = Symbol.for('hal')
+        console.log(ss)
+
+        /*
+            2. 全局 symbol 注册表
+                2.1 定义
+                    被 Symbol.for() 方法创建的 symbol 值，会被注册到一个“全局 symbol 注册表”中。
+                2.2 注册
+                    Symbol.for() 可在“全局 symbol 注册表”中注册 symbol 值。
+?                   Symbol.for() 等效于 Symbol.for(undefined)，会注册一个 Symbol(undefined)。
+                2.3 表内查询
+                    Symbol.for() 和 Symbol.keyFor() 可返回被注册到“全局 symbol 注册表”中的 symbol 值。
+!               2.4 全局 symbol 注册表 !== 全局变量
+                    在“全局 symbol 注册表”中的 symbol 值可在其他作用域中被 Symbol.for() 和 Symbol.keyFor() 获取；
+                        但不能通过 symbol 值的变量名获取。
+        */
+        {
+            {
+                let sym1 = Symbol.for('a')
+            }
+
+            // 通过 Symbol.for() 跨域获取“全局 symbol 注册表”中的 symbol 值：
+            let sym2 = Symbol.for('a')
+            console.log(sym2)    // 返回 Symbol(a)
+
+            // 无法通过 symbol 值的变量名跨域获取“全局 symbol 注册表”中的 symbol 值：
+            // console.log(sym1)    // 报错 Uncaught ReferenceError: sym1 is not defined
+        }
+
+        /*
+            3. Symbol() 与 Symbol.for() 的区别
+                3.1 是否会被注册至“全局 symbol 注册表”中
+                    3.1.1 Symbol()
+                        Symbol() 生成的值不会被注册至“全局 symbol 注册表”中.
+                    3.1.2 Symbol.for()
+                        Symbol.for() 生成的值会被注册至“全局 symbol 注册表”中。
+                3.2 是否一定会生成新值
+                    3.2.1 Symbol()
+                        不论描述值是否相同，Symbol() 总会新建不同的 symbol 值，不注册。
+                    3.2.2 Symbol.for()
+                        先检索是否有描述值符合符合的 symbol 值，
+                            如果有，返回该值；
+                            如果没有，以该描述值新建 symbol 值。
+        */
+        {
+            console.log(Symbol.for('a') === Symbol.for('a'))    // 返回 true
+
+            console.log(Symbol('a') === Symbol('a'))            // 返回 false
+        }
+    </script>
+</body>
+</html>
