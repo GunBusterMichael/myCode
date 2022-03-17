@@ -44,3 +44,24 @@
   ```js
   Object.is(+0, 0)    // 返回 true
   ```
+
+## 2. 数组与数组不相等
+
+```js
+console.log([] == [])    // 返回 false
+console.log([] === [])    // 返回 false
+
+let bln = Object.is([], [])
+console.log(bln)    // 返回 false
+```
+
+## 3. 对象与对象不相等
+
+```js
+console.log({} == {})    // 返回 false
+console.log({} === {})    // 返回 false
+
+let bln = Object.is({}, {})
+console.log(bln)    // 返回 false
+```
+

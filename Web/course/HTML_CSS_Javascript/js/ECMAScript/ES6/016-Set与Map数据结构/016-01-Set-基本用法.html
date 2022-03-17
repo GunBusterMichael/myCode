@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-01-Set-基本用法</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        /*
+            Set
+                1. 定义
+                    Set 是 ES6 新添加的数据结构，与数组类似。
+                2. 与数组的不同
+                    Set 的成员中没有重复值。
+                3. 创建方式
+                    用 Set() 构造函数与 new 关键字创建。
+        */
+        // 举例
+        {
+            // 创建 Set 数据结构 s
+            const s = new Set()
+
+            // 将一个数组中的值添加到 Set 中
+            const arr = [2, 3, 5, 4, 5, 2, 2]
+            arr.forEach(
+                function (value) {
+                    s.add(value)
+                }
+            )
+
+            // Set 中没有数值 arr 中的重复值
+            console.log(s)    // 返回 Set(4) {2, 3, 5, 4}
+
+            // 通过 let...of... 遍历 Set
+            for (let i of s) {
+                console.log(i)
+                // 2
+                // 3
+                // 5
+                // 4
+            }
+        }
+
+        /* 
+            2. Set() 构造函数的参数
+                可将一个具有 iterable 接口的数据结构（Array、Map、Set、部分对象）作为参数，
+                    用来初始化 Set 实例。
+        */
+        {
+            // 将一个数组作为参数
+            {
+                // 创建新 Set 实例
+                let set = new Set([1, 2, 3, 3, 9, 9])
+
+                // 用 set变量名.size 返回 Set 实例的长度
+                console.log(set.size)
+
+                // 用展开运算符将 set 转换为伪数组
+                console.log([...set])    // [1, 2, 3, 9]
+            }
+
+            // 将一个类似于数组的对象作为参数
+            {
+                // 获取 div 元素
+                let divs = document.querySelectorAll('div')
+
+                // 将获取到的 div 元素对象列表作为参数，初始化 Set
+                const setOfDivs = new Set(divs)
+                console.log(setOfDivs)         // 返回 Set(5) {div, div, div, div, div}
+                console.log(setOfDivs.size)    // 返回 5
+            }
+        }
+
+        /* 
+            3. 用法
+                3.1 去除数组重复成员
+        */
+        {
+            let s = new Set(['a', 'b', 'a', 1, 2, 1])
+
+            console.log([...s])    // 返回 ['a', 'b', 1, 2]
+        }
+
+        /*
+            3.2 去除字符串里面的重复字符
+        */
+        {
+            // 将字符串作为 Se t构造函数的参数并初始化实例（同时去除重复字符）
+            let s = new Set('aabbcc')
+
+            // 将数组转换为字符串
+            console.log([...s].join(''))    // 'abc'
+        }
+
+        /*
+            由于两个对象并不相等，
+                所以可以在 set 中放置两个相同内容的对象
+        */
+        {
+            let s = new Set()
+
+            s.add({})
+            s.add({})
+
+            console.log(s)    // 返回 Set(2) {{}, {}}
+            console.log(s.size)    // 返回 2
+        }
+    </script>
+</body>
+
+</html>
