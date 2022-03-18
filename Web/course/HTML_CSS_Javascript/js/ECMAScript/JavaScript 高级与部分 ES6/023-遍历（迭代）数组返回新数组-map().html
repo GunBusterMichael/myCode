@@ -16,9 +16,11 @@
             返回由被回调函数加工过的元素组成的新数组。
         */
         var arr = [1, 2, 3]
+
         var arrPlusOne = arr.map(function (value, index, array) {
-            return ++value
+            return ++value    // 一定要先自加再赋值，否则不会返回自加后的值
         })
+
         console.log(arrPlusOne);    // 返回 [2, 3, 4]
     </script>
 </body>

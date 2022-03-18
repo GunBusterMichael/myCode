@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-05-Set实例方法-查询Set实例中是否存在某个值-has()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Set.prototype.has()
+                1. 功能
+                    查询 Set 实例中是否存在某个值。
+                2. 参数
+                    括号内可容纳一个参数，为要查询的的值。
+                        超过一个参数，则只查询第一个参数。
+                2. 返回值
+                    返回一个布尔值：
+                        Set 实例中存在这个值，返回 true；
+                        Set 实例中不存在这个值，返回 false。
+                3. 分类
+                    是方法；
+                    属于实例方法。
+        */
+        {
+            let s = new Set(['a', 'b'])
+
+            console.log(s.has('a'))    // 返回 true
+            console.log(s.has('c'))    // 返回 false
+        }
+    </script>
+</body>
+
+</html>

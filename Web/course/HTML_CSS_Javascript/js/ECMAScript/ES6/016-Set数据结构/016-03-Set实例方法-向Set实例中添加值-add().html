@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-03-Set实例方法-向Set实例中添加值-add().html</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Set.prototype.add()
+                1. 功能
+                    向Set实例中添加值，返回 Set 实例本身。
+                2. 参数
+                    括号内可容纳一个参数，为被添加到 Set 实例中的值。
+                        超过一个参数，则只添加第一个参数。
+                2. 返回值
+                    返回 Set 实例本身。
+                3. 分类
+                    是方法；
+                    属于实例方法。
+        */
+        {
+            let s = new Set()
+
+            // 添加三个值，但第三个值与第二个值重复，所以实际上只添加了前两个值
+            console.log(s.add(1).add(2).add(2))    // 返回 Set(2) {1, 2}
+
+            console.log(s)    // 返回 Set(2) {1, 2}
+        }
+    </script>
+</body>
+
+</html>

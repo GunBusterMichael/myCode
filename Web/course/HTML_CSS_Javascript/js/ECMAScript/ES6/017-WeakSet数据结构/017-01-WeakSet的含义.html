@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>017-01-WeakSet的含义</title>
+</head>
+<body>
+    <script>
+        /* 
+            WeakSet 数据结构
+                1. 与 Set 的相同点
+                    大部分相同，也是不重复的值的集合。
+                2. 与 Set 的不同点
+                    2.1 WeakSet 的成员只能是对象，不能是其他类型的值。
+        */
+        {
+            const ws = new WeakSet()
+
+            ws.add({})
+            ws.add([])
+            ws.add(new Set())
+            console.log(ws)    // 返回 WeakSet {Set(0), {}, Array(0)}
+
+            // ws.add(1)    // 报错 Uncaught TypeError: Invalid value used in weak set
+        }
+
+        /* 
+            2.2 WeakSet 中的对象成员都是弱引用
+                垃圾回收机制不开率 WeakSet 对对象的引用：
+                    如果某对象只被 WeakSet 引用，不被其他对象引用，垃圾回收机制会将该对象回收。
+            2.2.1 因为 WeakSet 中的对象随时会被回收，所以：
+                适合存放临时对象和与这些对象绑定的信息；
+                成员数量会变化，所以不可遍历。
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-04-Set实例方法-删除Set实例中的某个值-delete()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Set.prototype.delete()
+                1. 功能
+                    删除 Set 实例中的某个值。
+                2. 参数
+                    括号内可容纳一个参数，为被删除的值。
+                        超过一个参数，则只删除第一个参数。
+                2. 返回值
+                    返回一个布尔值：
+                        删除成功，返回 true；
+                        删除失败，返回 false。
+                3. 分类
+                    是方法；
+                    属于实例方法。
+        */
+        {
+            let s = new Set(['a', 'b'])
+
+            console.log(s.delete('a'))
+
+            console.log(s)    // 返回 Set(1) {'b'}
+        }
+    </script>
+</body>
+
+</html>

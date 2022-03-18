@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-08-遍历Set实例的方法</title>
+</head>
+
+<body>
+    <script>
+        //？遍历 Set 实例的顺序是成员被添加到 Set 实例中的顺序
+        /*
+            遍历 Set 实例的方法
+                1. Set.prototype.keys()：返回键名的遍历器；
+                2. Set.prototype.values()：返回键值的遍历器；
+                3. Set.prototype.entries()：返回键值对的遍历器。
+        */
+        /*
+            由于 Set 结构没有键名，只有键值，
+                所以 keys 方法和 values 方法都只返回键值；
+                    entries() 方法返回的键名与键值相同，都是键值。
+       */
+        {
+            let colors = new Set(['red', 'green', 'blue'])
+
+            // keys 方法
+            {
+                for (let k of colors.keys()) {
+                    console.log(k)
+                    // 返回 'red'
+                    // 返回 'green'
+                    // 返回 'blue'
+                }
+            }
+
+            // values 方法
+            {
+                for (let k of colors.values()) {
+                    console.log(k)
+                    // 返回 'red'
+                    // 返回 'green'
+                    // 返回 'blue'
+                }
+            }
+
+            // entries 方法
+            {
+                for (let k of colors.entries()) {
+                    console.log(k)
+                    // 返回 ['red', 'red']
+                    // 返回 ['green', 'green']
+                    // 返回 ['blue', 'blue']
+                }
+            }
+        }
+
+        // 4. 可省略 values 和 keys 方法，直接用 for...of 循环遍历 Set 实例
+        {
+            let colors = new Set(['red', 'green', 'blue'])
+
+            for (let k of colors) {
+                console.log(k)
+                // 返回 'red'
+                // 返回 'green'
+                // 返回 'blue'
+            }
+        }
+
+        /*
+            5. forEach()
+                与数组的 forEach 方法相同
+        */
+        {
+            let colors = new Set(['red', 'green', 'blue'])
+
+            colors.forEach(k => console.log('颜色：' + k))
+            // 返回 '颜色：red'
+            // 返回 '颜色：green'
+            // 返回 '颜色：blue'
+        }
+
+        /* 
+            6. 扩展运算符
+                扩展运算符（...）内部使用 for...of 循环，可用于遍历 Set 实例。
+        */
+        {
+            let colors = new Set(['red', 'green', 'blue'])
+
+            console.log([...colors])    // 返回 ['red', 'green', 'blue']
+        }
+    </script>
+</body>
+
+</html>

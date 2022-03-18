@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>016-09-遍历Set实例的应用</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 利用扩展运算符遍历
+                1.1 数组去重
+        */
+        {
+            let arr = [3, 5, 2, 2, 5, 5]
+
+            let uniqueArr = [...new Set(arr)]
+
+            console.log(uniqueArr)    // 返回 [3, 5, 2]
+        }
+
+        /*
+            1.2 让 Set 实例间接使用数组的 map（操作成员） 和 filter（筛选成员） 方法
+                步骤：
+                    1) 将 Set 实例转化为数组；
+                    2) 对被转化过来的数组使用 map 和 filter 方法；
+                    3) 将数组再转化为 Set 实例；
+                    4) 将新的 Set 实例赋值到原始 Set 实例的变量名中。
+        */
+        {
+            // 间接使用 map 方法
+            {
+                let set = new Set([1, 2, 3, 4, 5])
+
+                // 让 set 成员自加 1
+                set = new Set([...set].map(k => ++k))
+                /*
+                    [...set]          将 Set 实例转化为数组；
+                    .map(k => ++k)    对被转化过来的数组使用 map 方法（成员自加 1）；
+                    new Set()         将数组再转化为 Set 实例；
+                    set = new Set()   将新的 Set 实例赋值到原始 Set 实例的变量名中。
+                */
+
+                console.log(set)    // 返回 Set(5) {2, 3, 4, 5, 6}
+            }
+
+            // 间接使用 filter 方法
+            {
+                let set = new Set([1, 2, 3, 4, 5])
+
+                // 筛选 set 成员中的偶数
+                set = new Set([...set].filter(k => (k % 2 === 0)))
+
+                console.log(set)    // 返回 Set(2) {2, 4}
+            }
+        }
+
+        /*
+            1.2.1 通过间接使用 map 和 filter，
+                    实现对 Set 实例的并集（union）、交集（intersect）和差集（Difference）操作
+        */
+        // 举例
+        {
+            let a = new Set([1, 2, 3])
+            let b = new Set([2, 3, 4])
+
+            // 并集
+            let union = new Set([...a, ...b])
+            console.log(union)    // 返回 Set(4) {1, 2, 3, 4}
+
+            // 交集
+            let intersect = new Set([...a].filter(k => b.has(k)))
+            console.log(intersect)    // 返回 Set(2) {2, 3}
+
+            // （a相对于b的）差集
+            let difference = new Set([...a].filter(k => !b.has(k)))
+            console.log(difference)    // 返回 Set(1) {1}
+        }
+
+        /*
+            2. 通过遍历改变原始 Set 实例的结构
+                2.1 利用原始 Set 实例映射出一个新的实例，再赋值给原来的实例
+        */
+        {
+            let s = new Set([1, 2, 3])
+
+            s = new Set([...s].map(k => k * 2))
+            console.log(s)    // 返回 Set(3) {2, 4, 6}
+        }
+
+        /* 
+            2.2 利用 Array.from() 修改实例结构，并赋值给原来的实例
+        */
+        {
+            let s = new Set([1, 2, 3])
+
+            s = new Set(Array.from(s, k => k * 2))
+            console.log(s)
+        }
+    </script>
+</body>
+
+</html>
