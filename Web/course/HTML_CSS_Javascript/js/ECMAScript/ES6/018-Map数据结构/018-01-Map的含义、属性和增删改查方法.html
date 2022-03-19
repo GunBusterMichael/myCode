@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-01-Map的含义、属性和增删改查方法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 对象的缺陷：
+                键名只能是字符串。
+                    解决方法：
+                        Map 数据结构
+        */
+
+        /*
+            2. Map 数据结构
+                2.1 数据结构
+                        类似于对象，是键值对的集合；
+                            键值可以是任何类型的值，不局限于字符串。
+                2.2 创建 Map 实例
+                        利用 new 关键字和 Map 构造函数创建 Map 实例。
+                2.3 为 Map 实例添加成员
+                        Map.prototype.set(键名, 键值)
+                        如有同名键名，则会更新该键名的键值。
+                2.4 获取 Map 实例成员
+                        Map.prototype.get(键名)
+                2.5 为 Map 实例删除成员
+                        Map.prototype.delete(键名)
+                2.6 查询某值是否为某 Map 实例的键名
+                        Map.prototype.has(值)
+                2.7 查询 Map 实例成员个数
+                        Map.prototype.size
+                2.8 清除某个 Map 实例的所有成员
+                        Map.prototype.clear()
+        */
+        {
+            const o = {
+                content: 'Hello World!'
+            }
+
+            // 创建 Map 实例
+            const m = new Map()
+
+            // 为 Map 实例添加成员
+            m.set(o, '内容')
+            // 如有同名键名，则会更新该键名的键值
+            m.set(o, '内容内容')
+
+            // 查询 Map 实例成员个数
+            console.log(m.size)    // 返回 1
+
+            // 获取 Map 实例成员
+            console.log(m.get(o))    // 返回 '内容内容'
+
+            // 查询某值是否为某 Map 实例的键名
+            console.log(m.has(o))    // 返回 true
+
+            // 为 Map 实例删除成员
+            m.delete(o)
+            console.log(m.has(o))    // 返回 false
+
+            // 清除某个 Map 实例的所有成员
+            m.clear()
+            console.log(m)    // 返回 Map(0) {size: 0}
+        }
+
+        /*
+            2.7 Map 构造函数的参数
+                2.7.1 接受一个数组作为参数，数组的格式为：
+                        [[键名, 键值], [键名, 键值], ...]
+                        成员为包含键名和键值的数组。
+        */
+        {
+            const map = new Map(
+                [
+                    // 键名：'id'，键值：1
+                    ['id', 1],
+
+                    // 键名：'name'，键值：'Carol'
+                    ['name', 'Carol']
+                ]
+            )
+
+            console.log(map)    // 返回 Map(2) {'id' => 1, 'name' => 'Carol'}
+        }
+
+        /*
+            2.8.2 任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（Set 和 Map），
+                    也都可以作为 Map 构造函数的参数。
+?                   （一个数据结构包含数组，数组内为一个键值对）
+        */
+        {
+            // 参数为 Set
+            {
+                const set = new Set(
+                    [
+                        ['id', 1]
+                    ]
+                )
+
+                const map = new Map(set)
+
+                console.log(map)    // 返回 Map(1) {'id' => 1}
+                console.log(map.get('id'))    // 返回 1
+            }
+
+            // 参数为 Map
+            {
+                const parameterMap = new Map(
+                    [
+                        ['id', 2]
+                    ]
+                )
+
+                const map = new Map(parameterMap)
+
+                console.log(map)    // 返回 Map(1) {'id' => 2}
+                console.log(map.get('id'))    // 返回 2
+            }
+        }
+
+        /*
+            2.9 对同一个键多次赋值
+                新赋的值会覆盖之前的值。
+        */
+        {
+            const m = new Map()
+
+            m.set(1, 'a').set(1, 'b')
+
+            console.log(m.get(1))    // 返回 b
+        }
+
+        /*
+            2.10 获取不存在的键
+                返回 undefined
+        */
+        {
+            console.log(new Map().get('a'))    // 返回 undefined
+        }
+
+        /* 
+            2.11 获取成员的条件
+                get 方法的参数与 Map 实例的键值严格相等，才能成功获取：
+                    +0, 0 和 -0 两两相等；
+                    NaN 严格相等于自身；
+                    布尔值 true 不等于字符串 true；
+                    数组互不相等：解决了同名属性相冲突（对撞 Clash）的问题，方便自己拓展他人的库；
+                    对象互不相等：解决了同名属性相冲突（对撞 Clash）的问题，方便自己拓展他人的库。
+        */
+        {
+            let map = new Map()
+
+            // +0, 0 和 -0 两两相等；
+            {
+                map.set(-0, 'zero')
+
+                console.log(map.get(0))    // 返回 'zero'
+                console.log(map.get(+0))    // 返回 'zero'
+            }
+            // NaN 严格相等于自身；
+            {
+                map.set(NaN, '我是NaN。')
+
+                console.log(map.get(NaN))    // 返回 '我是NaN。'
+            }
+            // 布尔值 true 不等于字符串 true
+            {
+                map.set(true, 'boolean true')
+                map.set('true', 'string true')
+
+                console.log(map.get(true))    // 返回 'boolean true'
+                console.log(map.get('true'))  // 返回 'string true'
+            }
+            // 数组互不相等（内存地址不同）
+            {
+                map.set(['a'], 1)
+
+                console.log(map.get(['a']))    // 返回 undefined
+            }
+            // 对象互不相等（内存地址不同）
+            {
+                map.set({ age: 20 }, "Carol's age")
+
+                console.log(map.get({ age: 20 }))    // 返回 undefined
+            }
+        }
+    </script>
+</body>
+
+</html>
