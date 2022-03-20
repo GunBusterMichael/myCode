@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-04-将数组转换为Map结构</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            将数组转换为 Map 结构：
+                方法：
+                    将数组作为参数传入 Map 构造函数中。
+        */
+        {
+            const map = new Map(
+                [
+                    ['id', 1],
+                    [{ age: 20 }, 'My age']
+                ]
+            )
+
+            console.log(map)    // 返回 Map(2) {'id' => 1, { age: 20 } => 'My age'}
+        }
+    </script>
+</body>
+
+</html>

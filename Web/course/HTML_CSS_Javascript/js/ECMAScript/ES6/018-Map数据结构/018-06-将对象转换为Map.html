@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-06-将对象转换为Map</title>
+</head>
+<body>
+    <script>
+        // 通过 Object.entries() 转换
+
+        let o = {
+            foo: 0,
+            zoo: 1
+        }
+
+        let map = new Map(Object.entries(o))
+        console.log(map)    // 返回 Map(2) {'foo' => 0, 'zoo' => 1}
+    </script>
+</body>
+</html>

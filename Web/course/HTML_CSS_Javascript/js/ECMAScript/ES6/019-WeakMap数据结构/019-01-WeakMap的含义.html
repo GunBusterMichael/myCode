@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019-01-WeakMap的含义</title>
+</head>
+<body>
+    <div id="example">我是例子div</div>
+
+    <script>
+        /* 
+            WeakMap 的含义
+                与 Map 类似，也是键值对的集合。
+
+            与 Map 的不同点：
+                1. 只接受 null 以外的对象作为键名，不接受其他值作为键名。
+        */
+        {
+            const wm = new WeakMap()
+
+            // wm.set(1, 2)           // 报错 Uncaught TypeError: Invalid value used as weak map key
+            // wm.set(Symbol(), 2)    // 报错 Uncaught TypeError: Invalid value used as weak map key
+            // wm.set(null, 2)        // 报错 Uncaught TypeError: Invalid value used as weak map key
+        }
+
+        /*
+            2. WeakMap 中的键名都是弱引用
+                垃圾回收机制不考虑 WeakMap 键名对对象的引用：
+                    如果某对象只被 WeakMap 的键名引用，不被其他对象引用，垃圾回收机制会将该对象回收。
+                优点：
+                    防止内存泄漏。
+                适用场合：
+                    用于键名所对应的对象，在未来可能会消失的情况，比如：
+                        给 DOM 元素添加数据。
+        */
+        // 举例：给 DOM 元素添加数据
+        {
+            const div = document.querySelector('#example')
+
+            const wm = new WeakMap()
+
+            wm.set(div, '这是一个例子div')
+
+            console.log(wm.get(div))    // 返回 这是一个例子div
+        }
+        //！键值是正常引用，计入垃圾回收机制。
+    </script>
+</body>
+</html>

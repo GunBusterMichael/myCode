@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-05-将Map转换为对象</title>
+</head>
+
+<body>
+    <script>
+        // 键名为字符串的 Map 可以无损地转换为对象；
+        // 如果有非字符串的键名，该键名会先被转换为字符串，再作为对象的键名。
+        
+        function strMapToObj(strMap) {
+            let obj = {}
+            for (let [key, value] of strMap) {
+                obj[key] = value    // 为一个对象动态地添加属性时，并不可以使用点.，必须使用[]
+            }
+            return obj
+        }
+
+        const map = new Map([
+            [0, 'zero'],
+            [1, 'one']
+        ])
+
+        let strMap = strMapToObj(map)
+        console.log(strMap)
+    </script>
+</body>
+
+</html>

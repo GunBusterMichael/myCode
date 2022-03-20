@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-03-将Map结构转为数组结构</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. 将 Map 结构转为数组结构的途径：
+                拓展运算符 ... 和遍历 Map 结构。
+        */
+        {
+            const map = new Map(
+                [
+                    [1, 'one'],
+                    [2, 'two'],
+                    [3, 'three']
+                ]
+            )
+
+            // 1.1 将 Map 实例的键名转换为数组
+            let keysOfMap = [...map.keys()]
+            console.log(keysOfMap)    // 返回 [1, 2, 3]
+
+            // 1.2 将 Map 实例的键值转换为数组
+            let valuesOfMap = [...map.values()]
+            console.log(valuesOfMap)    // 返回 ['one', 'two', 'three']
+
+            // 1.3 将 Map 实例的键值对（成员）转换为数组
+            // 1.3.1 不省略 .entries()
+            let arrMap = [...map.entries()]
+            console.log(arrMap)    // 返回 [[1,'one'], [2, 'two'], [3, 'three']]
+            // 1.3.2 省略 .entries()
+            arrMap = [...map]
+            console.log(arrMap)    // 返回 [[1,'one'], [2, 'two'], [3, 'three']]
+        }
+
+        /* 
+            2. 应用场景
+                让 Map 实例间接使用数组的 map 和 filter 方法
+        */
+        {
+            const map1 = new Map().set(1, 'a').set(2, 'b').set(3, 'c')
+
+            const map2 = new Map([...map1].map(([key, value]) => [key * 2, value + '~']))
+            console.log(map2)    // 返回 Map(3) {2 => 'a~', 4 => 'b~', 6 => 'c~'}
+
+            const map3 = new Map([...map1].filter(([key, value])=> key > 2))
+            console.log(map3)    // 返回 Map(1) {3 => 'c'}
+        }
+    </script>
+</body>
+
+</html>

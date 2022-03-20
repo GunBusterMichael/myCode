@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>018-02-遍历Map的方法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            遍历 Map 的方法
+                1. Map.prototype.keys()：
+                    返回键名的遍历器；
+                2. Map.prototype.values()：
+                    返回键值的遍历器；
+                3. Map.prototype.entries()：
+                    以数组的形式 [键名, 键值] 返回键值对的遍历器，
+                    可省略.entries()；
+                4. Map.prototype.forEach()：
+                    遍历 Map 的所有成员。
+        */
+        {
+            const map = new Map(
+                [
+                    ['id', 1],
+                    ['name', 'Carol']
+                ]
+            )
+
+            // keys() 返回键名
+            {
+                for (let key of map.keys()) {
+                    console.log(key)
+                    // 返回 'id'
+                    // 返回 'name'
+                }
+            }
+
+            // values() 返回键值
+            {
+                for (let value of map.values()) {
+                    console.log(value)
+                    // 返回 1
+                    // 返回 'Carol'
+                }
+            }
+
+            // entries() 返回键值对
+            {
+                // 不省略.entries()
+                {
+                    // item
+                    for (let item of map.entries()) {
+                        console.log(item)
+                        // 返回 ['id', 1]
+                        // 返回 ['name', 'Carol']
+                    }
+
+                    // [key, value]
+                    for (let [key, value] of map.entries()) {
+                        console.log(key, value)
+                        // 返回 'id' 1
+                        // 返回 'name' 'Carol'
+                    }
+                }
+
+                // 省略.entries()
+                {
+                    // item
+                    for (let item of map) {
+                        console.log(item)
+                        // 返回 ['id', 1]
+                        // 返回 ['name', 'Carol']
+                    }
+
+                    // [key, value]
+                    for (let [key, value] of map) {
+                        console.log(key, value)
+                        // 返回 'id' 1
+                        // 返回 'name' 'Carol'
+                    }
+                }
+
+                // forEach() 遍历 Map 的所有成员
+                {
+                    const reporter = {
+                        report: function (key, value) {
+                            console.log('键名为：%s，键值为：%s', key, value)
+                        }
+                    }
+                    
+                    /*
+                        forEach() 接收两个参数：
+                            callback()：回调函数；
+                            thisArg：forEach 回调函数的 this。
+                        forEach() 回调函数接受三个参数：
+                            value：键值；
+                            key：键名；
+                            map：被遍历的 map 实例。
+                        
+                    */
+                    map.forEach(function (value, key, map) {
+                        this.report(key, value)
+                    }, reporter)    // 将回调函数的 this 指向 reporter 的 this
+
+                    // 返回 '键名为：id，键值为：1'
+                    // 返回 键名为：name，键值为：Carol
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
