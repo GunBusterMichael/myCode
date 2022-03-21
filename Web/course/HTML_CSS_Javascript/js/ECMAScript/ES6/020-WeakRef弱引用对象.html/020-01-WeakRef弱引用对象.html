@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>020-01-WeakRef弱引用对象</title>
+</head>
+
+<body>
+    <script>
+        /*
+            WeakRef 弱引用对象
+                1. 作用
+                    创建对于对象的弱引用。
+        */
+
+        // 2. 创建 WeakRef 实例
+        {
+            let obj = {}
+
+            let wr = new WeakRef(obj)
+        }
+
+        /*
+            3. 方法
+                3.1 判断被弱引用的对象是否已经被清除
+                    WeakRef.prototype.deref()
+                        如果被弱引用的对象存在，则返回被引用的对象；
+                        如果被弱引用的对象不存在，则返回 undefined。
+        */
+        {
+            let obj = {}
+
+            let wr = new WeakRef(obj)
+
+            console.log(wr.deref())    // 返回 {}
+        }
+
+        /*
+            4. 用处
+                建立缓存。
+        */
+
+        /* 
+            5. 注意
+                如果某个对象被 WeakRef 弱引用了，则在本轮事件循环中，该对象不会被清除；
+                    在后续的事件循环中可能会被删除。
+        */
+    </script>
+</body>
+
+</html>

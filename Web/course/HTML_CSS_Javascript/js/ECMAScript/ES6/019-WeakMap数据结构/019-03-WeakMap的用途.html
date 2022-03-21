@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>019-03-WeakMap的用途</title>
+</head>
+
+<body>
+    <button>点我</button>
+    <div>该按钮已被点击 0 次。</div>
+
+    <script>
+        /*
+            WeakMap 的用途
+                1. 将 DOM 节点作为键名；
+                2. 部署私有属性。
+        */
+
+        /*
+            1. 将 DOM 节点作为键名
+                将一个 button 节点作为键名，将它被点击的次数作为键值；
+                    用 WeakMap 存储该按钮被点击过的次数。
+?               优点：
+                    一旦这个 button 节点被删除，wm 中对应的成员就会被删除，防止内存泄漏。
+        */
+        {
+            // 获取元素：用来显示次数的 div
+            const div = document.querySelector('div')
+
+            // 新建 WeakMap 实例 wm 用来存储按钮被点击过的次数
+            const wm = new WeakMap()
+
+            /*
+                初始化 wm 的成员：
+                    将 button 作为键值，并将其键名设置为存储点击次数的对象；
+                        对象中存储的点击次数设置为 0。
+            */
+            wm.set(document.querySelector('button'), { clickedTimes: 0 })
+
+            // 为 btn 添加点击事件
+            document.querySelector('button').addEventListener('click', function () {
+
+                // 获取 wm 中存储 button 被点击次数的对象
+                let btnData = wm.get(document.querySelector('button'))
+
+                // 将点击次数加 1
+                btnData.clickedTimes++
+
+                // 将点击次数反映在 div 中
+                div.innerHTML = `该按钮已被点击\xa0${btnData.clickedTimes}\xa0次。`    // \xa0 表示一个空格
+            }, false)    // 在事件“冒泡”阶段调用事件处理程序
+        }
+
+        /*
+            2. 部署私有属性
+?               优点：
+                    如果删除实例，被设置成 WeakMap 实例的私有属性也会随之消失，不会造成内存泄漏
+        */
+        {
+            // 为类 CountDown 部署两个私有属性
+            const _counter = new WeakMap()    // 存储倒数次数
+            const _action = new WeakMap()     // 存储倒数次数为 0 时要执行的函数
+
+            // 创建类 CountDown
+            class CountDown {
+                // 将实例传入的倒数次数与函数存入私有属性中
+                constructor(counter, action) {
+                    _counter.set(this, counter)
+                    _action.set(this, action)
+                }
+
+                // 倒数函数
+                decrease() {
+
+                    // 获取当前可倒数的次数
+                    let counter = _counter.get(this)
+
+                    // 如果可倒数的次数小于 1，则直接跳出函数
+                    if (counter < 1) return;
+
+                    // 可倒数次数大于等于 1，倒数次数减 1
+                    counter--
+                    // 将被减 1 的倒数次数存入保存倒数次数的私有属性 _counter 中
+                    _counter.set(this, counter)
+
+                    // 如果倒数次数被减到 0，则执行实例中传入的函数
+                    if (counter === 0) {
+                        // 从保存函数的私有属性中获取函数并执行
+                        _action.get(this)()
+                    }
+                }
+            }
+
+            // 创建 CountDown 实例
+            const cd = new CountDown(2, () => console.log('倒数完毕。'))
+
+            // 执行两遍倒数函数
+            cd.decrease()
+            cd.decrease()   // 返回 '倒数完毕。'
+        }
+    </script>
+</body>
+
+</html>
