@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-04-设置Promise实例发生错误时的回调函数-实例方法catch</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.prototype.catch()
+                1. 作用
+                    Promise.prototype.catch() 是 .then(null, rejection) 或 .then(null, rejection) 的别名，
+                        用于设置 Promise 实例发生错误时的要调用的回调函数。
+                2. 返回值
+                    一个新的 Promise 对象。
+        */
+        // 举例
+        {
+            const p = new Promise(function (resolve, reject) {
+                throw new Error('手动创建的错误。')
+                // 等同于
+                reject(new Error('手动创建的错误。'))
+            })
+
+            p.then((value) => console.log('fulfilled'))
+                // 如果 p 为 rejected，则会调用 catch() 指定的回调函数
+                .catch((error) => console.log('rejected: ' + error))    // 返回 rejected: Error: 手动创建的错误。
+            // 后续代码仍会运行
+
+            setTimeout(() => console.log('继续运行......'), 500)
+        }
+
+        /*
+            2. 实例状态不可变
+                如果 Promise 状态已变为 fulfilled，再抛出的错误是无效的（不报错）；
+                如果 Promise 状态已变为 rejected，再抛出的错误是无效的（不报错）。
+        */
+        {
+            const pm1 = new Promise(function (resolve, reject) {
+                resolve('OK1')
+                throw new Error('WRONG1')    // reject() 不会运行
+            })
+            pm1
+                .then((value) => console.log(value))    // 返回 OK1
+                .catch((error) => console.log(error))
+
+            const pm2 = new Promise(function (resolve, reject) {
+                throw new Error('WRONG2')
+                resolve('OK2')    // resolve() 不会运行
+            })
+            pm2
+                .then((value) => console.log(value))
+                .catch((error) => console.log(error))    // 报错 Error: WRONG2
+        }
+
+        /* 
+            3. then 的第二个参数与 catch() 方法
+                建议只是用 catch() 方法，而不是 then() 方法的第二个参数。
+                    因为 catch() 方法可以捕捉前面 then() 方法的错误；
+                        也更接近 try...catch 写法。
+        */
+    </script>
+</body>
+
+</html>

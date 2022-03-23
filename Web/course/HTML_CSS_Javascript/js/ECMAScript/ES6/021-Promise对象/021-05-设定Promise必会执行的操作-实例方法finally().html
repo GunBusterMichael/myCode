@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-05-设定Promise必会执行的操作-实例方法finally()</title>
+</head>
+<body>
+    <script>
+        /* 
+            Promise.prototype.finally()
+                1. 作用
+                    finally() 用于指定不管 Promise 对象最后状态如何，都会被执行的操作。
+        */
+        {
+            const pm = new Promise()
+
+            /* 
+                不管 pm 最后的状态如何，
+                    在执行完 then 或 catch 的回调函数后，
+                        都会执行 finally 指定的回调函数。
+            */
+            pm
+                .then(()=>{})
+                .catch(()=>{})
+                .finally(()=>{})
+        }
+        /* 
+            举例：
+                服务器是使用 Promise 实例处理请求，然后用 finally() 方法关掉服务器。
+        */
+        {
+            server.listen(port)
+                .then(function () {
+                    // 代码
+                })
+                .finally(server.stop)
+        }
+
+        /* 
+            finally(callback) 的回调函数的参数：
+!               callback() 不接受任何的参数。
+        */
+    </script>
+</body>
+</html>

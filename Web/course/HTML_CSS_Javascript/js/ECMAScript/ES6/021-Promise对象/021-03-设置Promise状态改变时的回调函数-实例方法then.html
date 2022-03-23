@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-03-设置Promise状态改变时的回调函数-实例方法then</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.prototype.then()
+                1. 作用
+                    为 Promise 实例添加状态改变时要调用的回调函数。
+                2. 参数
+                    第一个参数是 resolve() 回调函数，在 Promise 实例变为 fulfilled 状态后调用；
+                    第一个参数是 reject() 回调函数，在 Promise 实例变为 rejected 状态后调用。
+                3. 返回值
+                    返回一个新的 Promise 实例。因此可以使用链式写法，在 then 方法后再调用另一个 then 方法。
+                        第二个 then 方法的状态，取决于第一个 then 返回的 Promise 实例的状态。
+        */
+        {
+            const pm = new Promise(function (resolve, reject) {
+                console.log('Promise 实例 pm')
+
+                /*
+                    必须在 Promise 构造函数中手动调用 resolve 方法，
+                        Promise 实例的状态才会变成 fulfilled；
+                        resolve() 才会被调用。
+                */
+                return resolve('实例状态为 fulfilled')
+            })
+
+            pm.then(
+                (value) => console.log('pm 的 then 方法的第一个参数。' + value)
+            ).then(
+                () => console.log('pm 的 then 方法的 then 方法的第一个参数'),
+                () => console.log('pm 的 then 方法的 then 方法的第二个参数')
+            )
+        }
+    </script>
+</body>
+
+</html>
