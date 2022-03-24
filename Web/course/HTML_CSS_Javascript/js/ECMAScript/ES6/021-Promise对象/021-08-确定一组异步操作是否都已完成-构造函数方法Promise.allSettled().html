@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-08-确定一组异步操作是否都已完成-构造函数方法Promise.allSettled()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.allSettled()
+                1. 作用
+                    用来确定一组异步操作是否都已经完成（不管是 fulfilled 还是 rejected）。
+                2. 参数
+                    接受一个数组作为参数，参数的成员是一个个 Promise 实例。
+                3. 返回值
+                    3.1 返回值是什么
+                        返回一个新的 Promise 对象。
+                    3.2 返回值的状态
+                        3.2.1 返回值状态的改变条件
+                            参数实例的状态全部改变后，返回的 Promise 实例才会将自身状态改为 fulfilled。
+                        3.2.2 返回值状态的改变结果
+                            无论参数实例变为什么状态，返回值实例的状态永远会变为 fulfilled。
+                4. 回调函数参数
+                    在返回值实例的状态变为 Promise.allSettled() 后，会返回给回调函数一个数组，
+                        成员是 Promise.allSettled() 所接收的所有 Promise 实例。
+        */
+        {
+            const resolved = Promise.resolve(1)
+            const rejected = Promise.reject('手动出错')
+
+            const pas = Promise.allSettled([resolved, rejected])
+            pas.then(function (value) {
+                console.log(value)
+                /*
+                    返回：
+                        [
+                            { "status": "fulfilled", "value": 1 },
+                            { "status": "rejected", "reason": "手动出错" }
+                        ]
+                */
+
+                // 筛选出状态为 fulfilled 的实例
+                const successes = value.filter(p => p.status === 'fulfilled')
+                console.log(successes)    // 返回 [{ "status": "fulfilled", "value": 1 }]
+
+                // 筛选出状态为 rejected 的实例并保存错误信息
+                const failures = value.filter(p => p.status === 'rejected').map(p => p.reason)
+                console.log(failures)    // 返回 ['手动出错']
+            })
+        }
+    </script>
+</body>
+
+</html>
