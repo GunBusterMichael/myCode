@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-07-将多个Promise实例包装成一个新的Promise实例-构造函数方法Promise.race()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.race()
+                1. 作用
+                    将多个 Promise 实例，包装成一个新的 Promise 实例。
+                2. 与 Promise.all() 的不同
+                    2.1 状态改变
+                        如果有一个参数实例率先改变了状态，Promise.race() 返回的新实例的状态就会跟着改变。
+                    2.2 新实例的回调函数参数
+                        率先改变的参数实例的返回值，会被传递给新实例的回调函数。
+        */
+        /*
+            示例：
+                rejected 先完成状态改变
+        */
+        {
+            const fulfilled = new Promise((resolve, reject) => setTimeout(resolve, 500, '500ms 后调用 resolve'))
+            const rejected = new Promise((resolve, reject) => setTimeout(reject, 100, '100ms 后调用 rejected'))
+
+            Promise.race([fulfilled, rejected])
+                // 未被调用
+                .then((value) => console.log(value))
+                // 被调用，Promise.race() 的状态改为 rejected
+                .catch((error) => console.log(error))    // 返回 100ms 后调用 rejected
+        }
+        /*
+            示例：
+                fulfilled 先完成状态改变
+        */
+        {
+            const fulfilled = new Promise((resolve, reject) => setTimeout(resolve, 100, '100ms 后调用 resolve'))
+            const rejected = new Promise((resolve, reject) => setTimeout(reject, 500, '500 后调用 rejected'))
+
+            Promise.race([fulfilled, rejected])
+                // 被调用，Promise.race() 的状态改为 fulfilled
+                .then((value) => console.log(value))    // 返回 100ms 后调用 resolve
+                // 未被调用
+                .catch((error) => console.log(error))
+        }
+    </script>
+</body>
+
+</html>

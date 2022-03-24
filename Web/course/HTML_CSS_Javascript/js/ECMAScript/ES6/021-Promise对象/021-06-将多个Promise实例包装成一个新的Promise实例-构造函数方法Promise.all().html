@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-06-将多个Promise实例包装成一个新的Promise实例-构造函数方法Promise.all()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.all()
+                1. 作用
+                    将多个 Promise 实例，包装成一个新的 Promise 实例。
+                2. 参数
+                    接受一个具有 Iterator 接口的数据结构（数组、map、set）作为参数，成员为要组合的实例。
+                    如果成员不是 Promise 实例，将会被忽略，并将其放入返回数组中。
+                3. 返回值
+                    新的 Promise 实例。
+                4. resolve()
+                    4.1 何时运行
+                        所有参数 Promise 的状态都为 fulfilled。
+                    4.2 返回值
+                        返回一个数组，成员是多个参数 Promise 实例的 resolve() 的返回值。
+                    4.3 运行后的实例状态
+                        新实例运行 resolve() 后，状态变为 fulfilled。
+        */
+        // 示例：参数实例全部 fulfilled（包含非 Promise 实例）
+        {
+            const promise1 = Promise.resolve(1)
+            const promise2 = 2
+            const promise3 = new Promise((resolve, reject) => setTimeout(resolve, 100, 'Timeouted'))
+
+            Promise.all([promise1, promise2, promise3]).then((value) => console.log(value))    // // 返回 [1, 2, 'Timeouted']
+        }
+
+        /*
+            5. reject()
+                5.1 何时运行
+                    当参数 Promise 实例中有一个状态为 rejected 时，不管其他 Promise 的状态。
+                5.2 返回值
+                    状态为 rejected 的参数实例的错误。
+                5.3 运行后的实例状态
+                    新实例运行 reject() 后，状态变为 rejected。
+        */
+        {
+            const p1 = Promise.resolve(1)
+            const p2 = 'Second'
+            const p3 = new Promise((resolve, reject) => {
+                throw new Error('错误')
+            })
+
+            Promise.all([p1, p2, p3])
+                .then((value) => {
+                    console.log(value)
+                })
+                .catch((error) => {
+                    console.log(error)    // 返回 Error: 错误
+                })
+        }
+        /*
+!           5.4 参数实例有 catch() 方法
+!               如果作为参数的 Promise 实例定义了 catch() 方法，
+                    该实例如果 rejected，智慧触发自己的 catch() 方法，
+!                       不会触发 Promise.all() 的 catch() 方法；
+                        会触发 Promise.all() 的 then() 方法；
+        */
+        {
+            const p1 = Promise.resolve(1)
+            const p2 = 'Second'
+            const p3 = new Promise((resolve, reject) => {
+                throw new Error('错误')
+            }).catch((error) => error)    // 将 error 返回给 Promise.all()
+
+            Promise.all([p1, p2, p3])
+                .then((value) => console.log(value))    // 返回  [1, 'Second', Error: 错误]
+                .catch((error)=>console.log(error))
+        }
+    </script>
+</body>
+
+</html>
