@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-10-将现有对象转换为Promise对象-Promise.resolve()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.resolve()
+                1. 功能
+                    将现有的对象转换为 Promise 对象。
+        */
+
+        /*
+            1.1 参数是一个 Promise 实例
+                Promise.resolve() 将原封不动地返回参数
+        */
+        {
+            const p = new Promise((resolve, reject) => resolve('参数是一个 Promise 实例。'))
+
+            Promise.resolve(p).then(val => console.log(val))    // 返回 参数是一个 Promise 实例。
+        }
+
+        /*
+            1.2 参数是一个 thenable 对象
+                thenable 对象是指具有 then 方法的对象。
+
+                Promise.resolve() 方法会将这个对象转换为 Promise 对象，
+                    然后立即执行 thenable 对象的 then 方法。
+        */
+        {
+            const thenable = {
+                then: function (resolve, reject) {
+                    resolve('参数是一个 thenable 对象。')
+                }
+            }
+
+            const pr = Promise.resolve(thenable)
+            pr.then(value => console.log(value))    // 返回 参数是一个 thenable 对象。
+        }
+
+        /*
+            1.3 参数不是具有 then() 方法的对象，或不是对象
+                Promise.resolve() 返回一个新的 Promise 对象，状态为 resolved；
+                    回调函数立即执行，回调函数的参数是 Promise.resolve() 的参数（括号里的内容）。
+        */
+        {
+            const p = Promise.resolve('参数不是具有 then() 方法的对象，或不是对象。')
+
+            p.then(value => console.log(value))    // 返回 参数是一个 thenable 对象。
+        }
+
+        /* 
+            1.4 没有参数
+                Promise.resolve() 方法没有参数时，直接返回一个 resolved 状态的 Promise 对象。
+                1.4.1 用处：
+                    希望得到一个 Promise 对象时可用没有参数的 Promise.resolve() 方法创建。
+                1.4.2 回调函数执行时机
+                    立即执行 resolve() 的 Promise 对象，其 resolve() 方法会在本轮事件循环结束时执行
+        */
+        {
+            Promise.resolve().then(()=>console.log('Promise.resolve() 方法此时没有参数'))
+        }
+    </script>
+</body>
+
+</html>

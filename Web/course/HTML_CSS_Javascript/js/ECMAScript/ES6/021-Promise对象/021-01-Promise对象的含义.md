@@ -10,11 +10,37 @@ Promise 对象是一个容器，内部保存着某个未来才会结束的事件
 
 ### 2.1 状态的分类
 
-Promise 对象有三种状态：
+```mermaid
+graph LR
+A[nothing happened yet 暂时无事发生]
+B[locked in to another promise 为与另一个Promise的状态匹配而被锁定]
+C[fulfilled 已兑现]
+D[rejected 已拒绝]
 
-- pending：进行中；
-- fulfilled：已成功；
-- rejected：已失败。
+E[pending 进行中]
+F[settled 已敲定]
+G[resolved 已决议]
+H[unresolved 未被决议]
+
+A--->E
+B--->E
+C--->F
+D--->F
+B--->G
+C--->G
+D--->G
+A--->H
+```
+
+JS里一个promise可以有以下几种基本状态：
+
+1. nothing happened yet
+2. "locked in" to another promise
+3. *fulfilled*
+4. *rejected*
+
+其中{1,2}为*pending*，{3,4}为*settled*，{2,3,4}为*resolved*，{1}为*unresolved。*
+
 
 ### 2.2 状态不受外界影响
 

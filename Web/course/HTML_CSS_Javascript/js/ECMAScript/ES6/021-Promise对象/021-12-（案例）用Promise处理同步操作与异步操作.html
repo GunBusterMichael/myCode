@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-12-（案例）用Promise处理同步操作与异步操作.html</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            不管函数 f 是否包含异步操作，都要用 then 方法指定下一步操作，用 catch 方法处理函数 f 抛出的错误。
+        */
+
+        /* 
+            写法一：
+                Promise.resolve().then(f)
+                缺点：
+                    会将同步执行函数 f 变为异步执行，在本轮事件循环的末尾执行。
+        */
+        {
+            const f = () => {
+                console.log('同步操作函数f')    // 然后返回 同步操作函数f
+                return 'f'
+            };
+
+            Promise.resolve().then(f)
+                .then((funName) => console.log(`函数${funName}已被调用`))    // 最后返回 函数f已被调用
+                .catch((err) => console.log(err))
+
+            console.log('同步操作log')    // 先返回 同步操作log
+        }
+
+        /*
+            写法二：
+                async 函数与立即执行函数
+        */
+        {
+            const f = () => {
+                console.log('同步操作函数f')    // 先返回 同步操作函数f
+                return 'f'
+            };
+
+            (
+                async () => f()
+            )()
+                .then((funName) => console.log(`函数${funName}已被调用`))    // 最后返回 函数f已被调用
+                .catch((err) => console.log(err))
+
+            console.log('同步操作log')    // 然后返回 同步操作log
+        }
+
+        /*
+            写法三：
+                new Promise 与立即执行函数
+        */
+        {
+            const f = () => {
+                console.log('同步操作函数f')    // 先返回 同步操作函数f
+                return 'f'
+            };
+
+            (
+                () => new Promise(
+                    resolve => resolve(f())
+                )
+            )()
+                .then((funName) => console.log(`函数${funName}已被调用`))    // 最后返回 函数f已被调用
+                .catch((err) => console.log(err))
+
+            console.log('同步操作log')    // 然后返回 同步操作log
+        }
+    </script>
+</body>
+
+</html>

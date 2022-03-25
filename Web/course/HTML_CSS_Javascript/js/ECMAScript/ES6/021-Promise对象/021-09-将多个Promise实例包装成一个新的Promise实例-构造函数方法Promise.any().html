@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>021-08-将多个Promise实例包装成一个新的Promise实例-构造函数方法Promise.any()</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Promise.any()
+                1. 功能
+                    将一组 Promise 实例，
+                        按照它们的状态，
+                            将它们包装成一个新的 Promise 实例。
+                2. 参数
+                    一个具有 iterable 接口的可迭代对象（Array, Set, Map）。
+                3. 返回值
+                    如果任何一个参数实例变成 fulfilled 状态，则返回内容与该实例相同的新实例；
+                    如果所有参数实例都变为 rejected 状态，则返回 AggregateError 错误：
+                        AggregateError: All promises were rejected
+        */
+        {
+            const pErr = new Promise((resolve, reject) => reject('总是失败'))
+            const p500ms = new Promise((resolve, reject) => setTimeout(resolve, 500, '500ms后完成'))
+            const p100ms = new Promise((resolve, reject) => setTimeout(resolve, 100, '100ms后完成'))
+
+            Promise.any([pErr, p500ms, p100ms]).then(value => console.log(value))    // 返回 100ms后完成
+        }
+        {
+            const pErr0ms = new Promise((resolve, reject) => reject('异步0ms后失败'))
+            const pErr2000ms = new Promise((resolve, reject) => setTimeout(reject, 2000, '异步2000ms后失败'))
+            const pErr100ms = new Promise((resolve, reject) => setTimeout(reject, 100, '异步100ms后失败'))
+
+            Promise.any([pErr0ms, pErr2000ms, pErr100ms])
+                .then(value => console.log(value))
+                .catch(error => console.log(error))    // 返回 AggregateError: All promises were rejected
+        }
+    </script>
+</body>
+
+</html>
