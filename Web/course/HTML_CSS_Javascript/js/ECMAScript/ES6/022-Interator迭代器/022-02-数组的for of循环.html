@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-02-数组的for of循环</title>
+</head>
+<body>
+    <script>
+        // for...of 方法默认获取具有数字索引的键值
+        {
+            let arr = ['a', 'b']
+            arr.foo = 'hello'
+            console.log(arr)    // 返回 ['a', 'b', foo: 'hello']
+    
+            // for...of 默认获取具有数字索引的键值
+            for (let i of arr) {
+                console.log(i)
+                // 返回 'a'
+                // 返回 'b'
+            }
+    
+            // for...in 默认获取所有键名
+            for (let i in arr) {
+                console.log(i)
+                // 返回 0
+                // 返回 1
+                // 返回 'foo'
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-07-集中遍历语法的比较</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            1. for 循环
+                主要用于遍历数组
+        */
+        {
+            let arr = ['China', 'Japan', 'UK']
+            arr.Africa = 'Egypt'
+            Object.getPrototypeOf(arr).Oceania = 'New Zealand'
+
+            for (let i = 0; i < arr.length; i++) {
+                console.log(arr[i])
+                // 返回 'China'
+                // 返回 'Japan'
+                // 返回 'UK'
+            }
+        }
+
+        /*
+            2. forEach 方法
+                主要用于遍历数组。
+                    无法中途退出，break 与 return 命令都不奏效。
+        */
+        {
+            let arr = ['China', 'Japan', 'UK']
+            arr.Africa = 'Egypt'
+            Object.getPrototypeOf(arr).Oceania = 'New Zealand'
+
+            arr.forEach(value => console.log(value))
+            // 返回 'China'
+            // 返回 'Japan'
+            // 返回 'UK'
+        }
+
+        /* 
+            3. for...in
+                用于遍历对象的键名。
+                缺点：
+                    1. 数组的键名是数字，但 for...in 循环会将数字键名转换为字符串形式输出；
+                    2. for...in 不仅会遍历数字键名，还会遍历手动添加的其他类型键名，甚至包括原型链上的键。
+                    3. 某些情况下，for...in 循环会以任意顺序遍历键名。
+        */
+        {
+            let arr = ['China', 'Japan', 'UK']
+            arr.Africa = 'Egypt'
+            Object.getPrototypeOf(arr).Oceania = 'New Zealand'
+
+            for (const k in arr) {
+                console.log(k)
+                // 返回 '0'
+                // 返回 '1'
+                // 返回 '2'
+                // 返回 'Africa'
+                // 返回 'Oceania'
+
+                console.log(arr[k])
+                // 返回 'China'
+                // 返回 'Japan'
+                // 返回 'UK'
+                // 返回 'Egypt'
+                // 返回 'New Zealand'
+            }
+        }
+
+        /* 
+            4. for...of
+        */
+        {
+            let arr = ['China', 'Japan', 'UK']
+            arr.Africa = 'Egypt'
+            Object.getPrototypeOf(arr).Oceania = 'New Zealand'
+
+            for (let i of arr) {
+                console.log(i)
+                // 返回 'China'
+                // 返回 'Japan'
+                // 返回 'UK'
+            }
+
+            // 使用 break 语句跳出 for...of 循环
+            for (let i of arr) {
+                if (i == 'Japan') break;
+                console.log(i)    // 返回 'China'
+            }
+
+            // 使用 break 语句跳出 for...of 循环
+            function getJapan(arr) {
+                for (let i of arr) {
+                    if (i == 'Japan') {
+                        return i
+                    }
+                    console.log(i)    // 返回 China
+                }
+            }
+            let jpn = getJapan(arr)
+            console.log(jpn)    // 返回 Japan
+        }
+    </script>
+</body>
+
+</html>

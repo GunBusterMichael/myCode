@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-05-for of循环类似于数组的对象</title>
+    <style>
+        .carolColor {
+            color: #b8a6d9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>你好</p>
+    <p>你好</p>
+    <p>你好</p>
+
+    <script>
+        // 循环字符串
+        {
+            let str = 'Hello!'
+
+            for (let i of str) {
+                console.log(i)
+                // 返回 'H'
+                // 返回 'e'
+                // 返回 'l'
+                // 返回 'l'
+                // 返回 'o'
+                // 返回 '!'
+            }
+
+            // for...of 能正确识别 32 位 UTF-16 字符
+            let utf16 = 'a\uD83D\uDC0A'
+
+            for (let i of utf16) {
+                console.log(i)
+                // 返回 'a'
+                // 返回 '🐊'
+            }
+        }
+
+        // 循环 DOM NodeList 对象
+        {
+            let ps = document.querySelectorAll('p')
+    
+            for (let p of ps) {
+                p.classList.add('carolColor')
+            }
+        }
+
+        // 循环 arguments 对象
+        {
+            function printArgs() {
+                for (let i of arguments) {
+                    console.log(i)
+                }
+            }
+
+            printArgs('a', 20)
+            // 返回 'a'
+            // 返回 20
+        }
+
+        /* 
+            循环不带 Iterator 接口的类似数组的对象
+        */
+        {
+            let arrayLike = {
+                0: 'a',
+                1: 'b',
+                length: 2
+            }
+    
+            // 直接循环会报错：Uncaught TypeError: arrayLike is not iterable
+            /* 
+                for (let i of arrayLike) {
+                    console.log(i)
+                } 
+            */
+
+            // 要用 Array.from() 将对象转换为数组
+            for (const i of Array.from(arrayLike)) {
+                console.log(i)
+                // 返回 'a'
+                // 返回 'b'
+            }
+        }
+    </script>
+</body>
+
+</html>

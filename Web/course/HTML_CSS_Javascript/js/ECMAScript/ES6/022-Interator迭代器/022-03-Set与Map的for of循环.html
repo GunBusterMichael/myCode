@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-03-Set与Map的for of循环</title>
+</head>
+<body>
+    <script>
+        // Set 的 for...of 循环
+        let countries = new Set(['China', 'Japan', 'UK', 'UK'])
+
+        for (let i of countries) {
+            console.log(i)
+            // 返回 'China'
+            // 返回 'Japan'
+            // 返回 'UK'
+        }
+
+        // Map 的 for...of 循环
+        let cities = new Map()
+        cities.set('China', 'Beijing')
+        cities.set('Japan', 'Tokyo')
+        cities.set('UK', 'London')
+
+        for (let [key, value] of cities) {
+            console.log([key, value])
+            // 返回 ['China', 'Beijing']
+            // 返回 ['Japan', 'Tokyo']
+            // 返回 ['UK', 'London']
+        }
+    </script>
+</body>
+</html>

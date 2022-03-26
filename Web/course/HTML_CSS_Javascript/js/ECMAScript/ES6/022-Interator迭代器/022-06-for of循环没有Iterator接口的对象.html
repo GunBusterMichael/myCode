@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-06-for of循环没有Iterator接口的对象</title>
+</head>
+
+<body>
+    <script>
+        /*
+            for...in
+                对于没有手动部署 Iterator 接口的对象，for...in 可以遍历其键名。
+        */
+        let es6 = {
+            edition: 6,
+            committee: "TC39",
+            standard: "ECMA-262"
+        }
+        for (let k in es6) {
+            console.log(k)
+            // 返回 'edition'
+            // 返回 'committee'
+            // 返回 'standard'
+        }
+        /* 
+            for...of
+                对于没有手动部署 Iterator 接口的对象，for...of 不可遍历它，会报错。
+        */
+        /*
+            for (let i of es6) {    // 报错 Uncaught TypeError: es6 is not iterable
+                console.log(i)
+            }
+        */
+
+        /* 
+            解决办法：
+                1. 用 Object.keys 方法将对象的键名包装成一个数组，再遍历这个数组。
+        */
+        for (let k of Object.keys(es6)) {
+            console.log(k)
+            // 返回 'edition'
+            // 返回 'committee'
+            // 返回 'standard'
+        }
+        /*
+            2. 用 Generator 函数将对象重新包装。
+        */
+        function* entries(es6) {
+            for (let key of Object.keys(es6)) {
+                yield [key, es6[key]];
+            }
+        }
+
+        for (let [key, value] of entries(es6)) {
+            console.log(key, '->', value)
+            // 返回 'edition -> 6'
+            // 返回 'committee -> TC39'
+            // 返回 'standard -> ECMA-262'
+        }
+    </script>
+</body>
+
+</html>

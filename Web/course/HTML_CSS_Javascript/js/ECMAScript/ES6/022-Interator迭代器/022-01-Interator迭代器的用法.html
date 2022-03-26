@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-01-Interator迭代器的用法</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Interator 迭代器（迭代器）
+                1. 定义
+                    是一个接口，为不同的数据结构提供统一的访问机制。
+                2. 作用
+                    任何数据类型只要被部署了 Iterator 接口，即可完成遍历操作（for...of），
+                        即依次处理该数据结构的所有成员。
+        */
+        /*
+            3. 遍历过程
+                3.1 创建一个指针对象，指向当前数据结构的起始位置；
+                3.2 第一次调用指针对象的 next 方法，将指针对象指向数据结构的第一个成员；
+                3.3 第二次调用指针对象的 next 方法，将指针对象指向数据结构的第二个成员；
+                3.4 不断调用指针对象的 next 方法，直到它指向数据结构的结束位置。
+            4. 遍历时的返回值
+                返回一个对象 {value: ..., done: false||true}。
+                    4.1 value
+                        value 属性表示当前被遍历的值。
+                            在遍历次数 <= length 时，返回 当前被遍历的值；
+                            在遍历次数 > length 时，返回 undefined。
+                    4.2 done
+                        done 属性是布尔值，遍历是否结束。
+                            在遍历次数 <= length 时，返回 false；
+                            在遍历次数 > length 时，返回 true。
+            5. 遍历接口
+                5.1 遍历接口的位置
+                    遍历接口被部署在数据结构的 Symbol.iterator 属性中。
+                    某数据结构只要有 Symbol.iterator 接口，就是“可遍历”的属性。
+                5.2 原生具备 Iterator 接口（原生部署了 Symbol.iterator 属性）的数据结构
+                    ·1 数组；
+                    ·2 字符串；
+                    ·3 Set；
+                    ·4 Map；
+                    ·5 TypedArray；
+                    ·6 函数的 arguments 对象；
+                    ·7 NodeList 对象。
+        */
+        {
+            // 新建自带 Iterator 接口的数组
+            let arr = ['a', 'b', 'c']
+            // 调用 Iterator 接口
+            let iter = arr[Symbol.iterator]()
+
+            // 用 next 方法遍历数组
+            console.log(iter.next())    // 返回 {value: 'a', done: false}
+            console.log(iter.next())    // 返回 {value: 'b', done: false}
+            console.log(iter.next())    // 返回 {value: 'c', done: false}
+            console.log(iter.next())    // 返回 {value: undefined, done: true}
+        }
+    </script>
+</body>
+
+</html>

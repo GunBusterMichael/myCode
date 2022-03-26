@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>022-04-for of循环计算生成的数据结构</title>
+</head>
+<body>
+    <script>
+        /*
+            以下三种方法被调用后，会返回遍历器对象（计算生成的数据结构）：
+                1. entries()
+                    返回一个遍历器对象，用来遍历 [键名, 键值] 组成的数组。
+                        对于数组，键名是索引值；
+                        对于 Set，键名与键值相同；
+                        对于 Map，其 Iterator 接口默认调用 entries 方法。
+                2. keys() 返回一个遍历器对象，用来遍历所有的键名。
+                3. values() 返回一个遍历器对象，用来遍历所有的键值。
+        */
+
+        const arr = ['a', 'b', 'c']
+
+        for (let i of arr.entries()) {
+            console.log(i)
+            // 返回 [0, 'a']
+            // 返回 [1, 'b']
+            // 返回 [2, 'c']
+        }
+        for (let i of arr.keys()) {
+            console.log(i)
+            // 返回 0
+            // 返回 1
+            // 返回 2
+        }
+        for (let i of arr.values()) {
+            console.log(i)
+            // 返回 'a'
+            // 返回 'b'
+            // 返回 'c'
+        }
+    </script>
+</body>
+</html>
