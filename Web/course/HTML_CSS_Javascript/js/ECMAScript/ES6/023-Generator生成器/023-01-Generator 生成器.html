@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>023-01-Generator 生成器</title>
 </head>
+
 <body>
     <script>
         /* 
@@ -25,15 +27,87 @@
         {
             // 声明一个 Generator 生成器函数
             function* func() {
-                yield 2
+                console.log('ZERO')
+                yield 0
+                console.log('ONE')
+                yield 1
+                console.log('End!')
             }
 
-            // 返回一个遍历器对象
+            // 返回一个遍历器对象，但不运行函数内部代码
             let iter = func()
+
             // 返回值（遍历器对象）可调用 next() 方法
-            console.log(iter.next())    // 返回 {value: 2, done: false}
-            console.log(iter.next())    // 返回 {value: undefined, done: true}
+            // 指针指向第一个 yield，函数运行到第一个 yield 处，第一个 yield 前面的代码被运行，返回第一个 yield 挂起的值
+            console.log(iter.next())    // 返回 'ZERO', {value: 2, done: false}
+            // 指针指向第二个 yield，函数运行到第二个 yield 处，第二个 yield 前面的代码被运行，返回第二个 yield 挂起的值
+            console.log(iter.next())    // 返回 'ONE', {value: 3, done: false}
+            // 指针指向遍历器末尾，函数后续代码正常运行，返回 {value: undefined, done: true}
+            console.log(iter.next())    // 返回 'End!' {value: undefined, done: true}
+        }
+        /*
+            总结
+                Generator 函数分段执行：
+                    yield 语句暂停执行；
+                    next() 方法恢复执行。
+        */
+
+        console.log('——————分割线——————')
+
+        /*
+            3. 传值
+        */
+        {
+            function* add() {
+                console.log('Start!')
+                // x 不是 yield 的返回值，而是下一个 next() 传入的参数
+                const x = yield '第一个yield'
+
+                console.log('x: ' + x)
+                // x 不是 yield 的返回值，而是下一个 next() 传入的参数
+                const y = yield '第二个yield'
+
+                console.log('y: ' + y)
+                return 'Total: ' + (x + y)
+            }
+
+            const iter = add()
+
+            // 第一次调用 next() 方法，不会给任何 yield 左侧的变量赋值
+            console.log(iter.next(1))    // 返回 'Start!' {value: '第一个yield', done: false}
+
+            // 第二次调用 next() 方法，会给第一个 yield 左侧的变量赋值
+            console.log(iter.next(10))    // 返回 'x: 10' {value: '第二个yield', done: false}
+
+            // 第三次调用 next() 方法，会给第二个 yield 左侧的变量赋值
+            console.log(iter.next(20))    // 返回 'y: 20' {value: 30, done: true}
+        }
+
+        /*
+            4. 使用场景
+                为不具备 Iterator 接口的对象提供遍历操作。
+        */
+        function* objectEntries(obj) {
+            // 获取对象所有的 key
+            const propsKeys = Object.keys(obj)
+            for (let propKey of propsKeys) {
+                yield [propKey, obj[propKey]]
+            }
+        }
+
+        const star = {
+            name: 'Carol',
+            age: 20
+        }
+
+        star[Symbol.iterator] = objectEntries
+
+        console.log(star)
+
+        for (let [key, value] of objectEntries(star)) {
+            console.log(key + ': ' + value)
         }
     </script>
 </body>
+
 </html>
