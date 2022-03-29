@@ -42,7 +42,8 @@
             console.log(iter.next())    // 返回 'ZERO', {value: 2, done: false}
             // 指针指向第二个 yield，函数运行到第二个 yield 处，第二个 yield 前面的代码被运行，返回第二个 yield 挂起的值
             console.log(iter.next())    // 返回 'ONE', {value: 3, done: false}
-            // 指针指向遍历器末尾，函数后续代码正常运行，返回 {value: undefined, done: true}
+            // 指针指向遍历器末尾，函数后续代码正常运行；
+            // 如果没有 return 语句，返回 {value: undefined, done: true}；如果有 return 语句，返回 return 语句的返回值
             console.log(iter.next())    // 返回 'End!' {value: undefined, done: true}
         }
         /*
@@ -65,10 +66,10 @@
 
                 console.log('x: ' + x)
                 // x 不是 yield 的返回值，而是下一个 next() 传入的参数
-                const y = yield '第二个yield'
+                const y = 2 * (yield '第二个yield')
 
-                console.log('y: ' + y)
-                return 'Total: ' + (x + y)
+                console.log('2 * y: ' + y)
+                return 'x + 2 * y = ' + (x + y)
             }
 
             const iter = add()
@@ -80,11 +81,91 @@
             console.log(iter.next(10))    // 返回 'x: 10' {value: '第二个yield', done: false}
 
             // 第三次调用 next() 方法，会给第二个 yield 左侧的变量赋值
-            console.log(iter.next(20))    // 返回 'y: 20' {value: 30, done: true}
+            console.log(iter.next(20))    // 返回 '2 * y: 40' {value: 'x + 2 * y = 50', done: true}
+        }
+
+        /* 
+            4. 不用 yield 表达式
+                将 Generator 函数变为暂缓执行函数。
+        */
+        {
+            function* f() {
+                console.log('执行了暂缓执行函数f')
+            }
+
+            // 此时，由于函数 f 是暂缓执行函数，所以不会立即执行，而是等到调用 next() 方法时才会执行。
+            const generator = f()
+
+            setTimeout(function () {
+                generator.next()    // 返回 '执行了暂缓执行函数f'
+            }, 1000)
+        }
+
+        /* 
+            5. yield 表达式不能在普通函数中使用
+                也不能在 Generator 函数内的普通函数中使用。
+                yield 表达式的最近外层函数必须是 Generator 函数。
+        */
+        {
+            let arr = [1, [[2, 3], 4], [5, 6]]
+
+            /*
+                因为 forEach 方法是一个普通函数，所以内部不能使用 yield 表达式。
+            */
+            /* 
+            const flat = function* (arr) {
+                a.forEach(function (item) {
+                    if (typeof item !== 'number') {
+                        yield* flat(item)
+                    } else {
+                        yield item    // 报错 Uncaught SyntaxError: Unexpected identifier
+                    }
+                });
+            } 
+            */
+
+            // 修改后的代码
+            const flat = function* (arr) {
+                for (let i = 0; i < arr.length; i++) {
+                    const item = arr[i]
+                    if (typeof item !== 'number') {
+                        yield* flat(item)
+                    } else {
+                        yield item
+                    }
+                }
+            }
+
+            for (let i of flat(arr)) {
+                console.log(i)    // 依次返回 1 2 3 4 5 6
+            }
+        }
+
+        /* 
+            6. yield 表达式如果用在另一个表达式之中，则必须放在小括号中
+                否则会报错。
+        */
+        {
+            // yield表达式如果用在另一个表达式之中，必须放在圆括号里面。
+            function* demo1() {
+                // console.log('demo1' + yield)    // 报错 SyntaxError: Unexpected identifier
+                // console.log('demo1' + yield 123)    // 报错 SyntaxError: Unexpected identifier
+
+                console.log('demo1' + (yield))    // 不报错
+                console.log('demo1' + (yield 123))    // 不报错
+            }
+
+            // yield 表达式作为函数参数或放在赋值表达式（=）右侧时，可以不加小括号。
+            {
+                function* demo2() {
+                    foo(yield 'a', yield 'b')    // 不报错
+                    let x = yield    // 不报错
+                }
+            }
         }
 
         /*
-            4. 使用场景
+            7. 使用场景
                 为不具备 Iterator 接口的对象提供遍历操作。
         */
         function* objectEntries(obj) {
@@ -100,12 +181,8 @@
             age: 20
         }
 
-        star[Symbol.iterator] = objectEntries
-
-        console.log(star)
-
         for (let [key, value] of objectEntries(star)) {
-            console.log(key + ': ' + value)
+            console.log(key + ': ' + value)    // 依次返回 'name: Carol', 'age: 20'
         }
     </script>
 </body>

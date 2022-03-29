@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-02-for...of循环与Generator函数</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            for...of 循环可以自动遍历 Generator 函数被调用时生成的 Iterator 对象；
+                且此时不再需要调用 next 方法。
+        */
+        {
+            function* gen() {
+                yield 1;
+                yield 2;
+                yield 3;
+
+                /* 
+                    一旦 next 方法返回的对象的 done 属性为 true，
+                        for...of 循环就会停止，不会返回该 done 属性配套的 value 属性值。
+                    所以 return 语句返回的 4 不会被 for...of 循环遍历到。
+                */
+                return 4;
+            }
+
+            for (let num of gen()) {
+                console.log(num)
+                // 返回 1
+                // 返回 2
+                // 返回 3
+            }
+        }
+
+        /* 
+            1. 使用场景
+                遍历没有 Iterator 接口的对象。
+        */
+        {
+            // 2.1 通过手动调用遍历对象的函数实现遍历没有 Iterator 接口的对象。
+            {
+                // 声明遍历对象的函数 objectEntries
+                function* objectEntries(obj) {
+                    let propsKeys = Object.keys(obj)
+
+                    for (let propKey of propsKeys) {
+                        yield [propKey, obj[propKey]]
+                    }
+                }
+
+                const star = {
+                    name: 'Carol',
+                    age: 20
+                }
+
+                // 调用遍历对象的函数 objectEntries
+                for (let [key, value] of objectEntries(star)) {
+                    console.log(`${key}: ${value}`)
+                    // 返回 'name: Carol'
+                    // 返回 'age: 20'
+                }
+            }
+
+            // 2.2 将 Generator 函数添加到对象的 Symbol.iterator 属性上
+            {
+                function* objectEntries() {
+                    let propsKeys = Object.keys(this)
+
+                    for (let propKey of propsKeys) {
+                        yield [propKey, this[propKey]]
+                    }
+                }
+
+                const star = {
+                    name: 'Carol',
+                    age: 20
+                }
+
+                star[Symbol.iterator] = objectEntries
+
+                for (let [key, value] of star) {
+                    console.log(`${key}: ${value}`)
+                    // 返回 'name: Carol'
+                    // 返回 'age: 20'
+                }
+
+                /* 
+                    扩展运算符、解构赋值和 Array.from 方法也会调用遍历器接口
+                */
+                {
+                    // 扩展运算符
+                    console.log([...star])    // 返回 [ ["name", "Carol"], ["age", 20] ]
+
+                    // 解构赋值
+                    let [x, y] = star
+                    console.log(x)    // 返回 ['name', 'Carol']
+                    console.log(y)    // 返回 ['age', 20]
+
+                    // Array.from()
+                    console.log(Array.from(star))    // 返回 [ ["name", "Carol"], ["age", 20] ]
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
