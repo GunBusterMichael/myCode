@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>next()、throw()、return() 的共同点</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            next()、throw()、return() 的共同点
+                1. 让 Generator 函数恢复执行；
+                2. 使用不同的语句替换 yield 表达式。
+        */
+
+        /* 
+            2.1 next()
+                将 yield 表达式替换为一个值：
+                    如果 next 有参数，则替换为参数；
+                    如果 next 没有参数，则替换为 undefined。
+        */
+        {
+            const g = function* (x, y) {
+                const result = yield x + y
+                return result
+            }
+
+            const gen = g(1, 2)
+
+            console.log(gen.next())    // 返回 {value: 3, done: false}
+
+            /* 
+                此步骤相当于将：
+                    let result = yield x + y
+                    替换成
+                    let result = 9
+            */
+            console.log(gen.next(9))    // 返回 {value: 9, done: true}
+        }
+
+        /* 
+            2.2 throw()
+                将 yield 表达式替换为一个 throw 语句
+        */
+        {
+            const g = function* (x, y) {
+                const result = yield x + y
+                return result
+            }
+
+            const gen = g(1, 2)
+
+            console.log(gen.next())    // 返回 {value: 3, done: false}
+
+            /* 
+                此步骤相当于将：
+                    let result = yield x + y
+                    替换为
+                    let result = throw(new Error('出错了。'))
+            */
+            // gen.throw(new Error('出错了。'))    //报错并停止运行 Uncaught Error: 出错了。
+        }
+
+        /* 
+            2.3 return()
+                将 yield 表达式替换为一个 return 语句。
+        */
+        {
+            const g = function* (x, y) {
+                let result = yield x + y
+                return result
+            }
+
+            const gen = g(1, 2)
+
+            console.log(gen.next())    // 返回 {value: 3, done: false}
+
+            /* 
+                此步骤相当于将：
+                    let result = yield x + y
+                    替换成
+                    let result = return 2
+            */
+            console.log(gen.return(9))    // 返回 {value: 9, done: true}
+        }
+    </script>
+</body>
+
+</html>

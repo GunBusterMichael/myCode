@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-04-返回给定值并结束遍历Generator函数-实例方法return</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Generator 函数返回的遍历器对象的 return() 方法
+                1. 作用
+                    返回给定的值并结束遍历 Generator 函数。
+                2. 参数
+                    接受一个值作为参数。
+                3. 返回值
+                    3.1 如果有参数，返回：
+                        {value: 参数, done: true}
+                    3.2 如果没有参数，返回：
+                        {value: undefined, done: true}
+        */
+        // return() 带参数
+        {
+            function* gen() {
+                yield 0
+                yield 1
+                yield 2
+            }
+
+            let g = gen()
+
+            console.log(g.next())           // 返回 {value: 0, done: false}
+            console.log(g.return('foo'))    // 返回 {value: 'foo', done: true}
+            console.log(g.next())           // 返回 {value: undefined, done: true}
+        }
+        // ruturn() 不带参数
+        {
+            function* gen() {
+                yield 0
+                yield 1
+                yield 2
+            }
+
+            let g = gen()
+
+            console.log(g.next())      // 返回 {value: 0, done: false}
+            console.log(g.return())    // 返回 {value: undefined, done: true}
+            console.log(g.next())      // 返回 {value: undefined, done: true}
+        }
+
+        /* 
+            4. 如果 Generator 函数内部有 try...finally 代码块，且该函数正在执行 try 代码块，
+                那么 return() 方法会让函数停止执行 try 代码块，然后立即执行 finally 代码块，
+                    在 finally 代码块执行完毕后，返回 return() 方法指定的返回值，并结束遍历。
+        */
+        {
+            const gen = function* () {
+                yield 0
+                try {
+                    yield 1
+                    yield 2
+                } finally {
+                    yield 3
+                    yield 4
+                }
+                yield 5
+            }
+
+            const g = gen()
+
+            console.log(g.next())       // 返回 {value: 0, done: false}
+            console.log(g.next())       // 返回 {value: 1, done: false}
+            console.log(g.return(6))    // 返回 {value: 3, done: false}
+            console.log(g.next())       // 返回 {value: 4, done: false}
+            console.log(g.next())       // 返回 {value: 6, done: false}
+        }
+    </script>
+</body>
+
+</html>

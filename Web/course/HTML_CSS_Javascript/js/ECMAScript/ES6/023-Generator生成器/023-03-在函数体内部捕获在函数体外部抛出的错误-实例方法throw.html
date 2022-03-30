@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-03-在函数体内部捕获在函数体外部抛出的错误-实例方法throw</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Generator 函数返回的遍历器的 throw 方法
+                1. 功能
+                    可以在 Generator 函数体外部抛出错误，
+                        然后在 Generator 函数体内部捕获。
+        */
+        {
+            let g = function* () {
+                try {
+                    yield
+                } catch (e) {
+                    console.log('内部捕获', e)
+                }
+            }
+
+            let i = g()
+            i.next()
+
+            try {
+                // 被 Generator 函数内部捕获
+                i.throw(new Error('第一个错误'))    // 报错 内部捕获 Error: 第一个错误
+
+
+                /*
+                    因为 Generator 函数内部的 catch 语句已经被执行过一次，无法再次执行；
+                        所以被函数外部的 catch 语句接收
+                */
+                i.throw(new Error('第二个错误'))    // 报错 外部捕获 Error: 第二个错误
+            } catch (e) {
+                console.log('外部捕获', e)
+            }
+        }
+
+        /* 
+            2. 如果 Generator 函数内部没有部署 try...catch 代码块：
+                Generator.prototype.throw() 抛出的错误，将被外部的 try...catch 捕获。
+        */
+        {
+            let g = function* () {
+                while (true) {
+                    yield
+                    console.log('内部捕获', e)
+                }
+            }
+
+            let i = g()
+            i.next()
+
+            try {
+                /*
+                    由于 Generator 函数 g 内部没有部署 try...catch 代码块，
+                        所以 Generator.prototype.throw() 抛出的错误直接被外部的 catch 代码块捕获。
+                */
+                i.throw('a')
+
+                /*
+                    由于能够捕获这个错误的 catch 代码块已经运行过一次，
+                        所以第二个 Generator.prototype.throw() 抛出的错误不会被捕获。
+                */
+                i.throw('b')
+            } catch (e) {
+                console.log('外部捕获', e)    // 报错 外部捕获 a
+            }
+        }
+
+        /* 
+            3. 如果 Generator 函数内部和外部都没有部署 try...catch 代码块，
+                则会报错
+        */
+        {
+            /* let gen = function* gen() {
+                yield console.log('hello')
+                yield console.log('world')
+            }
+
+            let g = gen()
+            g.next()
+            g.throw()
+            // 返回 'hello'
+            // 报错并停止运行 Uncaught undefined */
+        }
+
+        /* 
+            4. throw 方法抛出的错误若想被内部捕获，就必须提前执行至少一次 next 方法：
+                如果不用 next 方法启动 Generator 函数内部代码，
+                    就无法运行 Generator 函数内部的 try...catch 代码块
+        */
+        {
+            /* function* gen() {
+                try {
+                    yield
+                } catch (e) {
+                    console.log('内部捕获', e)
+                }
+            }
+
+            let g = gen()
+            g.throw(1)    // 报错并停止运行 Uncaught 1 */
+        }
+
+        /* 
+            5. catch 方法被捕获后，会附带执行下一条 yield 表达式：
+                等效于多执行一次 next 方法。
+        */
+        {
+            const gen = function* () {
+                try {
+                    yield console.log('第一个 yield 关键字')
+                } catch (e) {
+                    console.log('内部捕获了一个错误', e)
+                }
+                yield console.log('第二个 yield 关键字')
+                yield console.log('第三个 yield 关键字')
+            }
+
+            const g = gen()
+
+            // 启动 gen 函数的内部代码，并运行到第一个 yield 语句
+            g.next()    // 返回 第一个 yield 关键字
+
+            // 调用一次 throw 方法，并执行到下一条 yield 语句
+            g.throw('调用一次 throw 方法')
+            // 报错 内部捕获了一个错误 调用一次 throw 方法
+            // 返回 第二个 yield 关键字
+
+            // 调用 next 方法，运行到第三个 yield 语句
+            g.next()    // 返回 第三个 yield 关键字
+        }
+
+        /* 
+            6. 函数内部抛出错误
+                如果在 Generator 函数的执行过程中，函数内部抛出了错误，且没有被内部捕获
+                    就不会再执行下去。如果之后又调用了 next 方法，将返回 {value: undefined, done: true}
+        */
+        function* gen() {
+            yield 0
+            throw new Error('抛出错误')
+            yield 1
+        }
+
+        let g = gen()
+
+        console.log(g.next())    // 返回 {value: 0, done: false}
+        try {
+            console.log(g.next())
+        } catch (e) {
+            console.log('外部捕获错误' + e)    // 报错 外部捕获错误Error: 抛出错误
+        }
+        console.log(g.next())    // 返回 {value: undefined, done: true}
+    </script>
+</body>
+
+</html>
