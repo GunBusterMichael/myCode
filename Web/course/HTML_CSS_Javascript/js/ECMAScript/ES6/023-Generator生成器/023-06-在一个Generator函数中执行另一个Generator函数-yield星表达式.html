@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-06-在一个Generator函数中执行另一个Generator函数-yield星表达式</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            yield* 表达式
+                1. 作用
+                    在一个 Generator 函数里面执行另一个 Generator 函数。 
+                
+                    在外面的函数被称为“代理函数”；
+                    在里面的函数被称为“被代理函数”。
+        */
+        {
+            function* strGn() {
+                yield 1
+                yield* numGn()
+                yield numGn()
+                yield 2
+            }
+
+            function* numGn() {
+                yield 'a'
+                yield 'b'
+            }
+
+            for (const i of strGn()) {
+                console.log(i)
+                // 返回 1
+                // 返回 'a'
+                // 返回 'b'
+                // 返回一个遍历器对象
+                // 返回 2
+            }
+        }
+
+        /* 
+            2. yield* 等效于 for...of 循环
+        */
+        {
+            function* genForof() {
+                yield 1
+                for (const value of gen()) {
+                    yield value
+                }
+                yield 2
+            }
+            // 上下两个 Generator 函数等效
+            function* genStar() {
+                yield 1
+                yield* gen()
+                yield 2
+            }
+
+            function* gen() {
+                yield 'a'
+                yield 'b'
+            }
+
+            for (const i of genForof()) {
+                console.log(i)    // 依次返回 1 'a' 'b' 2
+            }
+            for (const i of genStar()) {
+                console.log(i)    // 依次返回 1 'a' 'b' 2
+            }
+        }
+
+        /* 
+            3. 被 yield* 遍历的 Generator 函数函数内含 return 语句时
+                return 返回的值可被
+        */
+        {
+            function* outer() {
+                yield 1
+                let value = yield* inner()
+                console.log('被代理函数返回的值是' + value);
+                yield 2
+            }
+            function* inner() {
+                yield 'a'
+                return 'b'
+            }
+
+            for (const i of outer()) {
+                console.log(i)
+            }
+            // 返回 1
+            // 返回 'a'
+            // 返回 '被代理函数返回的值是b'
+            // 返回 2
+        }
+
+        /*
+            4. 具有 Iterator 接口的数据都可被 yield* 遍历
+        */
+        // 举例：遍历字符串
+        {
+            // 将匿名 Generator 函数返回的遍历器对象赋值到 iterStr 中
+            let iterStr = (function* () {
+                yield 'Hi'
+                yield* 'Hi'
+            })()    // 立即执行匿名 Generator 函数
+
+            console.log(iterStr.next().value)    // 返回 'Hi'
+            console.log(iterStr.next().value)    // 返回 'H'
+            console.log(iterStr.next().value)    // 返回 'i'
+            console.log(iterStr.next().value)    // 返回 undefined
+        }
+
+        /* 
+            5. yield* 与 yield 的区别
+                yield* 遍历右侧的遍历器；
+                yield 返回右侧的遍历器。
+        */
+
+        /* 
+            6. 具体使用场景
+                取出嵌套数组中的所有成员
+        */
+        {
+            function* iterTree(tree) {
+                if (Array.isArray(tree)) {
+                    for (let i = 0; i < tree.length; i++) {
+                        yield* iterTree(tree[i]);
+                    }
+                } else {
+                    yield tree;
+                }
+            }
+
+            const tree = ['a', ['b', 'c'], ['d', 'e']];
+
+            for (let x of iterTree(tree)) {
+                console.log(x);
+            }
+            // 或
+            console.log([...iterTree(tree)])
+        }
+    </script>
+</body>
+
+</html>

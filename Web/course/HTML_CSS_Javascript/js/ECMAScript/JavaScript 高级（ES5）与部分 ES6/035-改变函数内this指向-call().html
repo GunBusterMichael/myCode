@@ -14,10 +14,14 @@
             this.age = age
             this.gander = gander
         }
+
         function Son(uname, age, gander) {
+            // 让构造函数 Father 的 this 指向 构造函数 Son 的实例
             Father.call(this, uname, age, gander)
         }
+        
         var son = new Son('Carol', 20, 'Female')
+        console.log(son)    // 返回 Son {uname: 'Carol', age: 20, gander: 'Female'}
     </script>
 </body>
 </html>
