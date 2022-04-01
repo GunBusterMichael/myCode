@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>155-getter与setter函数</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            对象属性的分类
+                1. 数据属性
+                    即平常使用的属性。
+        */
+        {
+            let o = {
+                // a 就是数据属性
+                a: 1
+            }
+        }
+
+        /*
+            2. 访问器属性（存取器属性）
+                2.1 定义
+                    是一组作用为获取与设置“值”的函数：
+                2.2 组成
+                    2.1 getter 函数（取值函数）
+                        2.1.1 定义
+                            获取值时要执行的函数。
+                        2.1.2 作用
+                            getter 负责获取值。
+                        2.1.3 return
+                            getter 函数体内的 return 返回的值即为访问器属性返回的值。
+                    2.2 setter 函数
+                        2.2.1 定义
+                            设置值时要执行的函数。
+                        2.2.2 作用
+                            setter 负责设置值。
+                        2.2.3 return
+                            setter 函数体内的 return 无效。
+                2.3 用处
+                    2.3.1 连带修改
+                        可以在更改某个值时，连带更改另一个值。
+                    2.3.3 设置对象的内部属性
+                        可以将某个属性设置成内部属性，想要获取或更改它，只能通过 getter 和 setter。
+        */
+        {
+            const o = {
+                _num: 0,
+                changedTimes: 0,
+
+                // num 为访问器属性，能获取内部属性 _num，并连带修改 _num 和 changedTimes 属性
+                get num() {
+                    // 用this获取对象的属性
+                    return this._num
+                },
+                set num(n) {
+                    if (n == this._num) return;
+                    this._num = n
+                    this.changedTimes++
+                }
+            }
+
+            // 使用访问器属性时，不用加小括号
+            console.log(o.num)    // 返回 0
+            console.log(o.changedTimes)    // 返回 0
+
+            // 修改访问器属性时，不用加小括号
+            o.num = 9
+
+            console.log(o.num)    // 返回 9
+            console.log(o.changedTimes)    // 返回 1
+
+            o.num = 9
+            console.log(o.changedTimes)    // 返回 1
+        }
+    </script>
+</body>
+
+</html>

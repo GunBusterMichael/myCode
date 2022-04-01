@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>024-03-async函数的使用注意点-将独立的异步操作同时触发</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            如果多个 await 命令后的异步操作相互独立，互不依赖，
+                则应将它们同时触发，而不是继发（先触发一个，等前一个运行完，再触发后一个）。
+        */
+        //！举例：继发关系
+        {
+            async function secondaryFn() {
+                let foo = await getSomething('foo')
+                let bar = await getSomething('bar')
+                return foo, bar
+            }
+
+            secondaryFn().then(v => console.log(v))
+        }
+
+        //？举例：同时触发
+        {
+            // 写法1：解构赋值
+            {
+                async function secondaryFn() {
+                    let [foo, bar] = await Promise.all(['foo', 'bar'])
+                }
+            }
+
+            // 写法2
+            {
+                async function secondaryFn() {
+                    let fooPromise = 'foo'
+                    let barPromise = 'bar'
+                    let foo = await fooPromise
+                    let bar = await barPromise
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

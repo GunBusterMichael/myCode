@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>024-02-async函数的使用注意点-最好将 await 语句放在 try...catch 代码块中</title>
+</head>
+
+<body>
+    <script>
+        // 1. 最好将 await 语句放在 try...catch 代码块中
+        {
+            // 写法1
+            {
+                async function f() {
+                    try {
+                        await Promise.reject('出错了')
+                    } catch (e) {
+                        console.log(e)    // 返回 '出错了'
+                    }
+                    return 1
+                }
+
+                f()
+                    .then(v => console.log(v))    // 返回 1
+                    .catch(e => console.log(e))
+            }
+
+            // 写法2
+            {
+                async function f() {
+                    await Promise.reject('出错了')
+                        .catch(e => console.log(e))    // 返回 '出错了'
+                    return 1
+                }
+
+                f()
+                    .then(v => console.log(v))    // 返回 1
+                    .catch(e => console.log(e))
+            }
+        }
+    </script>
+</body>
+
+</html>

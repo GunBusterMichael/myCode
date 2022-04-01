@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>154-检查某对象自身是否含有某特定属性-实例方法hasOwnProperty</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            hasOwnProperty()
+                1. 作用
+                    检查某对象自身是否含有某特定属性（不包含其原型链上的属性和方法）。
+                2. 参数
+                    接受一个参数：
+                        某个对象的字符串属性名或 Symbol。
+                3. 返回值
+                    布尔值：
+                        true：某对象自身含有某特定属性；
+                        false：某对象自身不含有某特定属性；
+        */
+        let height = Symbol()
+
+        let o = {
+            name: 'Carol',
+            [height]: 165,
+            age: null,
+            gender: undefined,
+            sayHi: function () {
+                console.log('Hi!')
+            }
+        }
+
+        let op = {
+            group: 'A-SOUL'
+        }
+
+        Object.setPrototypeOf(o, op)
+
+        console.log(o.hasOwnProperty('name'))      // 返回 true
+
+        // 参数必须是字符串或 Symbol
+        console.log(o.hasOwnProperty(name))        // 返回 false
+        console.log(o.hasOwnProperty(height))      // 返回 true
+
+        // 能够获取属性值是 null 或 undefined 的属性
+        console.log(o.hasOwnProperty('age'))       // 返回 true
+        console.log(o.hasOwnProperty('gender'))    // 返回 true
+
+        // 能够获取方法
+        console.log(o.hasOwnProperty('sayHi'))     // 返回 true
+
+        // 不能获取原型链上的属性和方法
+        console.log(o.hasOwnProperty('group'))     // 返回 false
+
+        /* 
+            4. 只声明 getter 方法，那么存取器属性为只读属性
+        */
+        {
+            let obj = {
+                a: 11,
+                get val() {
+                    return this.a
+                }
+            }
+            obj.val = 100
+            console.log(obj.val)    // 返回 11
+        }
+
+        /* 
+            只声明 setter 方法，那么读取的属性值永远为 undefined
+        */
+        {
+            //只声明setter方法时不能获取变量的值
+            let obj = {
+                a: 3,
+                b: 8,
+                set val(n) {
+                    this.a = n;
+                }
+            }
+            console.log(obj.val)  //返回 undefined
+            obj.val = 100;
+            console.log(obj.val)  //返回 undefined
+            // 其他变量不受影响
+            console.log(obj.b)    //返回 8
+        }
+    </script>
+</body>
+
+</html>

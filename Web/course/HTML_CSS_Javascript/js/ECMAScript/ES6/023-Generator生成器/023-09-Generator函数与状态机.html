@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>023-09-Generator函数与状态机</title>
+</head>
+
+<body>
+    <script>
+        /*
+            下面这个函数是个状态机，每运行一次，改变一次状态：
+                需要在函数外部保存运行状态。
+        */
+        {
+            let ticking = true
+            const clock = function () {
+                if (ticking) {
+                    console.log('Tik')
+                } else {
+                    console.log('Tok')
+                }
+                ticking = !ticking
+            }
+
+            clock()    // 返回 'Tik'
+            clock()    // 返回 'Tok'
+        }
+        /*
+            用 Generator 函数改写状态机：
+                可以将运行状态保存在函数内部。
+        */
+        {
+            const getClock = function* () {
+                console.log('Tik')
+                yield
+                console.log('Tok')
+                yield
+            }
+
+            const clock = getClock()
+            clock.next()    // 返回 'Tik'
+            clock.next()    // 返回 'Tok'
+        }
+    </script>
+</body>
+
+</html>

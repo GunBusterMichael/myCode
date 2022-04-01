@@ -43,6 +43,30 @@
         console.log(bella.uname);
         carol.sing('霓虹甜心')
         bella.sing('星の在り処')
+
+        /* 
+            在类内部定义的方法，都不可枚举（nonenumerable）
+        */
+        console.log(Object.keys(Star))    // 返回 []
+
+        /* 
+            定义在 this 上的属性，可在实例中被枚举
+        */
+        console.log(Object.keys(carol))    // 返回 ['uname', 'age']
+
+        /* 
+            对于实例的属性和方法，除了定义在 this（实例本身）上的，
+                都被定义在实例的原型上（即 class 上）
+        */
+        console.log(carol.hasOwnProperty('uname'))             // 返回 true
+        console.log(carol.hasOwnProperty('age'))               // 返回 true
+        console.log(carol.hasOwnProperty('sing'))              // 返回 false
+        console.log(carol.__proto__.hasOwnProperty('sing'))    // 返回 true
+
+        /* 
+            同一个类的所有实例共用一个原型对象
+        */
+        console.log(carol.__proto__ === bella.__proto__)    // 返回 true
     </script>
 </body>
 

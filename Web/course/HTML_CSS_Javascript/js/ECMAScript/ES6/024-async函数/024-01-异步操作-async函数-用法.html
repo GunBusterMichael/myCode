@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>024-01-异步操作-async函数-用法</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            async 函数
+                1. 作用
+                    是 Generator 函数的语法糖，可以使异步操作更加方便。
+                2. 使用方法
+                    2.1 声明方法
+                        在函数关键字 function 前添加关键字 async
+                    2.2 返回值
+                        返回一个 Promise 实例。
+                    2.3 await 命令
+                        2.3.1 功能
+                            暂停函数运行，并运行 await 右侧的 Promise 实例。
+                                在 Promise 实例的状态为 fulfilled 或 rejected 时，继续运行后续函数代码。
+                        2.3.2 返回值
+                            返回 await 右侧的 Promise 实例。
+                                如果右侧的数据不是 Promise 实例，则将其转换为 Promise 实例（Promise.resolve()）。
+                        2.3.3 与 yield 命令的区别
+                            类似于 yield 命令，
+                                唯一区别是会命令右侧的值是 Promise 对象，或将其他值转换为 Promise 对象。
+        */
+        // 举例：暂停函数运行（在多少秒后运行后续代码）
+        {
+            async function delayPrint(value, ms) {
+                console.log('delayPrint函数开始运行')
+
+                /*
+                    暂停 delayPrint 函数运行，
+                    并运行 await 右侧的 Promise 实例（计时器）。
+                    在 Promise 实例的状态为 fulfilled 或 rejected 时，继续运行后续函数代码。
+                */
+                // 这个 await 语句相当于一个倒计时器
+                await new Promise(function (resolve) {
+                    setTimeout(resolve, ms)
+                })
+
+                console.log('delayPrint函数运行结束并返回：' + value)
+            }
+
+            delayPrint('1000ms过去了', 1000)
+            // 返回 'delayPrint函数开始运行'
+            // 返回 'delayPrint函数运行结束并返回：1000ms过去了'
+        }
+
+        // 举例：返回 Promise 对象
+        {
+            async function printStrLetters() {
+                /*
+                    这句话是操作：从服务器端取回数据 的简化。
+                        将 'Hello world!' 看作是从服务器取回的数据。
+                */
+                let s = await 'Hello world!'
+
+                // 等从服务器端获取到数据后，再对这个数据进行操作
+                let letters = s.split('')
+
+                // async 函数的 return 语句会将其右侧的变量作为 resolve 函数的参数传去 resolve 函数中
+                return letters
+            }
+
+            /* 
+                如果 async 函数内部有多个 await 语句，
+                    那么 then 函数会等待所有 await 语句右侧的 Promise 执行完后运行，
+                    除非遇到 return 语句或抛出错误。
+            */
+            printStrLetters()
+                .then(value => console.log(value))    // 返回 ['H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', '!']
+                .catch(error => console.log(error))
+        }
+
+        /* 
+            3. 如果 await 右侧的 Promise 实例状态为 rejected，
+                则会停止运行 async 函数，并调用 reject 回调函数。
+        */
+        // 举例：async 函数内部抛出错误
+        {
+            async function f() {
+                await Promise.reject('async函数内部手动抛出错误。')
+
+                // 这句代码不会被执行
+                await Promise.resolve('我不会被运行。')
+            }
+
+            f()
+                .then(v=>console.log(v))
+                .catch(e=>console.log(e))    // 返回 函数内部手动抛出错误。
+        }
+
+        /* 
+            3.1 跳过 reject 的 Promise 所在的 await 语句，运行后续代码的方法：
+                    将 reject 的 Promise 所在的 await 语句写入 try...catch 代码块中。
+        */
+        {
+            async function f() {
+                try {
+                    // 这句代码不会被执行
+                    await Promise.reject('async函数内部手动抛出错误。')
+                } catch (e) {
+                    console.log('出错了')    //返回 '出错了'
+                }
+
+                // return 右侧的 Promise 实例被当作 resolve 函数的参数传入 resolve 函数中
+                return await Promise.resolve('我会被运行。')
+            }
+
+            f()
+                .then(v=>console.log(v))    // 返回 '我会被运行。'
+                .catch(e=>console.log(e))
+        }
+    </script>
+</body>
+
+</html>
