@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>025-02-类的继承</title>
+</head>
+<body>
+    <script>
+        /* 
+            1. 通过关键字 extends 继承
+        */
+        {
+            // 父类 Animal
+            class Animal {
+                constructor(name, age) {
+                    this.name = name
+                    this.age = age
+                }
+    
+                sayName() {
+                    console.log(this.name)
+                }
+    
+                sayAge() {
+                    console.log(this.age)
+                }
+            }
+
+            // 子类 Dog 继承 Animal
+            class Dog extends Animal {
+                constructor (name, age, color) {
+                    // super() 会调用父类的 constructor
+                    super(name, age)
+                    // 等价于
+                    // Animal.call(this, name, age)
+
+                    // 定义独属于子类 Dog 的属性 color
+                    this.color = color
+                }
+
+                // 定义独属于子类 Dog 的方法
+                sayColor() {
+                    console.log(`${this.name}的颜色是${this.color}`);
+                }
+
+                // 重写父类 Animal 的方法
+                sayName() {
+                    console.log(`${this.name}是一只狗`);
+                }
+            }
+
+            let d1 = new Dog('小黑', 2, '黑色')
+            d1.sayName()    // 返回 小黑是一只狗
+            d1.sayAge()     // 返回 2
+            d1.sayColor()   // 返回 '小黑的颜色是黑色'
+        }
+    </script>
+</body>
+</html>

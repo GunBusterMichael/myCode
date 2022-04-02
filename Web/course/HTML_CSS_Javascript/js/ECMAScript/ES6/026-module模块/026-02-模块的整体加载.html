@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>026-02-模块的整体加载</title>
+</head>
+
+<body>
+    <script type="module">
+        // 整体加载
+        import * as circle from './modules/circle.js'
+        // 逐一指定加载
+        import { getArea, getCircumference } from './modules/circle.js'
+
+        console.log('圆面积：' + circle.getArea(4))          // 返回 '圆面积：50.26548245743669'
+        console.log('圆面积：' + getArea(4))                 // 返回 '圆面积：50.26548245743669'
+        console.log('圆周长：' + circle.getCircumference(4)) // 返回 '圆周长：25.132741228718345'
+        console.log('圆周长：' + getCircumference(4))        // 返回 '圆周长：25.132741228718345'
+    </script>
+</body>
+
+</html>

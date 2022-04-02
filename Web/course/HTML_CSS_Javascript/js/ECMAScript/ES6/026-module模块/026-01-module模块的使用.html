@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>026-01-module模块的使用</title>
+</head>
+
+<body>
+    <!-- ES6 的模块自动采用严格模式 -->
+    <!-- 要想导入模块，要将<script>标签写成<script type="module"> -->
+    <script type="module">
+        // 导入模块（类似于解构赋值）
+        // 大括号中的变量名，必须与export的变量名相同
+        // import命令会被提升到整个模块的头部
+        /* 
+            使用 as 关键字重命名变量：
+                旧变量名 as 新变量名
+                ！旧名将不再起作用。
+        */
+        import obj, { name as uname, age, sayName, bar } from './modules/index.js'
+
+        console.log(name)   // 不会返回任何值
+        console.log(uname)   // 返回 '张三'
+        console.log(age)    // 返回 20
+        sayName()           // 返回 'My name is 张三'
+        console.log(obj)    // 返回 {foo: 'foo'}
+        console.log(bar)    // 返回 {foo: 'foo'}
+
+        /* 
+            improt 输入过来的变量是只读的。
+        */
+        // uname = 1    // 报错 Uncaught TypeError: Assignment to constant variable.
+        /* 
+            import 输入过来的对象，其属性可以改写：
+                其他模块也会获取到更改后的属性。
+                ！不建议更改 import 过来的任何值。
+        */
+        obj.foo = 'foofoo'
+
+        // 接收改名后的变量名
+        import { username, userage, sayUsername } from './modules/index.js'
+        console.log(username)   // 返回 '张三'
+        console.log(userage)    // 返回 20
+        sayUsername()           // 返回 'My name is 张三'
+
+        /* 
+            不能对 import 命令使用只有在运行时才能得到结果的语法结构
+        */
+        /* 
+            // 报错
+            import { 'f' + 'oo' } from 'my_module';
+
+            // 报错
+            let module = 'my_module';
+            import { foo } from module;
+
+            // 报错
+            if (x === 1) {
+                import { foo } from 'module1';
+            } else {
+                import { foo } from 'module2';
+            }
+        */
+
+        /* 
+            只加载模块，不输入任何值
+        */
+        // import 'lodash'    // 加载了 lodash 模块
+        /* 
+            多次重复执行同一句 import 语句时，只会执行一次
+        */
+    </script>
+</body>
+
+</html>

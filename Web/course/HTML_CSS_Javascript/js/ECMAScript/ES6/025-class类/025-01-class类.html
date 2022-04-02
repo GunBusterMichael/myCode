@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>025-01-class类</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1. es5 创建类的方法：
+                构造函数
+        */
+        {
+            function Person(name, age) {
+                this.name = name
+                this.age = age
+            }
+            Person.prototype.sayName = function () {
+                return this.name
+            }
+
+            let p1 = new Person('Dan', 20)
+            console.log(p1.__proto__)    // 返回 {sayName: ƒ, constructor: ƒ}
+            console.log(p1.name)         // 返回 'Dan'
+            console.log(p1.age)          // 返回 20
+            console.log(p1.sayName())    // 返回 'Dan'
+        }
+
+        /*
+            2. es6 创建类的方法
+                class 关键字
+        */
+        {
+            class Person {
+                /*
+                    2.1 constructor（中文名：构造函数） 方法
+                        2.1.1 作用
+                            接收参数。
+                        2.1.2 位置
+                            位于类实力原型 protot 上。
+                        2.1.3 何时被调用
+                            在初始化类的实例时，就会被调用。
+                */
+                constructor(name, age) {
+                    this.name = name
+                    this.age = age
+                }
+
+                /*
+                    3. 逐个添加实例方法
+                        不可以在 class 代码块中的实例方法中间添加逗号。
+                */
+                sayName() {
+                    return this.name
+                }
+            }
+
+            /*
+                一次性添加多个实例方法：
+                    将多个实例方法写入一个对象中，
+                        通过 Object.assign() 方法将这个对象拷贝到类的 prototype 中。
+            */
+            Object.assign(Person.prototype, {
+                sayAge() {
+                    return this.age
+                },
+                sayHi() {
+                    return 'Hi!'
+                }
+            })
+
+            let p1 = new Person('Dan', 20)
+            console.log(p1.__proto__)    // 返回 {constructor: ƒ, sayName: ƒ}
+            console.log(p1.name)         // 返回 'Dan'
+            console.log(p1.age)          // 返回 20
+            console.log(p1.sayName())    // 返回 'Dan'
+            console.log(p1.sayAge())     // 返回 20
+            console.log(p1.sayHi())      // 返回 'Hi!'
+        }
+    </script>
+</body>
+
+</html>
