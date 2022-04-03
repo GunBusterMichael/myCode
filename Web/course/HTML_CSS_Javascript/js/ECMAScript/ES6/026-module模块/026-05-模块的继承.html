@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>026-05-模块的继承</title>
+</head>
+<body>
+    <script type="module">
+        // 将除了 defalut 外的所有接口重命名为 math 中的属性和方法
+        import * as math from './modules/circleplus.js'
+
+        // 将 default 接口重命名为 exp
+        import exp from './modules/circleplus.js'
+
+        console.log(exp(math.e))    // 返回 15.154262241493731
+    </script>
+</body>
+</html>

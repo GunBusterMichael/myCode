@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>026-03-默认输出-export default</title>
+</head>
+
+<body>
+    <script type="module">
+        // 将接收默认输出的变量写在大括号逗号前面
+        import o, { name, age } from './modules/index.js'
+        // 或不写大括号
+        import o1 from './modules/index.js'
+
+        console.log(o)    // 返回 {foo: 'foo'}
+        console.log(o1)    // 返回 {foo: 'foo'}
+    </script>
+</body>
+
+</html>
