@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-01-HelloVuejs</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>{{message}}</h1>
+        <p>Hello, {{name}}</p>
+    </div>
+	
+	<hr>
+	
+    <div id="or"></div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // Vue 的写法
+		// 1. 创建 Vue 实例
+        const app = new Vue (
+		    // 2. 向 Vue 实例中传入一个options 对象
+			{
+			    /*
+					2.1 el 属性
+						用于挂载要管理的元素。
+				*/
+				el: '#app',
+				
+				/* 
+					2.2 data 属性
+						用于定义数据。
+							可以是程序员自己定义的数据；
+							也可以是来自网络的数据，比如从服务器中加载过来的数据。
+				*/
+				data: {
+					message: '这是用 Vue 展示的内容',
+					name: 'Michael'
+				}
+			}
+		)
+
+        // 原生 JS 的写法
+        // 1. 获取元素
+        const or = document.querySelector('#or')
+        // 2. 初始化数据
+        const message = 'Hello, JS!'
+        // 3. 将数据放到 div 中显示
+        or.innerHTML = message
+    </script>
+</body>
+
+</html>
