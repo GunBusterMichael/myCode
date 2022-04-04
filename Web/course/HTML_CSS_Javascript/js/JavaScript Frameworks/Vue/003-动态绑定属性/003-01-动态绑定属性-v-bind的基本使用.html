@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>003-01-动态绑定属性-v-bind的基本使用</title>
+</head>
+<body>
+  <div id="app">
+    <!-- {{}} 语法只能使用在标签的内容中，不能用在标签的属性中 -->
+    <img src="{{imgURL}}" alt="">  <!-- 不显示图片 -->
+
+    <!-- 
+      v-bind 命令
+        1. 功能
+          能为标签的属性动态绑定变量。
+        2. 用法
+          在要动态绑定变量的标签前写上 v-bind:。
+    -->
+    <img v-bind:src="imgURL" alt="">
+    <a v-bind:href="aHref" target="_blank" rel="noopener noreferrer">百度一下</a>
+
+    <!--
+      3. 语法糖
+        直接在要动态绑定变量的属性前写一个冒号 :。
+    -->
+    <img :src="imgURL" alt="">
+    <a :href="aHref" target="_blank" rel="noopener noreferrer">百度一下</a>
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        imgURL: 'http://img14.360buyimg.com/seckillcms/s140x140_jfs/t1/95661/10/20112/79147/61dffdbdE3a406fc3/2042b3d24755a2de.jpg.webp',
+        aHref: 'https://www.baidu.com'
+      }
+    })
+  </script>
+</body>
+</html>
