@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>004-01-计算属性的基本使用</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{firstName + ' ' + lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+
+    <h2>{{getFullName()}}</h2>
+		
+		<!-- 嵌入计算属性时，不要加小括号 -->
+    <h2>{{fullName}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        firstName: 'Michael',
+        lastName: 'Deng'
+      },
+			
+			/*
+				computed 计算属性
+					1. 作用
+						将 data 中的属性进行计算，并返回一个新的属性。
+          2. 与 methods 的区别
+            计算属性会进行缓存，如果被多次调用，则只会运行一次；
+            methods 不会进行缓存，被调用几次，就会被运行几次。
+			*/
+      computed: {
+				/* 
+					2. 写法
+						将属性计算式写到 return 语句后。
+					3. 命名
+						不要在计算属性函数名中加入动词。
+				*/
+				fullName: function() {
+					return this.firstName + ' ' +this.lastName
+				}
+			},
+      methods: {
+        getFullName: function () {
+          return this.firstName + ' ' + this.lastName
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
