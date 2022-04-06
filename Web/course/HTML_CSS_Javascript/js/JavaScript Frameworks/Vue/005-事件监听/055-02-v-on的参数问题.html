@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>055-02-v-on的参数问题</title>
+</head>
+
+<body>
+  <div id="app">
+    <h3>被事件调用的方法没有参数</h3>
+    <p>如果被 v-on 绑定的方法没有参数，则可以省略小括号</p>
+    <button @click="btn1Click()">按钮1</button>  <!-- 正常运行 -->
+    <button @click="btn1Click">按钮1</button>  <!-- 正常运行 -->
+
+    <hr>
+
+    <h3>被事件调用的方法需要参数</h3>
+    <h4>绑定事件时，写了小括号 ()</h4>
+    <button @click="btn2Click('q')">按钮2</button>  <!-- 返回 'q' -->
+    <h4>绑定事件时，没有写小括号 ()<br>Vue 会将浏览器生成的 event 事件对象作为参数传入到方法中</h4>
+    <button @click="btn2Click">按钮2</button>  <!-- 返回 PointerEvent对象 -->
+
+    <hr>
+
+    <h3>定义方法时，既需要 event 对象，有需要其他参数</h3>
+    <h4>手动获取 event 对象的办法：<br>传入实参 $event</h4>
+    <button @click="btn3Click('qwert', $event)">按钮3</button>  <!-- 返回 'qwert' PointerEvent对象 -->
+    <button>按钮4</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      methods: {
+        btn1Click() {
+          console.log('btn1Clicked')
+        },
+        btn2Click(event) {
+          console.log(event)
+        },
+        btn3Click(value, event) {
+          console.log(value, event)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
