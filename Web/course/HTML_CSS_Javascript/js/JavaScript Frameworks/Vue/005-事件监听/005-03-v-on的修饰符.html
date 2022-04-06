@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>005-03-v-on的修饰符</title>
+</head>
+
+<body>
+  <div id="app">
+    <div @click="divClick">
+      divdivdiv
+      <!-- .stop 修饰符：阻止事件冒泡 -->
+      <button @click.stop="btnClick">按钮</button>
+    </div>
+
+    <br>
+
+    <!-- .prevent 修饰符：阻止默认事件 -->
+    <form action="baidu">
+      <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+
+    <!-- 监听键盘按键 -->
+    <!-- 修饰符为键盘按键代码或按键简写，
+    仅监听修饰符代表的按键 -->
+    <input type="text" @keyup.enter="keyup">
+
+    <!-- .once 修饰符：只触发一次回调 -->
+    <button @click.once="btn2Click">按钮2</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      methods: {
+        btnClick() {
+          console.log('btnClicked')
+        },
+        divClick() {
+          console.log('divClicked')
+        },
+        submitClick() {
+          console.log('submitClicked')
+        },
+        keyup(){
+          console.log('keyuped')
+        },
+        btn2Click(){
+          console.log('btn2Clicked只回调一次')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
