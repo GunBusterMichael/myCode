@@ -5,10 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>作业</title>
+  <title>007-05-作业-点击的li变红色</title>
   <style>
     .active {
       color: #f00;
+    }
+    li {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -20,7 +23,11 @@
       点击哪个 li，哪个 li 变红色，其他的变为黑色。
   -->
   <div id="app">
-    <li v-for="(movie, index) in movies" :class="getClasses()">{{movie}}</li>
+    <li v-for="(movie, index) in movies"
+      :class="{active: index === currentIndex}"
+      @click="liClick(index)">
+      {{movie}}
+    </li>
   </div>
 
   <script src="../js/vue.js"></script>
@@ -29,15 +36,13 @@
       el: '#app',
       data: {
         movies: ['独立日', '后天', '2012', '流浪地球', '月球陨落'],
-        isActive: true
+        currentIndex: 0
       },
       methods: {
-        getClasses: function () {
-          if (index !== 0) {
-            return { active, isActive }
-          }
+        liClick(index) {
+          this.currentIndex = index
         }
-      }
+      },
     })
   </script>
 </body>
