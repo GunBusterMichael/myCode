@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <section id="app">
+    <header>
+      <div class="webName">无限备忘录</div>
+    </header>
+
+    <main>
+      <section class="todoBanner todoAdderBanner">
+        <span class="checkbox" @click="switchAllCompleted">{{checkMark}}</span>
+        <input type="text" placeholder="按下回车添加代做事项" class="todoAdder"
+        :class="{italic: isItalic}" @keyup.enter="createTodo" @input="switchItalic" v-model="inputContent" ref="input">
+      </section>
+
+      <ul id="todoList">
+        <li class="todoBanner"
+        v-for="(item, index) in todos">
+          <span class="checkbox radio"
+            :class="{checkboxDeeperBorder: item.isDeeper}" @click="switchCompleted(item)">{{item.checkMark}}</span>
+          <span class="todo"
+          @dblClick="startChangeContent(item)" @mouseenter="switchShowDel(item)" @mouseleave="switchShowDel(item)" :class="{todoChange: item.isChangeContent}">
+            <span v-show="!item.isChangeContent" :class="{completed: item.isCompleted}">{{item.content}}</span>
+            <div class="delTodo" v-show="item.isShowDel" @click="delTodo(index)">×</div>
+            <input type="text" class="todoChanger" :value="item.content" v-show="item.isChangeContent" @input="changeContent($event, index)" @keyup.enter="finishChangeContent($event, item, index)" @blur="finishChangeContent($event, item, index)">
+          </span>
+        </li>
+
+        <li class="statusBar">
+          <span>2项未完成</span>
+          <span class="filter">
+            <span>全部</span>
+            <span>未完成</span>
+            <span>已完成</span>
+          </span>
+          <span>清空已完成事项</span>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <div>双击事项进行编辑</div>
+      <div>由 GunBuster 制作</div>
+      <div>借鉴自：todoMVC</div>
+    </footer>
+  </section>
+
+  <script src="./js/vue.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>

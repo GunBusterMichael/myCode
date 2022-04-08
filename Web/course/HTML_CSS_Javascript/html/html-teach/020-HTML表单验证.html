@@ -41,8 +41,13 @@
 			<!--
 				在单选和复选框（radio和checkbox）中，<label for="">和<input id="">相同时，点击label中的文本即可选中该选项。
 			-->
-			<label for="man">男</label>
-			<input type="radio" name="gender" id="man"/>
+			<!-- 不能同时选中 name 相同的 radio。-->
+			<label for="male">男</label>
+			<input type="radio" name="gender" value="male" id="male"/>
+			<label for="female">女</label>
+			<input type="radio" name="gender" value="female" id="female"/>
+			<label for="college">大学生</label>
+			<input type="radio" name="college" value="true" id="college"/>
 			<label for="music">音乐</label>
 			<input type="checkbox" name="hobby" id="music"/>
 			
