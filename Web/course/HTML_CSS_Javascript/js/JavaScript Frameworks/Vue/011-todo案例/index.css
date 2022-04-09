@@ -19,6 +19,7 @@ header .webName {
   letter-spacing: .8rem;
   text-align: center;
   margin: 2rem auto;
+  color: #999;
 }
 
 main {
@@ -74,6 +75,10 @@ main .todo {
   text-overflow: ellipsis;
 }
 
+main .todo #showContentArea {
+  transition: text-decoration .2s, color .4s;
+}
+
 main .todo .delTodo {
   position: absolute;
   color: #aaa;
@@ -83,6 +88,7 @@ main .todo .delTodo {
   right: 0rem;
   bottom: 0rem;
   cursor: pointer;
+  user-select: none;
   transition: background-color .4s, color .4s;
 }
 
@@ -122,7 +128,35 @@ main .statusBar .filter span:nth-child(2){
 }
 
 main .statusBar:last-child {
-  flex: 1
+  flex: 1;
+}
+
+main .statusBar #delCompletedTodos{
+  visibility: hidden;
+}
+
+main .statusBar #showAllTodos,
+main .statusBar #showActiveTodos,
+main .statusBar #showCompletedTodos,
+main .statusBar #delCompletedTodos {
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s;
+}
+
+main .statusBar #showAllTodos:hover,
+main .statusBar #showActiveTodos:hover,
+main .statusBar #showCompletedTodos:hover,
+main .statusBar #delCompletedTodos:hover {
+  border-bottom: 2px solid #999;
+}
+
+main .statusBar #showAllTodos:active,
+main .statusBar #showActiveTodos:active,
+main .statusBar #showCompletedTodos:active,
+main .statusBar #delCompletedTodos:active {
+  border-bottom: 2px solid #000;
 }
 
 footer {
@@ -136,6 +170,47 @@ footer div {
 
 footer div:nth-child(2) {
   margin: .4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+footer div:nth-child(2) span,
+footer div:nth-child(2) a,
+footer div:nth-child(2) img {
+  display: block;
+  color:#999;
+  text-decoration: none;
+}
+
+footer div:nth-child(2) a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+footer div:nth-child(2) img {
+  height: 1.5rem;
+}
+
+footer #myName {
+  text-decoration: underline;
+  transition: all .2s;
+}
+
+footer div:last-child a {
+  color: #999;
+  transition: all .2s;
+}
+
+footer #myName:hover,
+footer div:last-child a:hover {
+  color: #666;
+}
+
+footer #myName:active,
+footer div:last-child a:active {
+  color: #000;
 }
 
 .italic {
@@ -149,4 +224,8 @@ footer div:nth-child(2) {
 .completed {
   text-decoration: line-through;
   color: #999 !important;
+}
+
+.show {
+  visibility: visible !important;
 }

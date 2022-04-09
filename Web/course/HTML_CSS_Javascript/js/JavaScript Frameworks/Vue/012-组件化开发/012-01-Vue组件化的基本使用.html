@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-01-Vue组件化的基本使用</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 3. 使用组件 -->
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+  </div>
+  
+  <script src="../js/vue.js"></script>
+  <script>
+    /* 创建组件的步骤 */
+    // 1. 创建组件构造器对象，将一些代码封装为组件
+    // 将要重复使用的代码放到组件中。cpn是component（组件）的缩写
+    const cpnC = Vue.extend({
+      // template 是模板的意思
+      template: `
+        <cpn>
+          <h2>我是标题</h2>
+          <p>我是内容，第一个p</p>
+          <p>我是内容，第二个p</p>
+        </cpn>`
+    })
+
+    // 2. 注册组件
+    // 用 Vue.component('组件的标签名', 组件构造器) 将组建注册到一个标签中
+    Vue.component('my-cpn', cpnC)
+
+    // 3. 使用组件
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      }
+    })
+  </script>
+</body>
+
+</html>
