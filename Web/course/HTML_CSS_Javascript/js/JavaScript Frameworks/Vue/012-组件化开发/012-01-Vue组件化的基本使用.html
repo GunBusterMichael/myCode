@@ -12,15 +12,22 @@
   <div id="app">
     <!-- 3. 使用组件 -->
     <my-cpn></my-cpn>
-    <my-cpn></my-cpn>
-    <my-cpn></my-cpn>
+    <div>
+      <my-cpn></my-cpn>
+    </div>
+    <my-cpn>
+      <!-- 无法在组件内部嵌套相同的组件（不起作用） -->
+      <my-cpn></my-cpn>
+    </my-cpn>
   </div>
   
   <script src="../js/vue.js"></script>
   <script>
     /* 创建组件的步骤 */
-    // 1. 创建组件构造器对象，将一些代码封装为组件
-    // 将要重复使用的代码放到组件中。cpn是component（组件）的缩写
+    /*
+      1. 创建组件构造器：
+        参数为一个对象。将要重复使用的代码放到对象的template属性中。cpn是component（组件）的缩写
+    */
     const cpnC = Vue.extend({
       // template 是模板的意思
       template: `
@@ -31,11 +38,14 @@
         </cpn>`
     })
 
-    // 2. 注册组件
-    // 用 Vue.component('组件的标签名', 组件构造器) 将组建注册到一个标签中
+    /*
+      2. 注册组件
+        用 Vue.component('组件的标签名', 组件构造器) 将一个组件构造器对象注册成组件，
+          并为组件起一个标签名。
+    */
     Vue.component('my-cpn', cpnC)
 
-    // 3. 使用组件
+		// 以下代码是为了创建 Vue 实例
     const app = new Vue({
       el: '#app',
       data: {
