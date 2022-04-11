@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-11-（案例）组件通讯</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 可以将组件标签写成单标签 -->
+    <cpn :number1="num1" :number2="num2" @num1change="num1Change" @num2change="num2Change" />
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>props: {{number1}}</h2>
+      <h2>data(): {{dnumber1}}</h2>
+      <!-- <input type="text" v-model="dnumber1"> -->
+      <input type="text" :value="dnumber1" @input="num1Input">
+      <h2>props: {{number2}}</h2>
+      <h2>data(): {{dnumber2}}</h2>
+      <!-- <input type="text" v-model="dnumber2"> -->
+      <input type="text" :value="dnumber2" @input="num2Input">
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        num1: 1,
+        num2: 100
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          props: {
+            number1: Number,
+            number2: Number
+          },
+          /*
+            如果要实现子组件中的 input 与父组件传递到子组件的数据的双向绑定，
+              需要将父组件传递过来的数据（ props 中的属性）转存到子组件的 data() 返回值中，
+                并用 input 组件与 data() 中的数据的双向绑定代替与 prop 中的数据的双向绑定。
+          */
+          data() {
+            return {
+              dnumber1: this.number1,
+              dnumber2: this.number2
+            }
+          },
+          methods: {
+            num1Input(event) {
+              // 将input中的value值赋值到dnumber1中
+              this.dnumber1 = event.target.value
+
+              // 将dnumber1发送到父组件中
+              this.$emit('num1change', this.dnumber1)
+
+              // 修改dnumber2的值，并将修改后的dnumber2发动到父组件中
+              this.dnumber2 = this.dnumber1 * 100
+              this.$emit('num2change', this.dnumber2)
+            },
+            num2Input(event) {
+              // 将input中的value值赋值到dnumber2中
+              this.dnumber2 = event.target.value
+
+              // 将dnumber2发送到父组件中
+              this.$emit('num2change', this.dnumber2)
+
+              // 修改dnumber1的值，并将修改后的dnumber1发动到父组件中
+              this.dnumber1 = this.dnumber2 / 100
+              this.$emit('num1change', this.dnumber1)
+            },
+          },
+        }
+      },
+      methods: {
+        // 子组件传递到父组件的数据，是字符串类型的
+        num1Change(value) {
+          this.num1 = parseFloat(value)
+        },
+        num2Change(value) {
+          this.num2 = parseFloat(value)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
