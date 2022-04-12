@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>013-02-具名插槽的使用</title>
+</head>
+<body>
+  <div id="app">
+    <cpn>
+      <span>我能替换非具名的插槽</span>
+      
+      <!-- slot="对应插槽的name" -->
+      <button slot="left">我要替换 name="left" 的插槽</button>
+      <span slot="center">我要替换 name="center" 的插槽</span>
+      <i slot="right">我要替换 name="right" 的插槽</i>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <slot name="left">
+        <span>左边的插槽</span>
+      </slot>
+
+      <slot name="center">
+        <span>中间的插槽</span>
+      </slot>
+
+      <slot name="right">
+        <span>右边的插槽</span>
+      </slot>
+
+      <slot>
+        <span>非具名的插槽</span>
+      </slot>
+    </div>
+  </template>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      },
+    })
+  </script>
+  </script>
+</body>
+</html>
