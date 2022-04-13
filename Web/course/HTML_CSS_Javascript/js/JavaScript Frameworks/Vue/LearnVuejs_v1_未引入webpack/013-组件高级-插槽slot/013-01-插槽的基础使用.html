@@ -7,25 +7,32 @@
   <title>013-slot-插槽的基础使用</title>
 </head>
 <body>
-  <!-- 
+  <!--
     ？插槽的作用：让组件具有扩展性
   -->
   <div id="app">
     <cpn>
       <!-- 这是组件实例中自定义的插槽内容 -->
-      <button>我是被插入到slot标签中的按钮</button>
+      <!-- 将要被插入插槽的内容放到 template 标签中 -->
+      <template>
+        <button>我是被插入到slot标签中的按钮</button>
+      </template>
     </cpn>
 
     <cpn>
-      <!-- 这是组件实例中自定义的插槽内容 -->
-      <span>我是被插入到slot标签中的span</span>
-      <div>我也被插入了</div>
-      <a href="#">我也是</a>
+      <template>
+        <!-- 这是组件实例中自定义的插槽内容 -->
+        <span>我是被插入到slot标签中的span</span>
+        <div>我也被插入了</div>
+        <a href="#">我也是</a>
+      </template>
     </cpn>
 
     <cpn>
-      <!-- 这是组件实例中自定义的插槽内容 -->
-      <i>我是被插入到slot标签中的i</i>
+      <template>
+        <!-- 这是组件实例中自定义的插槽内容 -->
+        <i>我是被插入到slot标签中的i</i>
+      </template>
     </cpn>
 
     <cpn>

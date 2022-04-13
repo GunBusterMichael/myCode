@@ -1,0 +1,50 @@
+// JSON 类似于 JavaScript 中的数组
+// JSON 数据被大括号包裹
+{
+  /*
+    数据结构：
+      "key": value,
+        key 要被双引号包裹，每条数据用逗号分隔。
+        key 不能重名。
+  */
+
+  // value 可以是字符型数据
+  "key0": "value",
+
+  // value 可以是字符型数据
+  "key1": -123.321,
+
+  // value 可以是对象
+  "key2": {
+    "name": "Michael",
+    "age": 21,
+    // 可以在对象中嵌套对象
+    "parents": {
+      "father": "Andy",
+      "mother": "Moly"
+    }
+  },
+
+  // value 可以是数组
+  "key3": [1, 2, 3],
+  "key4": ["a", "b", "c"],
+  "key5": [
+    {
+      "name": "a",
+      "age": 18
+    },
+    {
+      "name": "b",
+      "age": 19
+    },
+    {
+      "name": "c",
+      "age": 20
+    }
+  ],
+
+  // value 可以是 null
+  "kay6": null
+}
+
+// 取值方式与 JavaScript 取对象中的值的方式一样。

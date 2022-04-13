@@ -9,12 +9,28 @@
 <body>
   <div id="app">
     <cpn>
-      <span>我能替换非具名的插槽</span>
+      <!-- 等同于 <template v-slot:default></template> -->
+			<template>
+        <span>我能替换非具名的插槽</span>
+        <hr>
+			</template>
       
-      <!-- slot="对应插槽的name" -->
-      <button slot="left">我要替换 name="left" 的插槽</button>
-      <span slot="center">我要替换 name="center" 的插槽</span>
-      <i slot="right">我要替换 name="right" 的插槽</i>
+      <!-- v-slot:"对应插槽的name" -->
+			<template v-slot:left>
+				<button>我要替换 name="left" 的插槽</button>
+        <hr>
+			</template>
+			
+			<template v-slot:center>
+        <span>我要替换 name="center" 的插槽</span>
+        <hr>
+			</template>
+			
+      <!-- 语法糖 v-slot: 用 # 代替 -->
+			<template #right>
+				<i>我能替换 name="right" 的插槽</i>
+        <hr>
+			</template>
     </cpn>
   </div>
 
@@ -32,6 +48,7 @@
         <span>右边的插槽</span>
       </slot>
 
+      <!-- 非具名插槽的 name 默认为 default -->
       <slot>
         <span>非具名的插槽</span>
       </slot>
