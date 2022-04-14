@@ -69,18 +69,20 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mathUtils_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_mathUtils_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_info_js__ = __webpack_require__(2);
+// 1.1 使用 ES6 的模块化规范
 
 
-console.log(Object(__WEBPACK_IMPORTED_MODULE_0__mathUtils_js__["a" /* add */])(20, 30))
-console.log(Object(__WEBPACK_IMPORTED_MODULE_0__mathUtils_js__["b" /* mul */])(20, 30))
+console.log(Object(__WEBPACK_IMPORTED_MODULE_0__js_mathUtils_js__["a" /* add */])(20, 30))
+console.log(Object(__WEBPACK_IMPORTED_MODULE_0__js_mathUtils_js__["b" /* mul */])(20, 30))
+
+// 1.2 使用 ES6 的模块化规范
 
 
-
-console.log(__WEBPACK_IMPORTED_MODULE_1__info__["c" /* name */])
-console.log(__WEBPACK_IMPORTED_MODULE_1__info__["a" /* age */])
-console.log(__WEBPACK_IMPORTED_MODULE_1__info__["b" /* height */])
+console.log(__WEBPACK_IMPORTED_MODULE_1__js_info_js__["c" /* name */])
+console.log(__WEBPACK_IMPORTED_MODULE_1__js_info_js__["a" /* age */])
+console.log(__WEBPACK_IMPORTED_MODULE_1__js_info_js__["b" /* height */])
 
 /***/ }),
 /* 1 */
