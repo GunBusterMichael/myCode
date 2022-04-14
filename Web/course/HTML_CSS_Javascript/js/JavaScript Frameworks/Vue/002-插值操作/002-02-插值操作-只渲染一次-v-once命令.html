@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>002-02-插值操作-v-once命令</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{message}}</h2>
+			
+			<!-- 
+				v-once
+					1. 作用
+						表示某个元素或组件只会被渲染一次。
+							如果数据发生变换，这个元素或组件不会跟着改变。
+					2. v-once 后面不能跟表达式！
+			-->
+			<h2 v-once>{{message}}</h2>
+		</div>
+			
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue ({
+				el: '#app',
+				data: {
+					message: '你好啊'
+				}
+			})
+			
+			// 将数据 message 更改后，已经被渲染的第二个 h2 标签不会被再次渲染。
+			app.message = '111'
+		</script>
+	</body>
+</html>

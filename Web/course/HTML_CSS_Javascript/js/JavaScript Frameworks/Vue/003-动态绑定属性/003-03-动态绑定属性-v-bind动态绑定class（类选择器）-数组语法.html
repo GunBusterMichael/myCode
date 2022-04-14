@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>003-03-动态绑定属性-v-bind动态绑定class-数组语法</title>
+  <style type="text/css">
+    .active {
+      color: red
+    }
+    .line {
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+			v-bind 动态绑定 class - 数组语法
+				1. 可以在被 v-bind 绑定的 class 右侧写数组，数组内是的 css 样式，不可和布尔值配套使用。
+		-->
+
+    <!-- 2. 数组成员是字符串形式的类名 -->
+    <h2 :class="['active', 'line']">{{message}}</h2>
+
+    <!-- 3. 数组成员是属性值为类名的属性名 -->
+    <h2 :class="[c1, c2]">{{message}}</h2>
+
+    <!-- 4. 在双引号中写返回数组的函数（带小括号） -->
+    <h2 :class="getClasses()">{{message}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        c1: 'active',
+        c2: 'line'
+      },
+      methods: {
+        getClasses: function () {
+          return [this.c1, this.c2]
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>002-06-插值操作-v-cloak命令</title>
+	<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<!--
+		v-cloak 属性
+			1. 作用
+				可以让某个元素中的 {{}} 在 Vue 实例编译完成前保持隐藏，
+					在实例编译完成后再显示。
+			2. 前提条件
+				配合 css 样式：
+					[v-cloak] {
+						display: none;
+					}
+				使用。
+			3. 实现原理
+				在 Vue 实例编译完成前，v-cloak 属性不会被删除；
+				在 Vue 实例编译完成后，v-cloak 属性会被删除。
+	-->
+  <div id="app" v-cloak>
+    <h2>{{message}}</h2>
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+		setTimeout(function(){
+			const app = new Vue ({
+				el: '#app',
+				data: {
+					message: '你好啊'
+				}
+			})
+		}, 1000)
+  </script>
+</body>
+</html>

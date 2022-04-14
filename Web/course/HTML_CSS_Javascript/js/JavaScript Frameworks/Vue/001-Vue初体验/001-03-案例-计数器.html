@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001-03-案例-计数器</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>当前计数：{{counter}}</h2>
+        <!--
+            <button v-on:click="counter--">-</button>
+            <button v-on:click="counter++">+</button> 
+        -->
+        <!--
+            v-on
+                绑定事件
+        -->
+        <button v-on:click="sub">-</button>
+        <button v-on:click="add">+</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        /* 
+            options：
+                向 Vue 实例中传入一个options 对象。
+        */
+        const app = new Vue({
+            /* 
+                el 属性：
+                    用于挂载要被管理的对象。
+                    属性值可以为字符串或 DOM 对象。
+            */
+            el: '#app',
+            // 等价于
+            // el: document.querySelector('#app')
+
+            /*
+                data 属性：
+                    用于定义数据。
+                        可以是程序员自己定义的数据；
+                        也可以是来自网络的数据，比如从服务器中加载过来的数据。
+                    属性值可以为对象或函数（在组件中要写函数）。
+            */
+            data: {
+            counter: 0,
+            },
+
+            /*
+                methods 属性：
+                    用于定义方法。
+            */
+            methods: {
+                sub: function () {
+                    this.counter--
+                    console.log('减1')
+                },
+                add: function () {
+                    this.counter++
+                    console.log('加1')
+                }
+            },
+
+            /* 
+                回调函数：
+                    在 Vue 的生命周期中的某些阶段，会调用回调函数。
+            */
+            created: function () {
+                console.log('created')
+            },
+            mounted: function () {
+                console.log('mounted')
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>002-04-插值操作-v-text命令</title>
+</head>
+<body>
+  <div id="app">
+  	<h2>{{message}}，李银河！</h2>    <!-- 展示：你好啊，李银河！ -->
+		
+		<!-- 
+			v-text
+				1. 作用
+					让标签显示指定的数据，类似于 {{}}。
+				2. 覆盖标签的内容
+					v-text 会将标签中的内容覆盖掉，只显示 v-text 指定的数据。
+		 -->
+  	<h2 v-text="message">{{message}}，李银河！</h2>		<!-- 展示：你好啊 -->
+  </div>
+  	
+  <script src="../js/vue.js"></script>
+  <script>
+  	const app = new Vue ({
+  		el: '#app',
+  		data: {
+  			message: '你好啊'
+  		}
+  	})
+  </script>
+</body>
+</html>

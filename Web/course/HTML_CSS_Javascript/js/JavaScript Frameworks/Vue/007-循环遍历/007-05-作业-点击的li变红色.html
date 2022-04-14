@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>007-05-作业-点击的li变红色</title>
+  <style>
+    .active {
+      color: #f00;
+    }
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+    要求：
+      页面加载完成后，第一个 li 为红色，其他为黑色；
+      点击哪个 li，哪个 li 变红色，其他的变为黑色。
+  -->
+  <div id="app">
+    <li v-for="(movie, index) in movies"
+      :class="{active: index === currentIndex}"
+      @click="liClick(index)">
+      {{movie}}
+    </li>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['独立日', '后天', '2012', '流浪地球', '月球陨落'],
+        currentIndex: 0
+      },
+      methods: {
+        liClick(index) {
+          this.currentIndex = index
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
