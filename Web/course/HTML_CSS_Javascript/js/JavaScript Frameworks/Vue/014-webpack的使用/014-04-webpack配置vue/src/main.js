@@ -16,5 +16,14 @@ require('./css/normal.css')
 
 // 3. 依赖 less 文件
 require('./css/special.less')
-
 document.writeln('<h2>测试 less 文件打包。</h2>')
+
+// 4. 使用 Vue 进行开发
+import Vue from 'vue'
+
+const app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!',
+  }
+})
