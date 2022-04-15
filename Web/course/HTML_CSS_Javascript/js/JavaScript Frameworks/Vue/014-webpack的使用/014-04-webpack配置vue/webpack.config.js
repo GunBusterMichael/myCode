@@ -57,9 +57,15 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
+      }
     ]
   },
   resolve: {
+    // 引入文件时，下列三个后缀名可以省略
+    extensions: ['.css', '.js', '.vue'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
