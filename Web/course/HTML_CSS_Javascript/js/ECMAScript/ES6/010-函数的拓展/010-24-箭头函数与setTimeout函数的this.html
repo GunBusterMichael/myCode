@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>010-24-箭头函数与setTimeout函数的this</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*
+      setTimeout 函数的 this
+        1. 如果 setTimeout 函数的参数函数是由 function 关键字定义的函数
+          如果 setTimeout 函数的参数函数是由 function 关键字定义的函数，那么参数函数的 this 会被 call() 函数指定为 window。
+        2. 如果 setTimeout 函数的参数函数是箭头函数
+          如果 setTimeout 函数的参数函数是箭头函数，那么箭头函数会向外层作用域寻找 this。箭头函数的 this 就是其最近拥有 this 的作用域的 this。
+    */
+    const o = {
+      test() {
+        setTimeout(function () {
+          console.log(this)  // 返回 window
+        })
+
+        setTimeout(() => {
+          console.log(this)  // 返回 对象o
+        })
+      }
+    }
+    o.test()
+  </script>
+</body>
+</html>

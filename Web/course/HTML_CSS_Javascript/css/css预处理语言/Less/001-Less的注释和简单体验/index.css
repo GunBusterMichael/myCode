@@ -1,0 +1,7 @@
+/* 1.2 这种注释，在编译后会出现在 CSS 文件中 */
+#wrap {
+  color: #42b983;
+  background-color: #f00;
+  width: 200px;
+  height: 200px;
+}

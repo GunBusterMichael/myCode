@@ -1,0 +1,16 @@
+// 1. 注释
+// 1.1 这种注释，在编译后不会出现在 CSS 文件中；
+/* 1.2 这种注释，在编译后会出现在 CSS 文件中 */
+
+// 2. 变量
+@color: #42b983;
+@bgColor: #f00;
+@width: 200px;
+@height: 200px;
+
+#wrap {
+  color: @color;
+  background-color: @bgColor;
+  width: @width;
+  height: @height;
+}
