@@ -1,0 +1,47 @@
+#wrap {
+  color: #ccc;
+  width: 550%;
+}
+.wrap {
+  color: #ccc;
+  width: 550%;
+}
+#wrap {
+  color: #ccc;
+  width: 550%;
+}
+#wrap {
+  border-style: 1px solid #000;
+}
+body {
+  background: url("../img/cat.png");
+}
+#wrap {
+  background: red;
+}
+.wrap {
+  width: 200px;
+  height: 200px;
+  border-style: 1px solid #000;
+  list-style: none;
+}
+/* 
+  单位：
+    加减法时，以最左边的变量为准；
+    乘除法时，单位要统一。
+  空格：
+  运算符号和运算值之间要有空格。
+*/
+#wrap {
+  width: 280px;
+  height: 200px;
+  margin: 1400px;
+  color: #444444;
+  background-color: #333333;
+}
+#wrap {
+  width: 50%;
+}
+#wrap::before {
+  content: 'Hello Less!';
+}

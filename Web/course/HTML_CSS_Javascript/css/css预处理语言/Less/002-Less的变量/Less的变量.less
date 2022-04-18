@@ -1,0 +1,89 @@
+//? 使用 @ 声明变量
+//= 1. 选择器变量
+@mySelector: #wrap;
+@wrap: wrap;
+
+//? 使用 @{} 调用变量
+//= 1. 选择器变量
+// #wrap
+@{mySelector} {
+  color: #ccc;
+  width: 550%;
+}
+// .wrap
+.@{wrap} {
+  color: #ccc;
+  width: 550%;
+}
+// #wrap
+#@{wrap} {
+  color: #ccc;
+  width: 550%;
+}
+
+//= 2. 属性变量
+@borderStyle: border-style;
+@commonBorder: 1px solid #000;
+
+@{mySelector} {
+  //? 调用属性值变量时，不用加大括号，只用加 @
+  @{borderStyle}: @commonBorder
+}
+
+//= 3 url 变量
+@images: "../img";
+
+body {
+  background: url("@{images}/cat.png");
+}
+
+//= 4. 声明变量
+@commonBackground: {background: red;}
+@rulers: {
+  width: 200px;
+  height: 200px;
+  @{borderStyle}: @commonBorder;
+  list-style: none;
+}
+
+#@{wrap} {
+  // 调用声明变量时，要用 @ 和 ()
+  @commonBackground()
+}
+.@{wrap} {
+  @rulers()
+}
+
+//= 5. 变量运算
+/* 
+  单位：
+    加减法时，以最左边的变量为准；
+    乘除法时，单位要统一。
+  空格：
+  运算符号和运算值之间要有空格。
+*/
+@width: 300px;
+@color: #222;
+
+#wrap {
+  width: @width - 20;
+  height: @width - 20 * 5;
+  margin: (@width - 20) * 5;
+  color: @color * 2;
+  background-color: @color + #111;
+}
+
+//= 6. 作用域：就近原则
+@foo: 100%;
+#wrap {
+  width: @foo;
+  @foo: 50%;
+}
+
+//= 7. 用变量定义变量
+@text: @bar;
+@bar: 'Hello Less!';
+
+#wrap::before {
+  content: @text;
+}

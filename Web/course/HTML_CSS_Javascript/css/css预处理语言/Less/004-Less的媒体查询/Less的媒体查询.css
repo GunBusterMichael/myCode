@@ -1,0 +1,18 @@
+@media screen and (max-width: 500px) {
+  #main {
+    /* 屏幕宽度小于 500px 时 */
+    width: 100px;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 700px) {
+  #main {
+    /* 屏幕宽度大于 501px 小于 700px 时 */
+    width: 200px;
+  }
+}
+@media screen and (min-width: 701px) {
+  #main {
+    /* 屏幕宽度大于 701px 时 */
+    width: 300px;
+  }
+}

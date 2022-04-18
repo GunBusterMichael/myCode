@@ -1,0 +1,29 @@
+// 嵌套与 &
+.center {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  // 等同于 .center #list
+  #list {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    li {
+      width: 25px;
+      height: 25px;
+      background-color: bule;
+    }
+    /*
+      &
+        1.作用
+          & 表示上一层级的选择器。
+    */
+    // 等同于 .center #list a
+    // 等同于直接在这里写 a
+    & a {
+      width: 25px;
+      height: 25px;
+      background-color: bule;
+    }
+  }
+}
