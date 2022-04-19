@@ -3,9 +3,17 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 // 2.1.1 导入组件
-import Home from '../components/Home.vue'
-import About from '../components/About.vue'
-import User from '../components/User.vue'
+// import Home from '../components/Home.vue'
+// import About from '../components/About.vue'
+// import User from '../components/User.vue'
+
+// 2.1.2 懒加载组件：用到组件时再加载相关 JS 代码
+// 打包时，一个组件会被打包成一个 JS 文件。有几个组件，就会打包成几个 JS 文件。
+const Home = () => import('../components/Home.vue')
+const HomeNews = () => import('../components/HomeNews.vue')
+const HomeMessage = () => import('../components/HomeMessage.vue')
+const About = () => import('../components/About.vue')
+const User = () => import('../components/User.vue')
 
 // 1. 通过 Vue.use(插件) 安装插件
 Vue.use(VueRouter)
@@ -21,7 +29,25 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    // 路由嵌套
+    children: [
+      {
+        path: '',
+        // 子路由的 path 不用加 /
+        redirect: 'news'
+      },
+      {
+        // 子路由的 path 不用加 /
+        path: 'news',
+        component: HomeNews
+      },
+      {
+        // 子路由的 path 不用加 /
+        path: 'message',
+        component: HomeMessage
+      }
+    ]
   },
   {
     path: '/about',
