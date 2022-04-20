@@ -1,0 +1,65 @@
+/*
+  混合（mixins）
+    1. 定义
+      复用一组属性。
+*/
+.mixins0 {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  box-shadow: 0 1px 2px rgba(150, 150, 150, 0.58);
+  -webkit-box-shodow: 0 1px 2px rgba(150, 150, 150, 0.58);
+}
+.mixins1 {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  box-shadow: 0 1px 2px rgba(150, 150, 150, 0.58);
+  -webkit-box-shodow: 0 1px 2px rgba(150, 150, 150, 0.58);
+}
+#wrap {
+  border: solid 1px #b8a6d9;
+  box-shadow: 10px 50px 30px #b8a6d9;
+}
+/*
+  方法的匹配模式：
+    1. 字符串
+      匹配相同位置，内容完全相同的字符串。
+    2. 变量
+      匹配位置相同的属性值。
+    3. 变量个数
+      备选方法的变量个数为：总变量个数减去有默认值的参数个数。
+      匹配范围：总变量个数减去有默认值的参数个数 <= 调用方法时传入的个数 <= 总变量个数
+    4. 参数默认值
+      在定义方法时，已被定义具体值的参数；
+        例如：@width: 20px。
+      参数默认值会被实参替代。
+    5. @_
+      @_ 能够与相同位置的任何参数匹配。
+*/
+#main {
+  border-color: transparent transparent transparent #999;
+  border-style: solid;
+  border: 50px;
+}
+/*
+  命名空间：
+    类似于块级作用域。
+    只能通过一层一层查找的方式使用预设的属性。
+    防止命名冲突，还可以将属性进行归类。
+*/
+#namespace0 {
+  border-width: 1px;
+}
+#namespace1 {
+  border-style: dash;
+}
+#namespace2 {
+  border-color: #00f;
+}
+#when {
+  border: 200px solid #999;
+  background-color: #111;
+  font-size: 50px;
+  font-size: 100px;
+}

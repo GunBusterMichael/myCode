@@ -1,0 +1,141 @@
+/*
+  混合（mixins）
+    1. 定义
+      复用一组属性。
+*/
+// 如果在选择器后添加小括号，则该选择器和其内部的所有属性不会被转义到 css 中。
+.mixins() {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  box-shadow: 0 1px 2px rgba(150, 150, 150, 0.58);
+  -webkit-box-shodow: 0 1px 2px rgba(150, 150, 150, 0.58);
+}
+// 选择器后不添加小括号，该选择器和其内部的属性会被转义到 css 中
+.mixins0 {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  box-shadow: 0 1px 2px rgba(150, 150, 150, 0.58);
+  -webkit-box-shodow: 0 1px 2px rgba(150, 150, 150, 0.58);
+}
+.mixins1 {
+  // 在选择器内调用其他选择器内的所有属性：要被调用的选择器()
+  .mixins0()
+}
+
+// 使用参数
+.border(@a: 10px, @b: 50px, @c: 30px, @color: #b8a6d9) {
+  border: solid 1px @color;
+  // @arguments 表示该选择器被传入的所有参数。
+  box-shadow: @arguments;
+}
+#wrap {
+  .border()
+}
+
+/*
+  方法的匹配模式：
+    1. 字符串
+      匹配相同位置，内容完全相同的字符串。
+    2. 变量
+      匹配位置相同的属性值。
+    3. 变量个数
+      备选方法的变量个数为：总变量个数减去有默认值的参数个数。
+      匹配范围：总变量个数减去有默认值的参数个数 <= 调用方法时传入的个数 <= 总变量个数
+    4. 参数默认值
+      在定义方法时，已被定义具体值的参数；
+        例如：@width: 20px。
+      参数默认值会被实参替代。
+    5. @_
+      @_ 能够与相同位置的任何参数匹配。
+*/
+.triangle(top, @width: 20px, @color: #000) {
+  border-color: transparent transparent @color transparent;
+}
+
+.triangle(right, @width: 20px, @color: #000) {
+  border-color: transparent @color transparent transparent;
+}
+
+.triangle(bottom, @width: 20px, @color: #000) {
+  border-color: @color transparent transparent transparent;
+}
+
+.triangle(left, @width: 20px, @color: #000) {
+  border-color: transparent transparent transparent @color;
+}
+
+.triangle(@_, @width: 20px, @color: #000) {
+  border-style: solid;
+  border: @width
+}
+
+#main {
+  .triangle(left, 50px, #999)
+}
+
+/*
+  命名空间：
+    类似于块级作用域。
+    只能通过一层一层查找的方式使用预设的属性。
+    防止命名冲突，还可以将属性进行归类。
+*/
+.outer(@width: 1px) {
+  border-width: @width;
+  #middle(@line: dash) {
+    border-style: @line;
+    // 只能将最内层选择器的参数设置为不含默认值的模式
+    .inner(@color) {
+      border-color: @color;
+    }
+  }
+}
+// 选择器之间的空格和 > 都是可选的
+#namespace0 {
+  // 只能选择到 .outer
+  .outer()
+}
+#namespace1 {
+  // 只能选择到 #middle
+  // 父级选择器后不能写 ()
+  .outer > #middle()
+}
+#namespace2 {
+  // 只能选择到 .inner
+  // 父级选择器后不能写 ()
+  .outer#middle.inner(#00f)
+}
+
+// 方法的条件判断
+.judge {
+  // when——if and——&&
+  // 当 @width>100px 且 @color =#999 时，会渲染 .border 内的属性
+  .border(@width, @color, @style) when (@width > 100px) and (@color = #999) {
+    border: @width @style @color;
+  }
+
+  // when not——!
+  // when 和 not 不能分开写
+  .background(@color) when not (@color >= #222) {
+    background-color: @color;
+  }
+
+  // ,——||
+  .font(@size: 50px) when (@size = 50px), (@size = 100px) {
+    font-size: @size
+  }
+}
+
+#when {
+  .judge .border(200px, #999, solid);  // 被渲染
+  .judge .border(100px, #999, solid);  // 没有被渲染
+  .judge .border(200px, #888, solid);  // 没有被渲染
+
+  .judge .background(#111);  // 被渲染
+  .judge .background(#222);  // 没有被渲染
+
+  .judge .font(50px);   // 被渲染
+  .judge .font(100px);  // 被渲染
+  .judge .font(200px);  // 没有被渲染
+}

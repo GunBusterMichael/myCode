@@ -31,12 +31,16 @@
     <router-link to="/about" tag="button" replace active-class="active">关于</router-link>
     <!-- 动态路由 -->
     <router-link :to="'/user/' + userId">用户</router-link>
+    <!-- 路由传递参数 -->
+    <router-link :to="{path: '/profile', query: {name: 'why', age: 21, height: 180}}">档案</router-link>
 
     <hr>
 
     <!-- 使用其他标签实现跳转路由 -->
     <button @click="homeClick">首页</button>
     <button @click="aboutClick">关于</button>
+    <button @click="userClick">用户</button>
+    <button @click="profileClick">档案</button>
     <!-- router-view 标签决定组件的显示位置-->
     <router-view></router-view>
   </div>
@@ -70,10 +74,28 @@ export default {
       */
       this.$router.replace('/home')
     },
+    
     aboutClick() {
       // this.$router.push('/about')
       this.$router.replace('/about')
     },
+    
+    userClick() {
+      // 使用其他标签实现路由，并实现动态路由
+      this.$router.push('/user/' + this.userId)
+    },
+    
+    profileClick() {
+      // 使用其他标签实现路由，并实现通过路由传递参数
+      this.$router.push({
+        path: '/profile',
+        query: {
+          name: 'Michael',
+          age: 21,
+          height: 180
+        }
+      })
+    }
   },
 };
 </script>
@@ -86,7 +108,7 @@ export default {
       2. 作用
         2.1 为当前所显示的 router-link 标签添加样式。
   */
-  /* 
+  /*
   .router-link-active {
     color: #f00;
   }

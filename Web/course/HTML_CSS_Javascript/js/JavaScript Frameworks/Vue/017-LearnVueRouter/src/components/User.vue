@@ -3,6 +3,7 @@
     <h2>我是用户界面</h2>
     <p>我是用户的相关信息耶耶耶</p>
     <p>当前用户：{{userId}}</p>
+    <button @click="btnClick">拿到this.$router</button>
   </div>
 </template>
 
@@ -18,6 +19,12 @@ export default {
       return this.$route.params.userId;
     },
   },
+  methods: {
+    btnClick() {
+      console.log(this.$router);
+    }
+  },
+
 };
 </script>
 
