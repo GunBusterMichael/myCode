@@ -36,12 +36,13 @@ const routes = [
     },
     // 路由嵌套
     children: [
-      {
-        path: '',
-        // 子路由的 path 不用加 /
-        // 将路由跳转到 /home 时，将路径定向至 /home/news
-        redirect: 'news'
-      },
+      // 用这个重定向的方法，没法记录在离开 /home/??? 时，浏览的是哪个子路由。无法实现页面切换回 /home 时，仍然呈现离开时浏览的路由。
+      // {
+      //   path: '',
+      //   // 子路由的 path 不用加 /
+      //   // 将路由跳转到 /home 时，将路径定向至 /home/news
+      //   redirect: 'news'
+      // },
       {
         // 子路由的 path 不用加 /
         path: 'news',

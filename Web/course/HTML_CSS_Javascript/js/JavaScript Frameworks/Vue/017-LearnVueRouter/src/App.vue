@@ -41,8 +41,34 @@
     <button @click="aboutClick">关于</button>
     <button @click="userClick">用户</button>
     <button @click="profileClick">档案</button>
-    <!-- router-view 标签决定组件的显示位置-->
-    <router-view></router-view>
+
+    <!--
+      keep-alive 标签
+        1. 组件的销毁
+          在路由跳转到其他组件后，之前所显示的组件会被销毁。
+        2. 该标签的功能
+          让路由跳转到其他组件后，之前所显示的组件不会被销毁。
+        3. 具体应用场景
+          当重新跳转到嵌套路由后，页面会重定向至嵌套路由的默认子组件。
+            为了实现重现跳转到嵌套路由后，仍显示之前所显示的子组件，
+              我们就要让路由跳转后，不销毁之前显示的组件.
+        4. include 属性
+          4.1 作用
+            写进该属性的组件，才会被缓存。
+          4.2 写法
+            include="组件的name,组件的name,..."
+            逗号后不要加空格。
+        5. exclude 属性
+          5.1 作用
+            写进该属性的组件，不会被缓存。
+          5.2 写法
+            exclude="组件的name,组件的name,..."
+            逗号后不要加空格。
+    -->
+    <keep-alive exclude="Profile,User">
+      <!-- router-view 标签决定组件的显示位置-->
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
