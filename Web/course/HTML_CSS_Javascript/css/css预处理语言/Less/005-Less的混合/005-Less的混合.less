@@ -126,7 +126,6 @@
     font-size: @size
   }
 }
-
 #when {
   .judge .border(200px, #999, solid);  // 被渲染
   .judge .border(100px, #999, solid);  // 没有被渲染
@@ -138,4 +137,30 @@
   .judge .font(50px);   // 被渲染
   .judge .font(100px);  // 被渲染
   .judge .font(200px);  // 没有被渲染
+}
+
+/*
+  传入数量不定的参数
+    1. 实现方法
+      形参用 ... 表示；
+      用 @arguments 调用所有的参数。
+*/
+.boxShadow(...) {
+  box-shadow: @arguments;
+}
+#main {
+  .boxShadow(1px, 2px, 3px, #f6f6f6)
+}
+
+/*
+  在方法后使用 !important
+    1. 效果
+      方法内的所有属性都会被加上 !important。
+*/
+.textImportant {
+  color: #b8a6d9;
+  text-align: center;
+}
+.content {
+  .textImportant() !important
 }
