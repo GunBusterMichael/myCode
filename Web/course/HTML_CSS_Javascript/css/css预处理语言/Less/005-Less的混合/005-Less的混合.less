@@ -164,3 +164,67 @@
 .content {
   .textImportant() !important
 }
+
+/*
+  利用递归来循环
+*/
+// 设定循环方法：循环 n 次，当先循环次数为 i 。
+.generate-columns(@n, @i: 1) when (@i <= @n) {
+  // 【起始】.generate-columns 方法的属性
+  .columns-@{i} {
+    width: (@i * 100% / @n)
+  }
+  // 【结束】.generate-columns 方法的属性
+
+  // 在自己身体里调用自己，调用时将 i 加 1。
+  .generate-columns(@n, @i + 1)
+}
+// 调用循环方法，设定循环次数 n 为 4；当前循环次数省略，默认为 1
+.generate-columns(4);
+
+/*
+  将属性与方法进行拼接
+    1. 实现用逗号 , 拼接
+      1.1 写法
+        在要被拼接的属性与方法的名字后面，加上 +
+      1.2 实现效果
+        box-shadow: inset 0 0 10px #555, 0 0 20px #666;
+*/
+.boxShadow2() {
+  box-shadow+: inset 0 0 10px #555
+}
+#main {
+  .boxShadow2();
+  box-shadow+: 0 0 20px #666;
+}
+/*
+  1. 实现用空格 拼接
+    1.1 写法
+      在要被拼接的属性与方法的名字后面，加上 +_
+    1.2 实现效果
+      transform: scale(2) rotate(15deg);
+*/
+.animation() {
+  transform+_: scale(2);
+}
+.main {
+  .animation();
+  transform+_: rotate(15deg);
+}
+
+/*
+  实战：
+    调用方法并使用返回值。
+*/
+// 定义方法
+.average(@x, @y) {
+  // 定义变量
+  @average: ((@x + @y) / 2);
+}
+
+#tab-bar {
+  // 调用方法
+  .average(16px, 50px);
+  // 使用方法返回的值
+  padding: @average;
+}

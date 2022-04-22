@@ -85,3 +85,46 @@
   color: #b8a6d9 !important;
   text-align: center !important;
 }
+/*
+  利用递归来循环
+*/
+.columns-1 {
+  width: 25%;
+}
+.columns-2 {
+  width: 50%;
+}
+.columns-3 {
+  width: 75%;
+}
+.columns-4 {
+  width: 100%;
+}
+/*
+  将属性与方法进行拼接
+    1. 实现用逗号 , 拼接
+      1.1 写法
+        在要被拼接的属性与方法的名字后面，加上 +
+      1.2 实现效果
+        box-shadow: inset 0 0 10px #555, 0 0 20px #666;
+*/
+#main {
+  box-shadow: inset 0 0 10px #555, 0 0 20px #666;
+}
+/*
+  1. 实现用空格 拼接
+    1.1 写法
+      在要被拼接的属性与方法的名字后面，加上 +_
+    1.2 实现效果
+      transform: scale(2) rotate(15deg);
+*/
+.main {
+  transform: scale(2) rotate(15deg);
+}
+/*
+  实战：
+    调用方法并使用返回值。
+*/
+#tab-bar {
+  padding: 33px;
+}

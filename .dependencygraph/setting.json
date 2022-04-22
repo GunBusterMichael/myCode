@@ -1,0 +1,18 @@
+{
+  "alias": false,
+  "resolveExtensions": [
+    ".js",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".vue",
+    ".css",
+    ".scss",
+    ".sass",
+    ".less",
+    ".styl",
+    ".json",
+    ".svg"
+  ],
+  "entryFilePath": "\\Web\\course\\HTML_CSS_Javascript\\js\\JavaScript Frameworks\\Vue\\018-（案例）封装tabbar组件\\src\\main.js"
+}

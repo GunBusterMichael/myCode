@@ -1,0 +1,18 @@
+{
+  "entryFilePath": "\\src\\main.js",
+  "alias": {
+    "@": "./src",
+    "assets": "./src/assets",
+    "components": "./src/components",
+    "views": "./src/views"
+  },
+  "resolveExtensions": [
+    ".js",
+    ".jsx",
+    ".ts",
+    ".tsx",
+    ".vue",
+    ".scss",
+    ".less"
+  ]
+}
