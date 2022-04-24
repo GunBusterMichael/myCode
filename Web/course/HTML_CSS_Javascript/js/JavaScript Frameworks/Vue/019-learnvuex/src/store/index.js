@@ -26,6 +26,16 @@ const store = new Vuex.Store({
     },
     decrease(state) {
       state.counter--
+    },
+    // mutations 中的方法接受组件方法传来的值
+    addMany(state, payload) {
+      // 接受提交风格1：将方法类型和方法参数作为两个单独的参数传递
+      // state.counter += num
+      // 接受提交风格2：一个对象包方法类型与方法参数
+      state.counter += payload.num
+    },
+    addStudent(state, student) {
+      state.students.push(student)
     }
   },
   actions: {
@@ -41,6 +51,15 @@ const store = new Vuex.Store({
       // })
       // 用箭头函数写成一行👇
       return state.students.filter(item => item.age > 20)
+    },
+    numOfstudentsOlderThan20(state, getters) {
+      return getters.studentsOlderThan20.length
+    },
+    // 向 getters 函数传自定义参数的方法：返回一个函数
+    studentsOlderThan(state) {
+      return function (age) {
+        return state.students.filter(item => item.age > age)
+      }
     }
   },
   modules: {

@@ -2,13 +2,18 @@
   <div id="app">
     <h2>-------App-------</h2>
     <!-- 通过 this.$store.state. 属性访问 vuex 状态 -->
-    <h2>counter：{{$store.state.counter}}</h2>
+    <p>counter：{{$store.state.counter}}</p>
     <button @click="sub">-</button>
     <button @click="add">+</button>
+    <button @click="addMany(5)">+5</button>
+    <button @click="addMany(10)">+10</button>
+    <button @click="addStudent">添加学生</button>
 
     <h2>-------App：getters-------</h2>
-    <h2>counter的平方：{{$store.getters.powerCounter}}</h2>
-    <h2>年龄大于20岁的学生：{{$store.getters.studentsOlderThan20}}</h2>
+    <p>counter的平方：{{$store.getters.powerCounter}}</p>
+    <p>年龄大于20岁的学生：{{$store.getters.studentsOlderThan20}}</p>
+    <p>年龄大于20岁的学生的个数：{{$store.getters.numOfstudentsOlderThan20}}</p>
+    <p>年龄大于22岁的学生：{{$store.getters.studentsOlderThan(22)}}</p>
 
     <hello-vuex></hello-vuex>
   </div>
@@ -29,6 +34,29 @@ export default {
     },
     add() {
       this.$store.commit('increase')
+    },
+    // 向 mutations 中的方法传值
+    addMany(num) {
+      /*
+        提交风格：
+          1. 提交两个参数（方法类型，方法参数）
+      */
+      // this.$store.commit('addMany', num)
+      /*
+        2. 提交一个对象
+          {
+            type: 'mutations 中的方法名',
+            方法参数
+          }
+      */
+      this.$store.commit({
+        type: 'addMany',
+        num
+      })
+    },
+    addStudent() {
+      const student = { id: '5', name: '詹姆士', age: 25 }
+      this.$store.commit('addStudent', student)
     }
   },
 }
