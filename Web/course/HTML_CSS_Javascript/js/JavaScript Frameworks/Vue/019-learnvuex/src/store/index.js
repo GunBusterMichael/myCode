@@ -15,7 +15,12 @@ const store = new Vuex.Store({
       { id: '2', name: '李四', age: 20 },
       { id: '3', name: '王五', age: 22 },
       { id: '4', name: '赵六', age: 24 }
-    ]
+    ],
+    info: {
+      name: 'Michael',
+      age: 21,
+      height: 180
+    }
   },
 
   // 定义改变状态的方法
@@ -36,6 +41,18 @@ const store = new Vuex.Store({
     },
     addStudent(state, student) {
       state.students.push(student)
+    },
+    changeInfo(state) {
+      // 修改已在 state 中声明的数据，可以做到响应式
+      state.info.name = 'coderwhy'
+      // 直接添加没有在 state 中声明的数据，可以做到响应式
+      state.info['responsive1'] = 'OK1'
+      // 通过 Vue.set 方法，可以做到响应式添加没有在 state 中声明的数据
+      Vue.set(state.info, 'responsive2', 'OK2')
+      // 通过 delete 关键字，可以做到响应式地删除数据
+      delete state.info.name
+      // 通过 Vue.set 方法，可以做到响应式地删除数据
+      Vue.delete(state.info, 'age')
     }
   },
   actions: {

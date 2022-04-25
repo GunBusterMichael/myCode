@@ -8,12 +8,16 @@
     <button @click="addMany(5)">+5</button>
     <button @click="addMany(10)">+10</button>
     <button @click="addStudent">添加学生</button>
+    <button @click="changeInfo">修改info</button>
 
-    <h2>-------App：getters-------</h2>
+    <h4>-------getters-------</h4>
     <p>counter的平方：{{$store.getters.powerCounter}}</p>
     <p>年龄大于20岁的学生：{{$store.getters.studentsOlderThan20}}</p>
     <p>年龄大于20岁的学生的个数：{{$store.getters.numOfstudentsOlderThan20}}</p>
     <p>年龄大于22岁的学生：{{$store.getters.studentsOlderThan(22)}}</p>
+
+    <h4>-------state中的info对象是否是响应式</h4>
+    <p>{{$store.state.info}}</p>
 
     <hello-vuex></hello-vuex>
   </div>
@@ -57,6 +61,9 @@ export default {
     addStudent() {
       const student = { id: '5', name: '詹姆士', age: 25 }
       this.$store.commit('addStudent', student)
+    },
+    changeInfo() {
+      this.$store.commit('changeInfo')
     }
   },
 }
