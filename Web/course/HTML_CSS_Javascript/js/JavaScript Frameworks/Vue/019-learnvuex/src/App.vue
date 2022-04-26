@@ -25,6 +25,13 @@
 
 <script>
 import HelloVuex from './components/HelloVuex.vue'
+import {
+  INCREASE,
+  DECREASE,
+  ADD_MANY,
+  ADD_STUDENT,
+  CHANGE_INFO
+} from '@store/mutations-types'
 
 export default {
   name: 'App',
@@ -34,10 +41,10 @@ export default {
   methods: {
     sub() {
       // 通过 this.$store.commit('mutation中的方法名') 来修改状态
-      this.$store.commit('decrease')
+      this.$store.commit(DECREASE)
     },
     add() {
-      this.$store.commit('increase')
+      this.$store.commit(INCREASE)
     },
     // 向 mutations 中的方法传值
     addMany(num) {
@@ -54,16 +61,16 @@ export default {
           }
       */
       this.$store.commit({
-        type: 'addMany',
+        type: ADD_MANY,
         num
       })
     },
     addStudent() {
       const student = { id: '5', name: '詹姆士', age: 25 }
-      this.$store.commit('addStudent', student)
+      this.$store.commit(ADD_STUDENT, student)
     },
     changeInfo() {
-      this.$store.commit('changeInfo')
+      this.$store.commit(CHANGE_INFO)
     }
   },
 }

@@ -1,5 +1,7 @@
 {
-  "alias": false,
+  "alias": {
+    "@store": "./src/store"
+  },
   "resolveExtensions": [
     ".js",
     ".jsx",
@@ -14,5 +16,5 @@
     ".json",
     ".svg"
   ],
-  "entryFilePath": "\\Web\\course\\HTML_CSS_Javascript\\js\\JavaScript Frameworks\\Vue\\018-（案例）封装tabbar组件\\src\\main.js"
+  "entryFilePath": "\\Web\\course\\HTML_CSS_Javascript\\js\\JavaScript Frameworks\\Vue\\019-learnvuex\\src\\main.js"
 }
