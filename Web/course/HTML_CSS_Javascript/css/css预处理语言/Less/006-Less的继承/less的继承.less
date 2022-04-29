@@ -1,0 +1,17 @@
+/* 继承 extend */
+.animation {    // 生成 .animation 选择器
+  transition: all .3s ease-out;
+  .hide {       // 生成 .hide 选择器
+    transform: scale(0);
+  }
+}
+
+#main {
+  /* 
+    生成：
+    .animation,
+    #main 选择器
+  */
+  &:extend(.animation);
+  color: antiquewhite;
+}
