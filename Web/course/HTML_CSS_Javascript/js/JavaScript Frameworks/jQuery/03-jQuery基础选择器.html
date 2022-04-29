@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-jQuery基础选择器</title>
+</head>
+
+<body>
+  <div id="myDiv1">
+    id选择器
+    <span>span中的内容</span>
+  </div>
+  <div id="myDiv2" class="blue">元素选择器</div>
+  <span class="blue">样式选择器</span>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  // 1. id 选择器
+  const myDiv = $('#myDiv1')
+  console.log(myDiv)
+
+  // 2. 类选择器
+  const classBlue = $('.blue')
+  console.log(classBlue)
+
+  // 3. 元素选择器
+  const spans = $('span')
+  console.log(spans)
+
+  // 4. 通用选择器
+  const all = $('*')    // 包括 <body> 之外的标签
+  console.log(all)
+
+  // 5. 通用选择器
+  const group = $('#myDiv1, div, .blue')
+  console.log(group)    // 返回的包装集中包括 div#myDiv1, div#myDiv2.blue 和 span.blue
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>002-DOM对象与jQuery包装集对象</title>
+</head>
+
+<body>
+  <div id="myDiv">文本</div>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /*
+    DOM 对象：
+      1. 定义
+        通过 JavaScript 方式获取的元素对象（document.querySelector / document.getElementById 等以 document. 开头的 DOM API）。
+      2. Jquery 对象
+        通过 jQuery 方法获取的元素对象，返回的是 jQuery 包装集。
+  */
+  /* DOM 对象 */
+  const divDOM = document.getElementById('myDiv')
+  console.log(divDOM)    // 返回 <div id="myDiv">文本</div>
+
+  /* jQuery 对象 */
+  // 通过 id 选择器获取元素对象：$('#id属性名')
+  const divJquery = $('#myDiv')
+  console.log(divJquery)    // 返回 jQuery.fn.init [div#myDiv]
+
+  /* 将 DOM 对象转换为 jQuery 对象 */
+  const divDOMToJq = $(divDOM)
+  console.log(divDOMToJq)    // 返回 jQuery.fn.init [div#myDiv]
+
+  /* jQuery 对象转换为 DOM 对象 */
+  // 1. 通过包装集的下标转换
+  const divJqToDOM = divJquery[0]
+  console.log(divJqToDOM)    // 返回 <div id="myDiv">文本</div>
+</script>
+
+</html>
