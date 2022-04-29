@@ -1,0 +1,25 @@
+.class1 {
+  background-color: #000;
+  color: #ddd;
+  background-color: #ddd;
+}
+.class1 {
+  background-color: #fff;
+  color: #555;
+  background-color: #555;
+}
+/*
+  类型检测函数：
+    1. iscolor
+    2. isnumber
+    3. isstring
+    4. iskeyword
+    5. isurl
+*/
+/*
+  单位检测函数：
+    1. ispixel
+    2. ispercentage
+    3. isem
+    4. isunit
+*/

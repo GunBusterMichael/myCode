@@ -1,0 +1,39 @@
+// lightness 函数用于监测亮度，用百分号度量
+.mixin(@a) when (lightness(@a) >= 50%) {
+  background-color: #000;
+}
+.mixin(@a) when (lightness(@a) < 50%) {
+  background-color: #fff;
+}
+.mixin(@a) {
+  color: @a;
+}
+.class1 {
+  .mixin(#ddd)
+}
+.class1 {
+  .mixin(#555)
+}
+
+/*
+  类型检测函数：
+    1. iscolor
+    2. isnumber
+    3. isstring
+    4. iskeyword
+    5. isurl
+*/
+.mixin(@a) when (iscolor(@a)) {
+  background-color: @a;
+}
+.mixin(@a) when (isnumber(@a)) {
+  font-size: @a;
+}
+
+/*
+  单位检测函数：
+    1. ispixel
+    2. ispercentage
+    3. isem
+    4. isunit
+*/

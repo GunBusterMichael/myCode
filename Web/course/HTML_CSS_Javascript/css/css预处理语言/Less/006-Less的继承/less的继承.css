@@ -1,16 +1,31 @@
 /* 继承 extend */
 .animation,
-#main {
+#main,
+#wrap {
   transition: all 0.3s ease-out;
 }
 .animation .hide {
   transform: scale(0);
 }
-#main {
-  /* 
+#main,
+#wrap {
+  /*
     生成：
     .animation,
     #main 选择器
   */
   color: antiquewhite;
+}
+/* 全局搜索替换 all */
+#main,
+#wrap {
+  width: 200px;
+}
+#main:after,
+#wrap:after {
+  content: 'Less is good.';
+}
+#main .div,
+#wrap .div {
+  border: 1px solid #000;
 }

@@ -1,0 +1,10 @@
+// 导入 less 文件并编译
+@import "nav";
+// 导入 less 文件，但不进行编译（不会编译为 css）
+@import (reference) "bodyer";
+// 只允许导入一次指定的文件，再次导入会报错
+@import (once) "footer";
+@import (once) "footer";
+// 导入多个同名文件
+@import (multiple) "nav";
+@import (multiple) "nav";

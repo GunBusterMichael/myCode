@@ -7,11 +7,31 @@
 }
 
 #main {
-  /* 
+  /*
     生成：
     .animation,
     #main 选择器
   */
   &:extend(.animation);
   color: antiquewhite;
+}
+
+/* 全局搜索替换 all */
+#main {
+  width: 200px;
+}
+#main {
+  &:after {
+    content: 'Less is good.';
+  }
+  & .div {
+    border: 1px solid #000;
+  }
+}
+#wrap {
+  // 继承 #main 包含的所有选择器：
+  // 1. #main
+  // 2. #main:after
+  // 3. #main .div
+  &:extend(#main all);
 }
