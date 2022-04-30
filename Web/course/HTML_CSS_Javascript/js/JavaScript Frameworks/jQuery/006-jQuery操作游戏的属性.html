@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006-jQuery操作游戏的属性</title>
+</head>
+
+<body>
+  <input type="checkbox" name="ch" id="aa" checked="checked" data-abc="aabbcc">aa
+  <input type="checkbox" name="ch" id="bb">bb
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /*
+    1. 属性的分类
+      1.1 固有属性
+        元素本身就有的属性：id name class style src href ...
+      1.2 返回值是 Boolean 的属性
+        cheched selected disabled ...
+      1.3 自定义属性
+        用户自己定义的属性。
+  */
+  /*
+    2. 操作元素的属性：
+      2.1 获取元素
+        attr('属性名')
+        prop('属性名')
+          2.1.1 区别
+            2.1.1.1 获取固有属性
+              attr 和 prop 都能以字符串形式返回固有属性值。
+            2.1.1.2 获取返回值是 Boolean 的属性
+              2.1.1.2.1 标签设置了这种属性
+                attr 返回具体的字符串属性值，如 checked；
+                prop 返回 true。
+              2.1.1.2.2 标签没有设置这种属性
+                attr 返回 undefined；
+                prop 返回 false。
+            2.1.1.3 获取自定义属性
+              attr 可获取，会返回字符串型的属性值；
+              prop 不可获取，一律返回 undefined。
+      2.2 设置属性
+        attr('属性名', '属性值')
+        prop('属性名', '属性值')
+          2.2.1 区别
+            2.2.1.1 设置固有属性
+              attr 和 prop 都能设置。
+            2.2.1.2 修改返回值是 Boolean 的属性
+              attr 可将字符串设置为属性值；
+              prop 可将布尔值设置为属性值，推荐使用 prop 方法。
+            2.1.2.3 修改自定义属性
+              attr 可修改自定义属性；
+              prop 不可修改自定义属性
+      2.3 移除属性
+        removeAttr('属性名')
+      2.4 总结
+        如果属性类型为布尔值（常见的：cheched selected disabled），则使用 prop 方法；
+        其余类型的属性，使用 attr 方法。
+  */
+
+  /* 1. 获取属性 */
+  // 1.1 固有属性
+  const nameAttr = $('#aa').attr('name')
+  console.log(nameAttr)    // 返回 'ch'
+  const nameProp = $('#aa').prop('name')
+  console.log(nameProp)    // 返回 'ch'
+
+  // 1.2.1 返回值是 Boolean 的属性（元素设置了 Boolean 属性）
+  const checkedTrueAttr = $('#aa').attr('checked')
+  console.log(checkedTrueAttr)    // 返回 'checked'
+  const checkedTrueProp = $('#aa').prop('checked')
+  console.log(checkedTrueProp)    // 返回 true
+
+  // 1.2.2 返回值是 Boolean 的属性（元素没有设置 Boolean 属性）
+  const checkedFalseAttr = $('#bb').attr('checked')
+  console.log(checkedFalseAttr)    // 返回 undefined
+  const checkedFalseProp = $('#bb').prop('checked')
+  console.log(checkedFalseProp)    // 返回 false
+
+  // 1.3 自定义属性
+  const abcAttr = $('#aa').attr('data-abc')
+  console.log(abcAttr)    // 返回 'aabbcc'
+  const abcProp = $('#aa').prop('data-abc')
+  console.log(abcProp)    // 返回 undefined
+
+  /* 2. 设置属性 */
+  // 2.1 设置固有属性
+  $('#aa').attr('value', 1)
+  $('#bb').prop('value', 2)
+
+  // 2.2 设置返回值是 Boolean 的属性
+  // $('#bb').attr('checked', 'checked')
+  $('#bb').prop('checked', true)
+
+  // 2.3 设置自定义属性
+  $('#bb').attr('data-name', 'Michael')
+  $('#bb').prop('data-age', 21)
+
+  /* 3. 移除属性 */
+  $('#aa').removeAttr('checked')
+</script>
+
+</html>
