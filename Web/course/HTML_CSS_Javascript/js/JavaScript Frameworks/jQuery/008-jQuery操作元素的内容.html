@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>008-jQuery操作元素的内容</title>
+</head>
+
+<body>
+  <h3><span>html()和text()方法设置元素内容</span></h3>
+  <div id="html"></div>
+  <div id="html2"></div>
+  <div id="text">北京</div>
+  <div id="text2">
+    <h2>北京</h2>
+  </div>
+  <input type="text" name="uname" id="op" value="oop" />
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /*
+    操作元素的内容
+      1. 获取元素的内容，包括 HTML 标签（非表单元素）
+        html()
+          用的多。
+      2. 设置元素的内容，可以将字符串渲染成 HTML 标签（非表单内容）
+        html('内容')
+          用的多。
+      3. 获取元素的纯文本内容，不获取 HTML 标签（非表单元素）
+        text()
+      4. 设置元素的纯文本内容，不可以将字符串渲染成 HTML 标签（非表单元素）
+        text('内容')
+      5. 获取元素的值（表单内容）
+        val()
+      6. 设置元素的值（表单内容）
+        val('值')
+  */
+  /*
+    表单元素：
+      文本框 text、密码框 password、单选框 radio、复选框 checkbox、隐藏域 hidden、文本域 textarea、下拉框 select
+    非表单元素：
+      div、span、h1-h6、table、tr、td、li、p ...
+  */
+
+  // 2. 设置元素的内容，可以将字符串渲染成 HTML 标签（非表单内容）
+  $('#html').html('<h2>上海</h2>')    // 在 div 中添加 <h2>上海</h2>
+  $('#html2').html('上海')
+
+  // 1. 获取元素的内容，包括 HTML 标签（非表单元素）
+  const html = $('#html').html()
+  console.log(html)    // 返回 '<h2>上海</h2>'
+  const html2 = $('#html2').html()
+  console.log(html2)    // 返回 '上海'
+
+  // 4. 设置元素的纯文本内容，不可以将字符串渲染成 HTML 标签（非表单元素）
+  $('#text').text('北京')
+  $('#text2').text('<h2>北京</h2>')
+  
+  // 3. 获取元素的纯文本内容，不获取 HTML 标签（非表单元素）
+  const text = $('#text').text()
+  console.log(text)    // 返回 '北京'
+  const text2 = $('#text2').text()
+  console.log(text2)    // 返回 '<h2>北京</h2>'
+  const text3 =$('#html').text()
+  console.log(text3)    // 返回 '上海'
+
+  // 5. 获取元素的值（表单内容）
+  const val = $('#op').val()
+  console.log(val)
+  
+  // 6. 设置元素的值（表单内容）
+  $('#op').val('你好')
+</script>
+
+</html>

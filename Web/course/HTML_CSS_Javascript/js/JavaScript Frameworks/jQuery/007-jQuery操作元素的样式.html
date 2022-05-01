@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>007-jQuery操作元素的样式</title>
+  <style type="text/css">
+    div {
+      padding: 8px;
+      width: 180px;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .larger {
+      font-size: 30px;
+    }
+
+    .pink {
+      background: pink;
+    }
+
+    .green {
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>css()方法设置元素样式</h3>
+  <div id="conBlue" class="blue larger">天蓝色</div>
+  <div id="conRed">大红色</div>
+  <div id="remove" class="blue larger">天蓝色</div>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /*
+    操作元素样式的方法：
+      1. attr('class')
+        获取元素的类名，本质上和获取元素的属性值一样；
+      2. attr('class', '样式名')
+        设置元素的类，本质上和修改元素的属性值一样，原来的样式会被覆盖；
+      3. addClass('样式名')
+        添加类。
+          生效优先级依据 <style> 中类被定义的先后顺序而定，后定义的会覆盖先定义的；
+            不依据被添加到元素中的顺序而定。
+      4. css()
+        添加行内样式；
+          4.1 设置单个样式
+            css('样式名', '样式值')
+          4.2 设置多个样式
+            css({'样式名': '样式值', '样式名': '样式值', ...})
+      5. removeClass('样式名')
+        移除样式。
+  */
+
+  // 1. 获取元素的类名
+  const classes = $('#conBlue').attr('class')
+  console.log(classes)    // 返回 'blue larger'
+
+  // 2. 设置元素的类
+  $('#conBlue').attr('class', 'green')
+  console.log($('#conBlue').attr('class'))    // 返回 'green'
+
+  // 3. 添加类
+  $('#conBlue').addClass('larger')
+  console.log($('#conBlue').attr('class'))    // 返回 'green larger'
+
+  // 4. 添加行内样式
+  $('#conRed').css('font-size', '40px')
+  $('#conRed').css({'font-family': '楷体', 'color': '#f00'})
+  console.log($('#conRed').attr('class'))    // 返回 undefined
+
+  // 5. 移除类名
+  $('#conBlue').removeClass('larger')
+  console.log($('#conBlue').attr('class'))    // 返回 'green'
+</script>
+
+</html>
