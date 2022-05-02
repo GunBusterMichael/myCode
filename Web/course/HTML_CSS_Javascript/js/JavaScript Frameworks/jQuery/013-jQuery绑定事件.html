@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery绑定事件</title>
+</head>
+<body>
+  <h3>bind()方简单的绑定事件</h3>
+  <!-- style="cursor:pointer" 设置鼠标图标 -->
+  <div id="test" style="cursor:pointer">点击查看名言</div>
+  <input id="btntest" type="button" value="点击就不可用了" />
+  <hr>
+  <button type="button" id="btn1">按钮1</button>
+  <button type="button" id="btn2">按钮2</button>
+  <button type="button" id="btn3">按钮3</button>
+  <button type="button" id="btn4">按钮4</button>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /* jq 绑定单个事件 */
+  $('#test').bind('click', function () {
+    console.log('世上无难事')
+  })
+
+  /* 原生 JS 绑定事件 */
+  document.querySelector('#test').onclick = function () {
+    console.log('js 原生绑定事件')
+  }
+
+  /* <!--= jq 直接绑定（用的多） */
+  // 禁用按钮
+  $('#btntest').click(function () {
+    // 事件的 this 就是触发事件的 DOM 元素
+    console.log(this)    // 返回 <input id="btntest" type="button" value="点击就不可用了" />
+    $(this).prop('disabled', true)
+  })
+
+  /* 绑定多个事件 */
+  /* 1. 同时为多个事件绑定同一个函数 */
+  // 绑定 click 和 mouseout 事件
+  $('#btn1').bind('click mouseout', function () {
+    console.log('按钮1')
+  })
+
+  // 2.1 为一个元素绑定多个事件，并设置对应的函数（链式写法）
+  $('#btn2').bind('click', function () {
+    console.log('btn2 被点击了')
+  }).bind('mouseout', function () {
+    console.log('btn2 离开了')
+  })
+
+  // 2.2 为一个元素绑定多个事件，并设置对应的函数（对象键值对写法）
+  $('#btn3').bind({
+    click() {
+      console.log('btn3 被点击了')
+    },
+    mouseout() {
+      console.log('btn3 离开了')
+    }
+  })
+
+  // <!--= 3. 直接绑定（用的多）
+  $('#btn4').click(function () {
+    console.log('btn4 被点击了');
+  }).mouseout(function () {
+    console.log('btn4 离开了')
+  })
+</script>
+
+</html>

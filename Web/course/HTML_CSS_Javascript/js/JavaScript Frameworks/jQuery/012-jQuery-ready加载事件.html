@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-jQuery-ready加载事件</title>
+  <script src="js/jquery-3.6.0.js"></script>
+  <script>
+    /*
+      预加载事件
+        1. 作用
+          让 script 标签在 DOM 加载完毕后执行，
+          类似于 js 的 onload。
+    */
+
+    // 写法1：
+    $(document).ready(function () {
+      console.log($('#p1'))
+    })
+
+    // 写法2：
+    $(function () {
+      console.log('预加载')
+    })
+  </script>
+</head>
+<body>
+  <p id="p1">文本</p>
+</body>
+</html>

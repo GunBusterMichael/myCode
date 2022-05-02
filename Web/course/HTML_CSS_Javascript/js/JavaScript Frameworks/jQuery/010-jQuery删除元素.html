@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>010-jQuery删除元素</title>
+  <style type="text/css">
+    span {
+      color: white;
+      padding: 8px;
+      margin: 5px;
+      float: left;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>删除元素</h3>
+  <span class="green">jquery<a>删除</a></span>
+  <span class="blue">javase<a>删除</a></span>
+  <span class="green">http协议</span>
+  <span class="blue">servlet</span>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  /*
+    删除元素
+      1. remove()
+        1.1 效果
+          删除元素及其对应的子元素，自身的标签和内容会被一起删除。
+        1.2 语法
+          指定元素.remove()
+      2. empty()
+        2.1 效果
+          清空元素内容，但会保留自身的标签；
+            如果内容中有标签，则这个标签不会被删除。
+        2.2 语法
+          指定元素.empty()
+  */
+
+  // 删除元素
+  $('.green').remove()    // 删除了所有含有 green 类的元素及其子元素。
+  // 清空元素
+  $('.blue').empty()    // 删除了所有含有 blue 类的元素的内容，但是元素本身的标签被保留。
+</script>
+
+</html>
