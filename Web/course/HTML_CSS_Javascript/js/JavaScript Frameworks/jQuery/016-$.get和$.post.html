@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>016-$.get和$.post</title>
+</head>
+
+<!--
+		$.get();
+			语法：
+				$.get("请求地址","请求参数",function(形参){
+					
+				});
+		$.post();
+			语法：
+				$.post("请求地址","请求参数",function(形参){
+					
+				});
+-->
+
+<body>
+
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  $.get('js/data.json', {}, serverData => {
+    console.log(serverData)
+  })
+  $.post('http://152.136.185.210:7878/api/hy66/home/multidata', {}, serverData => {
+    console.log(serverData)
+  })
+</script>
+
+</html>

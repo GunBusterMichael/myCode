@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-$.getJSON</title>
+</head>
+
+<!--
+  $.getJSON
+    语法：
+      $.getJSON("请求地址", "请求参数", function(形参){
+        
+      });
+  注：getJSON方式要求返回的数据格式满足 JSON 格式（JSON 字符串或 JSON 对象）
+-->
+
+<body>
+
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  $.getJSON('js/data.json', {}, serverData => {
+    // 正常读取 JSON 数据
+    console.log(serverData)
+  })
+  $.getJSON('js/test.txt', {}, serverData => {
+    // 无法读取非 JSON 格式的数据，但不会报错
+    console.log(serverData)
+  })
+</script>
+
+</html>

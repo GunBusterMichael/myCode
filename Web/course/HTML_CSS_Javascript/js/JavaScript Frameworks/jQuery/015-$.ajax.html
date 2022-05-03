@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>015-$.ajax</title>
+</head>
+
+<!--
+		jquery调用ajax方法：
+		​  格式：$.ajax({});
+		​    参数：
+          type：请求方式GET/POST；
+          url：请求地址url；
+          async：是否异步，默认是true表示异步；
+          data：发送到服务器的数据；
+          dataType：预期服务器返回的数据类型；
+          contentType：设置请求头；
+          success：请求成功时调用此函数；
+          error：请求失败时调用此函数。
+-->
+
+<body>
+  <button id="btn">请求数据</button>
+</body>
+
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+  // 访问 txt 文件
+  $.ajax({
+    // 请求方式
+    type: 'get',
+
+    // 请求地址
+    url: 'js/data.txt',
+
+    // 请求时向服务器发送的数据，类型为 JSON 对象，
+    // 不需要向服务器发送数据时，可省略。
+    data: {
+      uname: 'Michael'
+    },
+
+    // 请求成功时，会被调用的函数
+    // serverData 是从服务器端请求到的数据。
+    // 如果访问的是 txt 文件，则类型为字符串，名字可以自定义
+    success: function (serverData) {
+      console.log(serverData)    // 返回 字符串
+      // 将字符串转换为 JSON 对象
+      const serverDataJson = JSON.parse(serverData)
+      console.log(serverDataJson)
+    }
+  })
+
+  // 访问 JSON 文件
+  $.ajax({
+    type: 'get',
+    url: 'js/data.json',
+
+    // serverData 是从服务器端请求到的数据。
+    // 如果访问的是 JSON 文件，则类型为字符串，名字可以自定义
+    success: function (serverData) {
+      console.log(serverData)    // 返回 JSON 对象
+    }
+  })
+
+  // 点击按钮，会利用 ajax 请求数据，并将数据展示到 DOM 中
+  $('#btn').click(function () {
+    // 利用 dataType 转换数据格式
+    $.ajax({
+      type: 'get',
+      url: 'js/data.txt',
+
+      // 如果得到的数据是 JSON 类型的字符串，ajax 会将字符串转换为 JSON 对象
+      dataType: 'json',
+
+      // serverData 是从服务器端请求到的数据。
+      // 如果访问的是 JSON 文件，则类型为字符串，名字可以自定义
+      success: function (serverData) {
+        console.log(serverData)    // 返回 JSON 对象
+
+        // 将请求到的数据展示到 DOM 中
+        let ul = $('<ul></ul>')
+        for (let item of serverData) {
+          let li = '<li>' + item.userName + '</li>'
+          ul.append(li)
+        }
+        $('body').append(ul)
+      }
+    })
+  })
+</script>
+
+</html>
