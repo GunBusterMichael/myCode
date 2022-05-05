@@ -1,0 +1,107 @@
+@semitransparentBlack: rgba(0, 0, 0, 0.25);
+@location-boxColor: #fff;
+@weather-boxColor: @location-boxColor;
+@radius: 16px;
+@margin-top: 40px;
+
+.transition() {
+  transition: .4s;
+}
+
+.boxSetting(@color, @font-size, @font-weight, @text-align) {
+  color: @color;
+  font-size: @font-size;
+  font-weight: @font-weight;
+  text-align: @text-align;
+}
+
+#app {
+  background-size: cover;
+  background-position: bottom;
+  .transition();
+}
+
+#app.cold {
+  background-image: url("../img/cold-bg.jpg");
+}
+
+#app.warm {
+  background-image: url("../img/warm-bg.jpg");
+}
+
+main {
+  min-height: 100vh;
+  padding: 25px;
+  background: linear-gradient(to bottom, @semitransparentBlack, @semitransparentBlack);
+}
+
+.search-box {
+  width: 100%;
+  margin-top: @margin-top - 5px;
+
+  .search-bar {
+    width: 100%;
+    display: block;
+    padding: 15px;
+
+    /* 设置 search-bar 的字体*/
+    color: #313131;
+    font-size: 20px;
+
+    /* 清空 search-bar 的样式 */
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+
+    /* 设置 search-bar 的背景颜色：透明灰 */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0px @radius 0px @radius;
+    box-shadow: 0 0 8px @semitransparentBlack;
+    .transition();
+  }
+
+  /* 设置鼠标点击 search-bar 后的样式 */
+  .search-bar:focus {
+    box-shadow: 0 0 16px @semitransparentBlack;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: @radius 0px @radius 0px;
+  }
+}
+
+.location-box {
+  margin-top: @margin-top;
+  .location {
+    .boxSetting(@location-boxColor, 32px, 500px, center);
+    text-shadow: 1px 3px @semitransparentBlack;
+  }
+  .date {
+    .boxSetting(@location-boxColor, 20px, 300px, center);
+    font-style: italic;
+
+    margin-top: 9px;
+  }
+}
+
+.weather-box {
+  text-align: center;
+  .temp {
+    display: inline-block;
+    padding: 10px 25px;
+    color: @weather-boxColor;
+    font-size: 102px;
+    font-weight: 900;
+
+    text-shadow: 3px 6px @semitransparentBlack;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: @radius;
+    margin: @margin-top 0;
+
+    box-shadow: 3px 6px @semitransparentBlack;
+  }
+  .weather {
+    .boxSetting(@weather-boxColor, 48px, 700px, center);
+    font-style: italic;
+    text-shadow: 3px 6px @semitransparentBlack;
+  }
+}

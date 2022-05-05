@@ -92,7 +92,7 @@ new Vue({
 // =5. 封装 axios
 // 可以将 request 函数当成一个 axios 实例
 request({
-  url: '/home/multidata'
+  url: '/home/multidata/'
 })
   // 这是 axios 实例的 resolve 方法，用于处理请求到的数据
   // res 是 promise 实例传递给 resolve 的参数——从服务器端请求到的数据
