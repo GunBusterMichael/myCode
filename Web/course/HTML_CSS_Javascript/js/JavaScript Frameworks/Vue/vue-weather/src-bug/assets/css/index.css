@@ -1,14 +1,13 @@
 #app {
-  background-image: url("~assets/img/setup-bg.webp");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 #app.cold {
-  background-image: url("~assets/img/cold-bg.jpg");
+  background-image: url("../img/cold-bg.jpg");
 }
 #app.warm {
-  background-image: url("~assets/img/warm-bg.jpg");
+  background-image: url("../img/warm-bg.jpg");
 }
 main {
   min-height: 100vh;

@@ -1,4 +1,3 @@
-// todo 解决天气数据 undefined 问题
 <template>
   <div id="app" :class="bgKind">
     <main>
@@ -12,7 +11,7 @@
         />
       </div>
 
-      <div class="weather-wrap" v-if="weatherInfo !== {}">
+      <div class="weather-wrap" v-if="weatherInfo.temperature != undefined">
         <div class="location-box">
           <div class="location">{{ province }}&nbsp;&nbsp;{{ city }}</div>
           <div class="date">{{ date }}</div>
