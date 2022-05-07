@@ -1,0 +1,4 @@
+app文件：程序员自己写的JS代码（业务代码）；
+manifest文件：底层支撑JS代码，用于将commonJS和ES6等代码转换成能被大多数浏览器支持的代码；
+vendor：第三方JS代码，包括Vue、Vue-router和axios等；
+其他文件：各个组件的JS代码。

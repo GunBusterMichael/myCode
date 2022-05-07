@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>001-01-CDN引入以及Vue实例的新创建方法</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  /* 
+    与 Vue2 的不同：
+      1. 用 Vue.createApp 替代了 new Vue
+  */
+  Vue.createApp({
+    template: `
+      <h2>Hello Vue3</h2>
+    `
+  }).mount('#app')  /* 2. 用 mount 替代了 el */
+</script>
+
+</html>
