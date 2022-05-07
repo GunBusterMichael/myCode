@@ -14,15 +14,16 @@
 
 <script src="https://unpkg.com/vue@next"></script>
 <script>
-  /* 
+  /*
     与 Vue2 的不同：
       1. 用 Vue.createApp 替代了 new Vue
   */
   Vue.createApp({
+    /* 3. 将要展示到 app 标签中的内容写到 template 中 */
     template: `
       <h2>Hello Vue3</h2>
     `
-  }).mount('#app')  /* 2. 用 mount 替代了 el */
+  }).mount('#app')  /* 3. 用 mount 替代了 el */
 </script>
 
 </html>
