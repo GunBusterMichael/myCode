@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-14-子组件访问父组件、根组件-this.parent、this.$root</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+
+  <!-- 父组件模板 -->
+  <template id="cpn">
+    <div>
+      <hr>
+      <h2>我是cpn组件</h2>
+      <ccpn></ccpn>
+      <hr>
+    </div>
+  </template>
+
+  <!-- 子组件模板 -->
+  <template id="ccpn">
+    <div>
+      <hr>
+      <h2>我是ccpn组件</h2>
+      <button @click="btnClick">按钮</button>
+      <hr>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '我是 Vue 实例的 message'
+      },
+      components: {
+        // 父组件
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              name: '我是组件cpn的name'
+            }
+          },
+          components: {
+            // 子组件
+            ccpn: {
+              template: '#ccpn',
+              methods: {
+                btnClick() {
+                  /*
+                  <!--= 访问父组件 this.$parent
+                    <!--= 要通过子组件 methods 中的方法访问父组件。
+                      使用频率较少。因为如果子组件直接获取父组件的数据，会造成子组件与父组件的耦合度太高，让子组件难以复用。
+                  */
+                  console.log(this.$parent)  // 返回 父组件 cpn
+                  console.log(this.$parent.name)  // 返回 我是组件cpn的name
+
+                  /*
+                    <!--= 访问根组件 this.$root
+                      使用频率较少。因为如果子组件直接获取根组件的数据，会造成子组件与根组件的耦合度太高，让子组件难以复用。
+                  */
+                  console.log(this.$root)  // 返回 Vue 实例
+                  console.log(this.$root.message)  // 返回 '我是 Vue 实例的 message'
+                }
+              }
+            }
+          }
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>

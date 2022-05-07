@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006-03-v-if、v-else-if和v-else的使用</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 简单的逻辑判断，用 v-for -->
+    <h2 v-if="score>=90">优秀</h2>
+    <h2 v-else-if="score>=80">良好</h2>
+    <h2 v-else-if="score>=60">及格</h2>
+    <h2 v-else>不及格</h2>
+
+    <!-- 复杂的逻辑判断，用计算属性与ifelseif代码块 -->
+    <h2>{{result}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        score: 99
+      },
+      computed: {
+        result() {
+          let showMessage = ''
+          if (this.score > 100 || this.score < 0) {
+            showMessage = '请输入0-100的成绩！'
+          } else if (this.score >= 90) {
+            showMessage = '优秀'
+          } else if (this.score >= 80) {
+            showMessage = '良好'
+          } else if (this.score >= 60) {
+            showMessage = '及格'
+          } else {
+            showMessage = '不及格'
+          }
+          return showMessage
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>007-02-v-for遍历对象</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 在遍历对象时，如果只获取一个值，获取的是 value -->
+    <ul>
+      <li v-for="item in info">{{item}}</li>
+    </ul>
+
+    <!-- 同时获取 value 和 key -->
+    <!-- v-for="(属性值, 属性名, 索引号) in 对象名" -->
+    <ul>
+      <li v-for="(value, key, index) in info">{{key}}: {{value}}-{{index}}</li>
+    </ul>
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        info: {
+          name: 'Carol',
+          age: 20,
+          height: 165
+        }
+      }
+    })
+  </script>
+</body>
+</html>

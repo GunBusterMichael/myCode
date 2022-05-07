@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>010-07-v-model修饰符</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. lazy惰性加载修饰符 -->
+    <!-- 不加 lazy 修饰符，v-model 是实时绑定 -->
+    <span>实时绑定：</span>
+    <input type="text" v-model="message">
+    <br>
+    <!-- 加上 lazy 修饰符，v-model 在失去焦点或按下回车后绑定 -->
+    <span>非实时绑定：</span>
+    <input type="text" v-model.lazy="message">
+    <h2>{{message}}</h2>
+
+    <hr>
+
+    <!-- 2. number 修饰符 -->
+    <!-- v-model 会默认将 input 的 number 类型的值作为字符串绑定到变量中 -->
+    <input type="number" v-model="num">
+    <!-- 加上 number 修饰符，则不会将 number 类型的值转换为字符串-->
+    <input type="number" v-model.number="num">
+    <h2>{{typeof num}}: {{num}}</h2>
+
+    <hr>
+
+    <!-- 3. trim 修饰符 -->
+    <!-- trim 修饰符会去除用户输入的内容的左右两侧的空格 -->
+    <input type="text" v-model.trim="str" @input="showStr" placeholder="在控制台中查看您输入的内容">
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        num: 0,
+        str: ''
+      },
+      methods: {
+        showStr() {
+          console.log(this.str)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>003-05-动态绑定属性-v-bind绑定style（css属性）-数组语法</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      v-bind绑定style（css属性）-数组语法
+        1. 语法结构
+          在双引号中写一个数组，数组的成员是包含着style属性名和属性值的对象。
+    -->
+    <h2 :style="[basicStyle, basicLine, basicBorder]">{{message}}</h2>
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        basicColor: {
+          backgroundColor: '#b8a6d9',
+          color: '#576690'
+        },
+        basicLine: {
+          textDecoration: 'underline'
+        },
+        basicBorder: {
+          border: '1px solid #333'
+        }
+      },
+    })
+  </script>
+</body>
+</html>

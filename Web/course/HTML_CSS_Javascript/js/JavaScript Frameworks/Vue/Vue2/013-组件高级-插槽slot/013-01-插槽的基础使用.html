@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>013-slot-插槽的基础使用</title>
+</head>
+<body>
+  <!--
+    ？插槽的作用：让组件具有扩展性
+  -->
+  <div id="app">
+    <cpn>
+      <!-- 这是组件实例中自定义的插槽内容 -->
+      <!-- 将要被插入插槽的内容放到 template 标签中 -->
+      <template>
+        <button>我是被插入到slot标签中的按钮</button>
+      </template>
+    </cpn>
+
+    <cpn>
+      <template>
+        <!-- 这是组件实例中自定义的插槽内容 -->
+        <span>我是被插入到slot标签中的span</span>
+        <div>我也被插入了</div>
+        <a href="#">我也是</a>
+      </template>
+    </cpn>
+
+    <cpn>
+      <template>
+        <!-- 这是组件实例中自定义的插槽内容 -->
+        <i>我是被插入到slot标签中的i</i>
+      </template>
+    </cpn>
+
+    <cpn>
+      <!-- 这个组件实例没有自定义插槽内容，所以会显示默认代码 -->
+    </cpn>
+  </div>
+    
+  <template id="cpn">
+    <div>
+      <h2>我是组件</h2>
+      <p>我是组件组件组件</p>
+      
+      <!--
+        = 在 template 代码中添加 slot 标签来添加插槽
+      -->
+      <slot>
+        <!--
+          = 在 slot 中写入的代码是插槽的默认代码，
+              在组件实例没有自定义插槽时，会显示这个默认代码。
+        -->
+        <button>我是slot默认值</button>
+      </slot>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+        }
+      }
+    })
+  </script>
+</body>
+</html>

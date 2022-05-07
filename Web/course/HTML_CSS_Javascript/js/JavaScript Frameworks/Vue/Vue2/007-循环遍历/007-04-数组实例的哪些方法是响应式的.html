@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>007-04-数组的哪些方法是响应式的</title>
+  <style>
+    #responsiveMethods,
+    #unresponsiveMethods {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      padding: 5px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in letters">索引号：{{index}}，数组成员：{{item}}</li>
+    </ul>
+
+    <div id="responsiveMethods">
+      <h4>响应式方法：</h4>
+      <button @click="push">push()</button>
+      <button @click="pop">pop()</button>
+      <button @click="shift">shift()</button>
+      <button @click="unshift">unshift()</button>
+      <button @click="spliceDel">splice()删除成员</button>
+      <button @click="spliceReplace">splice()替换成员</button>
+      <button @click="spliceInsert">splice()插入成员</button>
+      <button @click="sort">sort()</button>
+      <button @click="reverse">reverse()</button>
+    </div>
+
+    <div id="unresponsiveMethods">
+      <h4>非响应式方法：</h4>
+      <button @click="changeViaIndex">通过索引号修改数组成员</button>
+    </div>
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        letters: ['A', 'B', 'C', 'D', 'E']
+      },
+      methods: {
+        // 以下为响应式方法：
+        push() {
+          // 在数组末尾添加一个或多个成员
+          this.letters.push('我在尾部1', '我在尾部2', '我在尾部3')
+        },
+        pop() {
+          // 删除数组的最后一个成员
+          this.letters.pop()
+        },
+        shift() {
+          // 删除数组的第一个成员
+          this.letters.shift()
+        },
+        unshift() {
+          // 在数组开头添加一个或多个成员
+          this.letters.unshift('我在头部1', '我在头部2', '我在头部3')
+        },
+        // splice()：删除成员、替换成员、插入成员
+        spliceDel() {
+          // 删除成员
+          this.letters.splice(0, 2)
+        },
+        spliceReplace() {
+          // 替换成员
+          this.letters.splice(2, 3, 'O', 'K', '!')
+        },
+        spliceInsert() {
+          // 插入成员
+          this.letters.splice(2, 0, '我被插入到索引号为2的地方')
+        },
+        sort() {
+          // 对数组的成员进行排序
+          this.letters.sort()
+        },
+        reverse() {
+          // 反转数组成员的顺序
+          this.letters.reverse()
+        },
+
+        // 以下是非响应式方法
+        // 数组确实被改变了，但并没有被渲染到页面中。
+        changeViaIndex() {
+          this.letters[0] = '非响应式'
+          console.log(this.letters)
+
+          // 如果想要实现通过索引号替换的效果，要使用 splice 方法
+          // this.letters.splice(0, 1, '非响应式')
+
+          /*
+            或者使用 Vue.set() 方法
+              Vue.set(要修改的对象, 要修改哪一个索引号的值, 修改后的值)
+          */
+          Vue.set(this.letters, 0, '非响应式')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

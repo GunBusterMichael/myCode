@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-07-组件中的data为什么是个函数</title>
+</head>
+<body>
+  <div id="app">
+    <!--
+      ? 组件中的data为什么是个函数？
+          1. 原因
+            为了让多个相同的组件所使用的 data 不一样，
+              防止其中一个组件的 data 改变后，其他相同组件的 data 随之改变。
+          2. 原理
+            每次生成一个新的组件实例，就会重新运行一遍 data 函数。
+            每次运行 data 函数时，其返回的对象都是不一样的。
+            具体表现在这些对象的内存地址不一样。
+    -->
+
+    <cpn></cpn>  <!-- 这是一个组件实例 -->
+    <cpn></cpn>  <!-- 这是另一个组件实例 -->
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>当前计数：{{counter}}</h2>
+      <button @click="decrease()">-</button>
+      <button @click="increase()">+</button>
+      <button @click="returnToZero()">归零</button>
+    </div>
+  </template>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    // 1. 注册组件
+    Vue.component('cpn', {
+      template: '#cpn',
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        increase() {
+          this.counter++
+        },
+        decrease() {
+          this.counter--
+        },
+        returnToZero() {
+          this.counter = 0
+        }
+      },
+    })
+
+    const app = new Vue ({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>

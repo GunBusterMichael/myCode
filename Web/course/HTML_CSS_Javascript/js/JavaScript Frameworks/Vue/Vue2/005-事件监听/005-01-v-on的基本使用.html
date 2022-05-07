@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>005-01-v-on的基本使用</title>
+	<style type="text/css">
+		.btnsDiv {
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<h2>{{counter}}</h2>
+
+		<div class="btnsDiv">
+			<button v-on:click="counter--">直接用表达式-</button>
+			<button v-on:click="counter++">直接用表达式+</button>
+		</div>
+
+		<div class="btnsDiv">
+			<button v-on:click="decrease()">不用语法糖用methods方法-</button>
+			<button v-on:click="increase()">不用语法糖用methods方法+</button>
+		</div>
+
+		<div class="btnsDiv">
+			<button @click="decrease()">用语法糖@用methods方法-</button>
+			<button @click="increase()">用语法糖@用methods方法+</button>
+		</div>
+	</div>
+
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				counter: 0
+			},
+			methods: {
+				decrease() {
+					this.counter--
+				},
+				increase() {
+					this.counter++
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>012-02-全局组件与局部组件</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+		<cpn2></cpn2>
+  </div>
+	<!-- 一般只创建一个 Vue 实例。此处是为了演示全局组件，所以创建了两个 Vue 实例。 -->
+	<div id="app2">
+		<cpn></cpn>
+		<cpn2></cpn2>
+	</div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    /* 1. 创建组件构造器 */
+    const cpnC = Vue.extend({
+      template: `
+        <div>
+          <h2>我是标题全局组件</h2>
+          <p>我是内容全局组件</p>
+        </div>
+      `
+    })
+		const cpnC2 = Vue.extend({
+      template: `
+        <div>
+          <h2>我是标题局部组件</h2>
+          <p>我是内容局部组件</p>
+        </div>
+      `
+    })
+
+    /*
+      2. 注册组件（全局组件）：
+				2.1 含义
+					可以在多个 Vue 实例中使用。
+				2.2 注册方法
+					在 Vue 实例外面注册组件；
+					Vue.component('标签名', 组件构造器)
+    */
+    Vue.component('cpn', cpnC)
+
+		// 以下代码是为了创建 Vue 实例
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+			/* 
+				3. 注册组件（局部组件）（使用频率高）
+					3.1 含义
+						只能在被注册时所在的 Vue 实例内使用，不能在其他 Vue 实例内使用
+					3.2 注册方法
+						在 Vue 实例内部注册组件
+			 */
+			components: {
+				/* 标签名: 组件构造器 */
+				cpn2: cpnC2
+			}
+    })
+		
+		const app2 = new Vue({
+			el: '#app2'
+		})
+  </script>
+</body>
+
+</html>
