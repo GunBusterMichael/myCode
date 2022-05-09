@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>004-01-v-if与template合用</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!--
+      将要一起显示隐藏的内容包裹在一个 template 标签中，
+      而不是包裹在 div 标签中。
+        因为在显示的时候，template 标签不会被渲染，但其内部的内容会被渲染。
+        如果是被包裹在 div 标签中，在渲染的时候 div 标签会被渲染，浪费性能。
+    -->
+    <template v-if="isShow">
+      <div>{{message}}</div>
+      <div>{{message}}</div>
+      <div>{{message}}</div>
+      <div>{{message}}</div>
+      <div>{{message}}</div>
+    </template>
+  </template>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = {
+    template: '#my-app',
+    data() {
+      return {
+        message: 'Hello World',
+        isShow: false
+      }
+    },
+  }
+
+  Vue.createApp(app).mount('#app')
+</script>
+
+</html>

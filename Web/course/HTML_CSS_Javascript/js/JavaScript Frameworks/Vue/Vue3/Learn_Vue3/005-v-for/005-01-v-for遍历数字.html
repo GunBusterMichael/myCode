@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>005-01-v-for遍历数字</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <ul>
+      <li v-for="(value, index) in 10">value: {{value}}, index: {{index}}</li>
+    </ul>
+  </template>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = {
+    template: '#my-app',
+  }
+
+  Vue.createApp(app).mount('#app')
+</script>
+
+</html>
