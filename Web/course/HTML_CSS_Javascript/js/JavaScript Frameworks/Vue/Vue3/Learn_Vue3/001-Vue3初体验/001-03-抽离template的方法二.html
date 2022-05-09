@@ -6,6 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>001-03-抽离template的方法二</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,14 +18,20 @@
   <div id="app"></div>
 
   <!-- 将 template 的内容写到 template 标签中并添加 id -->
-  <template id="why">
-    <div>
+  <!--
+    Vue2 的 template 中只能存在一个根元素；
+    Vue3 的 template 中允许存在多个根元素。
+  -->
+  <!-- template 的属性不会被渲染到可见的页面中 -->
+  <template id="why" class="aaa">
+    <div :class="{active: true}">
       <h2>{{message}}</h2>
       <h2>{{counter}}</h2>
       <button @click='increment'>+1</button>
       <button @click='decrement'>-1</button>
       <button @click="btnClick">按钮</button>
     </div>
+    <a href="https://www.baidu.com">百度一下</a>
   </template>
 
   <script src="../js/vue.js"></script>
