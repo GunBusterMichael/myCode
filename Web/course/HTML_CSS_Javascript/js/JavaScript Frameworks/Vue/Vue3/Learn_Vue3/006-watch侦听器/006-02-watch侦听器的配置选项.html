@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006-02-watch侦听器的配置选项</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <button @click="changeInfo">给Info赋值为一个新的对象</button>
+    <button @click="changeInfoName">改变Info中的name属性</button>
+    <button @click="changeArray">改变array</button>
+  </template>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = {
+    template: '#my-app',
+    data() {
+      return {
+        info: {
+          name: 'why',
+          age: 18
+        },
+        letters: ['a', 'b', 'c']
+      }
+    },
+    watch: {
+      /*
+        默认状态下，watch 只侦听数据的整体改变（将数据赋值为另一个数据），
+          不侦听数据内部的改变（对象属性的改变）
+      */
+      // info(newInfo, oldInfo) {
+      //   console.log('newInfo: ', newInfo, '\noldInfo', oldInfo)
+      // },
+
+      /* 深度侦听 */
+      info: {
+        /* 
+          这样设置 watch，就能够侦听数据内部的改变。
+        */
+        handler: function (newInfo, oldInfo) {
+          console.log('newInfo: ', newInfo, '\noldInfo', oldInfo)
+        },
+        deep: true,  // 深度侦听
+        /* 立即执行：在数据被渲染后立即执行该 watch 方法 */
+        immediate: true  //立即执行
+      },
+
+      /* 数组写法 */
+      /*
+        监听的数据名: [
+          '已在methods中定义的函数名，不带括号',
+          function handle2() {...},
+          ...
+        ]
+        watch 会依次执行数组内的函数。
+      */
+
+      letters(newInfo, oldInfo) {
+        console.log('newInfo: ', newInfo, '\noldInfo', oldInfo)
+      }
+    },
+    methods: {
+      changeInfo() {
+        this.info = {
+          name: 'kobe'
+        }
+      },
+      changeInfoName() {
+        /*
+          在更改了对象的属性后，由于新旧对象的内存地址一致，即 newValue 与 oldValve 的内存地址一致，
+            所以 watch 无法获取到真正的旧值。
+        */
+        this.info.name = 'james'
+      },
+      changeArray() {
+        this.letters.push('e')
+      }
+    },
+  }
+
+  Vue.createApp(app).mount('#app')
+</script>
+
+</html>

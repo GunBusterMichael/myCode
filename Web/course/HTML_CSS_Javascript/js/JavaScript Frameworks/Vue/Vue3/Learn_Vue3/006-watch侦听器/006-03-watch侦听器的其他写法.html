@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006-02-watch侦听器的配置选项</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <button @click="changeInfo">给Info赋值为一个新的对象</button>
+    <button @click="changeInfoName">改变Info中的name属性</button>
+  </template>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = {
+    template: '#my-app',
+    data() {
+      return {
+        info: {
+          name: 'why',
+          age: 18
+        },
+      }
+    },
+    watch: {
+      /* 只侦听数据的指定属性 */
+      'info.name': function (newName, oldName) {
+        console.log(newName, oldName)
+      }
+    },
+    methods: {
+      changeInfo() {
+        this.info = {
+          name: 'kobe'
+        }
+      },
+      changeInfoName() {
+        /*
+          在更改了对象的属性后，由于新旧对象的内存地址一致，即 newValue 与 oldValve 的内存地址一致，
+            所以 watch 无法获取到真正的旧值。
+        */
+        this.info.name = 'james'
+      },
+      changeArray() {
+        this.letters.push('e')
+      }
+    },
+    /*
+      在 created 生命周期函数中，通过 $watch 使用侦听器。
+    */
+    created() {
+      const unwatch = this.$watch('info', (newInfo, oldInfo) => {
+        console.log(newInfo, oldInfo)  // 返回 Proxy {name: 'why', age: 18} undefined
+      }, {
+        deep: true,
+        immediate: true
+      })
+
+      /* 通过调用侦听器函数的返回值，停止该侦听器的运行 */
+      // 无法阻止其他侦听该数据的侦听器
+      unwatch()
+    },
+  }
+
+  Vue.createApp(app).mount('#app')
+</script>
+
+</html>

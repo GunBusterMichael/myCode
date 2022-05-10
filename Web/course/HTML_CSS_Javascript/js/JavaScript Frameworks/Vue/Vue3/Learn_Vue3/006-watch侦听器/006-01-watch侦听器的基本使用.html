@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>006-01-watch侦听器的基本使用</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    请输入问题：<input type="text" v-model="question">
+    <div>您输入的问题是：{{question}}</div>
+  </template>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = {
+    template: '#my-app',
+    data() {
+      return {
+        question: 'Hello world!'
+      }
+    },
+
+    /*
+      watch 侦听器：
+        1. 作用
+          侦听 data 中数据的变化。
+            在数据变化时，运行指定的代码。
+    */
+    watch: {
+      /*
+        2. watch 中的方法名与该方法要侦听的属性名一致。
+        3. watch 内方法的参数
+          3.1 newValue
+            新值
+          3.2 oldValue
+            旧值
+      */
+      question(newValue, oldValue) {
+        console.log(newValue)
+      }
+    }
+  }
+
+  Vue.createApp(app).mount('#app')
+</script>
+
+</html>
