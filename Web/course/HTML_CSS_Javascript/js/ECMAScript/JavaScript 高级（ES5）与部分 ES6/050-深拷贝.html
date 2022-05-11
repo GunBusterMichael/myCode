@@ -42,13 +42,13 @@
                     deepCopyObj[k] = []
                     // 调用 deepCopy() 深拷贝数组中的每一个元素
                     deepCopy(deepCopyObj[k], item)
-                
-                // 判断属性值是否为对象
+
+                    // 判断属性值是否为对象
                 } else if (item instanceof Object) {
                     // 在 deepCopyObj 中创建相同属性名的对象类型属性
                     deepCopyObj[k] = {}
                     deepCopy(deepCopyObj[k], item)
-                // 属性值属于简单数据类型
+                    // 属性值属于简单数据类型
                 } else {
                     deepCopyObj[k] = item
                 }
@@ -60,6 +60,44 @@
         console.log(copyInfo);
         copyInfo.parents.mother = '黄嘉琪'
         console.log(originInfo);
+
+        /*
+            深拷贝方法 2：
+                Object.assign()
+                2.1 原因
+                    该方法会创建一个新的对象，与原对象的内存地址不同。
+                2.2 缺点
+                    无法拷贝第二层数据
+        */
+        var info = {
+            name: 'why',
+            age: 18,
+            friend: {
+                name: 'kobe'
+            }
+        }
+        var obj = Object.assign({}, info)
+        info.name = 'Michael'
+        console.log(obj.name)    // 返回 'why'
+        info.friend.name = 'Michael'
+        console.log(obj.friend.name)    // 返回 'Michael'
+
+        /*
+            深拷贝方法 3：
+                JSON.parse(JSON.stringify())
+        */
+        var info2 = {
+            name: 'why',
+            age: 18,
+            friend: {
+                name: 'kobe'
+            }
+        }
+        var obj2 = JSON.parse(JSON.stringify(info2))
+        info2.name = 'Michael'
+        console.log(obj2.name)    // 返回 'why'
+        info2.friend.name = 'Michael'
+        console.log(obj2.friend.name)    // 返回 'kobe'
     </script>
 </body>
 
