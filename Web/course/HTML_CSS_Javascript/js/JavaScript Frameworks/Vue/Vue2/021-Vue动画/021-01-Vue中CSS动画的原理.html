@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue中CSS动画的原理</title>
+  <style>
+    /* 
+      Vue 过渡效果实现原理：
+        通过为元素添加和删除特定的类，并运用 CSS 的 transition 过渡效果实现的
+    */
+
+    /*
+      Vue 过渡效果适用场景：
+        1. 条件渲染 v-if；
+        2. 条件展示 v-show；
+        3. 动态组件；
+        4. 组件根节点。
+    */
+
+    /* 1. 进入过渡 */
+
+    /*
+      1.1 .fade-enter
+        作用：
+          用于过渡的开始状态；
+        何时生效：
+          在元素被插入前生效；
+        何时被移除：
+          在元素被插入后的下一帧移除。
+    */
+    .fade-enter {
+      opacity: 0;
+    }
+
+    /*
+      1.2 .fade-enter-active
+        作用：
+          用于定义过渡的时间、延迟和曲线函数。
+        何时生效：
+          在元素被插入前生效；
+        何时被移除：
+          在过渡完成后移除。
+    */
+    .fade-enter-active {
+      transition: opacity 1s;
+    }
+    /*
+      进入过渡的流程：
+        1. 元素因为 v-if/v-show 被隐藏；
+        2. v-if/v-show 的值被改变后，元素被添加到页面上，
+            同时 Vue 为元素添加 .fade-enter 类：透明度为0，
+                          添加 .fade-enter-active 类，对 opacity 进行监控；
+        3. .fade-enter 类被移除，opacity 属性改变，依据 .fade-enter-active 类进行渐变动画。
+    */
+
+    /* 1. 进入过渡结束 */
+
+    /* 2. 离开过渡 */
+    /*
+      2.1 .fade-leave-to
+        作用：
+          用于定义离开过渡的结束状态；
+        何时生效：
+          在离开过渡动画被触发后的 下一帧 生效;
+        何时被删除：
+          在过渡结束后被删除。
+    */
+    .fade-leave-to {
+      opacity: 0;
+    }
+    /*
+      .fade-leave-active
+        作用：
+          定义离开过渡的时间、延迟和曲线函数；
+        何时生效：
+          在离开过渡被触发时立刻生效；
+        何时被移除：
+          在过渡完成后被移除。
+    */
+    .fade-leave-active {
+      transition: opacity 1s;
+    }
+    /*
+      离开过渡的流程
+        1. 在 v-if/v-show 被改变后，离开过渡生效；
+        2. .fade-leave-to 与 .fade-leave-active 被添加到元素上；
+        3. .fade-leave-to 改变元素的样式，被.fade-leave-active 监听到样式的改变，开始渐变动画；
+        4. 离开过渡结束后，.fade-leave-to 与 .fade-leave-active 被删除。
+    */
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--
+      Vue可以为被 transition 包裹的标签提供过渡效果；
+      name 标签用于指定类的开头单词，默认为 v。
+    -->
+    <transition name="fade">
+      <p v-if="show">{{message}}</p>
+    </transition>
+    <button @click="show = !show">切换显示</button>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello',
+        show: false
+      }
+    })
+  </script>
+</body>
+
+</html>
