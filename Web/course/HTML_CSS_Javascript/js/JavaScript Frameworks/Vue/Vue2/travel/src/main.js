@@ -6,9 +6,11 @@ import router from './router'
 // 引入 fastclick 库，解决移动端点击300ms延迟问题
 import fastClick from 'fastclick'
 // 引入能让所有手机显示效果一致的 css 文件
-import 'assets/styles/reset.css'
+import 'styles/reset.css'
 // 引入解决 1px border 问题的 css 文件
-import 'assets/styles/border.css'
+import 'styles/border.css'
+// 引入 iconfont 字体图标
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
 

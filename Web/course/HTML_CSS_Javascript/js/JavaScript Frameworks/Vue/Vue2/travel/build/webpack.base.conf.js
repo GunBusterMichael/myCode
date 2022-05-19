@@ -24,12 +24,15 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+
+    // 在修改了 webpack 设置后，要重新运行 npm run dev
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
-      'views': resolve('src/views')
+      'views': resolve('src/views'),
+      'styles': resolve('src/assets/styles'),
     }
   },
   module: {
