@@ -1,0 +1,5 @@
+使用绝对定位时，
+  若父级元素有定位（设置了position/transform/perspective属性），
+    子元素以最近的已定位父元素border与padding交界处进行定位。子盒子的 margin 会贴着父盒子 padding 与 border 的交界处
+  若父级元素没有定位（没有设置position/transform/perspective属性），
+    子元素以浏览器左上角为基点对齐。

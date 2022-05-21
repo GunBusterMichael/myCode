@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>022-01-自定义指令-函数式</title>
+</head>
+<body>
+  <div id="app">
+    <h2>当前的n值是：<span v-text="n"></span></h2>
+    <h2>放大10倍后的n值是：<span v-big="n"></span></h2>
+    <h2>放大10倍后的n值是：<span v-big-number="n"></span></h2>
+    <input type="text" v-fbind:value="n">
+
+    <button @click="n++">点我让n加1</button>
+  </div>
+    
+  <script src="../js/vue.js"></script>
+  <script>
+    /*
+      注意：
+        1. 注册指令时不加 v-，使用时要加 v-；
+        2. 指令名不能用驼峰命名法，要用短横杠连接。注册时用 'xxx-xxx' () {} 或 'xxx-xxx': {} 写法注册。
+    */
+
+    /* 注册全局自定义函数 */
+    /* 函数式 */
+    Vue.directive('big2', function (element, binding) {
+      element.innerHTML = binding.value * 10
+    })
+    /* 对象式 */
+    Vue.directive('fbind2', {
+      bind(element, binding) {
+        element.value = binding.value
+      },
+      inserted(element, binding) {
+        element.focus()
+      },
+      update(element, binding) {
+        element.value = binding.value
+      }
+    })
+
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        n: 1
+      },
+
+      /* 在 directives 中注册局部“自定义指令”*/
+      directives: {
+        /*
+          定义函数式指令：
+            模板指令会调用该函数。
+              1. 何时调用
+                1.1 指令与元素绑定成功时；
+                1.2 指令所在的模板被重新解析时
+                  当数据发生改变时（包括没有被绑定到该指令的数据），模板会被重新解析
+              2. 指令函数的参数
+                2.1 第一个参数 element
+                  返回与指令绑定的 DOM 元素，包含 DOM 元素的所有属性与方法。
+                2.2 第二个参数 binding
+                  一个对象，包含与指令相关的属性。详见：https://cn.vuejs.org/v2/guide/custom-directive.html
+              3. 与对象式指令的关系
+                相当于定义了 bind 和 update 两个钩子函数，并且函数内容一致。
+        */
+        /* 需求：定义 v-big 指令，类似于 v-text，会把绑定的值放大10倍后，渲染到网页上 */
+        big (element, binding) {
+          /* binding.value 是指令的绑定值，这里是 n */
+          element.innerHTML = binding.value * 10
+          console.log(this)  // 自定义指令的 this 指向 window
+        },
+        'big-number' (element, binding) {
+          /* binding.value 是指令的绑定值，这里是 n */
+          element.innerHTML = binding.value * 10
+        },
+
+        /*
+          对象式指令
+        */
+        fbind: {
+          /* 指令与元素程度成功绑定时调用 bind */
+          /*
+            常用于：
+              改变样式；
+              设定 value；
+              绑定事件。
+          */
+          bind (element, binding) {
+            element.value = binding.value
+          },
+
+          /* 指令所在元素被插入页面时调用 inserted */
+          /*
+            常用于：
+              获取焦点；
+              获取父元素。
+          */
+          inserted (element, binding) {
+            element.focus()
+          },
+
+          /* 指令所在模板被重新解析时调用 update */
+          update (element, binding) {
+            element.value = binding.value
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
