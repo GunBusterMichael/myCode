@@ -1,0 +1,17 @@
+1. 事件分类：
+  1.1 原生事件
+    1.1.1 定义
+      原生 DOM 上的事件（click、focus...）。
+    1.1.2 能在哪里使用原生事件
+      1.1.2.1 原生 DOM 元素（button、div...）；
+      1.1.2.2 组件标签
+        需要在绑定事件时加上.native，才能使用原生事件：
+        <home-swiper @click.native='handleClick'/>
+        本质上是给组件的根元素绑定了原生事件。
+  1.2 自定义事件
+    1.2.1 能在哪里使用自定义事件
+      自定义事件只能用在组件上。需要在组件中使用 this.$emit('自定义事件名', 要传递的信息) 来使用。
+      this.$emit('showSwiper', true)
+      <home-swiper @showSwiper='handleClick'/>
+
+      因为没有办法给原生 DOM 元素（button、div...）设置 $emit，所以原生 DOM 元素无法使用自定义事件。

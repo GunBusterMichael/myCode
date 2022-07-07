@@ -11,6 +11,10 @@
 <body>
 
     <div id="app">
+        <!--
+            Vue实例app与Vue原型对象上的所有属性和方法，都可以在模板里使用。
+            只要 data 发生改变，模板中用到 data 的地方就会被更新。
+        -->
         <h1>{{message}}</h1>
         <p>Hello, {{name}}</p>
     </div>
@@ -23,6 +27,10 @@
     <script>
         // Vue 的写法
 		// 1. 创建 Vue 实例
+        /*
+            在全局对象中，有一个 Vue 构造函数。
+            通过 new Vue 创建 Vue 实例。
+        */
         const app = new Vue (
 		    // 2. 向 Vue 实例中传入一个options 对象
 			{
