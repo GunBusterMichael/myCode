@@ -15,7 +15,8 @@
         /* 
         功能：
             forEach 类似于 for 循环，对每个元素执行一遍回调函数；
-            返回程序员指定返回的值。
+            返回值为 undefined。
+            不会修改原数组，除非将 this 绑定为原数组。
         形参：
             index 与 array 可不写；形参名称可以变
         */
@@ -31,6 +32,22 @@
             sum += value
         })
         console.log(sum);
+
+        // 通过绑定 this 实现修改数组成员
+        let arr2 = [1, 2, 3]
+        let str2 = arr2.forEach(function (item, index, arr) {
+            this[index] = ++item
+        }, arr2)  // 将 this 绑定为当前被遍历的数组
+        console.log(arr2);
+        console.log(str2);
+
+        // forEach中的函数的初始this指向window
+        arr2.forEach((item) => {
+            console.log(this)  // 返回 window
+        })
+        arr2.forEach(function(item)  {
+            console.log(this)  // 返回 window
+        })
     </script>
 </body>
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>023-01-Object.defineProperty</title>
+</head>
+<body>
+  <script>
+    let number = 18
+    let person = {
+      name: 'Michael',
+      gender: 'male',
+
+      /*
+        需求：
+          让 age 属性值等于 number 的值。
+      */
+      /*
+        如果直接在对象中，用键值对的方法，将 number 设置为 age 的值，
+          在第一次设置时，可以设置成功；
+          但如果 number 值被修改，age 的值不会随之改变，仍维持第一次设置时的值。
+      */
+      // age: number
+    }
+    // console.log(person.age)  // 返回 18
+    // number = 19
+    // console.log(person.age)  // number 被修改后，person.age 仍显示为 18
+
+    /* 用于在一个对象上定义新属性，或修改现有属性。返回此对象 */
+    /* 
+      用处：
+        对属性进行设置；
+    */
+    Object.defineProperty(person, 'age', {
+      /*
+        设置了 value 或 writable 就不能设置 setter 或 getter；
+        设置了 setter 或 getter 就不能设置 value 或 writable。
+
+        设置了 setter 或 getter 的属性：
+          value 不可设置；
+          enumerable、configurable 默认为 false；
+          writable 为 true。
+      */
+      // value: 18,         // 设置属性值，默认为 undefined
+      // enumerable: true,  // 控制属性是否可被枚举，默认为 false
+      // writable: true,    // 控制属性是否可被修改，默认为 false
+      // configurable: true, // 控制属性是否可被删除，默认为 false。
+
+      /*
+        当有人读取 age 属性时，get 函数（getter）就会被调用（读取键名时不会被调用）。
+          get 函数的返回值会被设置为 age 属性的值。
+      */
+      get () {
+        console.log('get被调用');
+        return number
+        /*
+          age 属性每次被调用，都会重新获取 number 的值作为 age 的值，
+            这样就可以实现在 number 被修改后，age 的值仍然与 number 相同。
+        */
+      },
+      
+      /*
+        当有人修改 age 属性时，set 函数（setter）会被调用；
+          setter 会收到要被修改为的值，这个值是 set 的参数 value
+      */
+      set (value) {
+        console.log('age属性被修改，修改后的值为', value);
+
+        /* 将 number 的值设置成要被修改为的值 value */
+        /* 在获取 age 时，会将最新的 number 值赋值给 age */
+        number = value
+      }
+    })
+
+    /* 以下方法均获取不到无法被枚举的属性 */
+    // for (const i in person) {
+    //   console.log(i)
+    // }
+    // console.log(Object.keys(person))
+    // console.log(Object.values(person))
+    // console.log(Object.entries(person))
+    
+    /* 直接通过.或[]可以获取到不可枚举的属性 */
+    console.log(person.age)
+    console.log(person['age'])
+
+    /* 删除属性的办法 */
+    // delete person.age
+  </script>
+</body>
+</html>

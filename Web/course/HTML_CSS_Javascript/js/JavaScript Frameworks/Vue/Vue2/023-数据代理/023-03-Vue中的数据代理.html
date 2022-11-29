@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>023-03-Vue中的数据代理</title>
+</head>
+
+<!--
+  1. Vue 中的数据代理
+    通过 vm 对象代理对 vm._data 对象中的属性的操作（读取/修改）。
+  2. Vue 中数据代理的好处
+    更加方便地操作 vm._data 中的数据。
+  3. 基本原理
+    通过 Object.defineProperty() 将 vm._data 中的所有属性添加到 vm 上；
+    并为每一个被添加到 vm 上的属性，都指定一对 getter setter。
+    在 getter setter 内部去操作（读取/修改）_data 中对应的属性。
+-->
+
+<body>
+  <div id="app">
+    <h2>{{name}}</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let data = {
+      name: 'Michael'
+    }
+
+    const vm = new Vue({
+      el: '#app',
+      data
+    })
+    /*
+      vm = {
+        各种属性与方法,
+        _data,  // Vue 将 new Vue 中传入的 data（options.data）保存到了 vm._data 中
+        name: 'Michael',
+        ...
+      }
+    */
+
+    console.log(vm);
+
+    /* 读取vm.name -> 调用vm.name的getter -> 返回vm._data.name */
+    console.log('vm.name:', vm.name);
+
+    /* 修改vm.name -> 调用vm.name的setter方法 -> 修改vm._data.name -> Vue检测到_data改变，修改页面 */
+    vm.name = 'CoderWhy'
+
+    /* 我们一般使用的数据都是 vm.数据名 */
+  </script>
+</body>
+
+</html>
