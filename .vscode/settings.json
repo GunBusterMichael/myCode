@@ -1,4 +1,7 @@
 {
   "liveServer.settings.port": 5501,
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "python.linting.pylintArgs": [
+    "--disable=C,R,W"
+  ]
 }
